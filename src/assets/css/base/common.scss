@@ -1,0 +1,318 @@
+@import "reset";
+@import "media";
+@import "function";
+body{
+  background:#fff;
+}
+.yzm canvas{
+  width: 100%!important;
+  height: auto!important;
+}
+.alr_bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: none;
+}
+
+.alr, .alr2, .alr3 {
+  position: fixed;
+  width: 6rem;
+  left: 50%;
+  top: 50%;
+  margin-left: -3rem;
+  margin-top: -2rem;
+  background: #f5f5f5;
+  border-radius: 0.2rem;
+  display: none;
+  z-index: 10000;
+  padding-bottom: 0.25rem;
+}
+
+.alr h3, .alr2 h3, .alr3 h3 {
+  font-size: 0.28rem;
+  background: #ddd;
+  border-bottom: 1px solid #bbb;
+  line-height: 0.6rem;
+  border-radius: 0.2rem 0.2rem 0 0;
+  text-indent: 0.3rem;
+}
+
+.alr h3 img, .alr2 h3 img, .alr3 h3 img {
+  height: 0.5rem;
+  padding-top: 0.07rem;
+  vertical-align: top;
+  margin-right: 0.15rem;
+}
+
+.alr p, .alr2 p, .alr3 p {
+  font-size: 0.28rem;
+  line-height: 0.4rem;
+  text-align: left;
+  padding: 0 0.26rem;
+  padding-top: 0.2rem;
+  margin-bottom: 0.25rem;
+  text-indent: 0.6rem;
+  color: #323232;
+}
+
+.alr div, .alr2 div, .alr3 div {
+  padding: 0;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.alr input, .alr2 input, .alr3 input {
+  line-height: 0.6rem;
+  width: 1.6rem;
+  text-align: center;
+  border-radius: 0.1rem;
+  font-weight: bold;
+  font-size: 0.28rem;
+  color: #fff;
+  background: #ee3f43;
+}
+
+.alr_bg2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: none;
+}
+
+.alr5 {
+  position: fixed;
+  width: 6rem;
+  left: 50%;
+  top: 50%;
+  margin-left: -3rem;
+  margin-top: -2rem;
+  background: #f5f5f5;
+  border-radius: 0.2rem;
+  display: none;
+  z-index: 10000;
+  padding-bottom: 0.3rem;
+}
+
+.alr5 h3 {
+  font-size: 0.28rem;
+  background: #ddd;
+  border-bottom: 1px solid #bbb;
+  line-height: 0.6rem;
+  border-radius: 0.2rem 0.2rem 0 0;
+  text-indent: 0.3rem;
+}
+
+.alr5 h3 img {
+  height: 0.5rem;
+  padding-top: 0.07rem;
+  vertical-align: top;
+  margin-right: 0.15rem;
+}
+
+.alr5 p {
+  font-size: 0.28rem;
+  line-height: 0.4rem;
+  text-align: left;
+  padding: 0 0.26rem;
+  padding-top: 0.2rem;
+  margin-bottom: 0.25rem;
+  text-indent: 0.6rem;
+  color: #323232;
+}
+
+.alr5 div {
+  padding: 0;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.alr5 div a {
+  display: inline;
+}
+
+.alr5 input {
+  line-height: 0.6rem;
+  width: 1.6rem;
+  text-align: center;
+  border-radius: 0.1rem;
+  font-weight: bold;
+  font-size: 0.28rem;
+  color: #fff;
+  background: #ee3f43;
+  margin: 0 0.25rem;
+}
+
+#alr_loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: none;
+}
+
+#alr_loading img {
+  width: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+.mint-toast{
+   white-space: nowrap;
+   z-index: 10000!important;
+}
+#toast_wrap .mint-toast{
+  white-space: inherit;
+}
+
+/*监控流量*/
+#cnzz_stat_icon_1260241271 {
+  display: none;
+}
+
+/*mint-ui修改*/
+.mint-indicator-wrapper{
+  padding: 15px 30px!important;
+  border-radius: 4px!important;
+  background: rgba(0, 0, 0, 0.5)!important;
+  font-size: 0!important;
+  z-index:99999;
+}
+.mint-spinner-snake{
+  height: 16px!important;
+  width: 16px!important;
+}
+.mint-indicator-text{
+  color: rgb(204,204,204)!important;
+  font-size: 12px!important;
+}
+.mint-indicator-mask{
+  z-index: 99999;
+}
+.mint-msgbox{
+  border-radius: 0.2rem!important;
+  width: 5.4rem!important;
+}
+.mint-msgbox-content{
+  padding: 0 0.2rem!important;
+  min-height: auto!important;
+  border: 0!important;
+}
+.mint-msgbox-confirm{
+    color:#ee3f44!important;
+	font-size: 0.36rem;
+}
+.mint-msgbox-title{
+  height: 0.8rem!important;
+  line-height: 0.8rem!important;
+  text-align: center!important;
+  font-size: 0.36rem!important;
+  color: #333!important;
+  font-weight: bold!important;
+}
+.mint-msgbox-message{
+  line-height: normal!important;
+  font-size: 0.28rem!important;
+}
+.mint-msgbox-btns{
+  height: 1rem!important;
+  line-height: 1rem!important;
+  border-top: 1px solid #ddd!important;
+  font-size: 0.32rem!important;
+  margin-top: 0.3rem!important;
+}
+.mint-msgbox-header{
+  padding: 0.3rem 0 0 !important;
+}
+.mint-switch-input:checked + .mint-switch-core {
+  border-color: #4CD964!important;
+  background-color: #4CD964!important;
+}
+
+/*loging.gif样式*/
+.loading_gif{
+  display: inline-block;
+  font-size: 0;
+  width: 0.9rem;
+  height:0.24rem;
+  position: relative;
+}
+.loading_gif:before{
+  content: '';
+  width: 0.24rem;
+  height: 0.24rem;
+  background: #ee3f44;
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top:0;
+  animation:left 0.7s linear 0s infinite alternate;
+}
+.loading_gif:after{
+  content: '';
+  width: 0.24rem;
+  height: 0.24rem;
+  background: yellow;
+  position: absolute;
+  border-radius: 50%;
+  left: 0.66rem;
+  top:0;
+  animation:right 0.7s linear 0s infinite alternate;
+}
+@keyframes left{
+  0% {left: 0;}
+  100% {left: 0.66rem}
+}
+@keyframes right{
+  0% {left: 0.66rem;}
+  100% {left: 0}
+}
+a[title='站长统计'] {
+  display: none;
+}
+@media only screen and (device-width: 375px) and (device-height: 812px) and
+(-webkit-device-pixel-ratio: 3) {
+  .inponex_background_bg{
+    width: 100%;
+    height: 34px;
+  }
+  .inponex_background{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 34px;
+    background: #fff;
+    z-index: 999;
+  }
+}
+
+/*ios空白页问题*/
+html.select, body.select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#app.select {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  left:0;
+  top:0;
+}

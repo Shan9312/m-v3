@@ -1,0 +1,40 @@
+.header_status_card {
+  height: 1rem;
+  padding: 0 0.3rem;
+  background-color: #ff5339;
+  color: #fff;
+  font-size: 0.26rem;
+  line-height: 1rem;
+  text-align: right;
+}
+.header_status_card .fl {
+  float: left;
+}
+.header_status_card img {
+  width: 0.6rem;
+  vertical-align: middle;
+}
+.header_msg {
+  margin-bottom: 0.2rem;
+  padding: 0.3rem;
+  background-color: #fff;
+}
+.header_msg .msg_title {
+  margin-bottom: 0.3rem;
+  font-size: 0.3rem;
+}
+.header_msg .msg_count {
+  margin-bottom: 0.2rem;
+  font-size: 0.32rem;
+  font-weight: bold;
+  color: #ee3f44;
+}
+.header_msg .msg_count span {
+  font-size: 0.24rem;
+  font-weight: normal;
+  color: #999;
+}
+.header_msg .msg_tips {
+  font-size: 0.28rem;
+  color: #999;
+}

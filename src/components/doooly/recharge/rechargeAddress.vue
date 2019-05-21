@@ -1,0 +1,301 @@
+<template>
+  <div class="list">
+    <table cellspacing="2">
+      <tr>
+          <td>网点名称</td>
+          <td>地址</td>
+          <td>所在进出口位置</td>
+      </tr>
+      <tr v-for="(item,index) in list">
+          <td>{{item.name}}</td>
+          <td>{{item.address}}</td>
+          <td>{{item.section}}</td>
+      </tr>
+    </table>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: "rechargeAddress",
+  data(){
+    return {
+      list:[
+        {"name":"1号线","address":"莘庄","section":"南出口西面、南出口东面、北出口东面、"},
+        {"name":"1号线","address":"外环路","section":"南二号口、"},
+        {"name":"1号线","address":"莲花路","section":"南一号口、南一号口、"},
+        {"name":"1号线","address":"锦江乐园","section":"北一、北二、"},
+        {"name":"1号线","address":"上海南站","section":"6号口、"},
+        {"name":"1号线","address":"漕宝路","section":"4号口、3号口、"},
+        {"name":"1号线","address":"上海体育馆","section":"8号口、6号口、"},
+        {"name":"1号线","address":"徐家汇","section":"9号口、14号口、10号口、"},
+        {"name":"1号线","address":"衡山路","section":"2号口、4号口、3号口、"},
+        {"name":"1号线","address":"常熟路","section":"2号口、"},
+        {"name":"1号线","address":"陕西南路","section":"4号口、1号口、"},
+        {"name":"1号线","address":"黄陂南路","section":"1号口、4号口、"},
+        {"name":"1号线","address":"人民广场","section":"9号口、16号口、"},
+        {"name":"1号线","address":"新闸路","section":"1号口、5号口、"},
+        {"name":"1号线","address":"汉中路","section":"4号口、3号口、"},
+        {"name":"1号线","address":"上海火车站","section":"3号口、5号口、"},
+        {"name":"1号线","address":"中山北路","section":"2号口、4号口、"},
+        {"name":"1号线","address":"延长路","section":"2号口、4号口、"},
+        {"name":"1号线","address":"上海马戏城","section":"3号口、4号口、"},
+        {"name":"1号线","address":"汶水路","section":"2号口-3号口当中、1号口-4号口当中、"},
+        {"name":"1号线","address":"彭浦新村","section":"3号口、4号口、"},
+        {"name":"1号线","address":"共康路","section":"2号口、4号口、"},
+        {"name":"1号线","address":"通河新村","section":"1号口、2号口、"},
+        {"name":"1号线","address":"呼兰路","section":"1号口、2号口、"},
+        {"name":"1号线","address":"共富新村","section":"2号口、4号口、"},
+        {"name":"1号线","address":"友谊西路","section":"2号口、1号口、"},
+        {"name":"2号线","address":"徐泾东","section":"2号口、13号口、9号口、"},
+        {"name":"2号线","address":"淞虹路","section":"3号口、2号口、"},
+        {"name":"2号线","address":"北新泾","section":"2号口、4-5号口、"},
+        {"name":"2号线","address":"威宁路","section":"3号口、1号口、4号口、"},
+        {"name":"2号线","address":"娄山关路","section":"2号口、3号口、"},
+        {"name":"2号线","address":"中山公园","section":"7号口、8号口、"},
+        {"name":"2号线","address":"江苏路","section":"3号口、4号口、"},
+        {"name":"2号线","address":"静安寺","section":"1号口、3号口、"},
+        {"name":"2号线","address":"南京西路","section":"3号口、1号口、"},
+        {"name":"2号线","address":"人民广场","section":"9号口、"},
+        {"name":"2号线","address":"南京东路","section":"4号口、3号口、"},
+        {"name":"2号线","address":"陆家嘴","section":"2号口、6号口、"},
+        {"name":"2号线","address":"东昌路","section":"1号口、6号口、"},
+        {"name":"2号线","address":"世纪大道","section":"6号口、7号口、"},
+        {"name":"2号线","address":"上海科技馆","section":"8号口、3号口、"},
+        {"name":"2号线","address":"世纪公园","section":"4号口、3号口、"},
+        {"name":"2号线","address":"龙阳路","section":"5号口、"},
+        {"name":"2号线","address":"金科路","section":"1号口、2号口、"},
+        {"name":"2号线","address":"唐镇","section":"3号口、"},
+        {"name":"2号线","address":"华夏东路","section":"1号口、5号口、"},
+        {"name":"2号线","address":"川沙","section":"1号口、2号口、"},
+        {"name":"2号线","address":"凌空路","section":"3号口、"},
+        {"name":"2号线","address":"海天三路","section":"1号口、"},
+        {"name":"2号线","address":"浦东国际机场","section":"服务中心左边、"},
+        {"name":"3号线","address":"上海南站","section":"1号口、"},
+        {"name":"3号线","address":"石龙路","section":"南门、"},
+        {"name":"3号线","address":"龙漕路","section":"1号口、2号口、"},
+        {"name":"3号线","address":"漕溪路","section":"1,2号口、3号口、"},
+        {"name":"3号线","address":"宜山路","section":"1号口、2号口、"},
+        {"name":"3号线","address":"虹桥路","section":"2号口、1,3号口、"},
+        {"name":"3号线","address":"延安西路","section":"1号口、"},
+        {"name":"3号线","address":"中山公园","section":"1号口、"},
+        {"name":"3号线","address":"金沙江路","section":"2号口、"},
+        {"name":"3号线","address":"曹杨路","section":"7号口、"},
+        {"name":"3号线","address":"镇坪路","section":"3号口、"},
+        {"name":"3号线","address":"中潭路","section":"3,5号口、1,2,6号口、"},
+        {"name":"3号线","address":"上海站","section":"6号口、"},
+        {"name":"3号线","address":"宝山路","section":"2号口、1号口、"},
+        {"name":"3号线","address":"东宝兴路","section":"1号口、2号口、"},
+        {"name":"3号线","address":"虹口足球场","section":"2号口、4号口、"},
+        {"name":"3号线","address":"赤峰路","section":"1号口、3号口、"},
+        {"name":"3号线","address":"大柏树","section":"1号口、2号口、"},
+        {"name":"3号线","address":"江湾镇","section":"2号口、5号口、"},
+        {"name":"3号线","address":"殷高西路","section":"1号口、"},
+        {"name":"3号线","address":"长江南路","section":"1号口、"},
+        {"name":"3号线","address":"淞发路","section":"1号口、"},
+        {"name":"3号线","address":"张华浜","section":"1号口、"},
+        {"name":"3号线","address":"淞滨路","section":"1号口、2号口、"},
+        {"name":"3号线","address":"水产路","section":"1号口、"},
+        {"name":"3号线","address":"宝杨路","section":"1号口、"},
+        {"name":"3号线","address":"友谊路","section":"1号口、"},
+        {"name":"3号线","address":"铁力路","section":"1号口、2号口、"},
+        {"name":"3号线","address":"江杨北路","section":"1号口、"},
+        {"name":"4号线","address":"上海体育馆","section":"1号口、"},
+        {"name":"4号线","address":"宜山路","section":"5号口、"},
+        {"name":"4号线","address":"海伦路","section":"3号口、"},
+        {"name":"4号线","address":"临平路","section":"3号口 、1号口 、"},
+        {"name":"4号线","address":"大连路","section":"3号口 、1号口 、"},
+        {"name":"4号线","address":"杨树浦路","section":"4号口、"},
+        {"name":"4号线","address":"浦东大道","section":"1号口、3号口、"},
+        {"name":"4号线","address":"浦电路","section":"2号口、"},
+        {"name":"4号线","address":"蓝村路","section":"2号口、1号口、"},
+        {"name":"4号线","address":"塘桥","section":"2号口、"},
+        {"name":"4号线","address":"南浦大桥","section":"2号口、3号口、"},
+        {"name":"4号线","address":"鲁班路","section":"3号口、"},
+        {"name":"4号线","address":"大木桥路","section":"5号口、1号口、3号口、"},
+        {"name":"4号线","address":"东安路","section":"3号口、"},
+        {"name":"4号线","address":"上海体育场","section":"3号口、"},
+        {"name":"5号线","address":"春申路","section":"1号口、"},
+        {"name":"5号线","address":"银都路","section":"2号口、"},
+        {"name":"5号线","address":"剑川路","section":"2号口、"},
+        {"name":"5号线","address":"华宁路","section":"1号口、"},
+        {"name":"5号线","address":"文井路","section":"2号口、"},
+        {"name":"6号线","address":"儿童医学中心","section":"1号口-3号口当中紧靠服务中心、2号口、"},
+        {"name":"6号线","address":"浦电路","section":"服务中心左边、"},
+        {"name":"6号线","address":"金桥路","section":"1号口、4号口、"},
+        {"name":"6号线","address":"港城路","section":"1号口-2号口当中、"},
+        {"name":"7号线","address":"刘行","section":"2号口、"},
+        {"name":"7号线","address":"镇坪路","section":"4号口、"},
+        {"name":"7号线","address":"常熟路","section":"6号口、"},
+        {"name":"7号线","address":"龙华中路","section":"12号线中转、5号口、1号口、7号口、"},
+        {"name":"7号线","address":"云台路","section":"6号口、3号口、"},
+        {"name":"8号线","address":"芦恒路","section":"2号口，靠近平安银行ATM、靠近车控室、"},
+        {"name":"8号线","address":"成山路","section":"3号口、1号口、"},
+        {"name":"8号线","address":"耀华路","section":"服务中心斜对面，不靠近出口、"},
+        {"name":"8号线","address":"西藏南路","section":"5号口、"},
+        {"name":"8号线","address":"人民广场","section":"17号口、16号口、"},
+        {"name":"8号线","address":"陆家浜路","section":"2号口、6号口、3号口、4号口、"},
+        {"name":"8号线","address":"曲阜路","section":"4号口、5号口、3号口、1号口、"},
+        {"name":"8号线","address":"虹口足球场","section":"2号口、1号口、"},
+        {"name":"8号线","address":"四平路","section":"3号口、1,4号口、"},
+        {"name":"8号线","address":"延吉中路","section":"5号口、4号口、"},
+        {"name":"8号线","address":"市光路","section":"2号口、"},
+        {"name":"9号线","address":"松江体育馆","section":"3号口、2号口、"},
+        {"name":"9号线","address":"醉白池","section":"2号口、"},
+        {"name":"9号线","address":"松江南站","section":"3号口、1号口、"},
+        {"name":"9号线","address":"松江大学城","section":"3号口、4号口、"},
+        {"name":"9号线","address":"中春路","section":"3号口、6号口、"},
+        {"name":"9号线","address":"徐家汇","section":"15号口、18号口、"},
+        {"name":"9号线","address":"肇嘉浜路","section":"4号口、"},
+        {"name":"9号线","address":"嘉善路","section":"4号口、"},
+        {"name":"9号线","address":"陆家浜路","section":"2号口、6号口、3号口、4号口、"},
+        {"name":"10号线","address":"虹桥火车站","section":"未开通"},
+        {"name":"10号线","address":"航中路","section":"4号口、5号口、"},
+        {"name":"10号线","address":"紫藤路","section":"3号口、1号口、"},
+        {"name":"10号线","address":"龙柏新村","section":"4号口、5号口、"},
+        {"name":"10号线","address":"虹桥1号航展路","section":"3号口、1号口、"},
+        {"name":"10号线","address":"上海动物园","section":"1号口、4号口、"},
+        {"name":"10号线","address":"龙溪路","section":"1号口、"},
+        {"name":"10号线","address":"水城路","section":"1号口、3号口、"},
+        {"name":"10号线","address":"伊犁路","section":"1号口、3号口、"},
+        {"name":"10号线","address":"宋园路","section":"1号口、2号口、"},
+        {"name":"10号线","address":"虹桥路","section":"6号口、4号口、"},
+        {"name":"10号线","address":"上海图书馆","section":"3号口、"},
+        {"name":"10号线","address":"陕西南路","section":"6号口、8号口、7号口、"},
+        {"name":"10号线","address":"新天地","section":"1号口、4号口、"},
+        {"name":"10号线","address":"老西门","section":"3号口、6号口、"},
+        {"name":"10号线","address":"豫园","section":"1号口、3号口、"},
+        {"name":"10号线","address":"南京东路","section":"6号口、7号口、"},
+        {"name":"10号线","address":"天潼路","section":"3号口、5号口、"},
+        {"name":"10号线","address":"四川北路","section":"1号口、3号口、"},
+        {"name":"10号线","address":"海伦路","section":"7号口、5号口、"},
+        {"name":"10号线","address":"邮电新村","section":"4号口、2号口、"},
+        {"name":"10号线","address":"同济大学","section":"1号口、2号口、"},
+        {"name":"10号线","address":"国权路","section":"3号口、4号口、"},
+        {"name":"10号线","address":"五角场","section":"3号口、2号口、"},
+        {"name":"10号线","address":"江湾体育场","section":"3号口、"},
+        {"name":"10号线","address":"三门路","section":"6号口、3号口、"},
+        {"name":"10号线","address":"新江湾城","section":"1号口、2号口、"},
+        {"name":"10号线","address":"殷高东路","section":"4号口、"},
+        {"name":"11号线","address":"花桥路","section":"1号口、2号口、"},
+        {"name":"11号线","address":"光明路","section":"1号口、2号口、"},
+        {"name":"11号线","address":"兆丰路","section":"2号口、"},
+        {"name":"11号线","address":"安亭","section":"4号口、2号口、"},
+        {"name":"11号线","address":"上海汽车城","section":"3号口、1号口、"},
+        {"name":"11号线","address":"昌吉东路","section":"1号口、2号口、"},
+        {"name":"11号线","address":"马陆","section":"1号口、3号口、"},
+        {"name":"11号线","address":"桃浦新村","section":"4号口、1号口、"},
+        {"name":"11号线","address":"李子园","section":"1号口、2号口、"},
+        {"name":"11号线","address":"真如","section":"5号口、1号口、"},
+        {"name":"11号线","address":"曹杨路","section":"2号口、5号口、"},
+        {"name":"11号线","address":"江苏路","section":"5号口、7号口、"},
+        {"name":"11号线","address":"上海交通大学","section":"6号口、"},
+        {"name":"11号线","address":"徐家汇","section":"18号口、20号口、"},
+        {"name":"11号线","address":"上海游泳馆","section":"1号口、"},
+        {"name":"11号线","address":"龙华站","section":"1号口、2号口、"},
+        {"name":"11号线","address":"云锦路","section":"6号口、7号口、"},
+        {"name":"11号线","address":"龙耀路","section":"2号口、3号口、1号口、"},
+        {"name":"11号线","address":"三林","section":"2号口、3号口、"},
+        {"name":"11号线","address":"三林东","section":"4号口、2号口、"},
+        {"name":"11号线","address":"浦三路","section":"3号口、2号口、"},
+        {"name":"11号线","address":"御桥路","section":"2号口、"},
+        {"name":"11号线","address":"罗山路","section":"3号口、5号口、1号口、"},
+        {"name":"11号线","address":"秀沿路","section":"2号口、3号口、"},
+        {"name":"11号线","address":"康新公路","section":"1号口、2号口、"},
+        {"name":"11号线","address":"迪士尼站","section":"3号口、1号口、"},
+        {"name":"12号线","address":"七莘路","section":"2号口、3号口、"},
+        {"name":"12号线","address":"虹莘路","section":"2号口、4号口、"},
+        {"name":"12号线","address":"顾戴路","section":"4号口、3号口、"},
+        {"name":"12号线","address":"东兰路","section":"4号口、3号口、"},
+        {"name":"12号线","address":"虹梅路","section":"2号口、6号口、"},
+        {"name":"12号线","address":"虹漕路","section":"3号口、1号口、"},
+        {"name":"12号线","address":"桂林公园","section":"4号口、1号口、"},
+        {"name":"12号线","address":"漕宝路","section":"8号口、6号口、"},
+        {"name":"12号线","address":"龙漕路","section":"6号口、4/5号口、"},
+        {"name":"12号线","address":"龙华","section":"4号口、3号口、"},
+        {"name":"12号线","address":"南京西路","section":"14号口、12号口、"},
+        {"name":"12号线","address":"汉中路","section":"10号口、"},
+        {"name":"12号线","address":"国际客运中心","section":"1号口、4号口、"},
+        {"name":"12号线","address":"大连路","section":"6号口、5号口、4号口、"},
+        {"name":"12号线","address":"提篮桥","section":"1号口、4号口、"},
+        {"name":"12号线","address":"长阳路","section":"1号口、3号口、"},
+        {"name":"12号线","address":"宁国路","section":"1号口、4号口、"},
+        {"name":"12号线","address":"隆昌路","section":"1号口、3号口、"},
+        {"name":"12号线","address":"爱国路","section":"3号口、2号口、"},
+        {"name":"12号线","address":"复兴岛","section":"2号口、4号口、"},
+        {"name":"12号线","address":"东陆路","section":"3号口、1号口、"},
+        {"name":"12号线","address":"巨峰路","section":"4号口、1号口、"},
+        {"name":"12号线","address":"杨高北路","section":"4号口、1号口、"},
+        {"name":"12号线","address":"金京路","section":"3号口、1号口、"},
+        {"name":"12号线","address":"申江路","section":"3号口、1号口、"},
+        {"name":"12号线","address":"金海路","section":"2号口、3号口、"},
+        {"name":"13号线","address":"金运路","section":"8号口、2号口、"},
+        {"name":"13号线","address":"金沙江西路","section":"3号口、4号口、"},
+        {"name":"13号线","address":"丰庄","section":"1号口、2号口、3号口、"},
+        {"name":"13号线","address":"祁连山南路","section":"1号口、2号口、3号口、"},
+        {"name":"13号线","address":"真北路","section":"1号口、2号口、3号口、"},
+        {"name":"13号线","address":"大渡河路","section":"4号口、1号口、"},
+        {"name":"13号线","address":"金沙江路","section":"5号口、6号口、"},
+        {"name":"13号线","address":"隆德路","section":"1号口、4号口、"},
+        {"name":"13号线","address":"武宁路","section":"1号口、2号口、"},
+        {"name":"13号线","address":"长寿路","section":"2号口、1号口、"},
+        {"name":"13号线","address":"江宁路","section":"2号口、3号口、1号口、"},
+        {"name":"13号线","address":"自然博物馆","section":"3号口、1号口、"},
+        {"name":"13号线","address":"南京西路","section":"10号口、8号口、"},
+        {"name":"13号线","address":"淮海中路","section":"1号口、3号口、"},
+        {"name":"13号线","address":"马当路","section":"5号口、在费区内不使用、"},
+        {"name":"13号线","address":"世博会博物馆","section":"3号口、2号口、1号口、"},
+        {"name":"13号线","address":"世博大道","section":"3号口、4号口、"},
+        {"name":"16号线","address":"龙阳路","section":"11号口、12号口、"},
+        {"name":"16号线","address":"周浦东","section":"3号口、4号口、"},
+        {"name":"16号线","address":"鹤沙航城","section":"1号口-2号口当中、3号口-4号口当中、"},
+        {"name":"16号线","address":"航头东","section":"3号口-4号口当中、1号口-2号口当中、"},
+        {"name":"16号线","address":"新场","section":"1号口、2号口、"},
+        {"name":"16号线","address":"野生动物园","section":"1号口、2号口、"},
+        {"name":"16号线","address":"惠南","section":"1号口2号口当中、3号口4号口当中、"},
+        {"name":"16号线","address":"惠南东","section":"4号口、3号口、"},
+        {"name":"16号线","address":"书院","section":"1号口、2号口、"},
+        {"name":"16号线","address":"临港大道","section":"2号口、3号口、1号口、"},
+        {"name":"16号线","address":"滴水湖","section":"2号口、3号口、"},
+      ],
+    }
+  },
+  beforeCreate(){
+    document.body.style.backgroundColor="#f5f5f5";
+  },
+  destroy(){
+    document.body.style.backgroundColor="";
+  },
+  created(){
+    initTitle('自助充值机地址','')
+  },
+  methods:{
+  }
+}
+</script>
+
+<style scoped>
+table{
+    font-size: 0.3rem;
+    margin: 0 auto;
+    line-height: 0.64rem;
+}
+table tr td{
+    background: #fff;
+    padding: 0 0.18rem;
+    text-align: center;
+}
+table tr:first-child td{
+    background: #38302e;
+    color: #fff;
+    min-width: 1.5rem;
+}
+table tr td:last-child{
+    margin-right: 0;
+}
+table tr td:nth-child(2){
+  max-width: 4.1rem;
+  min-width: 1.8rem;
+}
+</style>
