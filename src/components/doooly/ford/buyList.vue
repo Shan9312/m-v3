@@ -37,11 +37,11 @@
             </div>
             <br/>
             <div class="price">
-              <span class="red">￥</span>{{item.sellPrice || item.sellPrice === 0 ? item.sellPrice.toFixed(2) : ''}}
+              <span class="red">￥</span>{{item.sellPrice.toFixed(2)}}
             </div>
             <br/>
             <div class="Sprice">
-              市场价：<span>￥{{item.marketPrice || item.marketPrice === 0 ? item.marketPrice.toFixed(2) : ''}}</span>
+              市场价：<span>￥{{item.marketPrice.toFixed(2)}}</span>
             </div>
           </div>
           <div class="button_count" v-if="item.count > 0">
@@ -75,11 +75,11 @@
         <div @click="shopsShow = true"><img src="../../../assets/images/active/icon_close.png"></div>
       </div>
       <ul class="shops">
-        <li v-for="(item,index) in shopsList" :key="index" v-show="item.count > 0">
-          <div class="name">{{item.title}}</div>
+        <li v-for="(item,index) in shopsList" :key="index" v-show="item.num > 0">
+          <div class="name">{{item.skuName}}</div>
           <div>
-            <span class="pirce"><b>￥</b>{{item.sellPrice || item.sellPrice === 0 ? item.sellPrice.toFixed(2) : ''}}</span>
-            <span class="number">x{{item.count}}</span>
+            <span class="pirce"><b>￥</b>{{item.price.toFixed(2)}}</span>
+            <span class="number">x{{item.num}}</span>
           </div>
         </li>
       </ul>
@@ -88,7 +88,7 @@
       <div class="amount">
         <div class="left">
           <span class="pirceT">应付金额：</span>
-          <span class="pirce"><b>￥</b>{{totalPrices || totalPrices === 0 ? totalPrices.toFixed(2) : ''}}</span>
+          <span class="pirce"><b>￥</b>{{totalPrices.toFixed(2)}}</span>
         </div>
         <div class="show" @click="shopsShow = !shopsShow">
           明细
@@ -138,20 +138,33 @@
       },
       //购物车添加商品
       shoppingAdd(item){
-        if(item.count){
-          item.count++;
-        }else{
-          item.count = 1;
-        }
-        this.shoppingRefresh(item);
+        item.count++;
+        this.cardBuyList.push();
+        http({
+          method: 'post',
+          url: api.shopHandle,
+          data: {
+            sku:item.skuId,
+            businessId:item.businessId,
+            num:item.count,
+            price:item.sellPrice,
+            specification:item.specification,
+            userId:localStorage.userId,
+            name:item.title,
+            businessName:item.company,
+            image:item.image,
+            goodsId:item.produceId,
+            productType:item.productTypeId,
+          },
+        }).then((res) => {
+          if(res.data.code = 1000){
+            this.shopNum(item);
+          }
+        })
       },
       //购物车删除商品
       shoppingDelte(item){
         item.count--;
-        this.shoppingRefresh(item);
-      },
-      //刷新购物车状态
-      shoppingRefresh(item){
         this.cardBuyList.push();
         http({
           method: 'post',
@@ -187,33 +200,6 @@
           },
         }).then((res) => {
           this.shopsList = res.data.data;
-          this.shopsList.forEach((shop,index) => {
-            let remove = 0;
-            this.cardBuyList.forEach((item,key) => {
-              if(item.skuId == shop.sku){
-                this.shopsList[index] = item;
-                this.shopsList[index].count = shop.num;
-                this.shoppingRefresh(this.shopsList[index]);
-                remove = 1;
-              }
-            })
-            if(remove == 0){
-              this.shopsList[index] = {
-                businessId: shop.businessId,
-                id: '',
-                count:0,
-                sellPrice:shop.price,
-                skuId:shop.sku,
-                specification: shop.specification,
-                productTypeId:shop.productType,
-                company: shop.businessName,
-                produceId: shop.goodsId,
-                image: shop.image,
-                title: shop.name,
-              };
-              this.shoppingRefresh(this.shopsList[index]);
-            }
-          })
           this.shopNum();
         })
       },
@@ -263,7 +249,6 @@
             this.availIntegal = res.data.data.userIntegralVO.dirIntegral;
             this.integal = res.data.data.userIntegralVO.integral;
             this.shopNum();
-            this.getShoppingList();//购物车列表
           }
         })
       },
@@ -272,8 +257,18 @@
         if(item){//本地购物车添加商品
           let as = 0;
           this.shopsList.forEach((shop,key) => {
-            if(item.skuId == shop.skuId){
-              this.shopsList[key] = item;
+            if(item.skuId == shop.sku){
+              this.shopsList[key] = {
+                businessId: item.businessId,
+                goodsId:item.productId,
+                id: '',
+                num:item.count,
+                price:item.sellPrice,
+                sku:item.skuId,
+                skuName: item.title,
+                specification: item.specification,
+                productType:item.productType,
+              };
               as = 1;
               if(item.count == 0){
                 this.shopsList.splice(key,1);
@@ -281,14 +276,28 @@
             }
           }) 
           if(as == 0){
-            this.shopsList.push(item);
-          }
+              this.shopsList.push({
+                businessId: item.businessId,
+                id: '',
+                num:item.count,
+                price:item.sellPrice,
+                sku:item.skuId,
+                skuName: item.title,
+                specification: item.specification,
+              });
+            }
         }
-        //计算总价格
-        this.totalPrices = 0;
-        this.shopsList.forEach((shop,key) => {
-          this.totalPrices += (shop.sellPrice * shop.count);
+        this.cardBuyList.forEach((card,index) => {//同步购物车与商品列表数量计算总价格
+          card.count = 0;
+          this.totalPrices = 0;
+          this.shopsList.forEach((shop,key) => {
+            if(card.skuId == shop.sku){
+              card.count = shop.num;
+            }
+            this.totalPrices += (shop.price * shop.num);
+          })
         })
+        this.cardBuyList.push();
       },
       //埋点统计
       index_click(val, index) {
@@ -423,6 +432,7 @@
     created() {
       initTitle('360礼包兑换');
       this.loadCardList();//商品列表
+      this.getShoppingList();//购物车列表
     },
     mounted() {
       this.ii= setInterval(this.countDown,1000);

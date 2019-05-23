@@ -58,7 +58,7 @@
         </div>
         <!-- test fllll -->
         <!-- 自营isSource: 3, 接收银台cashDeskSource: d -->
-        <div class="div_btn" v-if="item.type==10 && item.cashDeskSource === 'd' && item.continuePayStatus != '0'">
+        <div class="div_btn" v-if="item.type==10 && item.cashDeskSource === 'd' && item.continuePayStatus == '1'">
           <button v-if="item.productType==3||item.productType==4" type="button" class="no_btn" @click="order_cancel('手机充值',item.orderNumber)">
             取消订单
           </button>
@@ -120,7 +120,7 @@
           </a>
         </div>
         <!-- 自营isSource: 3, 接收银台cashDeskSource: d -->
-        <div class="div_btn" v-if="item.type==10 && item.cashDeskSource === 'd' && item.continuePayStatus != '0'">
+        <div class="div_btn" v-if="item.type==10 && item.cashDeskSource === 'd' && item.continuePayStatus == '1'">
           <button v-if="item.productType==3||item.productType==4" type="button" class="no_btn" @click="order_cancel('手机充值',item.orderNumber)">
             取消订单
           </button>

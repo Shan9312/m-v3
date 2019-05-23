@@ -668,7 +668,6 @@ export default{
                             'merchantId':this.mobile_merchant_id,
                             'remarks':'',
                             'productSku':[{
-                                'productType':3,
                                 'productId':this.mobile_product_id,
                                 'skuId':this.charge_list_sku_id,
                                 'buyNum':1
@@ -697,7 +696,6 @@ export default{
                             'merchantId':this.mobile_merchant_id,
                             'remarks':'',
                             'productSku':[{
-                                'productType':3,
                                 'productId':this.mobile_product_id,
                                 'skuId':this.charge_list_sku_id,
                                 'buyNum':1
@@ -731,7 +729,6 @@ export default{
                             'merchantId':this.flow_merchant_id,
                             'remarks':'',
                             'productSku':[{
-                                'productType': 4,
                                 'productId':this.flow_product_id,
                                 'skuId':this.rateOfFlow_list_sku_id,
                                 'buyNum':1
@@ -767,8 +764,6 @@ export default{
                             'merchantId': this.sctcd_merchant_id,
                             'remarks': '',
                             'productSku':[{
-                                'cardno': this.cardno,
-                                'productType': 5,
                                 'productId': this.sctcd_product_id,
                                 'skuId': this.card_list_sku_id,
                                 'buyNum': 1

@@ -42,8 +42,7 @@
         </div>
         <div class="des_r highlight_font" v-else-if="supplierOrder.state==1 && supplierOrder.type==5">已退货</div>
         <div class="des_r highlight_font" v-else-if="supplierOrder.state==2">已取消</div>
-        <div class="des_r highlight_font" v-else-if="supplierOrder.state==0 && supplierOrder.continuePayStatus !='0'">待付款</div>
-        <div class="des_r highlight_font" v-else>交易关闭</div>
+        <div class="des_r highlight_font" v-else-if="supplierOrder.state==0">待付款</div>
       </div>
       <div class="div_describe" v-if="supplierOrder.company">
         <div class="des_l">商户名称</div>

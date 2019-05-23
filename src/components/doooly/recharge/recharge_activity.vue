@@ -119,7 +119,6 @@ export default {
           'merchantId': this.activityData.businessId,
           'remarks':'',
           'productSku':[{
-            'productType': 10,
             'productId': this.activityData.produceId,
             'skuId': this.activityData.skuId,
             'buyNum': 1

@@ -1,4 +1,4 @@
-var keepAliveArr=[];
+var keepAliveArr = []
 
 var browserName = getBrowser()
 var memberFrom = '兜礼会员'
@@ -21,16 +21,16 @@ if (/wiscowechat/.test(window.location.href)) {
   memberFrom = '钢城e家会员'
 }
 
-if(browserName == "WebKit" || browserName == "Chrome WebView"){
-  //第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
-  if(/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty'){
+if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
+  // 第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
+  if (/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty') {
     let userAgent = window.navigator.userAgent // 兜礼app会有标识
     let dooolyRegx = /doooly/i
     if (!dooolyRegx.test(userAgent)) {
-      browserName = "otherAPP"
+      browserName = 'otherAPP'
       localStorage.appUrlChannel = 'thirdParty'
     }
-  } 
+  }
 }
 // 获取设备id回调方法
 window.getDeviceHash = function (id) {
@@ -46,7 +46,7 @@ if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
   localStorage.activateMobile = RHNativeJS.getLoginUserNumber()
   localStorage.ownApp = RHNativeJS.isOwnApp()
   localStorage.userName = RHNativeJS.getUserName()
-  if( RHNativeJS.getPhoneDeviceId){
+  if (RHNativeJS.getPhoneDeviceId) {
     RHNativeJS.getPhoneDeviceId('getDeviceHash')
   }
   // 新增版本号方法
@@ -74,13 +74,13 @@ if (browserName == 'WebKit') {
   window.webkit.messageHandlers.getPhoneDeviceId.postMessage('getDeviceHash')
 }
 
-function getBrowser(){
-	var parser = new UAParser();
-	var result = parser.getResult();
-	var name=result.browser.name;
-	browserName=name;
-//	alert(browserName);
-	return name;
+function getBrowser () {
+  var parser = new UAParser()
+  var result = parser.getResult()
+  var name = result.browser.name
+  browserName = name
+  //	alert(browserName);
+  return name
 }
 function getDeviceId () {
   if (navigator.userAgent.match(/iphone\sOS/i) == 'iphone os') {
@@ -101,11 +101,31 @@ function getDeviceId () {
   }
 }
 
-//大华app获取登录令牌
-function getQueryString(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-  if(window.location.hash.indexOf("?") < 0){
-          return null;
+/**
+ * url后面带的param转换成object对象
+ * @param {*} url url
+ */
+function param2Obj (url) {
+  if (!url) return {}
+  const search = url.split('?')[1]
+  if (!search) {
+    return {}
+  }
+  return JSON.parse(
+    '{"' +
+    decodeURIComponent(search)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"') +
+    '"}'
+  )
+}
+
+// 大华app获取登录令牌
+function getQueryString (name) {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+  if (window.location.hash.indexOf('?') < 0) {
+    return null
   }
   var r = window.location.hash.split('?')[1].match(reg)
   if (r != null) return decodeURIComponent(r[2])
@@ -115,44 +135,43 @@ if (browserName == 'otherAPP' && getQueryString('JsonData')) {
   localStorage.thirdUserToken = getQueryString('JsonData')
 }
 
-//判断是否为微信浏览器
-function isWeiXin(){
-    var ua = window.navigator.userAgent.toLowerCase();
-    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-    	return true;
-    }
-    else{
-    	return false;
-    }
+// 判断是否为微信浏览器
+function isWeiXin () {
+  var ua = window.navigator.userAgent.toLowerCase()
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    	return true
+  } else {
+    	return false
+  }
 };
-//判断是否为pc浏览器
-function IsPC() {
-    var userAgentInfo = navigator.userAgent;
-    var Agents = ["Android", "iPhone",
-                "SymbianOS", "Windows Phone",
-                "iPad", "iPod"];
-    var flag = true;
-    for (var v = 0; v < Agents.length; v++) {
-        if (userAgentInfo.indexOf(Agents[v]) > 0) {
-            flag = false;
-            break;
-        }
+// 判断是否为pc浏览器
+function IsPC () {
+  var userAgentInfo = navigator.userAgent
+  var Agents = ['Android', 'iPhone',
+    'SymbianOS', 'Windows Phone',
+    'iPad', 'iPod']
+  var flag = true
+  for (var v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false
+      break
     }
+  }
   return flag
 }
 
 // 判断App环境
-function judgeAppUrl(){
-  if (window.location.href.indexOf('dist2.2.1') > -1) { 
-    payUrl = payUrl.replace('/cashier/','/cashier_v2.2.1/')
-    activityUrl = activityUrl.replace('/activity/','/activity_v2.2.1/')
+function judgeAppUrl () {
+  if (window.location.href.indexOf('dist2.2.1') > -1) {
+    payUrl = payUrl.replace('/cashier/', '/cashier_v2.2.1/')
+    activityUrl = activityUrl.replace('/activity/', '/activity_v2.2.1/')
   } else if (window.location.href.indexOf('dist2.2.0') > -1) {
     payUrl = payUrl.replace('/cashier/', '/cashier_v2.2.0/')
     activityUrl = activityUrl.replace('/activity/', '/activity_v2.2.1/')
   } else if (localStorage.htmlVersion) {
     var version = localStorage.htmlVersion
     payUrl = payUrl.replace('/cashier/', '/cashier_v' + version + '/')
-    activityUrl = activityUrl.replace('/activity/','/activity_v'+ version +'/')
+    activityUrl = activityUrl.replace('/activity/', '/activity_v' + version + '/')
   }
 }
 
@@ -251,10 +270,10 @@ var httpsbase = {
   fabuActivity: 'https://reach-life.com/pre_activity_api/',
   Activity: 'https://reach-life.com/pro_activity_api/',
 
-  baseUrlTestOrder:'https://admin.doooly.com/doooly-order/',
-  baseUrlMainOrder:'https://admin.doooly.com/doooly-order/',
-  fabuOrder:'https://api.doooly.com/pre_order/',
-  Order:'https://api.doooly.com/pro_order/',
+  baseUrlTestOrder: 'https://admin.doooly.com/doooly-order/',
+  baseUrlMainOrder: 'https://admin.doooly.com/doooly-order/',
+  fabuOrder: 'https://api.doooly.com/pre_order/',
+  Order: 'https://api.doooly.com/pro_order/',
 
   baseUrlTestAction: 'https://test.doooly.cn:8410/doooly-action/',
   baseUrlMainAction: 'https://test.doooly.cn:8410/doooly-action/',
@@ -262,148 +281,141 @@ var httpsbase = {
   Action: 'https://api.doooly.com/pro_action/'
 }
 
-var Butterfly;
-var Doooly;
-var Activity;
-var Order;
-var Action;
-var base;
-var is_https = 'https:' == document.location.protocol ? true: false;
-var WxAppIdUrl;
-var Releasestage;
-var payUrl;
-var activityUrl;
-if(is_https){
-  if(window.location.href.indexOf('reachtest')>0){
-     Butterfly=httpsbase.baseUrlTestButterfly;
-     Doooly=httpsbase.baseUrlTestDoooly;
-     Activity = httpsbase.baseUrlTestActivity;
-     Order = httpsbase.baseUrlTestOrder;
-     Action = httpsbase.baseUrlTestAction;
-     base=basesUrl.baseUrlTest;
-     WxAppIdUrl=WxAppIdUrls.text;
-     Releasestage = 'reachtest';
-     if(browserName == "otherAPP"){
-      payUrl = otherPayUrls.baseUrlTest;
-      activityUrl = activityUrls.baseUrlTest;
-     }else if (browserName == "WebKit" || browserName == "Chrome WebView") {
-      payUrl = payUrls.baseUrlTest;
-      activityUrl = activityUrls.baseUrlTest;
-      judgeAppUrl();
-    }else{
-      payUrl = payUrls.baseUrlTest;
-      activityUrl = activityUrls.baseUrlTest;
-     }
-   }
-   else if(window.location.href.indexOf('reach_dist')>0){
-     Butterfly=httpsbase.baseUrlMainButterfly;
-     Doooly=httpsbase.baseUrlMainDoooly;
-     Activity = httpsbase.baseUrlMainActivity;
-     Order = httpsbase.baseUrlMainOrder;
-     Action = httpsbase.baseUrlMainAction;
-     base=basesUrl.baseUrlMain;
-     WxAppIdUrl=WxAppIdUrls.Main;
-     Releasestage = 'reach_dist';
-     if(browserName == "otherAPP"){
-      payUrl = otherPayUrls.baseUrlMain;
-      activityUrl = activityUrls.baseUrlMain;
-     }else if (browserName == "WebKit" || browserName == "Chrome WebView") {
-      payUrl = payUrls.baseUrlMain;
-      activityUrl = activityUrls.baseUrlMain;
-      judgeAppUrl();
-    }else{
-      payUrl = payUrls.baseUrlMain;
-      activityUrl = activityUrls.baseUrlMain;
-     }
-   }
-   else if(window.location.href.indexOf('pre_dist')>0){
-     Butterfly=httpsbase.fabuButterfly;
-     Doooly=httpsbase.fabuDoooly;
-     Activity = httpsbase.fabuActivity;
-     Order = httpsbase.fabuOrder;
-     Action = httpsbase.fabuAction;
-     base=basesUrl.fabuButter;
-     WxAppIdUrl=WxAppIdUrls.textDoooly;
-     Releasestage = 'pre_dist';
-     if(browserName == "otherAPP"){
-      payUrl = otherPayUrls.fabuButter;
-      activityUrl = activityUrls.fabuButter;
-     }else if (browserName == "WebKit" || browserName == "Chrome WebView") {
-      payUrl = payUrls.fabuButter;
-      activityUrl = activityUrls.fabuButter;
-      judgeAppUrl();
-    }else{
-      payUrl = payUrls.fabuButter;
-      activityUrl = activityUrls.fabuButter;
-     }
-   }
-   else if(window.location.href.indexOf('pro_dist')>0){
-     Butterfly=httpsbase.Butterfly;
-     Doooly=httpsbase.Doooly;
-     Activity = httpsbase.Activity;
-     Order = httpsbase.Order;
-     Action = httpsbase.Action;
-     base=basesUrl.Doooly;
-     WxAppIdUrl=WxAppIdUrls.Doooly;
-     Releasestage = 'pro_dist';
-     if(browserName == "otherAPP"){
-      payUrl = otherPayUrls.Doooly;
-      activityUrl = activityUrls.Doooly;
-     }else if (browserName == "WebKit" || browserName == "Chrome WebView") {
-      payUrl = payUrls.Doooly;
-      activityUrl = activityUrls.Doooly;
-      judgeAppUrl();
-    }else{
-      payUrl = payUrls.Doooly;
-      activityUrl = activityUrls.Doooly;
-     }
-   }
-   else{
-     Butterfly=httpsbase.baseUrlTestButterfly;
-     Doooly=httpsbase.baseUrlTestDoooly;
-     Activity = httpsbase.baseUrlTestActivity;
-     Order = httpsbase.baseUrlTestOrder;
-     Action = httpsbase.baseUrlTestAction;
-     base=basesUrl.baseUrlTest;
-     WxAppIdUrl=WxAppIdUrls.text;
-     if(browserName == "otherAPP"){
-      payUrl = otherPayUrls.baseUrlTest;
-      activityUrl = activityUrls.baseUrlTest;
-     }else{
-      payUrl = payUrls.baseUrlTest;
-      activityUrl = activityUrls.baseUrlTest;
-     }
-   }
-}else{
-  if(window.location.href.indexOf('reachtest')>0){
-     Butterfly=httpbase.baseUrlTestButterfly;
-     Doooly=httpbase.baseUrlTestDoooly;
-     base=baseUrl.baseUrlTest;
-     Releasestage = 'reachtest';
-   }
-   else if(window.location.href.indexOf('reach_dist')>0){
-     Butterfly=httpbase.baseUrlMainButterfly;
-     Doooly=httpbase.baseUrlMainDoooly;
-     base=baseUrl.baseUrlMain;
-     Releasestage = 'reach_dist';
-   }
-   else if(window.location.href.indexOf('pre_dist')>0){
-     Butterfly=httpbase.fabuButterfly;
-     Doooly=httpbase.fabuDoooly;
-     base=baseUrl.fabuButter;
-     Releasestage = 'pre_dist'
-   }
-   else{
-    Butterfly=httpsbase.baseUrlTestButterfly;
-    Doooly=httpsbase.baseUrlTestDoooly;
-    Activity = '/admin/activity/';
-    Order = '/admin/doooly-order/';
-    Action = '/admin8410/doooly-action/';
-    base=basesUrl.baseUrlTest;
-   }
-   if(browserName == "otherAPP"){
-    payUrl = otherPayUrls.baseUrlTest;
-   }else{
-    payUrl = payUrls.baseUrlTest;
-   }
+var Butterfly
+var Doooly
+var Activity
+var Order
+var Action
+var base
+var is_https = document.location.protocol == 'https:'
+var WxAppIdUrl
+var Releasestage
+var payUrl
+var activityUrl
+if (is_https) {
+  if (window.location.href.indexOf('reachtest') > 0) {
+    Butterfly = httpsbase.baseUrlTestButterfly
+    Doooly = httpsbase.baseUrlTestDoooly
+    Activity = httpsbase.baseUrlTestActivity
+    Order = httpsbase.baseUrlTestOrder
+    Action = httpsbase.baseUrlTestAction
+    base = basesUrl.baseUrlTest
+    WxAppIdUrl = WxAppIdUrls.text
+    Releasestage = 'reachtest'
+    if (browserName == 'otherAPP') {
+      payUrl = otherPayUrls.baseUrlTest
+      activityUrl = activityUrls.baseUrlTest
+    } else if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
+      payUrl = payUrls.baseUrlTest
+      activityUrl = activityUrls.baseUrlTest
+      judgeAppUrl()
+    } else {
+      payUrl = payUrls.baseUrlTest
+      activityUrl = activityUrls.baseUrlTest
+    }
+  } else if (window.location.href.indexOf('reach_dist') > 0) {
+    Butterfly = httpsbase.baseUrlMainButterfly
+    Doooly = httpsbase.baseUrlMainDoooly
+    Activity = httpsbase.baseUrlMainActivity
+    Order = httpsbase.baseUrlMainOrder
+    Action = httpsbase.baseUrlMainAction
+    base = basesUrl.baseUrlMain
+    WxAppIdUrl = WxAppIdUrls.Main
+    Releasestage = 'reach_dist'
+    if (browserName == 'otherAPP') {
+      payUrl = otherPayUrls.baseUrlMain
+      activityUrl = activityUrls.baseUrlMain
+    } else if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
+      payUrl = payUrls.baseUrlMain
+      activityUrl = activityUrls.baseUrlMain
+      judgeAppUrl()
+    } else {
+      payUrl = payUrls.baseUrlMain
+      activityUrl = activityUrls.baseUrlMain
+    }
+  } else if (window.location.href.indexOf('pre_dist') > 0) {
+    Butterfly = httpsbase.fabuButterfly
+    Doooly = httpsbase.fabuDoooly
+    Activity = httpsbase.fabuActivity
+    Order = httpsbase.fabuOrder
+    Action = httpsbase.fabuAction
+    base = basesUrl.fabuButter
+    WxAppIdUrl = WxAppIdUrls.textDoooly
+    Releasestage = 'pre_dist'
+    if (browserName == 'otherAPP') {
+      payUrl = otherPayUrls.fabuButter
+      activityUrl = activityUrls.fabuButter
+    } else if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
+      payUrl = payUrls.fabuButter
+      activityUrl = activityUrls.fabuButter
+      judgeAppUrl()
+    } else {
+      payUrl = payUrls.fabuButter
+      activityUrl = activityUrls.fabuButter
+    }
+  } else if (window.location.href.indexOf('pro_dist') > 0) {
+    Butterfly = httpsbase.Butterfly
+    Doooly = httpsbase.Doooly
+    Activity = httpsbase.Activity
+    Order = httpsbase.Order
+    Action = httpsbase.Action
+    base = basesUrl.Doooly
+    WxAppIdUrl = WxAppIdUrls.Doooly
+    Releasestage = 'pro_dist'
+    if (browserName == 'otherAPP') {
+      payUrl = otherPayUrls.Doooly
+      activityUrl = activityUrls.Doooly
+    } else if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
+      payUrl = payUrls.Doooly
+      activityUrl = activityUrls.Doooly
+      judgeAppUrl()
+    } else {
+      payUrl = payUrls.Doooly
+      activityUrl = activityUrls.Doooly
+    }
+  } else {
+    Butterfly = httpsbase.baseUrlTestButterfly
+    Doooly = httpsbase.baseUrlTestDoooly
+    Activity = httpsbase.baseUrlTestActivity
+    Order = httpsbase.baseUrlTestOrder
+    Action = httpsbase.baseUrlTestAction
+    base = basesUrl.baseUrlTest
+    WxAppIdUrl = WxAppIdUrls.text
+    if (browserName == 'otherAPP') {
+      payUrl = otherPayUrls.baseUrlTest
+      activityUrl = activityUrls.baseUrlTest
+    } else {
+      payUrl = payUrls.baseUrlTest
+      activityUrl = activityUrls.baseUrlTest
+    }
+  }
+} else {
+  if (window.location.href.indexOf('reachtest') > 0) {
+    Butterfly = httpbase.baseUrlTestButterfly
+    Doooly = httpbase.baseUrlTestDoooly
+    base = baseUrl.baseUrlTest
+    Releasestage = 'reachtest'
+  } else if (window.location.href.indexOf('reach_dist') > 0) {
+    Butterfly = httpbase.baseUrlMainButterfly
+    Doooly = httpbase.baseUrlMainDoooly
+    base = baseUrl.baseUrlMain
+    Releasestage = 'reach_dist'
+  } else if (window.location.href.indexOf('pre_dist') > 0) {
+    Butterfly = httpbase.fabuButterfly
+    Doooly = httpbase.fabuDoooly
+    base = baseUrl.fabuButter
+    Releasestage = 'pre_dist'
+  } else {
+    Butterfly = httpsbase.baseUrlTestButterfly
+    Doooly = httpsbase.baseUrlTestDoooly
+    Activity = '/admin/activity/'
+    Order = '/admin/doooly-order/'
+    Action = '/admin8410/doooly-action/'
+    base = basesUrl.baseUrlTest
+  }
+  if (browserName == 'otherAPP') {
+    payUrl = otherPayUrls.baseUrlTest
+  } else {
+    payUrl = payUrls.baseUrlTest
+  }
 }

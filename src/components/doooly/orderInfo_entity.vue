@@ -726,7 +726,6 @@ export default {
           'merchantId':this.postData.merchantProduct[0].merchantId,
           'remarks':'',
           'productSku':[{
-            'productType':this.postData.productType,
             'productId':this.postData.merchantProduct[0].productSku[0].productId,
             'skuId':this.postData.merchantProduct[0].productSku[0].skuId,
             'buyNum':1
