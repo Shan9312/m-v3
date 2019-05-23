@@ -3,241 +3,277 @@
     <div class="line_bold" onclick="ceshi()"></div>
     <div class="list">
       <ul>
-        <li v-for="(item,index) in cardBuyList" :key="index" class="clearfix"
-            @click="index_click(item.name,index+1);link(item.countdownTime,item.id)">
+        <li
+          v-for="(item, index) in cardBuyList"
+          :key="index"
+          class="clearfix"
+          @click="
+            index_click(item.name, index + 1);
+            link(item.countdownTime, item.id);
+          "
+        >
           <div class="fl view">
-            <img class="discount" v-if="item.discount"
-                 :src='"../../assets/images/discount"+parseInt(item.discount)+".png"'>
-            <img :src="item.image"/>
+            <img
+              class="discount"
+              v-if="item.discount"
+              :src="
+                '../../assets/images/discount' +
+                  parseInt(item.discount) +
+                  '.png'
+              "
+            />
+            <img :src="item.image" />
           </div>
           <div class="fl describe">
             <div class="title">
-              <span v-show="item.tagName">{{item.tagName}}</span>{{item.name}}
+              <span v-show="item.tagName">{{ item.tagName }}</span
+              >{{ item.name }}
             </div>
-            <br/>
+            <br />
             <div class="time">
-              {{item.introduction}}
+              {{ item.introduction }}
             </div>
-            <br/>
-            <div class="countDown fff" v-if="item.countdownTime&&time_post(item.countdownTime).countDownState">
+            <br />
+            <div
+              class="countDown fff"
+              v-if="
+                item.countdownTime &&
+                  time_post(item.countdownTime).countDownState
+              "
+            >
               <!--{{'好啦'+JSON.stringify(time_post(item.countdownTime))}}-->
-             <!--{{ var tt=time_post(item.countdownTime)}}-->
-              {{"倒计时："+time_post(item.countdownTime).htmlHour+":"+time_post(item.countdownTime).minute+":"+time_post(item.countdownTime).seconds}}
+              <!--{{ var tt=time_post(item.countdownTime)}}-->
+              {{
+                "倒计时：" +
+                  time_post(item.countdownTime).htmlHour +
+                  ":" +
+                  time_post(item.countdownTime).minute +
+                  ":" +
+                  time_post(item.countdownTime).seconds
+              }}
               <!--{{ item.countdownTime}}-->
             </div>
             <div v-else class="countDown fff"></div>
-            <br/>
+            <br />
             <div class="price">
-              <span class="red">￥</span>{{item.sellPrice}}
-              <span>￥{{item.marketPrice}}</span>
+              <span class="red">￥</span>{{ item.sellPrice }}
             </div>
           </div>
-          <div class="button" :class="{time_return:item.countdownTime&&time_post(item.countdownTime).countDownState}">
-            {{item.countdownTime&&time_post(item.countdownTime).countDownState?'即将开始':'立即订购'}}
+          <div
+            class="button"
+            :class="{
+              time_return:
+                item.countdownTime &&
+                time_post(item.countdownTime).countDownState
+            }"
+          >
+            {{
+              item.countdownTime && time_post(item.countdownTime).countDownState
+                ? "即将开始"
+                : "立即订购"
+            }}
           </div>
         </li>
       </ul>
     </div>
     <div class="No_items" v-if="noItemState">
-      <img src="../../assets/images/No_items.png"><br>
+      <img src="../../assets/images/No_items.png" /><br />
       <span>暂无商品，敬请期待</span>
     </div>
   </div>
 </template>
 
 <script>
+import http from '@/http/http.js'
+import api from '@/assets/js/api.js'
 
-  import http from '@/http/http.js';
-  import api from '@/assets/js/api.js';
+export default {
+  name: 'card-buy',
+  data () {
+    return {
+      cardBuyList: [],
+      noItemState: false,
+      getServerDate: '',
+      i: '',
+      ii: ''
+    }
+  },
+  methods: {
+    // 加载卡券购买列表
+    loadCardList () {
+      http({
+        method: 'get',
+        url: api.first + '?token=' + localStorage.token + '&pageSize=49'
+      }).then(res => {
+        if (res.data.code == 1000) {
+          for (let [index, elem] of res.data.selfProductList.entries()) {
+            this.cardBuyList.push({
+              discount: elem.discount,
+              id: elem.id,
+              image: elem.image,
+              introduction: elem.introduction,
+              inventory: elem.inventory,
+              marketPrice: elem.marketPrice,
+              name: elem.name,
+              sellPrice: elem.sellPrice,
+              state: elem.state,
+              tagName: elem.tagName,
+              countdownTime: elem.currentTime + elem.countdownTime,
+              currentTime: elem.currentTime
+            })
+          }
+          if (res.data.selfProductList.length == 0) {
+            this.noItemState = true
+          }
+        }
+      })
+    },
+    index_click (val, index) {
+      var label = val + '(' + index + ')'
+      this.$baiduStats('首页中部-卡券购买-' + label)
+    },
+    link (countdownTime, id, link, ths) {
+      // 活动开始时间未到拦截
+      if (countdownTime > this.getServerDate) {
+        this.$toast('活动尚未开始')
+        return
+      }
+      dooolyAPP.gotoJumpVue.call(this, '/cardBuyDetail/' + id)
+    },
+    // 计算当月最后一天
+    daysBetween (DateOne, DateTwo) {
+      var OneMonth = DateOne.substring(5, DateOne.lastIndexOf('-'))
+      var OneDay = DateOne.substring(
+        DateOne.length,
+        DateOne.lastIndexOf('-') + 1
+      )
+      var OneYear = DateOne.substring(0, DateOne.indexOf('-'))
+      var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf('-'))
+      var TwoDay = DateTwo.substring(
+        DateTwo.length,
+        DateTwo.lastIndexOf('-') + 1
+      )
+      var TwoYear = DateTwo.substring(0, DateTwo.indexOf('-'))
+      var cha =
+          (Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) -
+            Date.parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) /
+          86400000
+      return Math.abs(cha)
+    },
+    // 时间戳转日期格式
+    getLocal (nS) {
+      return new Date(parseInt(nS)).toLocaleString().substr(0, 17)
+    },
+    // 页面添加计时器setInterval("time_post(time)",1000),其实time格式为事件戳,然后自定义回调函数time_return(day,hour,minute,seconds);
+    time_post (time) {
+      if (time < 0 || time < this.getServerDate) {
+        return { countDownState: false }
+      } else if (time >= 0) {
+      }
+      if (this.getServerDate == NaN || this.getServerDate == '') {
+        return { countDownState: false }
+      }
+      var data = new Date(this.getServerDate)
+      var strYear = data.getFullYear() // 当前年
+      var strMonth = data.getMonth() + 1 // 当前月
+      var strDate = data.getDate() // 当前日
+      var strHours = data.getHours() // 当前小时
+      var strMinute = data.getMinutes() // 当前分
+      var strSeconds = data.getSeconds() // 当前秒
+      var DateTwo = strYear + '-' + strMonth + '-' + strDate
 
-  export default {
-    name: "card-buy",
-    data() {
-      return {
-        cardBuyList: [],
-        noItemState: false,
-        getServerDate: '',
-        i:'',
-        ii:''
+      var time_sjc = new Date(time * 1) // 目标时间戳
+      var time_data =
+          time_sjc.getFullYear() +
+          '-' +
+          (time_sjc.getMonth() + 1) +
+          '-' +
+          time_sjc.getDate()
+      var DateOne = time_data.substr(0, 10)
+      var hour = time_sjc.getHours() // 目标小时
+      var minute = time_sjc.getMinutes() // 目标分
+      var seconds = time_sjc.getSeconds() // 目标秒
 
+      var nowDay = this.daysBetween(DateOne, DateTwo) // 当前时间戳到目标时间天数
+      var fate = nowDay * 24 // 当前时间戳到目标时间小时数
+      var nowHour = hour - strHours
+      var nowMinute = minute - strMinute
+      var nowSeconds = seconds - strSeconds
+
+      if (nowSeconds < 0) {
+        nowMinute--
+        nowSeconds = nowSeconds + 60
+      }
+
+      if (nowMinute < 0) {
+        nowHour--
+        nowMinute = nowMinute + 60
+      }
+
+      if (nowHour < 0) {
+        nowDay--
+        nowHour = nowHour + 24
+      }
+      return this.time_return(nowDay, nowHour, nowMinute, nowSeconds) // 回调函数
+    },
+    // 事件回调函数模板(天，小时，分，秒)
+    time_return (day, hour, minute, seconds) {
+      if (day > 0) {
+        var htmlHour = day * 24 + hour
+      } else {
+        htmlHour = hour
+      }
+
+      if (htmlHour < 10) {
+        htmlHour = '0' + htmlHour
+      }
+      if (minute < 10) {
+        minute = '0' + minute
+      }
+      if (seconds < 10 && seconds >= 0) {
+        seconds = '0' + seconds
+      }
+
+      if (htmlHour <= 0 && minute <= 0 && seconds <= 0) {
+        return { countDownState: false }
+      } else {
+        return {
+          countDownState: true,
+          htmlHour: htmlHour,
+          minute: minute,
+          seconds: seconds
+        }
       }
     },
-    methods: {
 
-
-
-      // 加载卡券购买列表
-     loadCardList() {
-        http({
-          method: 'get',
-          url: api.first + '?token=' + localStorage.token + '&pageSize=49'
-        }).then((res) => {
-          if(res.data.code == 1000){
-            for (let [index, elem] of res.data.selfProductList.entries()) {
-            this.cardBuyList.push(
-              {
-                discount:elem.discount,
-                id: elem.id,
-                image: elem.image,
-                introduction: elem.introduction,
-                inventory: elem.inventory,
-                marketPrice: elem.marketPrice,
-                name: elem.name,
-                sellPrice: elem.sellPrice,
-                state: elem.state,
-                tagName: elem.tagName,
-                countdownTime: elem.currentTime+elem.countdownTime,
-                currentTime: elem.currentTime
-              })
-            }
-            if (res.data.selfProductList.length == 0) {
-              this.noItemState = true;
-            }
-          }
-          }
-        )
-      },
-      index_click(val, index) {
-        var label = val + "(" + index + ")";
-        this.$baiduStats('首页中部-卡券购买-' + label);
-      },
-      link(countdownTime,id, link, ths) {
-        //活动开始时间未到拦截
-        if (countdownTime > this.getServerDate ) {
-          this.$toast('活动尚未开始');
-          return;
-        }
-        dooolyAPP.gotoJumpVue.call(this,'/cardBuyDetail/' + id);
-      },
-      //计算当月最后一天
-      daysBetween(DateOne, DateTwo) {
-        var OneMonth = DateOne.substring(5, DateOne.lastIndexOf('-'));
-        var OneDay = DateOne.substring(DateOne.length, DateOne.lastIndexOf('-') + 1);
-        var OneYear = DateOne.substring(0, DateOne.indexOf('-'));
-        var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf('-'));
-        var TwoDay = DateTwo.substring(DateTwo.length, DateTwo.lastIndexOf('-') + 1);
-        var TwoYear = DateTwo.substring(0, DateTwo.indexOf('-'));
-        var cha = ((Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) - Date.parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) / 86400000);
-        return Math.abs(cha);
-      },
-      //时间戳转日期格式
-      getLocal(nS) {
-        return new Date(parseInt(nS)).toLocaleString().substr(0, 17)
-      },
-      //页面添加计时器setInterval("time_post(time)",1000),其实time格式为事件戳,然后自定义回调函数time_return(day,hour,minute,seconds);
-      time_post(time) {
-        if (time < 0 || time< this.getServerDate ) {
-          return {countDownState: false};
-        }else if (time >= 0) {
-        }
-        if (this.getServerDate == NaN || this.getServerDate == "") {
-
-          return {countDownState: false};
-        }
-        var data = new Date(this.getServerDate);
-        var strYear = data.getFullYear();//当前年
-        var strMonth = data.getMonth() + 1;//当前月
-        var strDate = data.getDate();//当前日
-        var strHours = data.getHours();//当前小时
-        var strMinute = data.getMinutes();//当前分
-        var strSeconds = data.getSeconds();//当前秒
-        var DateTwo = strYear + '-' + strMonth + '-' + strDate;
-
-        var time_sjc = new Date(time * 1);//目标时间戳
-        var time_data = time_sjc.getFullYear() + "-" + (time_sjc.getMonth() + 1) + "-" + time_sjc.getDate();
-        var DateOne = time_data.substr(0, 10);
-        var hour = time_sjc.getHours();//目标小时
-        var minute = time_sjc.getMinutes();//目标分
-        var seconds = time_sjc.getSeconds();//目标秒
-
-        var nowDay = this.daysBetween(DateOne, DateTwo);//当前时间戳到目标时间天数
-        var fate = nowDay * 24;//当前时间戳到目标时间小时数
-        var nowHour = hour - strHours;
-        var nowMinute = minute - strMinute;
-        var nowSeconds = seconds - strSeconds;
-
-        if (nowSeconds < 0) {
-          nowMinute--;
-          nowSeconds = nowSeconds + 60;
-        }
-
-        if (nowMinute < 0) {
-          nowHour--;
-          nowMinute = nowMinute + 60;
-        }
-
-        if (nowHour < 0) {
-          nowDay--;
-          nowHour = nowHour + 24;
-        }
-        return this.time_return(nowDay, nowHour, nowMinute, nowSeconds);//回调函数
-      },
-      //事件回调函数模板(天，小时，分，秒)
-      time_return(day, hour, minute, seconds) {
-        if (day > 0) {
-          var htmlHour = day * 24 + hour;
-        } else {
-          htmlHour = hour;
-        }
-
-        if (htmlHour < 10) {
-          htmlHour = "0" + htmlHour;
-        }
-        if (minute < 10) {
-          minute = "0" + minute;
-        }
-        if (seconds < 10 && seconds >= 0) {
-          seconds = "0" + seconds;
-        }
-
-        if (htmlHour <= 0 && minute <= 0 && seconds <= 0) {
-          return {countDownState: false}
-        }
-        else {
-          return {
-            countDownState: true,
-            htmlHour: htmlHour,
-            minute: minute,
-            seconds: seconds
-          }
-        }
-      },
-
-      //获取服务器当前时间
-      getServer() {
-
-        http({
-          url: api.getCurrentTime + '?token=' + localStorage.token,
-          method: 'get'
-        }).then((res) => {
-          this.getServerDate = res.data.currentTime;
-        })
-
-
-      },
-
-      //对当前时间加1s
-      countDown() {
-        this.getServerDate += 1000;
-
-      }
+    // 获取服务器当前时间
+    getServer () {
+      http({
+        url: api.getCurrentTime + '?token=' + localStorage.token,
+        method: 'get'
+      }).then(res => {
+        this.getServerDate = res.data.currentTime
+      })
     },
-      created() {
-        document.title = localStorage.groupShortName+'专享-消费卡券';
-        initTitle(localStorage.groupShortName+'专享-消费卡券');
-        this.loadCardList();
 
-      },
-      mounted() {
-        this.getServer();
-        this.ii= setInterval(this.countDown,1000);
-      },
-      beforeDestroy(){
-      clearInterval(this.ii);
-      }
-
-
+    // 对当前时间加1s
+    countDown () {
+      this.getServerDate += 1000
+    }
+  },
+  created () {
+    document.title = '消费卡券'
+    initTitle('消费卡券')
+    this.loadCardList()
+  },
+  mounted () {
+    this.getServer()
+    this.ii = setInterval(this.countDown, 1000)
+  },
+  beforeDestroy () {
+    clearInterval(this.ii)
   }
+}
 </script>
 
 <style scoped>
