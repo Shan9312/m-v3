@@ -10,6 +10,7 @@ const detailHeader = {
     userRebate: null,
     type: null,
     state: '',
+    courierNumber: '', // 物流单号
     integrateReturnDate: {
       type: String,
       default: ''
@@ -28,6 +29,7 @@ const detailHeader = {
   },
   created () {
     this.computedRebateMsg()
+    console.log(this.courierNumber)
   },
   methods: {
     computedRebateMsg () {
@@ -67,7 +69,18 @@ const detailHeader = {
     },
     // 一键回收
     handlRecycling () {
-      console.log(11111111)
+      this.$messageBox({
+        title: '发起一键回收',
+        message: '请确认是否发起一键回收',
+        showCancelButton: true
+      }).then(action => {
+        if (action === 'cancel') return
+        if (this.courierNumber) {
+          this.$router.push({path: '/loveRecycling'}) // 有快递信息进入爱回收页面
+        } else {
+          this.$router.push({path: '/RecyclingConfirm'}) // 无快递信息进入回收确认页
+        }
+      })
     }
   }
 }
