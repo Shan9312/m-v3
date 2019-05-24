@@ -31,10 +31,9 @@ const orderDialog = {
       }
     },
     cancleOrder(){
-      let url = api.cancleOrder_v2;
       http({
         method: 'post',
-        url: url,
+        url: api.cancleOrder_v2,
         data: {
           userId: this.userId,
           orderNum: this.detailOrderNum,
@@ -46,8 +45,7 @@ const orderDialog = {
         } else {
           this.$toast("您当前这笔记录不能取消");
         }
-      }
-      );
+      });
     },
     deleteOrder(){
       let url = api.orderDelete;
