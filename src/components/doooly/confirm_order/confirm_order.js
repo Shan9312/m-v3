@@ -136,10 +136,12 @@ const confirmOrder = {
         'merchantProduct': [{
           'merchantId': this.postData[0].merchantProduct[0].merchantId,
           'remarks': '',
+          'orderType': this.postData[0].orderType,
           'productSku': [{
             'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
             'buyNum': 1
+
           }]
         }]
       }
@@ -148,6 +150,7 @@ const confirmOrder = {
         data.merchantProduct.push({
           'merchantId': this.postData[1].merchantProduct[0].merchantId,
           'remarks': '',
+          'orderType': this.postData[1].orderType,
           'productSku': [{
             'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
