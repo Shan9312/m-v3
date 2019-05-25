@@ -108,7 +108,7 @@ http.interceptors.response.use((res) => {
   Indicator.close();
   sessionStorage.httpTimestamp = new Date().getTime();
 
-  if (error.response.config.url.indexOf('action') > -1) return false;
+  if (!error.response ||　error.response.config.url.indexOf('action') > -1) return false;
   if (!navigator.onLine) {
     Toast('网络已断开，请检查网络并刷新!');
   } else {
