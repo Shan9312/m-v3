@@ -513,7 +513,7 @@ dooolyAPP.redirectActivity = function (url) {
   if (window.location.href.indexOf('https://') > -1) {
     dooolyAPP.gotoJumpJq.call(this, activityUrl + url)
   } else {
-    dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8001/#/' + url)
+    dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8888/#/' + url)
   }
 }
 // 跳转第三方

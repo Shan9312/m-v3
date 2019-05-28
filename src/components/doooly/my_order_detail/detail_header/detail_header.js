@@ -6,6 +6,7 @@ import { countRebateState } from '@/components/doooly/my_order_list/model/rebate
 
 const detailHeader = {
   props: {
+    orderDetail: null,
     isUserRebate: null,
     userRebate: null,
     type: null,
@@ -29,7 +30,7 @@ const detailHeader = {
   },
   created () {
     this.computedRebateMsg()
-    console.log(this.courierNumber)
+    console.log(this.orderDetail)
   },
   methods: {
     computedRebateMsg () {
@@ -76,9 +77,11 @@ const detailHeader = {
       }).then(action => {
         if (action === 'cancel') return
         if (this.courierNumber) {
-          this.$router.push({path: '/loveRecycling'}) // 有快递信息进入爱回收页面
+          // 有快递信息进入爱回收页面
+          dooolyAPP.redirectActivity(`loveRecycling?orderNumber=${this.orderDetail.orderNumber}`)
         } else {
-          this.$router.push({path: '/RecyclingConfirm'}) // 无快递信息进入回收确认页
+          // 无快递信息进入回收确认页
+          dooolyAPP.redirectActivity(`RecyclingConfirm?orderNumber=${this.orderDetail.orderNumber}`)
         }
       })
     }
