@@ -166,19 +166,6 @@ export default {
       clearInterval(this.timeOut)
       this.animation()
     },
-    getUserInfo () {
-      http({
-        method: 'get',
-        url: api.personalCenter + '?userId=' + localStorage.userId
-      }).then((res) => {
-        if (res.data.adUserConn != undefined) {
-          let adUserConn = res.data.adUserConn
-          if (adUserConn.groupId) {
-            localStorage.groupId = adUserConn.groupId
-          }
-        }
-      })
-    },
     // 获取服务器当前时间
     getServer () {
       http({
@@ -384,8 +371,6 @@ export default {
     window.addEventListener('scroll', this.menu)
   },
   created () {
-    this.getUserInfo()
-    // }
     this.loadCardBuyDetailList()
     this.getIsReceive()
     if(browserName == "Chrome WebView"){//在安卓app中优化轮播图禁用下拉刷新

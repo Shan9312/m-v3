@@ -149,35 +149,28 @@
 
       },
       delete_card_affirm(orderNum,userId){//确定取消之前订单
-         localStorage.activityfunction = "";
-         this.disabled=false;
-         http({
-            method: 'post',
-            url: api.cancleOrder,
-            data:{
-              orderNum:this.orderNum,
-              token:localStorage.token,
-              userId:userId
+        localStorage.activityfunction = "";
+        this.disabled=false;
+        http({
+          method: 'post',
+          url: api.cancleOrder_v2,
+          data: {
+            userId: userId,
+            orderNum: this.orderNum,
+            token: localStorage.token
+          }
+        }).then((res) => {
+          if (res.data.code == '1000') {
+            localStorage.activityfunction = "";
+            if(browserName=="WeChat"){
+              this.getOrder();
+            }else{
+              this.$toast("请在微信中打开进行下单");
             }
-          }).then(
-            (res) => {
-            this.delete_card_show=false;
-              if (res.data.code == '1000') {
-               localStorage.activityfunction = "";
-                if(browserName=="WeChat"){
-                  this.getOrder();
-                }else{
-                  this.$toast("请在微信中打开进行下单");
-                }
-              }else if(res.data.code == '1001'){
-                this.$toast("订单不能取消");
-              }
-              else {
-                this.$toast("数据异常");
-              }
-            }
-          );
-
+          } else {
+            this.$toast("您当前这笔记录不能取消");
+          }
+        });
       },
       Wechatshare(prefix,channel,params){
         var client = 'doooly';
