@@ -32,7 +32,6 @@ const takeIntegral = r => {return require.ensure([], () => { return r(require('@
 //支付和订单相关
 const cardBuyDetail = r => {return require.ensure([], () => { return r(require('@/components/doooly/cardBuyDetail'))}, 'cardBuyOrder')};
 const cardBuyOrder = r => {return require.ensure([], () => { return r(require('@/components/doooly/cardBuyOrder'))}, 'cardBuyOrder')};
-const cardBuyPay = r => {return require.ensure([], () => { return r(require('@/components/doooly/merchantPay'))}, 'cardBuyOrder')};
 const cardBuyPayResult = r => {return require.ensure([], () => { return r(require('@/components/doooly/cardBuyPayResult'))}, 'cardBuyOrder')};
 const cardBuyPayResultH5 = r => {return require.ensure([], () => { return r(require('@/components/doooly/cardBuyPayResultH5'))}, 'cardBuyOrder')};
 const travelCard_details = r => {return require.ensure([], () => { return r(require('@/components/doooly/recharge/travelCard_details'))}, 'cardBuyOrder')};
@@ -108,7 +107,6 @@ const activity_activate2 = r => {return require.ensure([], () => { return r(requ
 
 const rechargeActivity = r => {return require.ensure([], () => { return r(require('@/components/doooly/recharge/recharge_activity'))}, 'rechargeActivity')};// 活动激活
 
-const personalCenter = r => {return require.ensure([], () => { return r(require('@/components/doooly/personalCenter'))}, 'personalCenter')};
 const newHome = r => {return require.ensure([], () => { return r(require('@/components/doooly/newHome'))}, 'newHome')};
 const pointsService = r => {return require.ensure([], () => { return r(require('@/components/doooly/pointsService'))}, 'pointsService')};
 const businessInfo = r => {return require.ensure([], () => { return r(require('@/components/doooly/businessInfo'))}, 'businessInfo')};
@@ -215,11 +213,6 @@ export default new Router({
       component: coupon
     },
     {
-      path: '/cardBuyPay/:orderNum',
-      name: 'cardBuyPay',
-      component: cardBuyPay
-    },
-    {
       path: '/cardBuyPayResult/:code/:totalAmount/:orderId/:orderNum/:productType',
       name: 'cardBuyPayResult',
       component: cardBuyPayResult
@@ -295,15 +288,6 @@ export default new Router({
           //  keepAlive: true // 需要被缓存
           }
         },
-        {
-          path: 'personalCenter',
-          name: 'personalCenter',
-          component: personalCenter,
-          meta: {
-          //  keepAlive: true // 需要被缓存
-          }
-        },
-
       ]
     },
     {//花积分

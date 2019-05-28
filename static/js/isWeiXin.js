@@ -24,14 +24,15 @@ if (/wiscowechat/.test(window.location.href)) {
 if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
   // 第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
   if (/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty') {
-    let userAgent = window.navigator.userAgent // 兜礼app会有标识
-    let dooolyRegx = /doooly/i
+    var userAgent = window.navigator.userAgent // 兜礼app会有标识
+    var dooolyRegx = /doooly/i
     if (!dooolyRegx.test(userAgent)) {
       browserName = 'otherAPP'
       localStorage.appUrlChannel = 'thirdParty'
     }
   }
 }
+
 // 获取设备id回调方法
 window.getDeviceHash = function (id) {
   localStorage.setItem('deviceHash', id)
