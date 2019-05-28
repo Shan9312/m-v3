@@ -183,20 +183,6 @@ export default {
     next();
   },
   methods: {
-    loadPageData() {
-      http({
-        method: "get",
-        url:
-          api.orderInfoForAjax +
-          "?productTypeId=" +
-          this.receiveData.productType +
-          "&token=" +
-          localStorage.token
-      }).then(res => {
-        this.defaultDelivery = res.data.defaultDelivery;
-      });
-    },
-
     deleteInputValue1() {
       this.defaultDelivery.receiverName = "";
       this.deletePngState1 = false;

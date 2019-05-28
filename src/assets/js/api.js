@@ -11,12 +11,9 @@ const api = {
   getCurrentTime: Butterfly + 'doooly/selfProduct/getCurrentTime.jhtml', // 获取服务器当前时间
   businessInfoForAjax: Butterfly + 'wechat/hotBusiness/businessInfoForAjax.jhtml', // 商户详情
   indexForAjax: Butterfly + 'wechat/home/indexForAjax.jhtml', // 首页banner
-  orderInfoForAjax: Butterfly + 'doooly/orderDelivery/orderInfoForAjax.jhtml', // 加载订单详细信息
-  // createOrder: Butterfly+'doooly/member/order/createOrder.jhtml',//自营商品下单接口
-  cancleOrder: Butterfly + 'doooly/member/order/cancleOrder.jhtml', // 取消订单接口
   getPayForm: Butterfly + 'doooly/member/pay/getPayForm.jhtml', // 收银台下单接口
   getStoreList: Butterfly + 'wechat/mall/getStoreList.jhtml', // 获取门店位置列表
-  getVoucherCouponNum: Butterfly + 'doooly/mycoupons/getVoucherCouponNum.jhtml', // 获取优惠券列表
+  getVoucherCouponNum: Butterfly + 'doooly/mycoupons/getVoucherCouponNum.jhtml', // 获取优惠券数量
   scanList: Butterfly + 'wechat/member/scan/scanList.jhtml', // 获取付款码列表
   toRecharge: Butterfly + 'doooly/member/order/toRecharge.jhtml', // 获取充值中心信息接口
   rechargeIndex: Butterfly + 'doooly/sctcd/rechargeIndex.jhtml', // 获取旅游卡绑定信息接口
@@ -24,9 +21,7 @@ const api = {
   findRechargeHistory: Butterfly + 'doooly/sctcd/findRechargeHistory.jhtml', // 查询旅游卡充值记录
   bindNewAccount: Butterfly + 'doooly/sctcd/bindNewAccount.jhtml', // 添加旅游卡接口
   abandonedSctcdAccount: Butterfly + 'doooly/sctcd/abandonedSctcdAccount.jhtml', // 删除旅游卡接口
-  // createVirtualOrder: Butterfly+'doooly/member/order/createVirtualOrder.jhtml',//旅游卡充值接口
   verifyCardNo: Butterfly + 'doooly/sctcd/verifyCardNo.jhtml', // 验证旅游卡是否绑定
-  personalCenter: Butterfly + 'doooly/myaccount/getUserInfoRestful.jhtml', // 获取用户blocId
   accountSecurityPage: Butterfly + 'wechat/myaccount/accountSecurityRestful.jhtml', // 获取个人信息
   modifyMobileGetCode: Butterfly + 'wechat/activation/getCode.jhtml', // 修改手机号获取验证码
   modifyMobileStepOne: Butterfly + 'wechat/member/modifymobile.jhtml', // 修改手机号验证验证码
@@ -37,7 +32,6 @@ const api = {
   myPointList: Butterfly + 'doooly/member/point/first.jhtml', // 获取我的积分列表
   myPointDetail: Butterfly + 'doooly/member/point/pointInfoRestful.jhtml', // 获取我的积分详情
   myOrderList: Butterfly + 'doooly/member/supplier_order/first.jhtml', // 获取我的订单列表
-  myOrderDetail: Butterfly + 'doooly/member/supplier_order/viewRestful.jhtml', // 获取我的订单详情
   myComplaint: Butterfly + 'wechat/complaint/listRestFul.jhtml', // 获取我的申诉列表
   myComplaintDetail: Butterfly + 'wechat/complaint/viewRestFul.jhtml', // 获取我的申诉详情
   getActivityCategoryList: Butterfly + 'doooly/hotActivity/getActivityCategoryList.jhtml', // 获取活动列表
@@ -100,7 +94,6 @@ const api = {
   finish: Doooly + 'jersey/dooolyApp/index/guide/finish',
   exclusiveCoupon: Doooly + 'jersey/dooolyApp/exclusiveCoupon',
   receive: Doooly + 'jersey/dooolyApp/exclusiveCoupon/receive',
-  getEditPageAddr: Butterfly + 'wechat/userDelivery/addRestful', // 获取新增/编辑页面地址
   isReceiveGift: Doooly + 'doubleEleven/isReceiveGift', // 夏日送清凉活动进入活动页面时判断之前是否领取过礼品
   receiveGift: Doooly + 'doubleEleven/receiveGift', // 夏日送清凉活动点击领取
   isSetShareRecord: Doooly + 'jersey/shareRecord/isSetShareRecord', // 夏日送清凉活动点击邀请

@@ -111,7 +111,7 @@ http.interceptors.response.use((res) => {
 }, error => {
   Indicator.close()
   sessionStorage.httpTimestamp = new Date().getTime()
-  if (error.response.config.url.indexOf('action') > 0) { // action项目不做错误提示
+  if (!error.response ||　error.response.config.url.indexOf('action') > 0) { // action项目不做错误提示
     return
   }
   if (navigator.onLine) {
