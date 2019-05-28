@@ -6,18 +6,18 @@ const login = r => { return require.ensure([], () => { return r(require('@/compo
 const userProtocol = r => { return require.ensure([], () => { return r(require('@/components/doooly/userProtocol')) }, 'login') }
 const resetPassword = r => { return require.ensure([], () => { return r(require('@/components/doooly/resetPassword')) }, 'login') }
 const white = r => { return require.ensure([], () => { return r(require('@/components/doooly/white')) }, 'white') }
-const transfer = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/transfer')) }, 'login') }//第三方登录拦截
+const transfer = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/transfer')) }, 'login') }// 第三方登录拦截
 
 // 会员激活相关
 const activePage = r => { return require.ensure([], () => { return r(require('@/components/doooly/activePage')) }, 'activePage') }
 const groupCommandPage = r => { return require.ensure([], () => { return r(require('@/components/doooly/groupCommandPage')) }, 'activePage') }
 const activate = r => { return require.ensure([], () => { return r(require('@/components/doooly/activate')) }, 'activePage') }
 const companyLogin = r => { return require.ensure([], () => { return r(require('@/components/doooly/companyLogin')) }, 'activePage') }
-const vip_activate = r => { return require.ensure([], () => { return r(require('@/components/doooly/vip_activate')) }, 'activePage') }//会员激活
-const vip_activate2 = r => { return require.ensure([], () => { return r(require('@/components/doooly/vip_activate2')) }, 'activePage') }//会员激活 
-const groupCommand = r => { return require.ensure([], () => { return r(require('@/components/doooly/groupCommand')) }, 'activePage') }//会员激活 
+const vip_activate = r => { return require.ensure([], () => { return r(require('@/components/doooly/vip_activate')) }, 'activePage') }// 会员激活
+const vip_activate2 = r => { return require.ensure([], () => { return r(require('@/components/doooly/vip_activate2')) }, 'activePage') }// 会员激活
+const groupCommand = r => { return require.ensure([], () => { return r(require('@/components/doooly/groupCommand')) }, 'activePage') }// 会员激活
 
-//导航页
+// 导航页
 const nav = r => { return require.ensure([], () => { return r(require('@/components/common/nav')) }, 'nav') }
 const hotActivity = r => { return require.ensure([], () => { return r(require('@/components/doooly/hotActivity')) }, 'hotActivity') }
 const hotActivityDetail = r => { return require.ensure([], () => { return r(require('@/components/doooly/hotActivityDetail')) }, 'nav') }
@@ -25,12 +25,12 @@ const scanDiscounts = r => { return require.ensure([], () => { return r(require(
 const scanDetail = r => { return require.ensure([], () => { return r(require('@/components/doooly/scanDetail')) }, 'nav') }
 const makeMoney = r => { return require.ensure([], () => { return r(require('@/components/doooly/shoppingGuide')) }, 'nav') }
 const couponWelfare = r => { return require.ensure([], () => { return r(require('@/components/doooly/couponWelfare')) }, 'nav') }
-//商户相关
+// 商户相关
 const businessInfoShow = r => { return require.ensure([], () => { return r(require('@/components/doooly/businessInfoShow')) }, 'businessInfoShow') }
 const storeMap = r => { return require.ensure([], () => { return r(require('@/components/doooly/storeMap')) }, 'businessInfoShow') }
 const takeIntegral = r => { return require.ensure([], () => { return r(require('@/components/doooly/takeIntegral')) }, 'businessInfoShow') }
 
-//支付和订单相关
+// 支付和订单相关
 const cardBuyDetail = r => { return require.ensure([], () => { return r(require('@/components/doooly/cardBuyDetail')) }, 'cardBuyOrder') }
 const cardBuyOrder = r => { return require.ensure([], () => { return r(require('@/components/doooly/cardBuyOrder')) }, 'cardBuyOrder') }
 const cardBuyPay = r => { return require.ensure([], () => { return r(require('@/components/doooly/merchantPay')) }, 'cardBuyOrder') }
@@ -47,10 +47,10 @@ const cardBuy = r => { return require.ensure([], () => { return r(require('@/com
 const userDeliveryList = r => { return require.ensure([], () => { return r(require('@/components/doooly/userDeliveryList')) }, 'rechargeList') }
 const userDeliveryAdd = r => { return require.ensure([], () => { return r(require('@/components/doooly/userDeliveryAdd')) }, 'rechargeList') }
 const orderInfo_entity = r => { return require.ensure([], () => { return r(require('@/components/doooly/orderInfo_entity')) }, 'rechargeList') }
-const coupon_r = r => { return require.ensure([], () => { return r(require('@/components/doooly/coupon_r')) }, 'rechargeList') } //抵扣券我的福利
+const coupon_r = r => { return require.ensure([], () => { return r(require('@/components/doooly/coupon_r')) }, 'rechargeList') } // 抵扣券我的福利
 const confirmOrder = r => { return require.ensure([], () => { return r(require('@/components/doooly/confirm_order/confirm_order.vue')) }, 'rechargeList') }
 
-//个人中心功能相关
+// 个人中心功能相关
 const familyInvite = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyInvite')) }, 'familyInvite') }
 const couponExchange = r => { return require.ensure([], () => { return r(require('@/components/doooly/couponExchange')) }, 'coupon') }
 const coupon = r => { return require.ensure([], () => { return r(require('@/components/doooly/coupon')) }, 'coupon') }
@@ -64,9 +64,9 @@ const modifyMobile = r => { return require.ensure([], () => { return r(require('
 const modifyMobileTwo = r => { return require.ensure([], () => { return r(require('@/components/doooly/modifyMobileTwo')) }, 'familyInvite') }
 const myPointDetail = r => { return require.ensure([], () => { return r(require('@/components/doooly/myPointDetail')) }, 'familyInvite') }
 const appeal = r => { return require.ensure([], () => { return r(require('@/components/doooly/appeal')) }, 'familyInvite') }
-const family_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/family_ground')) }, 'accountSecurity') }//家属邀请落地页
-const point_recharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/point_recharge')) }, 'point_recharge') }//积分充值 
-const card_question = r => { return require.ensure([], () => { return r(require('@/components/doooly/card_question')) }, 'point_recharge') }//卡券激活常见问题 
+const family_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/family_ground')) }, 'accountSecurity') }// 家属邀请落地页
+const point_recharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/point_recharge')) }, 'point_recharge') }// 积分充值
+const card_question = r => { return require.ensure([], () => { return r(require('@/components/doooly/card_question')) }, 'point_recharge') }// 卡券激活常见问题
 const setting = r => { return require.ensure([], () => { return r(require('@/components/doooly/setting/setting')) }, 'setting') }// 系统设置
 const settingPassword = r => { return require.ensure([], () => { return r(require('@/components/doooly/setting/settingPassword')) }), 'setting' }// 系统设置
 const settingValidation = r => { return require.ensure([], () => { return r(require('@/components/doooly/setting/settingValidation')) }), 'setting' }// 系统设置
@@ -79,29 +79,28 @@ const fordBuyDetail = r => { return require.ensure([], () => { return r(require(
 const fordBuyList = r => { return require.ensure([], () => { return r(require('@/components/doooly/ford/buyList.vue')) }, 'myOrderList') }
 const fordBuyOrder = r => { return require.ensure([], () => { return r(require('@/components/doooly/ford/buyOrder.vue')) }, 'myOrderList') }
 
-
-//活动相关
+// 活动相关
 const didi_integral = r => { return require.ensure([], () => { return r(require('@/components/doooly/didi_integral')) }, 'didi_integral') }
 const guideArticle = r => { return require.ensure([], () => { return r(require('@/components/doooly/guideArticle')) }, 'guideArticle') }
-const activity_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_index')) }, 'activity_index') }//话费充值活动
-const activity_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_ground')) }, 'activity_ground') }//分享落地页
-const activity_cardBuyPayResult = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_cardBuyPayResult')) }, 'activity_cardBuyPayResult') }//活动支付成功页面
-const baili2_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/baili/baili2_index')) }, 'baili2_index') }//百丽加强版活动页
-const shop_assistant_invite_add = r => { return require.ensure([], () => { return r(require('@/components/doooly/shop_assistant_invite/shop_assistant_invite_add')) }, 'shop_assistant_invite_add') }//兜礼体验官
-const shop_assistant_invite_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/shop_assistant_invite/shop_assistant_invite_ground')) }, 'shop_assistant_invite_ground') }//兜礼体验官付款码
-const openOneNnumber = r => { return require.ensure([], () => { return r(require('@/components/doooly/openOneNnumber')) }, 'openOneNnumber') }//兜礼体验官付款码
-const openOneNnumberGeneralize = r => { return require.ensure([], () => { return r(require('@/components/doooly/openOneNnumberGeneralize')) }, 'openOneNnumberGeneralize') }//兜礼体验官付款码
-const shoujia_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_index')) }, 'shoujia_index') }//首家
-const shoujia_detail = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_detail')) }, 'shoujia_detail') }//首家
-const shoujia_invite = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_invite')) }, 'shoujia_invite') }//首家
-const world_cup = r => { return require.ensure([], () => { return r(require('@/components/doooly/World_Cup/world_cup')) }, 'world_cup') }//世界杯
-const piaoniu = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/piaoniu')) }, 'piaoniu') }//世界杯
-const mobikeRecharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/mobike/mobikeRecharge')) }, 'mobikeRecharge') }//膜拜骑行
-const familyRecharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyRecharge')) }, 'familyRecharge') }//全家
-const familyTo = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyTo')) }, 'familyTo') }//全家
-const familyHelpCenter = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyHelpCenter')) }, 'familyHelpCenter') }//全家帮助中心
-const activityDonghang = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/donghang')) }, 'donghang') }//东航话费
-const activity = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/activity')) }, 'activity') }//活动整理
+const activity_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_index')) }, 'activity_index') }// 话费充值活动
+const activity_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_ground')) }, 'activity_ground') }// 分享落地页
+const activity_cardBuyPayResult = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_vue/activity_cardBuyPayResult')) }, 'activity_cardBuyPayResult') }// 活动支付成功页面
+const baili2_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/baili/baili2_index')) }, 'baili2_index') }// 百丽加强版活动页
+const shop_assistant_invite_add = r => { return require.ensure([], () => { return r(require('@/components/doooly/shop_assistant_invite/shop_assistant_invite_add')) }, 'shop_assistant_invite_add') }// 兜礼体验官
+const shop_assistant_invite_ground = r => { return require.ensure([], () => { return r(require('@/components/doooly/shop_assistant_invite/shop_assistant_invite_ground')) }, 'shop_assistant_invite_ground') }// 兜礼体验官付款码
+const openOneNnumber = r => { return require.ensure([], () => { return r(require('@/components/doooly/openOneNnumber')) }, 'openOneNnumber') }// 兜礼体验官付款码
+const openOneNnumberGeneralize = r => { return require.ensure([], () => { return r(require('@/components/doooly/openOneNnumberGeneralize')) }, 'openOneNnumberGeneralize') }// 兜礼体验官付款码
+const shoujia_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_index')) }, 'shoujia_index') }// 首家
+const shoujia_detail = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_detail')) }, 'shoujia_detail') }// 首家
+const shoujia_invite = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_shoujia/shoujia_invite')) }, 'shoujia_invite') }// 首家
+const world_cup = r => { return require.ensure([], () => { return r(require('@/components/doooly/World_Cup/world_cup')) }, 'world_cup') }// 世界杯
+const piaoniu = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/piaoniu')) }, 'piaoniu') }// 世界杯
+const mobikeRecharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/mobike/mobikeRecharge')) }, 'mobikeRecharge') }// 膜拜骑行
+const familyRecharge = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyRecharge')) }, 'familyRecharge') }// 全家
+const familyTo = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyTo')) }, 'familyTo') }// 全家
+const familyHelpCenter = r => { return require.ensure([], () => { return r(require('@/components/doooly/familyMart/familyHelpCenter')) }, 'familyHelpCenter') }// 全家帮助中心
+const activityDonghang = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/donghang')) }, 'donghang') }// 东航话费
+const activity = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/activity')) }, 'activity') }// 活动整理
 const activity_BCM_index = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_BCM/index')) }, 'activity_BCM_index') }// 交行活动
 const activity_BCM_success = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity_BCM/success')) }, 'activity_BCM_success') }// 交行活动
 const activity_activate = r => { return require.ensure([], () => { return r(require('@/components/doooly/activity/activity_activate')) }, 'activity_activate') }// 活动激活
@@ -122,9 +121,6 @@ const platform = r => { return require.ensure([], () => { return r(require('@/co
 // v3
 const myPointList = r => { return require.ensure([], () => { return r(require('@/components/doooly/v3/pages/my-point-list/point.vue')) }, 'myPointList') }
 
-// 商品回收
-const LoveRecycling = r => { return require.ensure([], () => { return r(require('@/components/doooly/recycling/love-recycling.vue')) }, 'LoveRecycling') } // 爱回收页面
-const RecyclingConfirm = r => { return require.ensure([], () => { return r(require('@/components/doooly/recycling/recycling-confirm.vue')) }, 'RecyclingConfirm') } // 回收确认页
 // v3
 const v3Layout = r => {
   return require.ensure([], () => {
@@ -758,16 +754,6 @@ export default new Router({
       path: '/platform',
       name: 'platform',
       component: platform
-    },
-    {
-      path: '/loveRecycling',
-      name: 'LoveRecycling',
-      component: LoveRecycling
-    },
-    {
-      path: '/recyclingConfirm',
-      name: 'RecyclingConfirm',
-      component: RecyclingConfirm
     }
   ]
 

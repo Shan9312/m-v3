@@ -22,8 +22,11 @@
       </div>
 
       <div class="price">
-        <span class="red">￥</span
-        ><span id="sellPrice_view">{{ showSellPrice }}</span
+        <span class="red">￥</span>
+        <span id="sellPrice_view">{{ showSellPrice }}</span>
+        <span v-if="!recyclingType" v-show="cardBuyDetailList.selfProduct.productAttr != '1'">市场价￥<span id="marketPrice_view">{{
+            showMarketPrice
+          }}</span></span
         >
         <div
           class="fr"
@@ -57,7 +60,7 @@
     </div>
     <!-- 类型 -->
     <div class="type padding_frm">
-      <div class="title">商品类型</div>
+      <div class="title">{{!recyclingType ? '卡券类型' : '商品类型'}}</div>
       <ul class="label">
         <!--<#list productTypeList as productTypeList>-->
         <!--<li <#if productTypeList_index == 0>class="check"</#if> data-id="${productTypeList.id}">${productTypeList.name}</li>-->
@@ -93,6 +96,9 @@
       <!-- 底部悬浮 -->
       <div class="footer_bg" ></div>
       <footer class="box_item" v-if="!giftBagId">
+        <div class="item fl-1" v-if="!recyclingType">
+          可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span>
+        </div>
         <div
           class="item fr-2"
           :class="{ gary: inventory === 0 || (!isStart && activityName) }"
@@ -195,6 +201,7 @@ export default {
       giftBagId: this.$route.params.giftBagId,
       giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
       ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
+      recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: ''
     }
