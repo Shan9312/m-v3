@@ -314,12 +314,12 @@
           },
         }).then((res) => {
           if (res.data.code == "1001"){
-            dooolyAPP.logOut.call(this);
+            dooolyAPP.logOut();
           } else { // fix ### 01-26
             let str = res.data.data.userInfo;
             let obj = JSON.parse(str);
             if (obj.token !== localStorage.token) {
-              dooolyAPP.logOut.call(this);
+              dooolyAPP.logOut();
             }
           }
         })

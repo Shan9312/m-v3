@@ -355,7 +355,7 @@
         }).then((res) => {
           var code=res.data.code;
           if(code=="1000"){
-            dooolyAPP.logOut.call(this);
+            dooolyAPP.logOut();
           }
         })
       }

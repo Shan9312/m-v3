@@ -41,16 +41,6 @@
       }
     },
     created(){
-      if(!localStorage.token){
-        var a = window.location.href;
-        var b = a.indexOf("#");
-        var url = a.substring(0,b+2);
-        let loginUrl = a.substring(b+2);
-        if(loginUrl){
-          localStorage.loginUrl = loginUrl;
-        }
-        window.location.href= url;
-      }
       initTitle('话费限量领','');
       onWechatConfigNew('hideMenuItems');
     },

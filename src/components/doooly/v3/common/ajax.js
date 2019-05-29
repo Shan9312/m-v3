@@ -72,36 +72,8 @@ http.interceptors.request.use(config => {
 
 http.interceptors.response.use((res) => {
   Indicator.close();
-
   if (res.data.code && res.data.code == 40001) {
-    let browserNameArr = ['WebKit', 'otherAPPIos', 'Chrome WebView', 'otherAPPAndroid'];
-    if (browserNameArr.includes(browserName)) {
-      dooolyAPP.forceLoginOut();
-    } else {
-      let locationHref = location.href;
-      let splitIndex = locationHref.indexOf('#');
-      let path = locationHref.substring(splitIndex + 2);
-      let domain = locationHref.substring(0, splitIndex + 2);
-
-      if (path) {
-        localStorage.loginUrl = path;
-      }
-      localStorage.removeItem('wiscowechatCodeType');
-      if (locationHref.indexOf('wiscowechat') > -1) {
-        localStorage.removeItem('wiscoToken');
-        localStorage.removeItem('token');
-      } else {
-        localStorage.removeItem('dooolyToken');
-        localStorage.removeItem('token');
-      }
-      if (/wiscowechat/.test(locationHref)) {
-        location.replace(`${domain}companyLogin/wugang`);
-      } else if (/zfhwechat/.test(locationHref)) {
-        location.replace(`${domain}companyLogin/zfh`);
-      } else {
-        location.replace(domain);
-      }
-    }
+    dooolyAPP.logOut(1);
   }
   return res;
 }, error => {
