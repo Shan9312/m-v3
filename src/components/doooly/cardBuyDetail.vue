@@ -61,7 +61,7 @@
     <!-- 底部悬浮 -->
       <div class="footer_bg"></div>
       <footer class="box_item" v-if="!giftBagId">
-        <div class="item fl-1">
+        <div class="item fl-1" v-if="!recyclingType">
           可用积分：<span>{{cardBuyDetailList.availablePoint}}</span>
         </div>
         <div class="item fr-2" :class="{gary: (inventory === 0 || (!isStart && activityName))}" @click="order()">
@@ -141,6 +141,7 @@ export default {
       giftBagId: this.$route.params.giftBagId,
       giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
       ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
+      recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: ''
     }
