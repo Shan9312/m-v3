@@ -82,35 +82,7 @@ router.beforeEach((to, from, next) => {
     'activity_activate', 'activity_activate2', 'activity_invitation','memberEquity'
   ];
   if (!localStorage.token && to.path != '/' && pathArr.filter(x => to.name.indexOf(x) > -1).length == 0) {
-    if (browserName == "WebKit" || browserName == "otherAPPIos") {
-      webkit.messageHandlers.forceLoginOut.postMessage("1");
-    } else if (browserName == "Chrome WebView" || browserName == "otherAPPAndroid") {
-      RHNativeJS.forceLoginOut("");
-    } else {
-      let locationHref = location.href;
-      let splitIndex = locationHref.indexOf('#');
-      let path = locationHref.substring(splitIndex + 2);
-      let domain = locationHref.substring(0, splitIndex + 2);
-
-      if (path) {
-        localStorage.loginUrl = path;
-      }
-      localStorage.removeItem('wiscowechatCodeType');
-      if (locationHref.indexOf('wiscowechat') > -1) {
-        localStorage.removeItem('wiscoToken');
-        localStorage.removeItem('token');
-      } else {
-        localStorage.removeItem('dooolyToken');
-        localStorage.removeItem('token');
-      }
-      if (/wiscowechat/.test(locationHref)) {
-        location.replace(`${domain}companyLogin/wugang`);
-      } else if (/zfhwechat/.test(locationHref)) {
-        location.replace(`${domain}companyLogin/zfh`);
-      } else {
-        router.push('/');
-      }
-    }
+    dooolyAPP.logOut(1);
   } else {
     if (locationHref.indexOf('companyLogin') > -1) {
       router.replace({

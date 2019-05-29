@@ -11,13 +11,7 @@
       methods: {
       },
       mounted() {
-        if(!localStorage.token){
-          localStorage.loginUrl = 'transfer?url='+this.$route.query.url;
-          var a = window.location.href;
-          var b = a.indexOf("#");
-          var url = a.substring(0,b+2);
-          window.location.href= url;
-        }else{
+        if(localStorage.token){
           window.location.href = this.$route.query.url;
         }
       },

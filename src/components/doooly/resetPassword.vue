@@ -210,7 +210,7 @@
         }).then((res) => {
             if (res.data.code == "1000") {
               let str=res.data.userInfo;
-              dooolyAPP.logIn.call(this,str);
+              dooolyAPP.logIn(str);
             }
             else {
               if (res.data.code == "1004" || res.data.code == "1003") {

@@ -569,20 +569,29 @@ dooolyAPP.gotoJumpVue = function(url, dataType) {
     }
   }
 };
-
 //退出登录方法
-dooolyAPP.logOut = function(){
-  this.$cookies.remove('token');
-  this.$cookies.remove('userId');
-  this.$cookies.remove('loginUrl');
-  if(window.location.href.indexOf('wiscowechat') > 0){
-    localStorage.removeItem('wiscoToken');
-    localStorage.removeItem('token');
-  }else{
-    localStorage.removeItem('dooolyToken');
-    localStorage.removeItem('token');
-  }
-  if (!localStorage.removeItem('wiscoToken') && !localStorage.removeItem('token')) {
+dooolyAPP.logOut = function(type){
+  if (browserName == "WebKit" || browserName == "otherAPPIos") {
+    window.webkit.messageHandlers.forceLoginOut.postMessage("1");
+  }else if(browserName == "Chrome WebView" || browserName == "otherAPPAndroid") {
+    RHNativeJS.forceLoginOut("");
+  } else{
+    //cookies本地测试用
+    dooolyAPP.removeCookie('token');
+    dooolyAPP.removeCookie('userId');
+    dooolyAPP.removeCookie('loginUrl');
+    if(window.location.href.indexOf('wiscowechat') > 0){//武钢公众号登出
+      localStorage.removeItem('wiscoToken');
+      localStorage.removeItem('token');
+    }else{//兜礼公众号登出
+      localStorage.removeItem('dooolyToken');
+      localStorage.removeItem('token');
+    }
+    if(type == 1){//非正常登出
+      localStorage.setItem('loginUrl',location.href)
+    }else{
+      localStorage.removeItem('loginUrl');
+    }
     localStorage.removeItem('userId');
     localStorage.removeItem('mobile');
     localStorage.removeItem('activateMobile');
@@ -594,30 +603,30 @@ dooolyAPP.logOut = function(){
     localStorage.removeItem('storeMapUrl');
     localStorage.removeItem('latitude');
     localStorage.removeItem('longitude');
-    localStorage.removeItem('loginUrl');
     localStorage.removeItem('getAppVersionName');
     localStorage.removeItem('isPayPassword');
     localStorage.removeItem('isSetPayPassword');
-  }
-  if (browserName == "WebKit" || browserName == "otherAPPIos") {
-    window.webkit.messageHandlers.forceLoginOut.postMessage("1");
-  }else if(browserName == "Chrome WebView" || browserName == "otherAPPAndroid") {
-    RHNativeJS.forceLoginOut("");
-  } else if (/wiscowechat/.test(window.location.href)) {
-    this.$router.replace('/companyLogin/wugang');
-  } else if (/zfhwechat/.test(window.location.href)) {
-    this.$router.replace('/companyLogin/zfh');
-  } else {
-    this.$router.replace('/');
+
+    var splitIndex = location.href.indexOf('#');
+    var domain = locationHref.substring(0, splitIndex + 2);
+    if (/wiscowechat/.test(window.location.href)) {
+      location.replace(domain + 'companyLogin/wugang');
+    } else if (/zfhwechat/.test(window.location.href)) {
+      location.replace(domain + 'companyLogin/zfh');
+    } else {
+      location.replace(domain);
+    }
   } 
 }
 //登录/记录用户信息方法
-dooolyAPP.logIn = function(data,url) {
-  var str1 = JSON.parse(data);
-  var token = "";
-  if(str1.token){
-    token = str1.token;
-    this.$cookies.set('token', token, '24h');
+dooolyAPP.logIn = function(data,url,type) {
+  //记录登录信息
+  if(data){
+    var jsonData = JSON.parse(data);
+    var token = jsonData.token;
+    dooolyAPP.setCookie('token', token);
+    dooolyAPP.setCookie('userId', jsonData.adUserConn.userId);
+    dooolyAPP.removeCookie("first_conponShow");
     if(window.location.href.indexOf('wiscowechat') > 0){
       localStorage.wiscoToken = token;
       localStorage.token = token;
@@ -625,76 +634,69 @@ dooolyAPP.logIn = function(data,url) {
       localStorage.dooolyToken = token;
       localStorage.token = token;
     }
+    localStorage.userId = jsonData.adUserConn.userId;
+    localStorage.mobile = jsonData.adUserConn.telephone;
+    localStorage.groupShortName = jsonData.adUserConn.groupShortName;
+    localStorage.userName = jsonData.adUserConn.name;
+    localStorage.isPayPassword = jsonData.adUserConn.isPayPassword;
+    localStorage.isSetPayPassword = jsonData.adUserConn.isSetPayPassword;
+    localStorage.groupId = jsonData.adUserConn.groupId;
+    localStorage.blocId = jsonData.adUserConn.blocId;
   }
-  this.$cookies.set('userId', str1.adUserConn.userId, '24h');
-  localStorage.userId = str1.adUserConn.userId;
-  localStorage.mobile = str1.adUserConn.telephone;
-  localStorage.groupShortName = str1.adUserConn.groupShortName;
-  localStorage.userName = str1.adUserConn.name;
-  this.$cookies.remove("first_conponShow");
-  if (str1.adUserConn.isPayPassword) {
-    localStorage.isPayPassword = str1.adUserConn.isPayPassword;
-    localStorage.isSetPayPassword = str1.adUserConn.isSetPayPassword;
-  }
-  localStorage.groupId = str1.adUserConn.groupId;
-  localStorage.blocId = str1.adUserConn.blocId;
-  if (browserName == "WeChat") { // 微信
-    if (url) {
+  var splitIndex = location.href.indexOf('#');
+  var domain = locationHref.substring(0, splitIndex + 1);
+  //记录登录特殊跳转url
+  if (url) {
+    var reg = new RegExp('^http(s)?://');
+    if(reg.test(url)){
       localStorage.loginUrl = url;
+    }else{
+      localStorage.loginUrl = domain + url;
     }
-    window.location.replace(WxAppIdUrl);
-    // window.location.href=api.WxAppIdUrl;
+  }
+  if (browserName == "WeChat" && type != 1) { // 微信
+    location.replace(WxAppIdUrl);
   } else if (browserName == "WebKit") { // ios
     var params = {
-      "userInfo": str1.adUserConn,
+      "userInfo": jsonData.adUserConn,
       "type": "0",
-      "token": str1.token,
+      "token": jsonData.token,
       'url': url
     };
     window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
   } else if (browserName == "Chrome WebView") { // 安卓
     if (url) {
-      var href = window.location.href;
-      var index = href.indexOf('#');
-      var base = href.substring(0, index + 1);
-      RHNativeJS.setUserInfo(JSON.stringify(str1.adUserConn), str1.token, base + url);
+      RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
     } else {
-      RHNativeJS.nativeUserInfomation(JSON.stringify(str1.adUserConn), "0", str1.token);
+      RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), "0", jsonData.token);
     }
   }else{
-    var strReg = '^http(s)?://';
-    var reg = new RegExp(strReg);
-    if(localStorage.loginUrl != "nav/newHome"){
-      var loginUrl_storage = localStorage.loginUrl;
-    }
-    var loginUrl_cookie = this.$cookies.get('loginUrl');
-    localStorage.removeItem('loginUrl'); // 跳转前保存loginUrl，并清掉storage和cookies的loginUrl
-    this.$cookies.remove('loginUrl');
-    if(url){
-      this.$router.replace(url);
-    }else if(loginUrl_storage || loginUrl_cookie){
-      // 先判断loginUrl_storage
-      if(reg.test(loginUrl_storage)){
-        window.location.replace(loginUrl_storage)
-        return false
-      }else if(reg.test(loginUrl_cookie)){
-        // 再判断loginUrl_cookie
-        window.location.replace(loginUrl_cookie)
-        return false
-      }
-      this.$router.replace(loginUrl_storage);
-    }else if(browserName == "otherAPP"){
-      if(window.location.href.charAt(window.location.href.length-1) == "/"){
-        this.$router.replace('nav/newHome?first=1');
-      }else{
-        this.$router.replace('/nav/newHome?first=1');
-      }
+    var loginUrl= localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
+    localStorage.removeItem('loginUrl');
+    dooolyAPP.removeCookie('loginUrl');
+    if(loginUrl){
+      location.replace(loginUrl)
     }else{
-      if(window.location.href.charAt(window.location.href.length-1) == "/"){
-        this.$router.replace('nav/newHome');
-      }else{
-        this.$router.replace('/nav/newHome');
-      }
+      location.replace(browserName == "otherAPP" ? domain + '/nav/newHome?first=1' : domain + '/nav/newHome');
     }
   }
+}
+// cookie方法
+dooolyAPP.setCookie = function (name, value) {
+  var Days = 30
+  var exp = new Date()
+  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
+  document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString()
+}
+dooolyAPP.removeCookie = function (name) {
+  var exp = new Date()
+  exp.setTime(exp.getTime() - 1)
+  var cval = dooolyAPP.getCookie(name)
+  if (cval != null) document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
+}
+dooolyAPP.getCookie = function (name) {
+  var arr,
+    reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  if ((arr = document.cookie.match(reg))) return unescape(arr[2])
+  else return null
 }

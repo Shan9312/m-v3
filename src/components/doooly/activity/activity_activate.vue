@@ -105,7 +105,7 @@
               if (res.data.code == "1000") {
                 localStorage.activateMobile = this.mobileNum;
                 if(this.code.length == 12){
-                  dooolyAPP.logIn.call(this,res.data.data,'/point_recharge');
+                  dooolyAPP.logIn(res.data.data,'/point_recharge');
                 }else if(this.code.length == 8){
                   this.$router.push('/activity_activate2/'+this.code);
                 }else{

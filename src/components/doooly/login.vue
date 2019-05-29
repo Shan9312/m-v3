@@ -405,7 +405,7 @@
         }).then((res) => {
           if (res.data.code == "1000" || res.data.code == "1006" ) {
             var str=res.data.data;
-            dooolyAPP.logIn.call(this,str);
+            dooolyAPP.logIn(str);
           }else {
             if (res.data.code == "1004") {
               this.$router.replace({path: '/vip_activate'});//需求更改直接跳转激活页面
@@ -464,7 +464,7 @@
 
           if (res.data.code == "1000" || res.data.code == "1006") {
               var str=res.data.data;
-              dooolyAPP.logIn.call(this,str);
+              dooolyAPP.logIn(str);
           }
           else {
             //用户信息不存在，提示是否去激活
@@ -525,9 +525,9 @@
           }
           if(res.data.code == "1000"){
             var str1 =JSON.parse(res.data.data.userInfo);
-            dooolyAPP.logIn.call(this,res.data.data.userInfo);
+            dooolyAPP.logIn(res.data.data.userInfo);
           }else if(res.data.code == "1001"){
-            dooolyAPP.logOut.call(this);
+            dooolyAPP.logOut();
             this.loding = true;
           }else{
             this.$messageBox('提示', res.data.msg);
