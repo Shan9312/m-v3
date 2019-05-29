@@ -250,11 +250,11 @@
           data
         } = await thirdLogin();
         if (data.code == "1001"){
-          dooolyAPP.logOut.call(this);
+          dooolyAPP.logOut();
         } else {
           const obj = JSON.parse(data.data.userInfo);
           if (obj.token != this.localStorageObj.token) {
-            dooolyAPP.logOut.call(this);
+            dooolyAPP.logOut();
           }
         }
       },

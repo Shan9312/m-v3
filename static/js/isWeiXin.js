@@ -21,9 +21,9 @@ if (/wiscowechat/.test(window.location.href)) {
   memberFrom = '钢城e家会员'
 }
 
-if (browserName == 'WebKit' || browserName == 'Chrome WebView') {
-  // 第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
-  if (/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty') {
+if(browserName == "WebKit" || browserName == "Chrome WebView"){
+  //第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
+  if(/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty'){
     var userAgent = window.navigator.userAgent // 兜礼app会有标识
     var dooolyRegx = /doooly/i
     if (!dooolyRegx.test(userAgent)) {

@@ -151,7 +151,7 @@
               if (res.data.code == "1000") {
                 localStorage.mobile = this.activateMobile;
                 var str=res.data.data;
-                dooolyAPP.logIn.call(this,str);
+                dooolyAPP.logIn(str);
               }
               else{
                 this.isLoading = false;

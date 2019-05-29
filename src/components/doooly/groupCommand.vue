@@ -200,7 +200,7 @@
               localStorage.mobile = this.phone;
               if (res.data.code == "1000") {
                 let str=res.data.data;
-                dooolyAPP.logIn.call(this,str);
+                dooolyAPP.logIn(str);
               }else{
                 this.$toast(res.data.msg);
                 this.loginText = "登录";
