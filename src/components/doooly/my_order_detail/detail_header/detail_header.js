@@ -28,6 +28,22 @@ const detailHeader = {
       showContentTips: ''
     }
   },
+  filters: {
+    capitalize: function (value) {
+      let text = ''
+      const { orderType, inValuation, recoveryState } = value
+      if (orderType && inValuation && orderType == '3' && inValuation == 'false') {
+        text = '一键回收'
+      }
+      if (orderType && inValuation && orderType == '3' && inValuation == 'true') {
+        text = '查看回收进度'
+      }
+      if (orderType && inValuation && orderType == '3' && recoveryState == '4') {
+        text = '回收完成'
+      }
+      return text
+    }
+  },
   created () {
     this.computedRebateMsg()
     console.log(this.orderDetail)

@@ -14,7 +14,9 @@
     <div class="header_msg">
       <div class="msg_title" v-if="showContentTitle">
         <span>{{ showContentTitle }}</span>
-        <span class='recycling' v-if="state==1 && type==1" @click="handlRecycling">一键回收</span>
+        <span class='recycling' v-if="state==1 && type==1" @click="handlRecycling">
+          {{orderDetail | capitalize}}
+        </span>
       </div>
       <p class="msg_count" v-if="(userRebateState === 1 || userRebateState === 2 || userRebateState === 3) && userRebate > 0">
         {{ userRebate }}积分
