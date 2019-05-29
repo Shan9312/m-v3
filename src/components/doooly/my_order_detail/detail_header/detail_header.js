@@ -28,22 +28,6 @@ const detailHeader = {
       showContentTips: ''
     }
   },
-  filters: {
-    capitalize: function (value) {
-      let text = ''
-      const { orderType, inValuation, recoveryState } = value
-      if (orderType && inValuation && orderType == '3' && inValuation == 'false') {
-        text = '一键回收'
-      }
-      if (orderType && inValuation && orderType == '3' && inValuation == 'true') {
-        text = '查看回收进度'
-      }
-      if (orderType && inValuation && orderType == '3' && recoveryState == '4') {
-        text = '回收完成'
-      }
-      return text
-    }
-  },
   created () {
     this.computedRebateMsg()
     console.log(this.orderDetail)
@@ -99,6 +83,26 @@ const detailHeader = {
           // 无快递信息进入回收确认页
           dooolyAPP.redirectActivity(`RecyclingConfirm?orderNumber=${this.orderDetail.orderNumber}`)
         }
+      })
+    },
+    // 查看回收进度
+    handlProgress () {
+      const { after2Date } = this.orderDetail
+      if (after2Date) {
+        this.$messageBox({
+          title: '您的商品还在估价中',
+          message: '预计2019年5月28日 15：25分完成估价'
+        })
+      } else {
+        dooolyAPP.redirectActivity(`Alipay?orderNumber=${this.orderDetail.orderNumber}`)
+      }
+    },
+
+    // 回收完成
+    handlConfirm () {
+      this.$messageBox({
+        title: '提示信息',
+        message: '您的商品已经回收完成'
       })
     }
   }
