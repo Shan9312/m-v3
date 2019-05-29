@@ -372,7 +372,7 @@ export default {
 
     // 建行一元购活动登录
     getCcbLogin () {
-      const loginUrl = this.$cookies.get('loginUrl')
+      const loginUrl = localStorage.loginUrl
       const urlData = param2Obj(loginUrl)
       const {groupId, isSimpleAtuoRegister, businessId} = urlData
       if (!isSimpleAtuoRegister || !groupId || !businessId) return
@@ -381,7 +381,6 @@ export default {
 
     mobileLogin () {
       const urlData = this.getCcbLogin() // 建行一元购活动登录
-      console.log(urlData)
       if (this.checkMobile() == false) {
         return false
       }
