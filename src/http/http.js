@@ -77,40 +77,7 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use((res) => {
   Indicator.close();
   if(res.data.code&&res.data.code==40001){
-    //测试兜礼app异常登出用
-    let errorlog = {
-      browserName: browserName,
-      token: localStorage.token,
-      appUrlChannel: localStorage.appUrlChannel
-    } 
-    dooolyAPP.errorLog(JSON.stringify(errorlog));
-
-    if (browserName == "WebKit" || browserName == "otherAPPIos" || browserName == "Chrome WebView" || browserName == "otherAPPAndroid") {
-      dooolyAPP.forceLoginOut();
-    }else{
-      let a = window.location.href;
-      let b = a.indexOf("#");
-      let loginUrl = a.substring(b+2);
-      if(loginUrl){
-        localStorage.loginUrl = loginUrl;
-      }
-      let url = a.substring(0,b+2);
-      localStorage.removeItem('wiscowechatCodeType');
-      if(window.location.href.indexOf('wiscowechat') > 0){
-        localStorage.removeItem('wiscoToken');
-        localStorage.removeItem('token');
-      }else{
-        localStorage.removeItem('dooolyToken');
-        localStorage.removeItem('token');
-      }
-      if(/wiscowechat/.test(window.location.href)){
-        window.location.replace(url+'companyLogin/wugang');
-      }else if(/zfhwechat/.test(window.location.href)){
-        window.location.replace(url+'companyLogin/zfh');
-      }else{
-        window.location.replace(url);
-      }
-    }
+    dooolyAPP.logOut(1);
   }
   return res
 }, error => {

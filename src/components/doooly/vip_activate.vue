@@ -182,7 +182,7 @@
               this.failCount=res.data.failCount;
               if (res.data.code == "1000") {
                 if(this.vActivate.length == 12){
-                  dooolyAPP.logIn.call(this,res.data.data,'/point_recharge');
+                  dooolyAPP.logIn(res.data.data,'/point_recharge');
                 }else if(this.vActivate.length == 8){
                   this.$router.push('/groupCommand/'+this.vActivate);
                 }else{
