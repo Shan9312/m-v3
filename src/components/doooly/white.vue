@@ -43,42 +43,8 @@
             }
             window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+ appidText +'&redirect_uri='+ channelText +'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
           }else{
-            let index =url.indexOf('?');
-            var base;
-            if(index > 0){
-              base = url.substring(0,index);
-            }
             localStorage.removeItem('wiscowechatCodeType');
-            if(localStorage.loginUrl){
-              let _loginUrl = localStorage.loginUrl;
-              let strReg = '^http(s)?://';
-              let reg = new RegExp(strReg);
-              let loginUrl_cookie = Cookies.get('loginUrl');
-              // 先判断localstorage
-              if(reg.test(_loginUrl)){
-                window.location.replace(_loginUrl)
-                return false
-              }else if(reg.test(loginUrl_cookie)){
-                // 再判断loginUrl_cookie
-                window.location.replace(loginUrl_cookie)
-                return false
-              }
-              if(localStorage.loginUrl[0] === '/'){
-                _loginUrl = _loginUrl.slice(1);
-              }
-              if(base){
-                window.location.href= base + '#/' +_loginUrl;
-              }else{
-                this.$router.replace({path:'/'+_loginUrl});
-              }
-              localStorage.removeItem('loginUrl');
-            }else{
-              if(base){
-                window.location.href= base +'#/nav/newHome';
-              }else{
-                this.$router.replace({path: 'nav/newHome'});
-              }
-            }
+            dooolyAPP.logIn('','',1);
           }
        }
       },

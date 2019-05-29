@@ -70,49 +70,16 @@ http.interceptors.request.use((config) => {
 
 // 对数据返回进行拦截
 http.interceptors.response.use((res) => {
-  Indicator.close()
-  if (res.data.code && res.data.code == 40001) {
-    // 测试兜礼app异常登出用
-    let errorlog = {
-      browserName: browserName,
-      token: localStorage.token,
-      appUrlChannel: localStorage.appUrlChannel
-    }
-    dooolyAPP.errorLog(JSON.stringify(errorlog))
-
-    if (browserName == 'WebKit' || browserName == 'otherAPPIos' || browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
-      dooolyAPP.forceLoginOut()
-    } else {
-      let a = window.location.href
-      let b = a.indexOf('#')
-      let loginUrl = a.substring(b + 2)
-      if (loginUrl) {
-        localStorage.loginUrl = loginUrl
-      }
-      let url = a.substring(0, b + 2)
-      localStorage.removeItem('wiscowechatCodeType')
-      if (window.location.href.indexOf('wiscowechat') > 0) {
-        localStorage.removeItem('wiscoToken')
-        localStorage.removeItem('token')
-      } else {
-        localStorage.removeItem('dooolyToken')
-        localStorage.removeItem('token')
-      }
-      if (/wiscowechat/.test(window.location.href)) {
-        window.location.replace(url + 'companyLogin/wugang')
-      } else if (/zfhwechat/.test(window.location.href)) {
-        window.location.replace(url + 'companyLogin/zfh')
-      } else {
-        window.location.replace(url)
-      }
-    }
+  Indicator.close();
+  if(res.data.code&&res.data.code==40001){
+    dooolyAPP.logOut(1);
   }
   return res
 }, error => {
-  Indicator.close()
-  sessionStorage.httpTimestamp = new Date().getTime()
-  if (!error.response ||　error.response.config.url.indexOf('action') > 0) { // action项目不做错误提示
-    return
+  Indicator.close();
+  sessionStorage.httpTimestamp = new Date().getTime();
+  if(!error.response ||　error.response.config.url.indexOf('action') > 0){//action项目不做错误提示
+    return;
   }
   if (navigator.onLine) {
     Toast('小兜兜正忙,请稍候重试!')

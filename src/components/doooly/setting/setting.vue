@@ -103,7 +103,7 @@
             // 清除cookie中的userId
             this.$cookies.set('userId', null);
             localStorage.userId = null;
-            dooolyAPP.logOut.call(this);
+            dooolyAPP.logOut();
           }
         });
         this.$baiduStats('我的-系统设置-退出登录');
