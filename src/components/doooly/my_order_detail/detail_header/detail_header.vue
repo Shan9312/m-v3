@@ -20,7 +20,12 @@
         <div>{{ showContentTitle }}</div>
         <div v-if="state == 1 && type == 1">
           <span
-            v-if="orderDetail.recoveryState && orderDetail.recoveryState == 1"
+            v-if="
+              orderDetail.orderType &&
+                orderDetail.inValuation &&
+                orderDetail.orderType == 3 &&
+                orderDetail.inValuation == 'false'
+            "
             class="recycling"
             @click="handlRecycling"
           >
@@ -28,8 +33,10 @@
           </span>
           <span
             v-if="
-              (orderDetail.recoveryState && orderDetail.recoveryState == 2) ||
-                orderDetail.recoveryState == 3
+              orderDetail.orderType &&
+                orderDetail.inValuation &&
+                orderDetail.orderType == 3 &&
+                orderDetail.inValuation == 'true'
             "
             class="recycling"
             @click="handlProgress"
