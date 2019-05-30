@@ -79,13 +79,6 @@ module.exports = {
           '^/admin': ''
         }
       },
-      '/admin8410': {
-        target: 'https://test.doooly.cn:8410',// 本地ip
-        changeOrigin: true,
-        pathRewrite: {
-          '^/admin': ''
-        }
-      },
       // '/admin8480': {
       //   target: 'https://test.doooly.cn:8480',// 本地ip
       //   changeOrigin: true,
