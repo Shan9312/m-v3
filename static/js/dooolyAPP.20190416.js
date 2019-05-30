@@ -607,7 +607,7 @@ dooolyAPP.logOut = function(type){
     localStorage.removeItem('isSetPayPassword');
 
     var splitIndex = location.href.indexOf('#');
-    var domain = locationHref.substring(0, splitIndex + 2);
+    var domain = location.href.substring(0, splitIndex + 2);
     if (/wiscowechat/.test(window.location.href)) {
       location.replace(domain + 'companyLogin/wugang');
     } else if (/zfhwechat/.test(window.location.href)) {
@@ -643,7 +643,7 @@ dooolyAPP.logIn = function(data,url,type) {
     localStorage.blocId = jsonData.adUserConn.blocId;
   }
   var splitIndex = location.href.indexOf('#');
-  var domain = locationHref.substring(0, splitIndex + 1);
+  var domain = location.href.substring(0, splitIndex + 1);
   //记录登录特殊跳转url
   if (url) {
     var reg = new RegExp('^http(s)?://');
