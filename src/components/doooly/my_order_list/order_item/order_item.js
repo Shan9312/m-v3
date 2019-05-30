@@ -1,6 +1,6 @@
-import orderDialog from '../order_dialog/dialog.vue'
-import defaultImg from '@/assets/images/shoppingGuide/goods.png'
-import { countRebateState } from '../model/rebate.js'
+import orderDialog from '../order_dialog/dialog.vue';
+import defaultImg from '@/assets/images/shoppingGuide/goods.png';
+import { countRebateState } from '../model/rebate.js';
 
 const orderItem = {
   props: {
@@ -8,7 +8,7 @@ const orderItem = {
     amountListData: Array,
     hintState: String
   },
-  data () {
+  data(){
     return {
       typeFilter: {
         '1': '已完成',
@@ -37,81 +37,81 @@ const orderItem = {
   components: {
     orderDialog
   },
-  created () {
+  created(){
   },
   methods: {
-    rebateReturnMsg (isUserRebate, userRebate, type) {
-      let rebateState = countRebateState(isUserRebate, userRebate, type)
-      let resultMsg = ''
+    rebateReturnMsg(isUserRebate, userRebate, type) {
+      let rebateState = countRebateState(isUserRebate, userRebate, type);
+      let resultMsg = '';
       if (rebateState === 1) { // 已完成-已返利
-        resultMsg = '返' + userRebate.toFixed(2) + '积分'
+        resultMsg = '返' + userRebate.toFixed(2) + '积分';
       } else if (rebateState === 2) { // 已完成-预返利
-        resultMsg = '返' + userRebate.toFixed(2) + '积分'
+        resultMsg = '返' + userRebate.toFixed(2) + '积分';
       } else if (rebateState === 3) { // 待支付-预返积分
-        resultMsg = '预计返' + userRebate.toFixed(2) + '积分'
+        resultMsg = '预计返' + userRebate.toFixed(2) + '积分';
       } else if (rebateState === 4) { // 待支付-无返积分
-        resultMsg = '无返积分'
+        resultMsg = '无返积分';
       } else if (rebateState === 5) { // 已完成-无返积分
-        resultMsg = '无返积分'
+        resultMsg = '无返积分';
       } else if (rebateState === 6) { // 已取消-无返积分
-        resultMsg = '无返积分'
+        resultMsg = '无返积分';
       } else {
-        resultMsg = '无返积分'
+        resultMsg = '无返积分';
       }
       return resultMsg
     },
-    rebateReturnTime (isUserRebate, userRebate, type, integrateReturnDate) {
-      let rebateState = countRebateState(isUserRebate, userRebate, type)
-      let resultMsg = ''
+    rebateReturnTime(isUserRebate, userRebate, type, integrateReturnDate) {
+      let rebateState = countRebateState(isUserRebate, userRebate, type);
+      let resultMsg = '';
       if (rebateState === 1) { // 已完成-已返利
-        resultMsg = integrateReturnDate + '积分到账'
+        resultMsg = integrateReturnDate + '积分到账';
       } else if (rebateState === 2) { // 已完成-预返利
-        resultMsg = '预计' + integrateReturnDate + '发放积分'
+        resultMsg = '预计' + integrateReturnDate + '发放积分';
       } else if (rebateState === 3) { // 待支付-预返积分
-        resultMsg = '支付完成后计算积分到账时间'
+        resultMsg = '支付完成后计算积分到账时间';
       } else if (rebateState === 4) { // 待支付-无返积分
-        resultMsg = '根据商家规则，无返利'
+        resultMsg = '根据商家规则，无返利';
       } else if (rebateState === 5) { // 已完成-无返积分
-        resultMsg = '根据商家规则，无返利'
+        resultMsg = '根据商家规则，无返利';
       } else if (rebateState === 6) { // 已取消-无返积分
-        resultMsg = '未完成交易订单无返利'
+        resultMsg = '未完成交易订单无返利';
       } else {
-        resultMsg = '根据商家规则，无返利'
+        resultMsg = '根据商家规则，无返利';
       }
       return resultMsg
     },
     order_Detail: function (id) {
-      this.$baiduStats('订单列表-查看订单详情')
-      dooolyAPP.gotoJumpVue.call(this, '/myOrderDetail/' + id)
+      this.$baiduStats('订单列表-查看订单详情');
+      dooolyAPP.gotoJumpVue.call(this, '/myOrderDetail/' + id);
     },
-    orderDelete (companyName, orderId) {
-      this.$baiduStats('订单列表-删除订单')
-      this.type = 'orderDelete'
-      this.tipsTitle = '确认删除该订单？'
-      this.detailCompanyName = companyName
-      this.orderId = orderId
-      this.popupVisible = true
+    orderDelete(companyName, orderId){
+      this.$baiduStats('订单列表-删除订单');
+      this.type = 'orderDelete';
+      this.tipsTitle = "确认删除该订单？";
+      this.detailCompanyName = companyName;
+      this.orderId = orderId;
+      this.popupVisible = true;
     },
     order_cancel: function (companyName, orderNumber) {
-      this.$baiduStats('订单列表-取消订单')
-      this.type = 'orderCancel'
-      this.tipsTitle = '确认取消该订单？'
-      this.detailCompanyName = companyName
-      this.detailOrderNum = orderNumber
-      this.popupVisible = true
+      this.$baiduStats('订单列表-取消订单');
+      this.type = 'orderCancel';
+      this.tipsTitle = '确认取消该订单？';
+      this.detailCompanyName = companyName;
+      this.detailOrderNum = orderNumber;
+      this.popupVisible = true;
     },
     order_payment: function (orderNumber) {
-      this.$baiduStats('订单列表-继续支付')
-      this.detailOrderNum = orderNumber
-      this.popupVisible = false
-      dooolyAPP.redirectPay(orderNumber)
+      this.$baiduStats('订单列表-继续支付');
+      this.detailOrderNum = orderNumber;
+      this.popupVisible = false;
+      dooolyAPP.redirectPay(orderNumber) 
     },
-    changePopupVisible (boolean) {
-      this.popupVisible = boolean
+    changePopupVisible(boolean){
+      this.popupVisible = boolean;
     },
-    pageReload (data) {
-      this.$emit('pageReload', data)
+    pageReload(data){
+      this.$emit('pageReload', data);
     }
   }
-}
-export default orderItem
+};
+export default orderItem;

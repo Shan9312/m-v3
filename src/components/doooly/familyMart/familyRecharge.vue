@@ -163,6 +163,7 @@ export default{
                             'merchantId': this.list.merchant_id,
                             'remarks': '',
                             'productSku':[{
+                                'productType': 9,
                                 'productId': this.list.product_id,
                                 'skuId': this.list.sku_list[this.click].id,
                                 'buyNum': 1

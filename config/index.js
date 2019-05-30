@@ -50,7 +50,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    // host: '192.168.1.187', // can be overwritten by process.env.HOST
+    host: 'localhost', // can be overwritten by process.env.HOST
     // host: '192.168.1.157', // can be overwritten by process.env.HOST
     errorOverlay: true,
     notifyOnErrors: true,
@@ -74,6 +74,13 @@ module.exports = {
       },
       '/admin': {
         target: 'https://admin.doooly.com',// 本地ip
+        changeOrigin: true,
+        pathRewrite: {
+          '^/admin': ''
+        }
+      },
+      '/admin8410': {
+        target: 'https://test.doooly.cn:8410',// 本地ip
         changeOrigin: true,
         pathRewrite: {
           '^/admin': ''
