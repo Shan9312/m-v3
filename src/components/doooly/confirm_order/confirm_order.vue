@@ -26,14 +26,14 @@
     <div class="main"></div>
     <div class="line_bold"></div>
     <div class="company">
-        <div class="clearfix picture_view">
+        <div class="clearfix picture_view" v-for="item in postData">
             <div class="fl picture">
-                <img :src="postData.img">
+                <img :src="item.img">
             </div>
             <div class="fl price">
-                <span class="name">{{postData.name}}</span><br>
-                <span class="type">规格：{{postData.specification}}</span><br>
-                <span><span style="font-size:0.24rem;margin: 0;padding: 0;color:#ee3f44;">￥</span><span style="display: inline;margin: 0;padding: 0;" class="sellPrice">{{postData.sellPrice}}</span></span>
+                <span class="name">{{item.name}}</span><br>
+                <span class="type">规格：{{item.specification}}</span><br>
+                <span><span style="font-size:0.24rem;margin: 0;padding: 0;color:#ee3f44;">￥</span><span style="display: inline;margin: 0;padding: 0;" class="sellPrice">{{item.sellPrice}}</span></span>
             </div>
         </div>
         <div class="line_bold"></div>
@@ -50,7 +50,7 @@
     <div class="footer_bg"></div>
     <footer>
         <div class="fl">
-            应付金额：<span><span style="font-size:0.24rem;margin: 0;padding: 0;">￥</span><span class="sellPrice">{{postData.sellPrice}}</span></span>
+            应付金额：<span><span style="font-size:0.24rem;margin: 0;padding: 0;">￥</span><span class="sellPrice">{{postData | formatPrice}}</span></span>
         </div>
         <div class="fr dis_btn" @click="refer()" :class="confirmClassObj">
             确认提交

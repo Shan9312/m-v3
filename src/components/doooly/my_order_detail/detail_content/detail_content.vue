@@ -3,7 +3,7 @@
     <div class="detail_count">
       <div class="div_describe">
         <p class="des_l">订单金额</p>
-        <p class="des_r" v-if="Number(supplierOrder.payAmount)">
+        <p class="des_r" v-if="Number(supplierOrder.payAmount) || Number(supplierOrder.payAmount) == 0">
           ￥{{ supplierOrder.payAmount.toFixed(2) }}
           <span v-if="supplierOrder.amountPayable > 0 && supplierOrder.savePrice > 0">
             (原价:￥{{ supplierOrder.amountPayable.toFixed(2) }})</span>

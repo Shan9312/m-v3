@@ -1,5 +1,5 @@
-const api = { 
-  WxAppIdUrl:WxAppIdUrl,
+const api = {
+  WxAppIdUrl: WxAppIdUrl,
   baseURL: base,
   getLoginVCode: Butterfly+'wechat/register/getValidCode.jhtml',//获取登录验证码
   telLogin: Butterfly+'wechat/login/telLogin.jhtml',//验证码登录
@@ -52,16 +52,16 @@ const api = {
   saveDeliveryAddr:Butterfly+'wechat/userDelivery/saveRestful.jhtml',//保存用户收货地址
   appUploadImg:Butterfly+'doooly/orderDelivery/appUploadImage.jhtml',//微信上传图片
   // //活动话费充值
-  resetPwd:Butterfly+'wechat/password/resetPwd.jhtml',//钢城e家验证码登录
-  verifyCodeToActive:Butterfly+'wechat/activate/verifyCodeToActive.jhtml',//激活接口
+  resetPwd: Butterfly + 'wechat/password/resetPwd.jhtml', // 钢城e家验证码登录
+  verifyCodeToActive: Butterfly + 'wechat/activate/verifyCodeToActive.jhtml', // 激活接口
   checkValidCode: Butterfly + 'doooly/register/checkValidCode.jhtml', // 校验验证码
 
-  SplashScreen:Doooly+'jersey/dooolyApp/index/SplashScreen/'+localStorage.groupId,//获取企业引导图
-  commonShareJSONPConfig: Doooly+'jersey/share/commonShareJSONPConfig',
-  getScanDiscount:Doooly+'jersey/scanBusiness/getScanDiscount',
-  businessInfoService: Doooly+'jersey/hotBusiness/businessInfoService',//可用积分服务进入的商户详情
-  cancleOrder_v2: Doooly+'jersey/order/cancleOrder',
-  unifiedorder: Doooly + 'jersey/doooly/payment/unifiedorder',//查询订单信息接口-2.1 
+  SplashScreen: Doooly + 'jersey/dooolyApp/index/SplashScreen/' + localStorage.groupId, // 获取企业引导图
+  commonShareJSONPConfig: Doooly + 'jersey/share/commonShareJSONPConfig',
+  getScanDiscount: Doooly + 'jersey/scanBusiness/getScanDiscount',
+  businessInfoService: Doooly + 'jersey/hotBusiness/businessInfoService', // 可用积分服务进入的商户详情
+  cancleOrder_v2: Doooly + 'jersey/order/cancleOrder',
+  unifiedorder: Doooly + 'jersey/doooly/payment/unifiedorder', // 查询订单信息接口-2.1
   jd: 'https://coupon.m.jd.com/union?&mtm_source=kepler-m&mtm_subsource=7553efb413f041b2a256679e84067dd4&returl=http%3A%2F%2Funion-click.jd.com%2Fjdc%3Fd%3DLu4haH',
   getPayForm: Doooly+'jersey/doooly/payment/getPayForm',//获取支付信息
   integralPay: Doooly+'jersey/doooly/payment/integralPay',//验证支付验证码2.1
@@ -115,7 +115,7 @@ const api = {
   nexusBind:Doooly+'jersey/productService/nexusBind',//添加集享和兜礼用户绑定
   nexusBindQuery:Doooly+'jersey/productService/nexusBindQuery',//集享绑定验证
   sendCoupon: Doooly + 'jersey/enterprises/activity/send-coupon', // 东航拉新活动发券接口
-  issetPassword:Doooly + 'jersey/myAccount/isSetPayPassword', // y-密码设置:是否设置过密码
+  issetPassword: Doooly + 'jersey/myAccount/isSetPayPassword', // y-密码设置:是否设置过密码
   setPayPassword: Doooly + 'jersey/myAccount/setPayPassword', // y-密码设置：设置支付密码
   validPayPassword: Doooly + 'jersey/myAccount/validPayPassword', // y-校验原先支付密码
   openPayPassword: Doooly + 'jersey/myAccount/openPayPassword', // 设置验证方式
@@ -127,8 +127,8 @@ const api = {
   receiveUserReturnPoints: Doooly + 'jersey/hotBusiness/receiveUserReturnPoints', // 领取预返积分接口
   dailyQuery: Doooly + 'jersey/daily-activity/v1/dailyQuery', // 查询活动优惠券接口
   daily: Doooly + 'jersey/daily-activity/v1/daily', // 查询活动优惠券接口
-  businessList: Doooly +'jersey/homeCoupon/businessList',//获取优惠券对应的商家列表
-  couponList: Doooly +'jersey/homeCoupon/couponList',//获取商家的优惠券列表
+  businessList: Doooly + 'jersey/homeCoupon/businessList', // 获取优惠券对应的商家列表
+  couponList: Doooly + 'jersey/homeCoupon/couponList', // 获取商家的优惠券列表
   getRechargeActivityByType: Doooly + 'jersey/selfProduct/getActivityByType', // 暂时供话费充值活动使用
   getRechargeActivity: Doooly + 'jersey/selfProduct/getSelfProductByName', // 根据活动名称获取活动sku
   // -----------------订单2.2优化接口-------------------------
@@ -140,17 +140,16 @@ const api = {
   registerForum: Doooly + 'jersey/forumInvitation/registerForum', // 论坛邀请活动报名接口
   detailForAjax: Doooly + 'jersey/selfProduct/detail',
   // createOrder_v2: Doooly+'jersey/order/createOrder',
-  createOrder_v2_2: Doooly+'jersey/order/createOrder/V2',
+  createOrder_v2_2: Doooly + 'jersey/order/createOrder/V2',
   getCoupon: Doooly + 'jersey/daily-activity/v1/daily', // 通用  领券
-  fordProductIndex:Activity + 'ford/fordProductIndex',//福特商品聚合列表
-  shopList:Order + 'shopCart/list/v1/',//购物车查询
-  shopHandle:Order + 'shopCart/handle/v1/',//购物车编辑
-  actionVisit:Action + 'visit/v1/',//用户访问接口
+  fordProductIndex: Activity + 'ford/fordProductIndex', // 福特商品聚合列表
+  shopList: Order + 'shopCart/list/v1/', // 购物车查询
+  shopHandle: Order + 'shopCart/handle/v1/', // 购物车编辑
+  actionVisit: Action + 'visit/v1/', // 用户访问接口
   getGroupInfo: Doooly + 'jersey/third/getGroupInfo', // 免登录获取企业信息
   thirdLogin: Doooly + 'jersey/third/thirdLogin', // 第三方免登录
-  giftBagList:Activity + 'gift/bag/giftBagList',//获取用户所有礼包接口
-  findlist:Activity + 'guide/findlist',//发现新接口
-  giftBagIsReceive: Activity + 'gift/bag/isReceive', // 判断能否领取
+  giftBagList: Activity + 'gift/bag/giftBagList', // 获取用户所有礼包接口
+  findlist: Activity + 'guide/findlist', // 发现新接口
+  giftBagIsReceive: Activity + 'gift/bag/isReceive' // 判断能否领取
 }
-export default api;
-
+export default api

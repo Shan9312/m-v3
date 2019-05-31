@@ -216,12 +216,11 @@ export default {
         consigneeMobile: this.defaultDelivery.receiverTelephone,
         productType: this.receiveData.productType,
         // giftBagId: this.receiveData.giftBagId,
-        // orderType: this.receiveData.orderType,
+        orderType: this.receiveData.orderType,
         merchantProduct: [
           {
             couponId: localStorage.couponId,
             merchantId: this.receiveData.merchantProduct[0].merchantId,
-            orderType: this.receiveData.orderType,
             giftBagId: this.receiveData.giftBagId,
             remarks: "",
             productSku: [

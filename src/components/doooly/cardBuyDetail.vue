@@ -14,7 +14,7 @@
         {{activityName ? cardBuyDetailList.selfProduct.introduction : cardBuyDetailList.selfProduct.brandDescription}}
       </div>
 
-      <div class="price"> 
+      <div class="price">
         <span class="red">￥</span><span id="sellPrice_view">{{showSellPrice}}</span><span v-show="cardBuyDetailList.selfProduct.productAttr != '1'">市场价￥<span
         id="marketPrice_view">{{showMarketPrice}}</span></span>
         <div class="fr" :class="{red:inventory<10}" v-show="cardBuyDetailList.selfProduct.productAttr != '1'">{{inventoryText}}</div>
@@ -57,30 +57,32 @@
     <div class="go_top" :class="{'hide':goTop == 2,'show':goTop == 1}" @click="goTopfunction">
       <img src="../../assets/images/cardbuy/go_top.png">
     </div>
+    <div v-if="!ccbType">
     <!-- 底部悬浮 -->
-    <div class="footer_bg"></div>
-    <footer class="box_item" v-if="!giftBagId">
-      <div class="item fl-1">
-        可用积分：<span>{{cardBuyDetailList.availablePoint}}</span>
-      </div>
-      <div class="item fr-2" :class="{gary: (inventory === 0 || (!isStart && activityName))}" @click="order()">
-        <span v-if="!activityName">{{inventory===0?'补货中':'立即订购'}}</span>
-        <span v-else-if="isStart && activityName">{{inventory===0?'已售罄':'立即抢购'}}</span>
-        <span v-else>即将开抢</span>
-        <!--{{inventory!=0?'立即订购':'已售罄'}}-->
-      </div>
-    </footer>
-    <footer class="box_item" v-else>
-      <div class="item fr-2" v-if="!giftType" :class="{gary: (inventory == 0 || isReceive == 1)}" @click="order('38')">
-        <span v-if="isReceive == 1">已领取</span>
-        <span v-else-if="inventory ==0">已领完</span>
-        <span v-else>{{giftType ? "立即兑换" : '立即领取'}}</span>
-        <!--{{inventory!=0?'立即订购':'已售罄'}}-->
-      </div>
-      <div class="item fr-2" v-else  :class="{gary: (inventory == 0 || isReceive == 1)}" @click="order()">
-        <span>立即兑换</span>
-      </div>
-    </footer>
+      <div class="footer_bg"></div>
+      <footer class="box_item" v-if="!giftBagId">
+        <div class="item fl-1">
+          可用积分：<span>{{cardBuyDetailList.availablePoint}}</span>
+        </div>
+        <div class="item fr-2" :class="{gary: (inventory === 0 || (!isStart && activityName))}" @click="order()">
+          <span v-if="!activityName">{{inventory===0?'补货中':'立即订购'}}</span>
+          <span v-else-if="isStart && activityName">{{inventory===0?'已售罄':'立即抢购'}}</span>
+          <span v-else>即将开抢</span>
+          <!--{{inventory!=0?'立即订购':'已售罄'}}-->
+        </div>
+      </footer>
+      <footer class="box_item" v-else>
+        <div class="item fr-2" v-if="!giftType" :class="{gary: (inventory == 0 || isReceive == 1)}" @click="order('38')">
+          <span v-if="isReceive == 1">已领取</span>
+          <span v-else-if="inventory ==0">已领完</span>
+          <span v-else>{{giftType ? "立即兑换" : '立即领取'}}</span>
+          <!--{{inventory!=0?'立即订购':'已售罄'}}-->
+        </div>
+        <div class="item fr-2" v-else  :class="{gary: (inventory == 0 || isReceive == 1)}" @click="order()">
+          <span>立即兑换</span>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -138,7 +140,8 @@ export default {
       goTop: 0,
       isReceive: this.$route.params.isReceive,
       giftBagId: this.$route.params.giftBagId,
-      giftType: this.$route.query.giftType || '',
+      giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
+      ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
       isError: false,
       errMsg: ''
     }
@@ -373,8 +376,8 @@ export default {
   created () {
     this.loadCardBuyDetailList()
     this.getIsReceive()
-    if(browserName == "Chrome WebView"){//在安卓app中优化轮播图禁用下拉刷新
-      RHNativeJS.visablePtrFrame(false);
+    if (browserName == 'Chrome WebView') { // 在安卓app中优化轮播图禁用下拉刷新
+      RHNativeJS.visablePtrFrame(false)
     }
   }
 }

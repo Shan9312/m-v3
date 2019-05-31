@@ -117,7 +117,7 @@
           }).then(
             (res) => {
               if (res.data.code == "1000") {
-                dooolyAPP.logIn.call(this,res.data.data);
+                dooolyAPP.logIn(res.data.data);
               }else{
                 this.isLoading = false;
                 if (res.data.code == "1004"){
