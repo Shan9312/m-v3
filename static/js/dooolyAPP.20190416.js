@@ -607,7 +607,7 @@ dooolyAPP.logOut = function (type) {
     localStorage.removeItem('isSetPayPassword')
 
     var splitIndex = location.href.indexOf('#')
-    var domain = locationHref.substring(0, splitIndex + 2)
+    var domain = location.href.substring(0, splitIndex + 2)
     if (/wiscowechat/.test(window.location.href)) {
       location.replace(domain + 'companyLogin/wugang')
     } else if (/zfhwechat/.test(window.location.href)) {
@@ -629,11 +629,11 @@ dooolyAPP.logIn = function (data, url, type) {
     if (window.location.href.indexOf('wiscowechat') > 0) {
       localStorage.wiscoToken = token
       localStorage.token = token
-    } else {
+    } else{
       localStorage.dooolyToken = token
       localStorage.token = token
     }
-    localStorage.setItem('userId', jsonData.adUserConn.userId)
+    localStorage.userId = jsonData.adUserConn.userId
     localStorage.mobile = jsonData.adUserConn.telephone
     localStorage.groupShortName = jsonData.adUserConn.groupShortName
     localStorage.userName = jsonData.adUserConn.name
@@ -643,8 +643,8 @@ dooolyAPP.logIn = function (data, url, type) {
     localStorage.blocId = jsonData.adUserConn.blocId
   }
   var splitIndex = location.href.indexOf('#')
-  var domain = locationHref.substring(0, splitIndex + 1)
-  // 记录登录特殊跳转url
+  var domain = location.href.substring(0, splitIndex + 1)
+  //记录登录特殊跳转url
   if (url) {
     var reg = new RegExp('^http(s)?://')
     if (reg.test(url)) {
