@@ -68,7 +68,7 @@ const confirmOrder = {
           data.data &&
           data.data.orderInfo &&
           data.data.orderInfo.length > 0 &&
-          data.data.orderInfo[data.data.orderInfo.length - 1].state == 1 || data.data.orderInfo[data.data.orderInfo.length - 1].state == 0
+          (data.data.orderInfo[data.data.orderInfo.length - 1].state == 1 || data.data.orderInfo[data.data.orderInfo.length - 1].state == 0)
         ) {
           isRepeat = true
         } else {
