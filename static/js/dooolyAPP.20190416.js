@@ -567,116 +567,117 @@ dooolyAPP.gotoJumpVue = function (url, dataType) {
       })
     }
   }
-};
-//退出登录方法
-dooolyAPP.logOut = function(type){
-  if (browserName == "WebKit" || browserName == "otherAPPIos") {
-    window.webkit.messageHandlers.forceLoginOut.postMessage("1");
-  }else if(browserName == "Chrome WebView" || browserName == "otherAPPAndroid") {
-    RHNativeJS.forceLoginOut("");
-  } else{
-    //cookies本地测试用
-    dooolyAPP.removeCookie('token');
-    dooolyAPP.removeCookie('userId');
-    dooolyAPP.removeCookie('loginUrl');
-    if(window.location.href.indexOf('wiscowechat') > 0){//武钢公众号登出
-      localStorage.removeItem('wiscoToken');
-      localStorage.removeItem('token');
-    }else{//兜礼公众号登出
-      localStorage.removeItem('dooolyToken');
-      localStorage.removeItem('token');
-    }
-    if(type == 1){//非正常登出
-      localStorage.setItem('loginUrl',location.href)
-    }else{
-      localStorage.removeItem('loginUrl');
-    }
-    localStorage.removeItem('userId');
-    localStorage.removeItem('mobile');
-    localStorage.removeItem('activateMobile');
-    localStorage.removeItem('groupShortName');
-    localStorage.removeItem('address');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('redirectUrl');
-    localStorage.removeItem('code');
-    localStorage.removeItem('storeMapUrl');
-    localStorage.removeItem('latitude');
-    localStorage.removeItem('longitude');
-    localStorage.removeItem('getAppVersionName');
-    localStorage.removeItem('isPayPassword');
-    localStorage.removeItem('isSetPayPassword');
-
-    var splitIndex = location.href.indexOf('#');
-    var domain = locationHref.substring(0, splitIndex + 2);
-    if (/wiscowechat/.test(window.location.href)) {
-      location.replace(domain + 'companyLogin/wugang');
-    } else if (/zfhwechat/.test(window.location.href)) {
-      location.replace(domain + 'companyLogin/zfh');
-    } else {
-      location.replace(domain);
-    }
-  } 
 }
-//登录/记录用户信息方法
-dooolyAPP.logIn = function(data,url,type) {
-  //记录登录信息
-  if(data){
-    var jsonData = JSON.parse(data);
-    var token = jsonData.token;
-    dooolyAPP.setCookie('token', token);
-    dooolyAPP.setCookie('userId', jsonData.adUserConn.userId);
-    dooolyAPP.removeCookie("first_conponShow");
-    if(window.location.href.indexOf('wiscowechat') > 0){
-      localStorage.wiscoToken = token;
-      localStorage.token = token;
-    }else{
-      localStorage.dooolyToken = token;
-      localStorage.token = token;
+// 退出登录方法
+dooolyAPP.logOut = function (type) {
+  if (browserName == 'WebKit' || browserName == 'otherAPPIos') {
+    window.webkit.messageHandlers.forceLoginOut.postMessage('1')
+  } else if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
+    RHNativeJS.forceLoginOut('')
+  } else {
+    // cookies本地测试用
+    dooolyAPP.removeCookie('token')
+    dooolyAPP.removeCookie('userId')
+    dooolyAPP.removeCookie('loginUrl')
+    if (window.location.href.indexOf('wiscowechat') > 0) { // 武钢公众号登出
+      localStorage.removeItem('wiscoToken')
+      localStorage.removeItem('token')
+    } else { // 兜礼公众号登出
+      localStorage.removeItem('dooolyToken')
+      localStorage.removeItem('token')
     }
-    localStorage.userId = jsonData.adUserConn.userId;
-    localStorage.mobile = jsonData.adUserConn.telephone;
-    localStorage.groupShortName = jsonData.adUserConn.groupShortName;
-    localStorage.userName = jsonData.adUserConn.name;
-    localStorage.isPayPassword = jsonData.adUserConn.isPayPassword;
-    localStorage.isSetPayPassword = jsonData.adUserConn.isSetPayPassword;
-    localStorage.groupId = jsonData.adUserConn.groupId;
-    localStorage.blocId = jsonData.adUserConn.blocId;
+    if (type == 1) { // 非正常登出
+      localStorage.setItem('loginUrl', location.href)
+    } else {
+      localStorage.removeItem('loginUrl')
+    }
+    localStorage.removeItem('userId')
+    localStorage.removeItem('mobile')
+    localStorage.removeItem('activateMobile')
+    localStorage.removeItem('groupShortName')
+    localStorage.removeItem('address')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('redirectUrl')
+    localStorage.removeItem('code')
+    localStorage.removeItem('storeMapUrl')
+    localStorage.removeItem('latitude')
+    localStorage.removeItem('longitude')
+    localStorage.removeItem('getAppVersionName')
+    localStorage.removeItem('isPayPassword')
+    localStorage.removeItem('isSetPayPassword')
+
+    var splitIndex = location.href.indexOf('#')
+    var domain = locationHref.substring(0, splitIndex + 2)
+    if (/wiscowechat/.test(window.location.href)) {
+      location.replace(domain + 'companyLogin/wugang')
+    } else if (/zfhwechat/.test(window.location.href)) {
+      location.replace(domain + 'companyLogin/zfh')
+    } else {
+      location.replace(domain)
+    }
   }
-  var splitIndex = location.href.indexOf('#');
-  var domain = locationHref.substring(0, splitIndex + 1);
-  //记录登录特殊跳转url
+}
+// 登录/记录用户信息方法
+dooolyAPP.logIn = function (data, url, type) {
+  // 记录登录信息
+  if (data) {
+    var jsonData = JSON.parse(data)
+    var token = jsonData.token
+    dooolyAPP.setCookie('token', token)
+    dooolyAPP.setCookie('userId', jsonData.adUserConn.userId)
+    dooolyAPP.removeCookie('first_conponShow')
+    if (window.location.href.indexOf('wiscowechat') > 0) {
+      localStorage.wiscoToken = token
+      localStorage.token = token
+    } else {
+      localStorage.dooolyToken = token
+      localStorage.token = token
+    }
+    localStorage.userId = jsonData.adUserConn.userId
+    localStorage.mobile = jsonData.adUserConn.telephone
+    localStorage.groupShortName = jsonData.adUserConn.groupShortName
+    localStorage.userName = jsonData.adUserConn.name
+    localStorage.isPayPassword = jsonData.adUserConn.isPayPassword
+    localStorage.isSetPayPassword = jsonData.adUserConn.isSetPayPassword
+    localStorage.groupId = jsonData.adUserConn.groupId
+    localStorage.blocId = jsonData.adUserConn.blocId
+  }
+  alert(jsonData.adUserConn.userId)
+  var splitIndex = location.href.indexOf('#')
+  var domain = locationHref.substring(0, splitIndex + 1)
+  // 记录登录特殊跳转url
   if (url) {
-    var reg = new RegExp('^http(s)?://');
-    if(reg.test(url)){
-      localStorage.loginUrl = url;
-    }else{
-      localStorage.loginUrl = domain + url;
+    var reg = new RegExp('^http(s)?://')
+    if (reg.test(url)) {
+      localStorage.loginUrl = url
+    } else {
+      localStorage.loginUrl = domain + url
     }
   }
-  if (browserName == "WeChat" && type != 1) { // 微信
-    location.replace(WxAppIdUrl);
-  } else if (browserName == "WebKit") { // ios
+  if (browserName == 'WeChat' && type != 1) { // 微信
+    location.replace(WxAppIdUrl)
+  } else if (browserName == 'WebKit') { // ios
     var params = {
-      "userInfo": jsonData.adUserConn,
-      "type": "0",
-      "token": jsonData.token,
+      'userInfo': jsonData.adUserConn,
+      'type': '0',
+      'token': jsonData.token,
       'url': url
     }
     window.webkit.messageHandlers.nativeUserInfomation.postMessage(params)
   } else if (browserName == 'Chrome WebView') { // 安卓
     if (url) {
-      RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
+      RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl)
     } else {
-      RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), "0", jsonData.token);
+      RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), '0', jsonData.token)
     }
-  }else{
-    var loginUrl= localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
-    localStorage.removeItem('loginUrl');
-    dooolyAPP.removeCookie('loginUrl');
-    if(loginUrl){
+  } else {
+    var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl')
+    localStorage.removeItem('loginUrl')
+    dooolyAPP.removeCookie('loginUrl')
+    if (loginUrl) {
       location.replace(loginUrl)
-    }else{
-      location.replace(browserName == "otherAPP" ? domain + '/nav/newHome?first=1' : domain + '/nav/newHome');
+    } else {
+      location.replace(browserName == 'otherAPP' ? domain + '/nav/newHome?first=1' : domain + '/nav/newHome')
     }
   }
 }
