@@ -3,7 +3,15 @@ import noScore from '@/assets/images/personalCenter/myOrder/no_score.png' // 无
 import tradeCancel from '@/assets/images/personalCenter/myOrder/trade_cancel.png' // 交易取消
 import waitPayment from '@/assets/images/personalCenter/myOrder/wait_payment.png' // 待付款
 import { countRebateState } from '@/components/doooly/my_order_list/model/rebate.js'
-
+// 兼容所有浏览器
+// ios 使用 new Date("2010-03-15 10:30:00").getTime() 获取时间戳报错
+// @time "2010-03-15 10:30:00"
+const getTs = time => {
+  let arr = time.split(/[- :]/),
+    _date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]),
+    timeStr = Date.parse(_date)
+  return timeStr
+}
 const detailHeader = {
   props: {
     orderDetail: null,
@@ -30,7 +38,6 @@ const detailHeader = {
   },
   created () {
     this.computedRebateMsg()
-    console.log(this.orderDetail)
   },
   methods: {
     computedRebateMsg () {
@@ -87,14 +94,19 @@ const detailHeader = {
     },
     // 查看回收进度
     handlProgress () {
-      const { after2Date } = this.orderDetail
-      if (after2Date) {
+      const { after2Date, recoveryState } = this.orderDetail
+      if (after2Date) { // 确认回收后未超过48小时点击按钮提示弹框，超过48小时，after2Date自动为空值
         this.$messageBox({
           title: '您的商品还在估价中',
-          message: '预计2019年5月28日 15：25分完成估价'
+          message: `预计${after2Date}完成估价`
         })
       } else {
-        dooolyAPP.redirectActivity(`Alipay?orderNumber=${this.orderDetail.orderNumber}`)
+        // 此时未填写支付宝信息，recoveryState的值为2，填写支付宝信息值为3
+        if (recoveryState && recoveryState == 2) {
+          dooolyAPP.redirectActivity(`Alipay?orderNumber=${this.orderDetail.orderNumber}`)
+        } else {
+          dooolyAPP.redirectActivity('RecyclingProgress')
+        }
       }
     },
 

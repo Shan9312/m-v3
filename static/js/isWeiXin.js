@@ -276,8 +276,8 @@ var httpsbase = {
   fabuOrder: 'https://api.doooly.com/pre_order/',
   Order: 'https://api.doooly.com/pro_order/',
 
-  baseUrlTestAction: 'https://test.doooly.cn:8410/doooly-action/',
-  baseUrlMainAction: 'https://test.doooly.cn:8410/doooly-action/',
+  baseUrlTestAction: 'https://admin.doooly.com/doooly-action/',
+  baseUrlMainAction: 'https://admin.doooly.com/doooly-action/',
   fabuAction: 'https://api.doooly.com/pre_action/',
   Action: 'https://api.doooly.com/pro_action/'
 }
@@ -411,7 +411,7 @@ if (is_https) {
     Doooly = httpsbase.baseUrlTestDoooly
     Activity = '/admin/activity/'
     Order = '/admin/doooly-order/'
-    Action = '/admin8410/doooly-action/'
+    Action = '/admin/doooly-action/'
     base = basesUrl.baseUrlTest
   }
   if (browserName == 'otherAPP') {

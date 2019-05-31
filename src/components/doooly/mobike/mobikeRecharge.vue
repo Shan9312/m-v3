@@ -173,6 +173,7 @@ export default{
                             'merchantId': this.list.mobike_merchant_id,
                             'remarks': '',
                             'productSku':[{
+                                'productType': 8,
                                 'productId': this.list.mobike_product_id,
                                 'skuId': this.list.mobike_sku_list[this.click].id,
                                 'buyNum': 1

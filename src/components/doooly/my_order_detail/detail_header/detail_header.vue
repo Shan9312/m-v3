@@ -24,7 +24,8 @@
               orderDetail.orderType &&
                 orderDetail.inValuation &&
                 orderDetail.orderType == 3 &&
-                orderDetail.inValuation == 'false'
+                orderDetail.inValuation == 'false' &&
+                !orderDetail.recoveryState
             "
             class="recycling"
             @click="handlRecycling"
@@ -33,10 +34,12 @@
           </span>
           <span
             v-if="
-              orderDetail.orderType &&
+              (orderDetail.orderType &&
                 orderDetail.inValuation &&
                 orderDetail.orderType == 3 &&
-                orderDetail.inValuation == 'true'
+                orderDetail.inValuation == 'true') ||
+                orderDetail.recoveryState == 2 ||
+                orderDetail.recoveryState == 3
             "
             class="recycling"
             @click="handlProgress"
@@ -72,7 +75,7 @@
 </template>
 
 <script>
-import detailHeader from './detail_header.js'
+import detailHeader from './detail_header.js';
 export default detailHeader
 </script>
 

@@ -39,7 +39,7 @@
           </div>
         </div>
         <!-- btn -->
-        <div class="footer_btn_wrap" v-if="supplierOrder.type === 10 && supplierOrder.cashDeskSource === 'd' && (!countDownEnd || supplierOrder.isSource !== 3)">
+        <div class="footer_btn_wrap" v-if="supplierOrder.type === 10 && supplierOrder.cashDeskSource === 'd' && (!countDownEnd || supplierOrder.isSource !== 3) && supplierOrder.continuePayStatus != '0'">
           <p class="footer_btn" data-baidu-stats="订单详情-继续付款" @click="keepBuying(supplierOrder.orderNumber)">
             继续付款
           </p>

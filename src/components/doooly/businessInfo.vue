@@ -297,11 +297,19 @@
       },
       judge(type){
         if(this.adBusiness.upGradeState == 2){
-          this.$messageBox({
-            title: this.adBusiness.company+'会员权益正在开通中',
-            message: '',
-            confirmButtonText: '我知道了',
-          });
+          if(this.adBusiness.company == '唯品会'){
+            this.$messageBox({
+              title: this.adBusiness.company+'会员权益正在开通中',
+              message: this.adBusiness.company+'会员权益正在开通中,将在1-2个工作日内开通完成',
+              confirmButtonText: '我知道了',
+            });
+          }else{
+            this.$messageBox({
+              title: this.adBusiness.company+'会员权益正在开通中',
+              message: '',
+              confirmButtonText: '我知道了',
+            });
+          }
           return;
         }else if(this.adBusiness.upGradeState == 1 || this.adBusiness.upGradeState == 3){
           this.$messageBox({
