@@ -633,7 +633,7 @@ dooolyAPP.logIn = function (data, url, type) {
       localStorage.dooolyToken = token
       localStorage.token = token
     }
-    localStorage.userId = jsonData.adUserConn.userId
+    localStorage.setItem('userId', jsonData.adUserConn.userId)
     localStorage.mobile = jsonData.adUserConn.telephone
     localStorage.groupShortName = jsonData.adUserConn.groupShortName
     localStorage.userName = jsonData.adUserConn.name
@@ -642,7 +642,6 @@ dooolyAPP.logIn = function (data, url, type) {
     localStorage.groupId = jsonData.adUserConn.groupId
     localStorage.blocId = jsonData.adUserConn.blocId
   }
-  alert(jsonData.adUserConn.userId)
   var splitIndex = location.href.indexOf('#')
   var domain = locationHref.substring(0, splitIndex + 1)
   // 记录登录特殊跳转url
