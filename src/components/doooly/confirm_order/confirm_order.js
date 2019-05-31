@@ -167,8 +167,8 @@ const confirmOrder = {
             'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
             'buyNum': 1
-
-          }]
+          }],
+          'subProductType': Number(this.postData[0].productType)
         }]
       }
       // 建行一元购活动存在两个商品
@@ -182,7 +182,8 @@ const confirmOrder = {
             'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
             'buyNum': 1
-          }]
+          }],
+          'subProductType': Number(this.postData[1].productType)
         })
         if (this.postData[1].productType !== '11') { // 不为虚拟商品
           Object.assign(data, {
