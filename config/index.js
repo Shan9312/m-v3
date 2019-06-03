@@ -50,7 +50,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    host: '192.168.1.187', // can be overwritten by process.env.HOST
+    // host: '192.168.1.187', // can be overwritten by process.env.HOST
     // host: '192.168.1.157', // can be overwritten by process.env.HOST
     errorOverlay: true,
     notifyOnErrors: true,
