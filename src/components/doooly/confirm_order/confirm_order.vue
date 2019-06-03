@@ -52,7 +52,7 @@
         <div class="fl">
             应付金额：<span><span style="font-size:0.24rem;margin: 0;padding: 0;">￥</span><span class="sellPrice">{{postData | formatPrice}}</span></span>
         </div>
-        <div class="fr dis_btn" @click="refer()" :class="confirmClassObj">
+        <div class="fr dis_btn" @click="refer" :class="confirmClassObj">
             确认提交
         </div>
     </footer>
@@ -60,8 +60,8 @@
 </template>
 
 <script>
-  import confirmOrder from './confirm_order.js';
-  export default confirmOrder;
+import confirmOrder from './confirm_order.js'
+  export default confirmOrder
 </script>
 
 <style lang="scss" scoped>

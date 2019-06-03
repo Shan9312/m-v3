@@ -4,7 +4,9 @@
       <section class="clearfix">
         <!-- 订单返积分信息 -->
         <detailHeader v-if="isShowDetailHeader" :isUserRebate="supplierOrder.isUserRebate"
-          :userRebate="supplierOrder.userRebate" :type="supplierOrder.type"
+          :courierNumber="supplierOrder.courierNumber"
+          :orderDetail="supplierOrder"
+          :userRebate="supplierOrder.userRebate" :type="supplierOrder.type" :state="supplierOrder.state"
           :integrateReturnDate="supplierOrder.integrateReturnDate" :minutes="minutes" :seconds="seconds"></detailHeader>
         <!-- 订单主要信息展示 -->
         <detailContent :supplierOrder=supplierOrder></detailContent>
@@ -53,8 +55,8 @@
 </template>
 
 <script>
-  import myOrderDetail from './order_detail.js';
-  export default myOrderDetail;
+import myOrderDetail from './order_detail.js'
+export default myOrderDetail
 
 </script>
 
