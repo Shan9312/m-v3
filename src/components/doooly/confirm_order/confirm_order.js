@@ -51,6 +51,32 @@ const confirmOrder = {
         this.loadCardBuyDetailList(productId, skuId, productTypeId)
       }
     },
+    // 判断建行一元购是否重复提交
+    async getCcbRepeat () {
+      let isRepeat
+      await http({
+        method: 'post',
+        url: api.ccbActivityList,
+        data: {
+          userId: localStorage.userId || '',
+          businessId: this.$route.query.businessId || ''
+        }
+      }).then(res => {
+        const { data } = res
+        if (
+          data.code == 1000 &&
+          data.data &&
+          data.data.orderInfo &&
+          data.data.orderInfo.length > 0 &&
+          (data.data.orderInfo[data.data.orderInfo.length - 1].state == 1 || data.data.orderInfo[data.data.orderInfo.length - 1].state == 0)
+        ) {
+          isRepeat = true
+        } else {
+          isRepeat = false
+        }
+      })
+      return isRepeat
+    },
     loadCardBuyDetailList (productId, skuId, productTypeId, activityName = false) {
       http({
         method: 'post',
@@ -115,7 +141,7 @@ const confirmOrder = {
     },
 
     // 提交订单
-    refer: function () {
+    async refer () {
       if (!this.userDeliveryList || this.userDeliveryList.length <= 0) {
         this.$toast('请选择收货地址')
         return
@@ -141,12 +167,13 @@ const confirmOrder = {
             'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
             'buyNum': 1
-
-          }]
+          }],
+          'subProductType': Number(this.postData[0].productType)
         }]
       }
       // 建行一元购活动存在两个商品
       if (this.postData[1]) {
+        const isRepeat = await this.getCcbRepeat()
         data.merchantProduct.push({
           'merchantId': this.postData[1].merchantProduct[0].merchantId,
           'remarks': '',
@@ -155,7 +182,8 @@ const confirmOrder = {
             'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
             'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
             'buyNum': 1
-          }]
+          }],
+          'subProductType': Number(this.postData[1].productType)
         })
         if (this.postData[1].productType !== '11') { // 不为虚拟商品
           Object.assign(data, {
@@ -166,6 +194,10 @@ const confirmOrder = {
               type: this.postData[1].productType
             }
           })
+        }
+        if (isRepeat) {
+          this.$toast('不可重复提交订单')
+          return
         }
       }
       http({
