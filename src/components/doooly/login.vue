@@ -510,12 +510,14 @@ export default {
     document.title = '会员登录'
     this.appInit()
     // 通过大华令牌判断是否在大华app
-    if (localStorage.thirdUserToken && browserName != 'WeChat') {
+    if ((localStorage.thirdUserToken && browserName != 'WeChat') || 
+    (sessionStorage.oauthCode && sessionStorage.source)) {
       http({
         method: 'post',
         url: api.thirdLogin,
         data: {
-          thirdUserToken: localStorage.thirdUserToken
+          thirdUserToken: sessionStorage.oauthCode || localStorage.thirdUserToken,
+          thirdUserChannel: sessionStorage.source
         }
       }).then((res) => {
         if (res.data.data.adGroup) {

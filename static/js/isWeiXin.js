@@ -21,9 +21,9 @@ if (/wiscowechat/.test(window.location.href)) {
   memberFrom = '钢城e家会员'
 }
 
-if(browserName == "WebKit" || browserName == "Chrome WebView"){
+if (browserName == "WebKit" || browserName == "Chrome WebView") {
   //第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
-  if(/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty'){
+  if (/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty') {
     var userAgent = window.navigator.userAgent // 兜礼app会有标识
     var dooolyRegx = /doooly/i
     if (!dooolyRegx.test(userAgent)) {
@@ -75,7 +75,7 @@ if (browserName == 'WebKit') {
   window.webkit.messageHandlers.getPhoneDeviceId.postMessage('getDeviceHash')
 }
 
-function getBrowser () {
+function getBrowser() {
   var parser = new UAParser()
   var result = parser.getResult()
   var name = result.browser.name
@@ -83,7 +83,8 @@ function getBrowser () {
   //	alert(browserName);
   return name
 }
-function getDeviceId () {
+
+function getDeviceId() {
   if (navigator.userAgent.match(/iphone\sOS/i) == 'iphone os') {
     // 识别设备ios/android
     var ASIdentifierManager = plus.ios.importClass('ASIdentifierManager')
@@ -106,7 +107,7 @@ function getDeviceId () {
  * url后面带的param转换成object对象
  * @param {*} url url
  */
-function param2Obj (url) {
+function param2Obj(url) {
   if (!url) return {}
   const search = url.split('?')[1]
   if (!search) {
@@ -115,15 +116,15 @@ function param2Obj (url) {
   return JSON.parse(
     '{"' +
     decodeURIComponent(search)
-      .replace(/"/g, '\\"')
-      .replace(/&/g, '","')
-      .replace(/=/g, '":"') +
+    .replace(/"/g, '\\"')
+    .replace(/&/g, '","')
+    .replace(/=/g, '":"') +
     '"}'
   )
 }
 
 // 大华app获取登录令牌
-function getQueryString (name) {
+function getQueryString(name) {
   var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
   if (window.location.hash.indexOf('?') < 0) {
     return null
@@ -135,22 +136,28 @@ function getQueryString (name) {
 if (browserName == 'otherAPP' && getQueryString('JsonData')) {
   localStorage.thirdUserToken = getQueryString('JsonData')
 }
+// 第三方通用免登
+if (getQueryString('oauthCode') && getQueryString('source')) {
+  sessionStorage.oauthCode = getQueryString('oauthCode')
+  sessionStorage.source = getQueryString('source')
+}
 
 // 判断是否为微信浏览器
-function isWeiXin () {
+function isWeiXin() {
   var ua = window.navigator.userAgent.toLowerCase()
   if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-    	return true
+    return true
   } else {
-    	return false
+    return false
   }
 };
 // 判断是否为pc浏览器
-function IsPC () {
+function IsPC() {
   var userAgentInfo = navigator.userAgent
   var Agents = ['Android', 'iPhone',
     'SymbianOS', 'Windows Phone',
-    'iPad', 'iPod']
+    'iPad', 'iPod'
+  ]
   var flag = true
   for (var v = 0; v < Agents.length; v++) {
     if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -162,7 +169,7 @@ function IsPC () {
 }
 
 // 判断App环境
-function judgeAppUrl () {
+function judgeAppUrl() {
   if (window.location.href.indexOf('dist2.2.1') > -1) {
     payUrl = payUrl.replace('/cashier/', '/cashier_v2.2.1/')
     activityUrl = activityUrl.replace('/activity/', '/activity_v2.2.1/')
