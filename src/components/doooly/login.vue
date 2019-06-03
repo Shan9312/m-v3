@@ -517,7 +517,7 @@ export default {
         url: api.thirdLogin,
         data: {
           thirdUserToken: sessionStorage.oauthCode || localStorage.thirdUserToken,
-          thirdUserChannel: sessionStorage.source
+          thirdPartyChannel: sessionStorage.source
         }
       }).then((res) => {
         if (res.data.data.adGroup) {
