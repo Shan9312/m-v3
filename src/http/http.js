@@ -3,7 +3,10 @@
  */
 import axios from 'axios'
 import qs from 'qs'
-import { Indicator, Toast} from 'mint-ui'
+import {
+  Indicator,
+  Toast
+} from 'mint-ui'
 import api from '@/assets/js/api.js'
 
 const http = axios.create({
@@ -71,14 +74,14 @@ http.interceptors.request.use((config) => {
 // 对数据返回进行拦截
 http.interceptors.response.use((res) => {
   Indicator.close();
-  if(res.data.code&&res.data.code==40001){
+  if (res.data.code && res.data.code == 40001) {
     dooolyAPP.logOut(1);
   }
   return res
 }, error => {
   Indicator.close();
   sessionStorage.httpTimestamp = new Date().getTime();
-  if(!error.response ||　error.response.config.url.indexOf('action') > 0){//action项目不做错误提示
+  if (!error.response || error.response.config.url.indexOf('action') > 0) { //action项目不做错误提示
     return;
   }
   if (navigator.onLine) {
@@ -119,8 +122,7 @@ dooolyAPP.errorLog = function (error) {
         'pageUrl': window.location.href // 页面请求链接url
       }
     }
-  }).then((res) => {
-  })
+  }).then((res) => {})
 }
 
 export default http
