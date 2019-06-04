@@ -42,25 +42,27 @@ export default {
     async getUserProfile () {
       let { data } = await getUserProfile(localStorage.userId)
       let resData = data && data.data
-      this.availablePoints = resData.availablePoints
-      this.memberName = resData.memberName
-      this.groupLevel = resData.groupLevel
-      this.giftBagCount = resData.giftBagCount
-      this.couponNum = resData.couponNum
-      this.pendingPaymentFlag = resData.pendingPaymentFlag
-      this.recentArrivalFlag = resData.recentArrivalFlag
-      this.recentlyPlacedOrderFlag = resData.recentlyPlacedOrderFlag
-      this.imminentArrivalFlag = resData.imminentArrivalFlag
+      if(resData){
+        this.availablePoints = resData.availablePoints
+        this.memberName = resData.memberName
+        this.groupLevel = resData.groupLevel
+        this.giftBagCount = resData.giftBagCount
+        this.couponNum = resData.couponNum
+        this.pendingPaymentFlag = resData.pendingPaymentFlag
+        this.recentArrivalFlag = resData.recentArrivalFlag
+        this.recentlyPlacedOrderFlag = resData.recentlyPlacedOrderFlag
+        this.imminentArrivalFlag = resData.imminentArrivalFlag
 
-      this.miniLogoUrl = resData.adGroup && resData.adGroup.miniLogoUrl
-      this.groupName = resData.adGroup && resData.adGroup.groupName
-      this.hasMoreEquity = resData.hasMoreEquity
-      resData.groupEquitys && resData.groupEquitys.forEach(equitys => {
-        equitys.equityLogo && this.equityLogoUrlArr.push(equitys.equityLogo)
-      })
-      if (resData.isPayPassword) {
-        localStorage.isPayPassword = resData.isPayPassword
-        localStorage.isSetPayPassword = resData.isSetPayPassword
+        this.miniLogoUrl = resData.adGroup && resData.adGroup.miniLogoUrl
+        this.groupName = resData.adGroup && resData.adGroup.groupName
+        this.hasMoreEquity = resData.hasMoreEquity
+        resData.groupEquitys && resData.groupEquitys.forEach(equitys => {
+          equitys.equityLogo && this.equityLogoUrlArr.push(equitys.equityLogo)
+        })
+        if (resData.isPayPassword) {
+          localStorage.isPayPassword = resData.isPayPassword
+          localStorage.isSetPayPassword = resData.isSetPayPassword
+        }
       }
     },
     jump (direct, urlStr) {
