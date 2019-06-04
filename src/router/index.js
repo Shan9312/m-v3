@@ -149,17 +149,26 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: login
+      component: login,
+      meta:{
+        requireAuth: true
+      }
     },
     {
       path: '/companyLogin/:companyName',
       name: 'companyLogin',
-      component: companyLogin
+      component: companyLogin,
+      meta:{
+        requireAuth: true
+      }
     },
     {
       path: '/resetPassword',
       name: 'resetPassword',
-      component: resetPassword
+      component: resetPassword,
+      meta:{
+        requireAuth: true
+      }
     },
     {
       path: '/recharge/:index/:novice',
@@ -394,7 +403,10 @@ export default new Router({
     {
       path: '/guideArticle/:articleId',
       name: 'guideArticle',
-      component: guideArticle
+      component: guideArticle,
+      meta:{
+        requireAuth: true
+      }
     },
     // 个人中心
     {
@@ -470,12 +482,18 @@ export default new Router({
     {// 企业口令引导页
       path: '/activePage',
       name: 'activePage',
-      component: activePage
+      component: activePage,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 企业口令激活
       path: '/groupCommandPage',
       name: 'groupCommandPage',
-      component: groupCommandPage
+      component: groupCommandPage,
+      meta:{
+        requireAuth: true
+      }
     },
     // {//完善个人资料
     //   path: '/improvePersonalData',
@@ -485,7 +503,10 @@ export default new Router({
     {// 激活
       path: '/activate',
       name: 'activate',
-      component: activate
+      component: activate,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 帮助中心
       path: '/helpCenter',
@@ -520,17 +541,26 @@ export default new Router({
     {// 用户协议
       path: '/userProtocol',
       name: 'userProtocol',
-      component: userProtocol
+      component: userProtocol,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 活动话费充值宣传页
       path: '/activity_index',
       name: 'activity_index',
-      component: activity_index
+      component: activity_index,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 分享落地页
       path: '/activity_ground',
       name: 'activity_ground',
-      component: activity_ground
+      component: activity_ground,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 手机充值我的福利券
       path: '/coupon_r/:couponType',
@@ -545,7 +575,10 @@ export default new Router({
     {// 百丽活动加强版页
       path: '/baili2_index',
       name: 'baili2_index',
-      component: baili2_index
+      component: baili2_index,
+      meta:{
+        requireAuth: true
+      }
     },
     // {//兜礼体验官
     //   path: '/shop_assistant_invite_add',
@@ -560,7 +593,10 @@ export default new Router({
     {// 家属邀请落地页
       path: '/family_ground',
       name: 'family_ground',
-      component: family_ground
+      component: family_ground,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 首家页
       path: '/shoujia_index/:telephone/:userId',
@@ -585,22 +621,34 @@ export default new Router({
     {// 卡券激活常见问题
       path: '/card_question',
       name: 'card_question',
-      component: card_question
+      component: card_question,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 会员激活
       path: '/vip_activate',
       name: 'vip_activate',
-      component: vip_activate
+      component: vip_activate,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 会员激活2
       path: '/vip_activate2/:code',
       name: 'vip_activate2',
-      component: vip_activate2
+      component: vip_activate2,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 会员激活3
       path: '/groupCommand/:code',
       name: 'groupCommand',
-      component: groupCommand
+      component: groupCommand,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 世界杯活动
       path: '/world_cup/:activityid/:couponid',
@@ -680,22 +728,34 @@ export default new Router({
     {// 交行活动
       path: '/activity_BCM_index',
       name: 'activity_BCM_index',
-      component: activity_BCM_index
+      component: activity_BCM_index,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 交行活动
       path: '/activity_BCM_success',
       name: 'activity_BCM_success',
-      component: activity_BCM_success
+      component: activity_BCM_success,
+      meta:{
+        requireAuth: true
+      }
     },
     {
       path: '/activity_activate',
       name: 'activity_activate',
-      component: activity_activate
+      component: activity_activate,
+      meta:{
+        requireAuth: true
+      }
     },
     {
       path: '/activity_activate2/:code',
       name: 'activity_activate2',
-      component: activity_activate2
+      component: activity_activate2,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 我的福利
       path: '/couponWelfare',
@@ -705,7 +765,10 @@ export default new Router({
     {
       path: '/activity_invitation',
       name: 'activity_invitation',
-      component: activity_invitation
+      component: activity_invitation,
+      meta:{
+        requireAuth: true
+      }
     },
     {// 福特商品列表
       path: '/fordBuyList',
