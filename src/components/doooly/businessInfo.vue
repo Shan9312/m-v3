@@ -114,8 +114,10 @@
         method: 'get',
         url: api.businessInfoForAjax+'?token='+localStorage.token+'&dealType='+this.dealType+'&id='+this.id,
       }).then((res) =>{
-        this.adBusiness=res.data.data.adBusiness;
-        this.productId=res.data.productId;
+        if(res.data){
+          this.adBusiness=res.data.data.adBusiness;
+          this.productId=res.data.productId;
+        }
       })
       //区分APP与安卓
       if(browserName == "WebKit" || browserName == "Chrome WebView" || browserName == "otherAPPAndroid" || browserName == "otherAPPIos"){

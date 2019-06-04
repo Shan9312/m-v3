@@ -21,27 +21,28 @@ export default {
 
   },
   beforeRouteEnter(to, from, next) {
-    if (!from.name && sessionStorage.getItem('isJump')) {
-      dooolyAPP.goBackPageIndex("1");
-      next();
-    } else {
-      next(vm => {
-        let urlStr = vm.$route.params.url;
-        http({
-          method: 'get',
-          url: api.getTargetUrl + "?businessId=" + vm.$route.params.id + "&targetUrl=" + (urlStr == '1' ? '' : urlStr),
-        }).then((result) => {
-          if (result.data.code == 1000) {
-            // sessionStorage写入isJump，用来解决从前端router跳转第三方，然后点击返回上一页问题
-            sessionStorage.setItem('isJump',true)
-            window.location.href = result.data.resultUrl;
-          } else if (result.data.code == 1001) {
-            vm.$toast("小兜兜正忙,请稍候重试!");
-            dooolyAPP.gotoJumpVue.call(vm, '/nav/newHome');
-          }
-        })
-      });
-    }
+    // if (!from.name && sessionStorage.getItem('isJump')) {
+    //   dooolyAPP.goBackPageIndex("1");
+    //   next();
+    // } else {
+    next(vm => {
+      let urlStr = vm.$route.params.url;
+      http({
+        method: 'get',
+        url: api.getTargetUrl + "?businessId=" + vm.$route.params.id + "&targetUrl=" + (urlStr == '1' ? '' : urlStr),
+      }).then((result) => {
+        if (result.data.code == 1000) {
+          // sessionStorage写入isJump，用来解决从前端router跳转第三方，然后点击返回上一页问题
+          // sessionStorage.setItem('isJump',true)
+          // window.location.href = result.data.resultUrl;
+          location.replace(result.data.resultUrl)
+        } else if (result.data.code == 1001) {
+          vm.$toast("小兜兜正忙,请稍候重试!");
+          dooolyAPP.gotoJumpVue.call(vm, '/nav/newHome');
+        }
+      })
+    });
+    // }
   }
 }
 </script>
