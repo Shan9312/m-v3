@@ -55,9 +55,9 @@
           </div>
         </mt-loadmore>
       </div>
-      <div v-if="noRecords" class="noRecord" style='text-align: center;font-size: 0;'>
-        <img style='width: 2.4rem;margin-top:1rem;' src='../../../src/assets/images/personalCenter/myPoint/no_point.png'/>
-        <p style='color:#666;font-size:0.28rem;'>您还没有绑定记录呢</p>
+      <div v-if="noRecords" class="noRecord">
+        <img src='../../../src/assets/images/personalCenter/myPoint/no_point.png'/>
+        <p>您还没有绑定记录呢</p>
       </div>
     </section>
     <div class="isSuccess_bg approve" v-show="nonentityVisible1">
@@ -411,7 +411,6 @@
             this.failCount=res.data.data.failCount;
             if (res.data.code == "1000") {
               this.nonentityVisible1=true;
-              document.getElementsByClassName('j-success')[0].style.display = 'block';
               this.$cookies.remove("card1");
               this.$cookies.remove("card2");
               this.$cookies.remove("card3");
@@ -487,7 +486,7 @@
     }
 </script>
  
-<style scoped>
+<style lang="scss" scoped>
 section{background: #fff;}
 .p_b3{padding-bottom: 0.3rem;}
 .input_div{background: #fff;padding: 0.3rem 0.2rem;font-size: 0;text-align: center;}
@@ -758,4 +757,16 @@ section{background: #fff;}
 .btn_disabled{color: #f9c5c6;background: #f58c8f;text-align: center;width: 6.9rem;line-height: 1rem;font-size: 0.3rem;margin: auto;}
 .r_m{margin: 0 !important;}
 .span_red{color: #ee3f44 !important;padding: 0 0.2rem;font-size: 0.32rem !important;font-weight: bold;}
+.noRecord{
+  text-align: center;
+  font-size: 0;
+  img{
+    width: 2.4rem;
+    margin-top:1rem;
+  }
+  p{
+    color:#666;
+    font-size:0.28rem;
+  }
+}
 </style>
