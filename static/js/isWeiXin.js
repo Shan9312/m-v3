@@ -136,6 +136,11 @@ function getQueryString(name) {
 if (browserName == 'otherAPP' && getQueryString('JsonData')) {
   localStorage.thirdUserToken = getQueryString('JsonData')
 }
+// 第三方通用免登
+if (getQueryString('oauthCode') && getQueryString('source')) {
+  sessionStorage.oauthCode = getQueryString('oauthCode')
+  sessionStorage.source = getQueryString('source')
+}
 
 if (getQueryString('oauthCode') && getQueryString('source')) {
   localStorage.thirdUserToken = getQueryString('oauthCode')
