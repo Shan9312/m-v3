@@ -12,8 +12,7 @@ export default {
   },
   mounted() {
     window.onload=function(){window.scrollTo(0,0)};
-    const locationHref = location.href.indexOf('#');
-    const path = location.href.substring(locationHref + 2);
+    const path = this.$router.history.current.path;
     //版本升级
     // const versions = ['dist2.2.1', 'dist2.1.4', 'dist2.2.0'];
     // if(versions.filter(x => location.href.indexOf(x) > -1 ).length > 0){

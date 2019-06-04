@@ -252,7 +252,9 @@
         if (data.code == "1001"){
           dooolyAPP.logOut();
         } else {
-          const obj = JSON.parse(data.data.userInfo);
+          if(data.data){
+            const obj = JSON.parse(data.data.userInfo);
+          }
           if (obj.token != this.localStorageObj.token) {
             dooolyAPP.logOut();
           }
