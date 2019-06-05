@@ -622,8 +622,15 @@ export default {
       }
   },
   created () {
+    //版本升级
+    const versions = ['dist2.2.0', 'dist2.2.1', 'dist2.1.4'];
+    if(versions.filter(x => location.href.indexOf(x) > -1 ).length > 0){
+      this.$router.replace({path: '/v3/versionControl'});
+      return;
+    }
+    //版本升级
     getAddress.call(this)
-      document.title = '会员登录';
+    document.title = '会员登录';
     this.appInit()
       // 通过大华令牌判断是否在大华app
       if (
