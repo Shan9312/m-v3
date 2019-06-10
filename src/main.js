@@ -76,12 +76,7 @@ window.addEventListener('click', (event) => {
 /**vue-router拦截**/
 router.beforeEach((to, from, next) => {
   //配置无需登陆的页面数组
-  let pathArr = ['groupCommandPage', 'activate', 'userProtocol', 'guideArticle', 'activePage', 'activity_index',
-    'activity_ground', 'baili2_index', 'resetPassword', 'companyLogin', 'family_ground', 'vip_activate',
-    'vip_activate2', 'groupCommand', 'card_question', 'activity_BCM_success', 'activity_BCM_index',
-    'activity_activate', 'activity_activate2', 'activity_invitation', 'memberEquity'
-  ];
-  if (!localStorage.token && to.path != '/' && pathArr.filter(x => to.name.indexOf(x) > -1).length == 0) {
+  if (!localStorage.token && !to.meta.requireAuth) {
     dooolyAPP.logOut(1);
   } else {
     if (locationHref.indexOf('companyLogin') > -1) {
