@@ -14,31 +14,17 @@
         <div id="log1" v-if="mobileState">
           <article class="clearfix tel">
             <div class="index_div">
-              <input
-                type="tel"
-                v-model="mobileNum"
-                class="form-control"
-                maxlength="11"
-                name="loginMobile"
-                placeholder="请输入手机号码"
-              />
+              <input type="tel" v-model="mobileNum" class="form-control" maxlength="11" name="loginMobile"
+                placeholder="请输入手机号码" />
             </div>
           </article>
           <article class="clearfix" v-show="!dahuaShow">
-            <span>温馨提示：</span
-            >本次您所登录的手机号需要与您经常使用电商平台的手机号保持一致，便于积分使用。
+            <span>温馨提示：</span>本次您所登录的手机号需要与您经常使用电商平台的手机号保持一致，便于积分使用。
           </article>
           <article class="clearfix">
             <div class="index_div">
-              <input
-                type="tel"
-                v-model="validCodeNum"
-                placeholder="请输入验证码"
-                class="form-control"
-                maxlength="6"
-                id="code"
-                name="code"
-              />
+              <input type="tel" v-model="validCodeNum" placeholder="请输入验证码" class="form-control" maxlength="6" id="code"
+                name="code" />
               <div class="code_btn_txt" @click="getValidCode" v-if="codeState">
                 获取验证码
               </div>
@@ -49,14 +35,8 @@
             </div>
           </article>
           <div class="btn_div_d">
-            <button
-              @click="mobileLogin"
-              class="btn"
-              :disabled="log1Disable"
-              id="log1_dl"
-              type="button"
-              :class="classObject1"
-            >
+            <button @click="mobileLogin" class="btn" :disabled="log1Disable" id="log1_dl" type="button"
+              :class="classObject1">
               {{ loginText }}
             </button>
           </div>
@@ -65,42 +45,19 @@
         <div id="log2" v-if="accountState">
           <article class="clearfix man">
             <div class="index_div">
-              <input
-                type="tel"
-                v-model="accountNum"
-                maxlength="11"
-                minlength="11"
-                class="form-control"
-                id="username"
-                name="username"
-                placeholder="请输入账号"
-              />
+              <input type="tel" v-model="accountNum" maxlength="11" minlength="11" class="form-control" id="username"
+                name="username" placeholder="请输入账号" />
             </div>
           </article>
           <article class="clearfix">
             <div class="index_div">
-              <input
-                v-model="passwordNum"
-                class="passwordType form-control"
-                maxlength="6"
-                minlength="6"
-                type="tel"
-                id="password"
-                name="enPassword"
-                placeholder="请输入密码"
-                @keyup.enter="accountLogin"
-              />
+              <input v-model="passwordNum" class="passwordType form-control" maxlength="6" minlength="6" type="tel"
+                id="password" name="enPassword" placeholder="请输入密码" @keyup.enter="accountLogin" />
             </div>
           </article>
           <div class="btn_div_d">
-            <button
-              type="button"
-              class="logo_btn btn"
-              @click="accountLogin"
-              :disabled="log2Disable"
-              id="log2_dl"
-              :class="classObject2"
-            >
+            <button type="button" class="logo_btn btn" @click="accountLogin" :disabled="log2Disable" id="log2_dl"
+              :class="classObject2">
               登录
             </button>
           </div>
@@ -108,29 +65,18 @@
       </form>
       <div class="deal_div clearfix">
         <div class="fl" v-if="typeAPP">
-          <a data-baidu-stats="会员登录-用户协议" @click="user_agreement"
-            >用户登录即代表同意<span>《用户协议》</span></a
-          >
+          <a data-baidu-stats="会员登录-用户协议" @click="user_agreement">用户登录即代表同意<span>《用户协议》</span></a>
         </div>
         <div class="fr">
-          <div
-            @click="forgetPwd"
-            class="disableCss"
-            data-baidu-stats="会员登录-忘记密码"
-            id="btn_pwd"
-            v-show="!mobileState && dahuaShow"
-          >
+          <div @click="forgetPwd" class="disableCss" data-baidu-stats="会员登录-忘记密码" id="btn_pwd"
+            v-show="!mobileState && dahuaShow">
             忘记密码？
           </div>
         </div>
       </div>
     </section>
     <footer class="footer_fixed"></footer>
-    <div
-      class="footer-wrapper clearfix"
-      @click="changeLogin"
-      v-show="dahuaShow"
-    >
+    <div class="footer-wrapper clearfix" @click="changeLogin" v-show="dahuaShow">
       <div class="btn_block" id="cardLoginDiv" v-if="mobileState">
         账号密码登录
       </div>
@@ -160,18 +106,8 @@
         <div class="alt_title">密码错误</div>
         <p>是否找回密码</p>
         <div class="btn_div">
-          <input
-            type="button"
-            class="cancel"
-            value="否"
-            @click="alr_show = false"
-          />
-          <input
-            type="button"
-            class="active"
-            value="是"
-            @click="confirmFindPSW()"
-          />
+          <input type="button" class="cancel" value="否" @click="alr_show = false" />
+          <input type="button" class="active" value="是" @click="confirmFindPSW()" />
         </div>
       </div>
     </div>
@@ -179,93 +115,95 @@
 </template>
 
 <script>
-import http from '@/http/http.js';
-import api from '@/assets/js/api.js';
-import Cookies from 'js-cookie';
-import md5 from 'js-md5';
-import { getAddress } from '@/assets/js/wechatShare2.js';
-import MobileDetect from 'mobile-detect';
-export default {
-  name: 'login',
-  data () {
-    var typeAPP = true
+  import http from '@/http/http.js';
+  import api from '@/assets/js/api.js';
+  import Cookies from 'js-cookie';
+  import md5 from 'js-md5';
+  import {
+    getAddress
+  } from '@/assets/js/wechatShare2.js';
+  import MobileDetect from 'mobile-detect';
+  export default {
+    name: 'login',
+    data() {
+      var typeAPP = true
       if (/wiscowechat/.test(window.location.href)) {
-      typeAPP = false
+        typeAPP = false
       }
-    return {
-      headerImgSrc: require('../../assets/images/logo.png'),
-      typeAPP: typeAPP,
-      mobileState: true,
-      mobileNum: '',
-      accountNum: '',
-      validCodeNum: '',
-      passwordNum: '',
-      codeState: true,
-      timeNum: 60,
-      loginText: '登录',
-      loginText2: '登录',
-      isLoading: false,
-      isLoading2: false,
-      accountState: false,
-      nonentityVisible: false,
-      alr_show: false,
-      min_logo: false,
-      screenHeight: '',
-      codeState2: false,
-      loding: false,
-      dahuaShow: !(localStorage.thirdUserToken && browserName != 'WeChat')
-    }
+      return {
+        headerImgSrc: require('../../assets/images/logo.png'),
+        typeAPP: typeAPP,
+        mobileState: true,
+        mobileNum: '',
+        accountNum: '',
+        validCodeNum: '',
+        passwordNum: '',
+        codeState: true,
+        timeNum: 60,
+        loginText: '登录',
+        loginText2: '登录',
+        isLoading: false,
+        isLoading2: false,
+        accountState: false,
+        nonentityVisible: false,
+        alr_show: false,
+        min_logo: false,
+        screenHeight: '',
+        codeState2: false,
+        loding: false,
+        dahuaShow: !(localStorage.thirdUserToken && browserName != 'WeChat')
+      }
     },
-  computed: {
-    // log1 登录状态控制
-    log1Disable: function () {
-      if (this.mobileNum == '' || this.validCodeNum == '' || this.isLoading) {
-        return true
+    computed: {
+      // log1 登录状态控制
+      log1Disable: function () {
+        if (this.mobileNum == '' || this.validCodeNum == '' || this.isLoading) {
+          return true
         } else {
-        return false
+          return false
         }
+      },
+      // log2 登录状态控制
+      log2Disable: function () {
+        if (this.accountNum == '' || this.passwordNum == '' || this.isLoading2) {
+          return true
+        } else {
+          return false
+        }
+      },
+      // log1 登录样式控制
+      classObject1: function () {
+        if (this.mobileNum != '' && this.validCodeNum != '' && !this.isLoading) {
+          return {
+            dis_btn: false,
+            click_btn: true
+          }
+        } else {
+          return {
+            dis_btn: true,
+            click_btn: false
+          }
+        }
+      },
+      // log2 登录样式控制
+      classObject2: function () {
+        if (this.accountNum != '' && this.passwordNum != '' && !this.isLoading2) {
+          return {
+            dis_btn: false,
+            click_btn: true
+          }
+        } else {
+          return {
+            dis_btn: true,
+            click_btn: false
+          }
+        }
+      }
     },
-    // log2 登录状态控制
-    log2Disable: function () {
-      if (this.accountNum == '' || this.passwordNum == '' || this.isLoading2) {
-        return true
-        } else {
-        return false
-        }
-    },
-    // log1 登录样式控制
-    classObject1: function () {
-      if (this.mobileNum != '' && this.validCodeNum != '' && !this.isLoading) {
-        return {
-          dis_btn: false,
-          click_btn: true
-        }
-        } else {
-        return {
-          dis_btn: true,
-          click_btn: false
-        }
-        }
-    },
-    // log2 登录样式控制
-    classObject2: function () {
-      if (this.accountNum != '' && this.passwordNum != '' && !this.isLoading2) {
-        return {
-          dis_btn: false,
-          click_btn: true
-        }
-        } else {
-        return {
-          dis_btn: true,
-          click_btn: false
-        }
-        }
-    }
-  },
-  mounted () {
-    document.getElementsByClassName('view')[0].style.height =
+    mounted() {
+      document.getElementsByClassName('view')[0].style.height =
         window.innerHeight + 'px';
-    this.screenHeight =
+      this.screenHeight =
         document.getElementsByClassName('view')[0].offsetHeight -
         document.getElementsByClassName('footer-wrapper')[0].offsetHeight * 3 -
         document.getElementsByClassName('logo_main')[0].offsetHeight -
@@ -273,424 +211,424 @@ export default {
         document.getElementsByClassName('header_bottom')[0].offsetHeight -
         document.getElementsByTagName('header')[0].offsetHeight
       if (this.screenHeight != '') {
-      document.getElementsByClassName('footer_fixed')[0].style.height =
+        document.getElementsByClassName('footer_fixed')[0].style.height =
           this.screenHeight + 'px';
-    }
-    let md = new MobileDetect(window.navigator.userAgent)
+      }
+      let md = new MobileDetect(window.navigator.userAgent)
       // 用户行为分析统计
       http({
-      method: 'post',
-      url: api.actionVisit,
-      data: {
-        model: md.versionStr('Build'), // 设备型号
-        product: md.phone(), // 产品型号
-        brand: md.phone(), // 产品品牌
-        manufacturer: md.phone(), // 产品制造商
-        systemVersion: '', // 系统版本型号
-        os: md.os(), // 操作系统
-        browser: md.userAgent(), // 浏览器
-        blocId: localStorage.blocId, // 集团
-        appVersion: '' // 应用版本
-      },
-      headers: {
-        appSource: 'H5', // 渠道
-        deviceId:
-            getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId, // 设备id
-        userId: localStorage.userId
-      }
-    })
-    },
-  methods: {
-    // 拨打电话
-    mobileCall () {
-      window.location.href = 'tel:400-158-2212';
-    },
-    // 账号不存在
-    altNonentity () {
-      this.nonentityVisible = true
-      },
-    // 账号不存在-取消激活
-    cancelActivateBtn () {
-      this.nonentityVisible = false
-      },
-    // 账号不存在-确认激活
-    confirmActivateBtn () {
-      this.$router.replace({
-        path: '/vip_activate'
+        method: 'post',
+        url: api.actionVisit,
+        data: {
+          model: md.versionStr('Build'), // 设备型号
+          product: md.phone(), // 产品型号
+          brand: md.phone(), // 产品品牌
+          manufacturer: md.phone(), // 产品制造商
+          systemVersion: '', // 系统版本型号
+          os: md.os(), // 操作系统
+          browser: md.userAgent(), // 浏览器
+          blocId: localStorage.blocId, // 集团
+          appVersion: '' // 应用版本
+        },
+        headers: {
+          appSource: 'H5', // 渠道
+          deviceId: getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId, // 设备id
+          userId: localStorage.userId
+        }
       })
+    },
+    methods: {
+      // 拨打电话
+      mobileCall() {
+        window.location.href = 'tel:400-158-2212';
+      },
+      // 账号不存在
+      altNonentity() {
+        this.nonentityVisible = true
+      },
+      // 账号不存在-取消激活
+      cancelActivateBtn() {
         this.nonentityVisible = false
       },
-    // 退出当前账户
-    altQuit () {
-      this.$messageBox('请退出当前账户')
+      // 账号不存在-确认激活
+      confirmActivateBtn() {
+        this.$router.replace({
+          path: '/vip_activate'
+        })
+        this.nonentityVisible = false
       },
-    // 等待激活
-    altAwaitActive (date) {
-      this.$messageBox(
-        '等待激活',
-        '您已经在' +
-            date +
-            '提交过申请，我们会在5个工作日内完成审核。如有疑问，您可以拨打客服电话400-158-2212(' +
-            dooolyConfig.serviceTime +
-            ')'
-      )
+      // 退出当前账户
+      altQuit() {
+        this.$messageBox('请退出当前账户')
       },
-    // 审核未通过
-    altUnapprove () {
-      this.$messageBox(
-        '提示',
-        '很抱歉您自主申请的兜礼会员审核未通过，请与所在单位联系！'
-      )
+      // 等待激活
+      altAwaitActive(date) {
+        this.$messageBox(
+          '等待激活',
+          '您已经在' +
+          date +
+          '提交过申请，我们会在5个工作日内完成审核。如有疑问，您可以拨打客服电话400-158-2212(' +
+          dooolyConfig.serviceTime +
+          ')'
+        )
       },
-    // 密码错误
-    altPwdError () {
-      this.$messageBox({
-        title: '密码错误',
-        message: '是否找回密码',
-        confirmButtonText: '是',
-        cancelButtonText: '否',
-        showCancelButton: true
-      }).then(action => {
-        if (action == 'confirm') {
-          this.$router.push('resetPassword')
+      // 审核未通过
+      altUnapprove() {
+        this.$messageBox(
+          '提示',
+          '很抱歉您自主申请的兜礼会员审核未通过，请与所在单位联系！'
+        )
+      },
+      // 密码错误
+      altPwdError() {
+        this.$messageBox({
+          title: '密码错误',
+          message: '是否找回密码',
+          confirmButtonText: '是',
+          cancelButtonText: '否',
+          showCancelButton: true
+        }).then(action => {
+          if (action == 'confirm') {
+            this.$router.push('resetPassword')
           }
-      })
+        })
         this.alr_show = true
       },
 
-    confirmFindPSW () {
-      this.alr_show = false
+      confirmFindPSW() {
+        this.alr_show = false
         this.$router.push('resetPassword')
       },
-    // 账号异常
-    altAccountError () {
-      this.$messageBox({
-        title: '账号异常',
-        message:
-            '亲爱的会员，您的账号存在异常，请拨打客服电话“400-158-2212”进行处理 (' +
+      // 账号异常
+      altAccountError() {
+        this.$messageBox({
+          title: '账号异常',
+          message: '亲爱的会员，您的账号存在异常，请拨打客服电话“400-158-2212”进行处理 (' +
             dooolyConfig.serviceTime +
             ')',
-        confirmButtonText: '立即拨打',
-        cancelButtonText: '取消',
-        showCancelButton: true
-      }).then(action => {
-        if (action == 'confirm') {
-          this.mobileCall()
+          confirmButtonText: '立即拨打',
+          cancelButtonText: '取消',
+          showCancelButton: true
+        }).then(action => {
+          if (action == 'confirm') {
+            this.mobileCall()
           }
-      })
+        })
       },
-    // 各种异常处理
-    altAllError () {
-      this.$messageBox({
-        title: '提示',
-        message:
-            '亲爱的会员，您的账号存在异常，请拨打客服电话“400-158-2212”进行处理 (' +
+      // 各种异常处理
+      altAllError() {
+        this.$messageBox({
+          title: '提示',
+          message: '亲爱的会员，您的账号存在异常，请拨打客服电话“400-158-2212”进行处理 (' +
             dooolyConfig.serviceTime +
             ')',
-        confirmButtonText: '立即拨打',
-        cancelButtonText: '取消',
-        showCancelButton: true
-      }).then(action => {
-        if (action == 'confirm') {
-          this.mobileCall()
+          confirmButtonText: '立即拨打',
+          cancelButtonText: '取消',
+          showCancelButton: true
+        }).then(action => {
+          if (action == 'confirm') {
+            this.mobileCall()
           }
-      })
+        })
       },
-    // 改变登录方式
-    changeLogin () {
-      this.mobileState = !this.mobileState
+      // 改变登录方式
+      changeLogin() {
+        this.mobileState = !this.mobileState
         this.accountState = !this.accountState
         if (this.mobileState) {
-        this.$baiduStats('会员登录-手机登录')
+          this.$baiduStats('会员登录-手机登录')
         } else {
-        this.$baiduStats('会员登录-账号登录')
+          this.$baiduStats('会员登录-账号登录')
         }
-    },
-    focusinMethod () {
-      this.min_logo = true
       },
-    focusoutMethod () {
-      this.min_logo = false
+      focusinMethod() {
+        this.min_logo = true
       },
-    checkMobile () {
-      var re = /^1[3|4|5|6|7|8|9][0-9]{9}$/
+      focusoutMethod() {
+        this.min_logo = false
+      },
+      checkMobile() {
+        var re = /^1[3|4|5|6|7|8|9][0-9]{9}$/
         if (this.mobileNum == '') {
-        this.$toast('手机号不能为空')
+          this.$toast('手机号不能为空')
           return false
         } else if (!re.test(this.mobileNum) || this.mobileNum.length != 11) {
-        this.$toast('手机号格式错误！')
+          this.$toast('手机号格式错误！')
           return false
         } else {
-        return true
+          return true
         }
-    },
-    checkAccout () {
-      var re = /^1[3|4|5|6|7|8][0-9]{9}$/
+      },
+      checkAccout() {
+        var re = /^1[3|4|5|6|7|8][0-9]{9}$/
         if (this.accountNum == '') {
-        this.$toast('账号不能为空')
+          this.$toast('账号不能为空')
           return false
         } else if (!re.test(this.accountNum) || this.accountNum.length != 11) {
-        this.$toast('手机号格式错误！')
+          this.$toast('手机号格式错误！')
           return false
         } else {
-        return true
+          return true
         }
-    },
-    // 60s倒计时
-    timingCode () {
-      var interval = setInterval(() => {
-        if (this.timeNum > 0 && this.timeNum < 61) {
-          this.codeState = false
+      },
+      // 60s倒计时
+      timingCode() {
+        var interval = setInterval(() => {
+          if (this.timeNum > 0 && this.timeNum < 61) {
+            this.codeState = false
             this.timeNum--
           } else if (this.timeNum == 0) {
-          this.codeState = true
+            this.codeState = true
             clearInterval(interval)
             this.timeNum = 60
           }
-      }, 1000)
+        }, 1000)
       },
-    // 获取验证码
-    getValidCode () {
-      this.codeState = false
+      // 获取验证码
+      getValidCode() {
+        this.codeState = false
         this.codeState2 = true
         if (this.checkMobile() == false) {
-        this.codeState2 = false
+          this.codeState2 = false
           this.codeState = true
           return false
         }
-      http({
-        method: 'post',
-        url: api.getLoginVCode,
-        data: {
-          mobile: this.mobileNum
-        }
-      })
-        .then(res => {
-          this.codeState2 = false
+        http({
+            method: 'post',
+            url: api.getLoginVCode,
+            data: {
+              mobile: this.mobileNum
+            }
+          })
+          .then(res => {
+            this.codeState2 = false
             if (res.data.code == 1000) {
-            this.timingCode()
+              this.timingCode()
               this.$toast('发送成功')
             } else {
-            this.codeState = true
+              this.codeState = true
               this.$toast('发送失败')
             }
-        })
-        .catch(error => {
-          this.codeState2 = false
+          })
+          .catch(error => {
+            this.codeState2 = false
           })
       },
 
-    // 建行一元购活动登录
-    getCcbLogin () {
-      const loginUrl = localStorage.loginUrl
+      // 建行一元购活动登录
+      getCcbLogin() {
+        const loginUrl = localStorage.loginUrl
         const urlData = param2Obj(loginUrl)
-        const { groupId, isSimpleAtuoRegister, businessId } = urlData
+        const {
+          groupId,
+          isSimpleAtuoRegister,
+          businessId
+        } = urlData
         if (!isSimpleAtuoRegister || !groupId || !businessId) return
         return urlData
       },
 
-    mobileLogin () {
-      const urlData = this.getCcbLogin() // 建行一元购活动登录
+      mobileLogin() {
+        const urlData = this.getCcbLogin() // 建行一元购活动登录
         if (this.checkMobile() == false) {
-        return false
-        }
-      if (isNaN(this.validCodeNum) || this.validCodeNum.length != 6) {
-        this.$toast('请输入正确的验证码')
           return false
         }
-      this.loginText = '登录中';
-      this.isLoading = true
+        if (isNaN(this.validCodeNum) || this.validCodeNum.length != 6) {
+          this.$toast('请输入正确的验证码')
+          return false
+        }
+        this.loginText = '登录中';
+        this.isLoading = true
 
         http({
-        method: 'post',
-        url: api.telLogin,
-        data: {
-          mobile: this.mobileNum,
-          code: this.validCodeNum,
-          thirdUserToken: localStorage.thirdUserToken,
-          isSimpleAtuoRegister: urlData
-            ? urlData.isSimpleAtuoRegister
-            : undefined,
-          groupId: urlData ? urlData.groupId : undefined,
-          businessId: urlData ? urlData.businessId : undefined
-        },
-        headers: {
-          appSource: 'H5' // 渠道
-        }
-      }).then(res => {
-        if (res.data.code == '1000' || res.data.code == '1006') {
-          var str = res.data.data
+          method: 'post',
+          url: api.telLogin,
+          data: {
+            mobile: this.mobileNum,
+            code: this.validCodeNum,
+            thirdUserToken: localStorage.thirdUserToken,
+            isSimpleAtuoRegister: urlData ?
+              urlData.isSimpleAtuoRegister :
+              undefined,
+            groupId: urlData ? urlData.groupId : undefined,
+            businessId: urlData ? urlData.businessId : undefined
+          },
+          headers: {
+            appSource: 'H5' // 渠道
+          }
+        }).then(res => {
+          if (res.data.code == '1000' || res.data.code == '1006') {
+            var str = res.data.data
             dooolyAPP.logIn(str)
           } else {
-          if (res.data.code == '1004') {
-            this.$router.replace({
-              path: '/vip_activate'
-            }) // 需求更改直接跳转激活页面
+            if (res.data.code == '1004') {
+              this.$router.replace({
+                path: '/vip_activate'
+              }) // 需求更改直接跳转激活页面
               localStorage.activateMobile = this.mobileNum
             } else if (res.data.code == '1003') {
-            this.altQuit()
+              this.altQuit()
             } else if (res.data.code == '1010') {
-            this.altAwaitActive(res.data.date)
+              this.altAwaitActive(res.data.date)
             } else if (res.data.code == '1011') {
-            this.altUnapprove()
+              this.altUnapprove()
             } else if (res.data.code == '1008') {
-            this.$messageBox({
-              title: '提示',
-              message: '验证码错误',
-              showCancelButton: true
-            })
+              this.$messageBox({
+                title: '提示',
+                message: '验证码错误',
+                showCancelButton: true
+              })
             } else if (res.data.code == '1102') {
-            this.$messageBox('提示', res.data.msg)
+              this.$messageBox('提示', res.data.msg)
             } else {
-            this.altAccountError()
+              this.altAccountError()
             }
-          this.loginText = '登录';
-          this.isLoading = false
+            this.loginText = '登录';
+            this.isLoading = false
           }
-      })
+        })
       },
 
-    // 卡号登录
-    accountLogin () {
-      const urlData = this.getCcbLogin() // 建行一元购活动登录
+      // 卡号登录
+      accountLogin() {
+        const urlData = this.getCcbLogin() // 建行一元购活动登录
         if (this.checkAccout() == false) {
-        return false
+          return false
         } else if (isNaN(this.passwordNum) || this.passwordNum.length != 6) {
-        this.$toast('请输入正确的密码')
+          this.$toast('请输入正确的密码')
           return false
         }
-      localStorage.mobile = this.accountNum
+        localStorage.mobile = this.accountNum
         this.loginText2 = '登录中';
-      this.isLoading2 = true
+        this.isLoading2 = true
         var enPassword = md5(this.passwordNum)
         http({
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          // 'channel':this.channel
-          appSource: 'H5' // 渠道
-        },
-        url: api.submit1,
-        data: {
-          username: this.accountNum,
-          enPassword: enPassword,
-          thirdUserToken: localStorage.thirdUserToken,
-          isSimpleAtuoRegister: urlData
-            ? urlData.isSimpleAtuoRegister
-            : undefined,
-          groupId: urlData ? urlData.groupId : undefined,
-          businessId: urlData ? urlData.businessId : undefined
-        }
-      }).then(res => {
-        if (res.data.code == '1000' || res.data.code == '1006') {
-          var str = res.data.data
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            // 'channel':this.channel
+            appSource: 'H5' // 渠道
+          },
+          url: api.submit1,
+          data: {
+            username: this.accountNum,
+            enPassword: enPassword,
+            thirdUserToken: localStorage.thirdUserToken,
+            isSimpleAtuoRegister: urlData ?
+              urlData.isSimpleAtuoRegister :
+              undefined,
+            groupId: urlData ? urlData.groupId : undefined,
+            businessId: urlData ? urlData.businessId : undefined
+          }
+        }).then(res => {
+          if (res.data.code == '1000' || res.data.code == '1006') {
+            var str = res.data.data
             dooolyAPP.logIn(str)
           } else {
-          // 用户信息不存在，提示是否去激活
-          if (res.data.code == '1004') {
-            this.$toast('账号不存在') // 账号密码登录禁止激活
+            // 用户信息不存在，提示是否去激活
+            if (res.data.code == '1004') {
+              this.$toast('账号不存在') // 账号密码登录禁止激活
               this.loginText2 = '登录';
-            this.isLoading2 = false
+              this.isLoading2 = false
               return;
-          } else if (res.data.code == '1003') {
-            this.altQuit()
+            } else if (res.data.code == '1003') {
+              this.altQuit()
             } else if (res.data.code == '1010') {
-            this.altAwaitActive(res.data.date)
+              this.altAwaitActive(res.data.date)
             } else if (res.data.code == '1011') {
-            this.altUnapprove()
+              this.altUnapprove()
             } else if (res.data.code == '1008') {
-            this.altPwdError()
+              this.altPwdError()
             } else if (res.data.code == '1102') {
-            this.$messageBox('提示', res.data.msg)
+              this.$messageBox('提示', res.data.msg)
             } else {
-            this.altAccountError()
+              this.altAccountError()
             }
-          this.loginText2 = '登录';
-          this.isLoading2 = false
+            this.loginText2 = '登录';
+            this.isLoading2 = false
           }
-      })
+        })
       },
-    // 点击忘记密码执行的函数
-    forgetPwd () {
-      this.$router.push('resetPassword')
+      // 点击忘记密码执行的函数
+      forgetPwd() {
+        this.$router.push('resetPassword')
       },
-    user_agreement () {
-      this.$router.push('userProtocol')
+      user_agreement() {
+        this.$router.push('userProtocol')
       },
-    appInit () {
-      dooolyAPP.getPhoneDeviceId('phoneid')
+      appInit() {
+        dooolyAPP.getPhoneDeviceId('phoneid')
       }
-  },
-  created () {
-    getAddress.call(this)
+    },
+    created() {
+      getAddress.call(this)
       document.title = '会员登录';
-    this.appInit()
+      this.appInit()
       // 通过大华令牌判断是否在大华app
       if (
-      (localStorage.thirdUserToken && browserName != 'WeChat') ||
+        (localStorage.thirdUserToken && browserName != 'WeChat') ||
         (sessionStorage.oauthCode && sessionStorage.source)
-    ) {
-      http({
-        method: 'post',
-        url: api.thirdLogin,
-        data: {
-          thirdUserToken:
-              sessionStorage.oauthCode || localStorage.thirdUserToken,
-          thirdPartyChannel: sessionStorage.source
-        }
-      }).then(res => {
-        if (res.data.data.adGroup) {
-          this.headerImgSrc = res.data.data.adGroup.miniLogoUrl
+      ) {
+        http({
+          method: 'post',
+          url: api.thirdLogin,
+          data: {
+            thirdUserToken: sessionStorage.oauthCode || localStorage.thirdUserToken,
+            thirdPartyChannel: sessionStorage.source
+          }
+        }).then(res => {
+          if (res.data.data.adGroup) {
+            this.headerImgSrc = res.data.data.adGroup.miniLogoUrl
             localStorage.appStartUpUrl = res.data.data.adGroup.appStartUpUrl
           }
-        if (res.data.code == '1000') {
-          var str1 = JSON.parse(res.data.data.userInfo)
+          if (res.data.code == '1000') {
+            var str1 = JSON.parse(res.data.data.userInfo)
             dooolyAPP.logIn(res.data.data.userInfo)
           } else if (res.data.code == '1001') {
-          dooolyAPP.logOut()
+            dooolyAPP.logOut()
             this.loding = true
           } else {
-          this.$messageBox('提示', res.data.msg)
+            this.$messageBox('提示', res.data.msg)
             this.loding = true
           }
-      })
+        })
       } else {
-      this.loding = true
+        this.loding = true
       }
-  },
-  beforeRouteEnter (to, from, next) {
-    if (!from.name) {
-      if (localStorage.token) {
-        if (browserName == 'WeChat' && api.WxAppIdUrl) {
-          window.location.href = api.WxAppIdUrl
-          } else {
-          next(vm => {
-            if (!localStorage.thirdUserToken) {
-              vm.$router.push({
-                path: '/v3/home'
-              })
-              }
-          })
-          }
-      }
-    }
-    next()
     },
-  beforeRouteLeave (to, from, next) {
-    if (
-      to.name != 'userProtocol' &&
+    beforeRouteEnter(to, from, next) {
+      if (!from.name) {
+        if (localStorage.token) {
+          if (browserName == 'WeChat' && api.WxAppIdUrl) {
+            window.location.href = api.WxAppIdUrl
+          } else {
+            next(vm => {
+              if (!localStorage.thirdUserToken) {
+                vm.$router.push({
+                  path: '/v3/home'
+                })
+              }
+            })
+          }
+        }
+      }
+      next()
+    },
+    beforeRouteLeave(to, from, next) {
+      if (
+        to.name != 'userProtocol' &&
         to.name != 'vip_activate' &&
         to.name != 'resetPassword' &&
         browserName == 'WeChat'
-    ) {
-      if (!localStorage.token) {
-        wx.closeWindow()
+      ) {
+        if (!localStorage.token) {
+          wx.closeWindow()
           return;
+        }
       }
+      next()
     }
-    next()
-    }
-}
+  }
 </script>
 
 <style scoped>

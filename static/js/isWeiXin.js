@@ -142,11 +142,6 @@ if (getQueryString('oauthCode') && getQueryString('source')) {
   sessionStorage.source = getQueryString('source')
 }
 
-if (getQueryString('oauthCode') && getQueryString('source')) {
-  localStorage.thirdUserToken = getQueryString('oauthCode')
-  localStorage.thirdPartyChannel = getQueryString('source')
-}
-
 // 判断是否为微信浏览器
 function isWeiXin() {
   var ua = window.navigator.userAgent.toLowerCase()
