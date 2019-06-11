@@ -607,6 +607,9 @@ dooolyAPP.logOut = function (type) {
     localStorage.removeItem('isSetPayPassword')
     localStorage.removeItem('groupId')
     localStorage.removeItem('blocId')
+
+    sessionStorage.removeItem('oauthCode')
+    sessionStorage.removeItem('source')
     
     var splitIndex = location.href.indexOf('#')
     var domain = location.href.substring(0, splitIndex + 2)
