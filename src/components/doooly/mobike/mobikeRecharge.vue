@@ -173,7 +173,6 @@ export default {
       })
     },
     checklist (index) {
-      console.log(index)
       if (this.newMobile.length != 11) {
         return
       }
