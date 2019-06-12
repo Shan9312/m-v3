@@ -1,8 +1,9 @@
 <template>
   <div class="version-page">
     <img src="./page.jpg">
-    <a v-if="browserName == 'Chrome WebView'" href="https://a.app.qq.com/o/simple.jsp?pkgname=com.reach.doooly" class="button"></a>
-    <a v-else-if="browserName == 'WebKit'" href="https://itunes.apple.com/cn/app/%E5%85%9C%E7%A4%BC/id1280284298?mt=8" class="button"></a>
+    <a data-baidu-stats="版本升级" v-if="browserName == 'Chrome WebView'" href="https://a.app.qq.com/o/simple.jsp?pkgname=com.reach.doooly" class="button"></a>
+    <a data-baidu-stats="版本升级" v-else-if="browserName == 'WebKit'" href="https://itunes.apple.com/cn/app/%E5%85%9C%E7%A4%BC/id1280284298?mt=8" class="button"></a>
+    <a data-baidu-stats="版本升级" v-else href="https://a.app.qq.com/o/simple.jsp?pkgname=com.reach.doooly" class="button"></a>
   </div>
 </template>
 
