@@ -1,7 +1,8 @@
 <template>
   <div class="version-page">
     <img src="./page.jpg">
-    <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.reach.doooly" class="button"></a>
+    <a v-if="browserName == 'Chrome WebView'" href="https://a.app.qq.com/o/simple.jsp?pkgname=com.reach.doooly" class="button"></a>
+    <a v-else-if="browserName == 'WebKit'" href="https://itunes.apple.com/cn/app/%E5%85%9C%E7%A4%BC/id1280284298?mt=8" class="button"></a>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
     },
     data() {
       return {
+        browserName:browserName
       };
     },
     computed: {
