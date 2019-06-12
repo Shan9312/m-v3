@@ -356,51 +356,47 @@ export default {
       } else if (this.postData.productType === '11') {
         // productType: 11 机场活动实物商品
         if (this.activityName) {
-          this.$router.push({
-            path:
-                '/confirm_order/' +
-                this.activityName +
-                '/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-          })
+          dooolyAPP.gotoJumpVue.call(this,
+            '/confirm_order/' +
+            this.activityName +
+            '/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         } else {
-          this.$router.push({
-            path:
-                '/confirm_order/0/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-          })
+          dooolyAPP.gotoJumpVue.call(this,
+            '/confirm_order/0/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         }
       } else {
         if (this.activityName) {
-          this.$router.push({
-            path:
-                '/cardBuyOrder/' +
-                this.activityName +
-                '/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-          })
+          dooolyAPP.gotoJumpVue.call(this,
+            '/cardBuyOrder/' +
+            this.activityName +
+            '/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         } else {
-          this.$router.push({
-            path:
-                '/cardBuyOrder/0/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-          })
+          dooolyAPP.gotoJumpVue.call(this,
+            '/cardBuyOrder/0/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         }
       }
     },
