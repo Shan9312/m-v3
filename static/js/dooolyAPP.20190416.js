@@ -586,7 +586,7 @@ dooolyAPP.logOut = function (type) {
       localStorage.removeItem('dooolyToken')
       localStorage.removeItem('token')
     }
-    if (type == 1) { // 非正常登出
+    if (type == 1 && location.href.charAt(location.href.length - 1) != '/') { // 非正常登出
       localStorage.setItem('loginUrl', location.href)
     } else {
       localStorage.removeItem('loginUrl')
@@ -605,7 +605,12 @@ dooolyAPP.logOut = function (type) {
     localStorage.removeItem('getAppVersionName')
     localStorage.removeItem('isPayPassword')
     localStorage.removeItem('isSetPayPassword')
+    localStorage.removeItem('groupId')
+    localStorage.removeItem('blocId')
 
+    sessionStorage.removeItem('oauthCode')
+    sessionStorage.removeItem('source')
+    
     var splitIndex = location.href.indexOf('#')
     var domain = location.href.substring(0, splitIndex + 2)
     if (/wiscowechat/.test(window.location.href)) {
