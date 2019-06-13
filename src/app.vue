@@ -24,8 +24,8 @@ export default {
       }
       //版本升级
       if (browserName == "WebKit" || browserName == "Chrome WebView") {
-        const versions = ['dist_v3.0.0', 'cashier_v3.0.0', 'activity_v3.0.0'];
-        if(versions.filter(x => location.href.indexOf(x) > -1 ).length == 0){
+        const versions = ['dist2.2.1', 'dist2.2.0', 'dist2.1.4'];
+        if(versions.filter(x => location.href.indexOf(x) > -1 ).length > 0){
           this.$router.replace({path: '/v3/versionControl'});
           return;
         }
