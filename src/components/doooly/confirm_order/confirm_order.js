@@ -51,32 +51,6 @@ const confirmOrder = {
         this.loadCardBuyDetailList(productId, skuId, productTypeId)
       }
     },
-    // 判断建行一元购是否重复提交
-    async getCcbRepeat () {
-      let isRepeat
-      await http({
-        method: 'post',
-        url: api.ccbActivityList,
-        data: {
-          userId: localStorage.userId || '',
-          businessId: this.$route.query.businessId || ''
-        }
-      }).then(res => {
-        const { data } = res
-        if (
-          data.code == 1000 &&
-          data.data &&
-          data.data.orderInfo &&
-          data.data.orderInfo.length > 0 &&
-          (data.data.orderInfo[data.data.orderInfo.length - 1].state == 1 || data.data.orderInfo[data.data.orderInfo.length - 1].state == 0)
-        ) {
-          isRepeat = true
-        } else {
-          isRepeat = false
-        }
-      })
-      return isRepeat
-    },
     loadCardBuyDetailList (productId, skuId, productTypeId, activityName = false) {
       http({
         method: 'post',
@@ -153,7 +127,7 @@ const confirmOrder = {
         'consigneeName': this.userDeliveryList.receiverName,
         'consigneeMobile': this.userDeliveryList.receiverTelephone,
         'consigneeAddr': this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
-        'productType': this.postData[0].productType,
+        'productType': this.$route.params.productTypeId,
         'giftBagId': this.postData[0].giftBagId,
         'orderType': this.postData[0].orderType,
         'orderExt': {
@@ -173,7 +147,7 @@ const confirmOrder = {
       }
       // 建行一元购活动存在两个商品
       if (this.postData[1]) {
-        const isRepeat = await this.getCcbRepeat()
+        data.businessId = this.$route.query.businessId || ''
         data.merchantProduct.push({
           'merchantId': this.postData[1].merchantProduct[0].merchantId,
           'remarks': '',
@@ -185,48 +159,62 @@ const confirmOrder = {
           }],
           'subProductType': Number(this.postData[1].productType)
         })
-        if (this.postData[1].productType !== '11') { // 不为虚拟商品
-          Object.assign(data, {
-            productType: this.postData[1].productType,
-            giftBagId: this.postData[1].giftBagId,
-            orderType: this.postData[1].orderType,
-            orderExt: {
-              type: this.postData[1].productType
+        http({
+          method: 'post',
+          url: api.createOrder_v3_3,
+          notNeedTransfer: true,
+          data: data
+        }).then((res) => {
+          if (res.data.code == 1000) {
+            let orderNum = res.data.data.orderNum
+            let url = '/cardBuyPay/' + orderNum
+            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
+              let activityObj = {}
+              activityObj[orderNum] = this.activityName
+              localStorage.activity = JSON.stringify(activityObj)
             }
-          })
-        }
-        if (isRepeat) {
-          this.$toast('不可重复提交订单')
-          return
-        }
-      }
-      http({
-        method: 'post',
-        url: api.createOrder_v2_2,
-        notNeedTransfer: true,
-        data: data
-      }).then((res) => {
-        if (res.data.code == 1000) {
-          let orderNum = res.data.data.orderNum
-          let url = '/cardBuyPay/' + orderNum
-          if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
-            let activityObj = {}
-            activityObj[orderNum] = this.activityName
-            localStorage.activity = JSON.stringify(activityObj)
-          }
-          dooolyAPP.redirectPay(orderNum)
-        } else if (res.data.code == 2001) {
-          this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
-        } else if (res.data.code == 2002) {
-          this.$toast('您的身份证已在该门店购买过，请勿重复下单')
-        } else {
-          if (res.data.msg) {
-            this.$toast(res.data.msg)
+            dooolyAPP.redirectPay(orderNum)
+          } else if (res.data.code == 2001) {
+            this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
+          } else if (res.data.code == 2002) {
+            this.$toast('您的身份证已在该门店购买过，请勿重复下单')
           } else {
-            this.$toast('订单提交失败，请重试')
+            if (res.data.msg) {
+              this.$toast(res.data.msg)
+            } else {
+              this.$toast('订单提交失败，请重试')
+            }
           }
-        }
-      })
+        })
+      } else {
+        http({
+          method: 'post',
+          url: api.createOrder_v2_2,
+          notNeedTransfer: true,
+          data: data
+        }).then((res) => {
+          if (res.data.code == 1000) {
+            let orderNum = res.data.data.orderNum
+            let url = '/cardBuyPay/' + orderNum
+            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
+              let activityObj = {}
+              activityObj[orderNum] = this.activityName
+              localStorage.activity = JSON.stringify(activityObj)
+            }
+            dooolyAPP.redirectPay(orderNum)
+          } else if (res.data.code == 2001) {
+            this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
+          } else if (res.data.code == 2002) {
+            this.$toast('您的身份证已在该门店购买过，请勿重复下单')
+          } else {
+            if (res.data.msg) {
+              this.$toast(res.data.msg)
+            } else {
+              this.$toast('订单提交失败，请重试')
+            }
+          }
+        })
+      }
       this.$baiduStats('提交订单页面-提交订单-确认提交')
     }
   }
