@@ -61,7 +61,10 @@ const routes = [{
 },{
   path: 'versionControl',
   name: 'versionControl',
-  component: versionControl
+  component: versionControl,
+  meta: {
+    requireAuth: true
+  }
 }]
 
 export default routes;

@@ -54,8 +54,11 @@ export default {
   methods: {
     toLink(tobarLink, index, tobarContent) {
       if (tobarLink == '/insourcing') {
-        dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/121/https%3a%2f%2fdouli.xianggou.ren%2fdist%2findex.html');
-        // window.location.href = "https://douli.xianggou.ren/dist/brand/list";
+        if(window.location.href.indexOf('pre_dist') > 0 || window.location.href.indexOf('pro_dist') > 0){
+          dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/121/https%3a%2f%2fdouli.xianggou.ren%2fdist%2findex.html');
+        }else{
+          dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/9449/http%3A%2F%2Fdouli-test.giftgine.cn');
+        }
         return;
       }
       this.$store.commit('tabBar/changeActive', index);

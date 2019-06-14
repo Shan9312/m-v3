@@ -139,12 +139,18 @@ export default new Router({
     {
       path: '/openOneNnumber/:id/:url',
       name: 'openOneNnumber',
-      component: openOneNnumber
+      component: openOneNnumber,
+      meta:{
+        version: true
+      }
     },
     {
       path: '/openOneNnumberGeneralize/:id/:url',
       name: 'openOneNnumberGeneralize',
-      component: openOneNnumberGeneralize
+      component: openOneNnumberGeneralize,
+      meta:{
+        version: true
+      }
     },
     {
       path: '/',
