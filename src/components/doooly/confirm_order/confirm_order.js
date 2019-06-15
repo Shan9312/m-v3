@@ -88,8 +88,8 @@ const confirmOrder = {
             }],
             img: res.data.data.imagesList[0],
             name: res.data.data.selfProduct.name,
-            specification: res.data.data.skuList[checkindex].specification,
-            sellPrice: res.data.data.skuList[checkindex].sellPrice,
+            specification: res.data.data.skuList.length > 0 ? res.data.data.skuList[checkindex].specification : '',
+            sellPrice: res.data.data.skuList.length > 0 ? res.data.data.skuList[checkindex].sellPrice : '',
             giftBagId: (!this.$route.params.giftBagId || this.$route.params.giftBagId == 0 ? '' : this.$route.params.giftBagId),
             orderType: res.data.data.selfProduct.productAttr
           }
@@ -202,7 +202,7 @@ const confirmOrder = {
     // 验证银行卡号
     cardBlur () {
       const { cardNumber } = this
-      const myreg = /^[1-9]\d{10,19}/
+      const myreg = /^[1-9]\d{10,19}$/
       if (cardNumber) {
         if (!myreg.test(cardNumber)) {
           this.bankError = '请输入正确的银行卡号'
@@ -227,6 +227,7 @@ const confirmOrder = {
         this.mobileError = '请输入手机号'
       }
     },
+    // 确定提交
     handlBankSub () {
       const { mobile, cardNumber, mobileError, bankError, formData, postData } = this
       if (mobile && cardNumber && postData[1]) {
