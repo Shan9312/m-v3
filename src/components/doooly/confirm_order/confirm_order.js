@@ -272,7 +272,6 @@ const confirmOrder = {
               'subProductType': Number(this.postData[1].productType)
             }]
           }
-          console.log(this.formData)
           http({
             method: 'post',
             url: api.createOrder_CCB,
@@ -288,7 +287,7 @@ const confirmOrder = {
                 activityObj[orderNum] = this.activityName
                 localStorage.activity = JSON.stringify(activityObj)
               }
-              // dooolyAPP.redirectPay(orderNum)
+              dooolyAPP.redirectPay(orderNum)
             } else if (res.data.code == 2016 && res.data.data) {
               window.scrollTo(0, 0) // IOS弹出键盘将页面顶走
               this.$messageBox({
