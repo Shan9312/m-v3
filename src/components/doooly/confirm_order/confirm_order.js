@@ -9,7 +9,13 @@ const confirmOrder = {
       userDeliveryList: [],
       postData: [],
       confirmClassObj: { click_btn: false },
-      viewShow: false
+      viewShow: false,
+      isBankNumber: false, // 是否需要银行卡号
+      cardNumber: '', // 银行卡号
+      mobile: '', // 手机号码
+      bankError: '', // 银行卡错误
+      mobileError: '', // 手机号错误
+      formData: null // 提交数据
     }
   },
   created () {
@@ -120,7 +126,7 @@ const confirmOrder = {
         this.$toast('请选择收货地址')
         return
       }
-      let data = {
+      this.formData = {
         'token': localStorage.token,
         'userId': localStorage.userId,
         'groupId': localStorage.groupId,
@@ -147,43 +153,19 @@ const confirmOrder = {
       }
       // 建行一元购活动存在两个商品
       if (this.postData[1]) {
-        data.businessId = this.$route.query.businessId || ''
-        data.merchantProduct.push({
-          'merchantId': this.postData[1].merchantProduct[0].merchantId,
-          'remarks': '',
-          'orderType': this.postData[1].orderType,
-          'productSku': [{
-            'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
-            'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
-            'buyNum': 1
-          }],
-          'subProductType': Number(this.postData[1].productType)
-        })
         http({
           method: 'post',
-          url: api.createOrder_v3_3,
-          notNeedTransfer: true,
-          data: data
+          url: api.getOrderBuy,
+          data: { businessId: this.$route.query.businessId }
         }).then((res) => {
           if (res.data.code == 1000) {
-            let orderNum = res.data.data.orderNum
-            let url = '/cardBuyPay/' + orderNum
-            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
-              let activityObj = {}
-              activityObj[orderNum] = this.activityName
-              localStorage.activity = JSON.stringify(activityObj)
-            }
-            dooolyAPP.redirectPay(orderNum)
-          } else if (res.data.code == 2001) {
-            this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
-          } else if (res.data.code == 2002) {
-            this.$toast('您的身份证已在该门店购买过，请勿重复下单')
-          } else {
-            if (res.data.msg) {
-              this.$toast(res.data.msg)
+            if (res.data.data) {
+              this.$toast('活动名额已满！')
             } else {
-              this.$toast('订单提交失败，请重试')
+              this.isBankNumber = true
             }
+          } else {
+            this.$toast(res.data.mess || '参数错误')
           }
         })
       } else {
@@ -191,7 +173,7 @@ const confirmOrder = {
           method: 'post',
           url: api.createOrder_v2_2,
           notNeedTransfer: true,
-          data: data
+          data: this.formData
         }).then((res) => {
           if (res.data.code == 1000) {
             let orderNum = res.data.data.orderNum
@@ -216,6 +198,80 @@ const confirmOrder = {
         })
       }
       this.$baiduStats('提交订单页面-提交订单-确认提交')
+    },
+    // 验证银行卡号
+    cardBlur () {
+      const { cardNumber } = this
+      const myreg = /^[1-9]\d{10,19}/
+      if (cardNumber) {
+        if (!myreg.test(cardNumber)) {
+          this.bankError = '请输入正确的银行卡号'
+        } else {
+          this.bankError = ''
+        }
+      } else {
+        this.bankError = '请输入银行卡号'
+      }
+    },
+    // 验证手机号码
+    mobileBlur () {
+      const { mobile } = this
+      const myreg = /^1[3456789]\d{9}$/
+      if (mobile) {
+        if (!myreg.test(mobile)) {
+          this.mobileError = '请输入正确的手机号'
+        } else {
+          this.mobileError = ''
+        }
+      } else {
+        this.mobileError = '请输入手机号'
+      }
+    },
+    handlBankSub () {
+      const { mobile, cardNumber, mobileError, bankError, formData, postData } = this
+      if (mobile && cardNumber && postData[1]) {
+        if (!mobileError && !bankError) {
+          this.formData.businessId = this.$route.query.businessId || ''
+          this.formData.cardNumber = cardNumber
+          this.formData.mobile = mobile
+          this.formData.merchantProduct.push({
+            'merchantId': this.postData[1].merchantProduct[0].merchantId,
+            'remarks': '',
+            'orderType': this.postData[1].orderType,
+            'productSku': [{
+              'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
+              'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
+              'buyNum': 1
+            }],
+            'subProductType': Number(this.postData[1].productType)
+          })
+          http({
+            method: 'post',
+            url: api.createOrder_v3_3,
+            notNeedTransfer: true,
+            data: formData
+          }).then((res) => {
+            if (res.data.code == 1000) {
+              let orderNum = res.data.data.orderNum
+              let url = '/cardBuyPay/' + orderNum
+              if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
+                let activityObj = {}
+                activityObj[orderNum] = this.activityName
+                localStorage.activity = JSON.stringify(activityObj)
+              }
+              dooolyAPP.redirectPay(orderNum)
+            } else {
+              if (res.data.msg) {
+                this.$toast(res.data.msg)
+              } else {
+                this.$toast('订单提交失败，请重试')
+              }
+            }
+          })
+        }
+      } else {
+        this.$toast('请将信息填写完整')
+      }
     }
   }
 }
