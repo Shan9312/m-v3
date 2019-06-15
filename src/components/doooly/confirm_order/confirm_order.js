@@ -11,8 +11,8 @@ const confirmOrder = {
       confirmClassObj: { click_btn: false },
       viewShow: false,
       isBankNumber: false, // 是否需要银行卡号
-      cardNumber: '6221681010297905', // 银行卡号
-      mobile: '18550004166', // 手机号码
+      cardNumber: '', // 银行卡号
+      mobile: '', // 手机号码
       bankError: '', // 银行卡错误
       mobileError: '', // 手机号错误
       formData: null // 提交数据
@@ -262,6 +262,7 @@ const confirmOrder = {
               }
               dooolyAPP.redirectPay(orderNum)
             } else if (res.data.code == 2016 && res.data.data) {
+              window.scrollTo(0, 0) // IOS弹出键盘将页面顶走
               this.$messageBox({
                 title: '提醒',
                 message: '您有一笔订单尚未支付',
