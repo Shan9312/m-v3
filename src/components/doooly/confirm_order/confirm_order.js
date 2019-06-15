@@ -11,8 +11,8 @@ const confirmOrder = {
       confirmClassObj: { click_btn: false },
       viewShow: false,
       isBankNumber: false, // 是否需要银行卡号
-      cardNumber: '6221681010297908', // 银行卡号
-      mobile: '18550004166', // 手机号码
+      cardNumber: '', // 银行卡号
+      mobile: '', // 手机号码
       bankError: '', // 银行卡错误
       mobileError: '', // 手机号错误
       formData: null, // 提交数据
