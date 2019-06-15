@@ -451,7 +451,8 @@ footer .click_btn{
   position: absolute;
   z-index: 1001;
   left: 0;
-  bottom: 0;
+  top: 50%;
+  transform: translate(0, -50%);
   width: 7.1rem;
   background: #fff;
   font-size: .26rem;
@@ -493,7 +494,7 @@ footer .click_btn{
   }
   .bank-btn{
     width: 100%;
-    margin: .8rem 0 .1rem;
+    margin: .5rem 0;
     .btn-submit{
       width: 6.18rem;
       height: .87rem;
