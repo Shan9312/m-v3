@@ -11,11 +11,12 @@ const confirmOrder = {
       confirmClassObj: { click_btn: false },
       viewShow: false,
       isBankNumber: false, // 是否需要银行卡号
-      cardNumber: '', // 银行卡号
-      mobile: '', // 手机号码
+      cardNumber: '6221681010297908', // 银行卡号
+      mobile: '18550004166', // 手机号码
       bankError: '', // 银行卡错误
       mobileError: '', // 手机号错误
-      formData: null // 提交数据
+      formData: null, // 提交数据
+      disabled: false // 按钮控制
     }
   },
   created () {
@@ -126,31 +127,6 @@ const confirmOrder = {
         this.$toast('请选择收货地址')
         return
       }
-      this.formData = {
-        'token': localStorage.token,
-        'userId': localStorage.userId,
-        'groupId': localStorage.groupId,
-        'consigneeName': this.userDeliveryList.receiverName,
-        'consigneeMobile': this.userDeliveryList.receiverTelephone,
-        'consigneeAddr': this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
-        'productType': this.$route.params.productTypeId,
-        'giftBagId': this.postData[0].giftBagId,
-        'orderType': this.postData[0].orderType,
-        'orderExt': {
-          'type': this.postData[0].productType
-        },
-        'merchantProduct': [{
-          'merchantId': this.postData[0].merchantProduct[0].merchantId,
-          'remarks': '',
-          'orderType': this.postData[0].orderType,
-          'productSku': [{
-            'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
-            'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
-            'buyNum': 1
-          }],
-          'subProductType': Number(this.postData[0].productType)
-        }]
-      }
       // 建行一元购活动存在两个商品
       if (this.postData[1]) {
         http({
@@ -169,6 +145,31 @@ const confirmOrder = {
           }
         })
       } else {
+        this.formData = {
+          'token': localStorage.token,
+          'userId': localStorage.userId,
+          'groupId': localStorage.groupId,
+          'consigneeName': this.userDeliveryList.receiverName,
+          'consigneeMobile': this.userDeliveryList.receiverTelephone,
+          'consigneeAddr': this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
+          'productType': this.$route.params.productTypeId,
+          'giftBagId': this.postData[0].giftBagId,
+          'orderType': this.postData[0].orderType,
+          'orderExt': {
+            'type': this.postData[0].productType
+          },
+          'merchantProduct': [{
+            'merchantId': this.postData[0].merchantProduct[0].merchantId,
+            'remarks': '',
+            'orderType': this.postData[0].orderType,
+            'productSku': [{
+              'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
+              'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
+              'buyNum': 1
+            }],
+            'subProductType': Number(this.postData[0].productType)
+          }]
+        }
         http({
           method: 'post',
           url: api.createOrder_v2_2,
@@ -229,29 +230,56 @@ const confirmOrder = {
     },
     // 确定提交
     handlBankSub () {
-      const { mobile, cardNumber, mobileError, bankError, formData, postData } = this
+      const { mobile, cardNumber, mobileError, bankError, postData } = this
       if (mobile && cardNumber && postData[1]) {
         if (!mobileError && !bankError) {
-          this.formData.businessId = this.$route.query.businessId || ''
-          this.formData.cardNumber = cardNumber
-          this.formData.mobile = mobile
-          this.formData.merchantProduct.push({
-            'merchantId': this.postData[1].merchantProduct[0].merchantId,
-            'remarks': '',
-            'orderType': this.postData[1].orderType,
-            'productSku': [{
-              'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
-              'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
-              'buyNum': 1
-            }],
-            'subProductType': Number(this.postData[1].productType)
-          })
+          this.disabled = true
+          this.formData = {
+            'token': localStorage.token,
+            'userId': localStorage.userId,
+            'groupId': localStorage.groupId,
+            'businessId': this.$route.query.businessId || '',
+            'cardNumber': cardNumber,
+            'mobile': mobile,
+            'consigneeName': this.userDeliveryList.receiverName,
+            'consigneeMobile': this.userDeliveryList.receiverTelephone,
+            'consigneeAddr': this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
+            'productType': this.$route.params.productTypeId,
+            'giftBagId': this.postData[0].giftBagId,
+            'orderType': this.postData[0].orderType,
+            'orderExt': {
+              'type': this.postData[0].productType
+            },
+            'merchantProduct': [{
+              'merchantId': this.postData[0].merchantProduct[0].merchantId,
+              'remarks': '',
+              'orderType': this.postData[0].orderType,
+              'productSku': [{
+                'productId': this.postData[0].merchantProduct[0].productSku[0].productId,
+                'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
+                'buyNum': 1
+              }],
+              'subProductType': Number(this.postData[0].productType)
+            }, {
+              'merchantId': this.postData[1].merchantProduct[0].merchantId,
+              'remarks': '',
+              'orderType': this.postData[1].orderType,
+              'productSku': [{
+                'productId': this.postData[1].merchantProduct[0].productSku[0].productId,
+                'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
+                'buyNum': 1
+              }],
+              'subProductType': Number(this.postData[1].productType)
+            }]
+          }
+          console.log(this.formData)
           http({
             method: 'post',
             url: api.createOrder_CCB,
             notNeedTransfer: true,
-            data: formData
+            data: this.formData
           }).then((res) => {
+            this.disabled = false
             if (res.data.code == 1000) {
               let orderNum = res.data.data.orderNum
               let url = '/cardBuyPay/' + orderNum
@@ -260,7 +288,7 @@ const confirmOrder = {
                 activityObj[orderNum] = this.activityName
                 localStorage.activity = JSON.stringify(activityObj)
               }
-              dooolyAPP.redirectPay(orderNum)
+              // dooolyAPP.redirectPay(orderNum)
             } else if (res.data.code == 2016 && res.data.data) {
               window.scrollTo(0, 0) // IOS弹出键盘将页面顶走
               this.$messageBox({

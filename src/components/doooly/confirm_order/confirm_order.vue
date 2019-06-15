@@ -101,7 +101,9 @@
         </div>
       </div>
       <div class="bank-btn">
-        <div class="btn-submit" @click="handlBankSub">提交</div>
+        <div class="btn-submit">
+          <button @click="handlBankSub" :disabled="disabled">提交</button>
+        </div>
       </div>
     </div>
   </div>
