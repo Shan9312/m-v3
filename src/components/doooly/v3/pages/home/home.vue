@@ -37,9 +37,9 @@
     </div>
     <newHmoeModules v-for="(item,index) in typeList" :origin="'首页'" :key="index" :newListV3="item"></newHmoeModules>
     <!-- 下午茶弹出框 -->
-    <coupon-toast :conponShow="conponShow" :isGift="newGift.isShow" v-show="couponisShow"></coupon-toast>
+    <coupon-toast :conponShow="conponShow" :isGift="newGift.isShow" v-show="!popStatus && couponisShow"></coupon-toast>
     <!--  弹出框 新手礼 start-->
-    <div class="new-gift-bg" v-show="newGift.isShow" @touchmove.prevent>
+    <div class="new-gift-bg" v-show="!popStatus && newGift.isShow" @touchmove.prevent>
       <div class="new-gift">
         <div>
           <div>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <!-- 大华闪屏欢迎页 -->
-    <div class="dh-guide" v-show="dhData.show" @touchmove.prevent>
+    <div class="dh-guide" v-show="!popStatus && dhData.show" @touchmove.prevent>
       <img :src="dhData.img">
     </div>
     <!-- 大华生日礼 -->
@@ -61,13 +61,13 @@
       <img :src="giftData.giftLogo">
     </div> -->
 
-    <div class="gift-pop" v-show="giftData.giftShow" @touchmove.prevent>
+    <div class="gift-pop" v-show="!popStatus && giftData.giftShow" @touchmove.prevent>
       <div class="close" @click="giftData.giftShow = false"></div>
       <img :src="giftData.giftBanner">
       <div class="submit" @click="goJumpPage(5);">点击领取</div>
     </div>
 
-    <custom-popup />
+    <custom-popup @changePopStatus="changePopStatus" />
     
     <footer></footer>
   </div>
@@ -128,6 +128,7 @@
           show:false,
         },
         localStorageObj:localStorage,
+        popStatus: false // 自定义弹窗状态
       };
     },
     computed: {
@@ -143,6 +144,10 @@
       this.addUserAction();
     },
     methods: {
+      changePopStatus(status){
+        this.popStatus = status;
+        alert(this.popStatus);
+      },
       async goJumpPage(type,url,index) {
         if(type == 1){
           //  this.$baiduStats('首页-头部-待领取礼包');

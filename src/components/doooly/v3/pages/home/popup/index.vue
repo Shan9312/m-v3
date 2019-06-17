@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-pop" v-show="popupList.length > popupIndex" @touchmove.prevent>
+  <div class="custom-pop" v-show="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
       <div class="close" @click="popupIndex ++"></div>
       <img :src="popupList[popupIndex] && popupList[popupIndex].imageUrl">
@@ -18,7 +18,15 @@ export default {
       popupList: []
     };
   },
-  computed: {},
+  computed: {
+    showPopList(){
+      if (this.popupList.length <= this.popupIndex) {
+        this.$emit('changePopStatus', false);
+        return false;
+      }
+      return true;
+    }
+  },
   created() {
     this.getDialogList();
   },
@@ -28,6 +36,7 @@ export default {
       const { data } = await getDialogList();
       if (data && data.code === 1000 && data.data.length) {
         this.popupList = data.data;
+        this.$emit('changePopStatus', true);
       }
     }
   },
