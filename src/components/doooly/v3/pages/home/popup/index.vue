@@ -1,0 +1,70 @@
+<template>
+  <div class="custom-pop" v-show="popupList.length > popupIndex" @touchmove.prevent>
+    <div class="pop-wrap">
+      <div class="close" @click="popupIndex ++"></div>
+      <img :src="popupList[popupIndex] && popupList[popupIndex].imageUrl">
+    </div>
+  </div>
+</template>
+
+<script>
+import { getDialogList } from "v3/services";
+export default {
+  name: "home-popup",
+  props: {},
+  data() {
+    return {
+      popupIndex: 1,
+      popupList: []
+    };
+  },
+  computed: {},
+  created() {
+    this.getDialogList();
+  },
+  mounted() {},
+  methods: {
+    async getDialogList() {
+      const { data } = await getDialogList();
+      if (data && data.code === 1000 && data.data.length) {
+        this.popupList = data.data;
+      }
+    }
+  },
+  watch: {},
+  components: {}
+};
+</script>
+
+<style scoped lang="scss">
+.custom-pop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  .pop-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    img {
+      width: 100%;
+    }
+    .close {
+      width: 0.4rem;
+      height: 0.4rem;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+  }
+}
+</style>

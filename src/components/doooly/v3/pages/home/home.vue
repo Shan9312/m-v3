@@ -66,6 +66,9 @@
       <img :src="giftData.giftBanner">
       <div class="submit" @click="goJumpPage(5);">点击领取</div>
     </div>
+
+    <custom-popup />
+    
     <footer></footer>
   </div>
 </template>
@@ -85,6 +88,7 @@
   import {getAddress} from '@/assets/js/wechatShare2.js';
   import NewHmoeModules from '@/components/common/newHmoeModules';
   import CouponToast from '@/components/common/couponToast';
+  import CustomPopup from './popup';
   export default {
     name: 'home',
     props: {
@@ -295,7 +299,8 @@
     },
     components: {
       NewHmoeModules,
-      CouponToast
+      CouponToast,
+      CustomPopup
     },
   };
 </script>
