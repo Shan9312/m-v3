@@ -2,7 +2,7 @@
   <div class="custom-pop" v-show="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
       <div class="close" @click="popupIndex ++"></div>
-      <img :src="popupList[popupIndex] && popupList[popupIndex].imageUrl">
+      <img :src="popupList[popupIndex] && popupList[popupIndex].imageUrl" @click="goto(popupList[popupIndex].formUrl)">
     </div>
   </div>
 </template>
@@ -38,6 +38,10 @@ export default {
         this.popupList = data.data;
         this.$emit('changePopStatus', true);
       }
+    },
+    goto(url){
+      if (!url) return false;
+      location.href = url;
     }
   },
   watch: {},
@@ -61,14 +65,14 @@ export default {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 3rem;
-    height: 3rem;
+    width: 6rem;
+    height: 6rem;
     img {
       width: 100%;
     }
     .close {
-      width: 0.4rem;
-      height: 0.4rem;
+      width: 0.8rem;
+      height: 0.8rem;
       position: absolute;
       right: 0;
       top: 0;

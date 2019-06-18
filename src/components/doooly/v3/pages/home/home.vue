@@ -146,7 +146,6 @@
     methods: {
       changePopStatus(status){
         this.popStatus = status;
-        alert(this.popStatus);
       },
       async goJumpPage(type,url,index) {
         if(type == 1){
