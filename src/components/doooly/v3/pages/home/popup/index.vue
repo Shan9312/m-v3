@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-pop" v-show="showPopList" @touchmove.prevent>
+  <div class="custom-pop" v-if="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
       <div :data-baidu-stats="'关闭弹窗-' + popupList[popupIndex].name" class="close" @click="popupIndex ++"></div>
       <img :data-baidu-stats="'弹窗-' + popupList[popupIndex].name" :src="popupList[popupIndex] && popupList[popupIndex].imageUrl" @click="goto(popupList[popupIndex].formUrl)">
@@ -28,9 +28,9 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem('isPopup')) return;
+    // if (localStorage.getItem('isPopup')) return;
     this.getDialogList();
-    localStorage.setItem('isPopup', 'pop')
+    // localStorage.setItem('isPopup', 'pop')
   },
   mounted() {},
   methods: {
