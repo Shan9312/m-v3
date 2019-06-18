@@ -1,8 +1,16 @@
 <template>
   <div class="custom-pop" v-if="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
-      <div :data-baidu-stats="'关闭弹窗-' + popupList[popupIndex].name" class="close" @click="popupIndex ++"></div>
-      <img :data-baidu-stats="'弹窗-' + popupList[popupIndex].name" :src="popupList[popupIndex] && popupList[popupIndex].imageUrl" @click="goto(popupList[popupIndex].formUrl)">
+      <div
+        :data-baidu-stats="'关闭弹窗-' + popupList[popupIndex].name"
+        class="close"
+        @click="close"
+      ></div>
+      <img
+        :data-baidu-stats="'弹窗-' + popupList[popupIndex].name"
+        :src="popupList[popupIndex] && popupList[popupIndex].imageUrl"
+        @click="goto(popupList[popupIndex].formUrl)"
+      >
     </div>
   </div>
 </template>
@@ -14,14 +22,15 @@ export default {
   props: {},
   data() {
     return {
+      ids: {},
       popupIndex: 0,
       popupList: []
     };
   },
   computed: {
-    showPopList(){
+    showPopList() {
       if (this.popupList.length <= this.popupIndex) {
-        this.$emit('changePopStatus', false);
+        this.$emit("changePopStatus", false);
         return false;
       }
       return true;
@@ -34,14 +43,30 @@ export default {
   },
   mounted() {},
   methods: {
+    close(){
+      let id = this.popupList[this.popupIndex].id;
+      this.ids[id] = '1';
+      localStorage.setItem("popIds", JSON.stringify(this.ids));
+      this.popupIndex ++;
+    },
     async getDialogList() {
       const { data } = await getDialogList();
       if (data && data.code === 1000 && data.data.length) {
-        this.popupList = data.data;
-        this.$emit('changePopStatus', true);
+        let dataArr = data.data;
+        this.handleIds(dataArr);
+        this.$emit("changePopStatus", true);
       }
     },
-    goto(url){
+    handleIds(dataArr) {
+      this.ids = JSON.parse(localStorage.getItem("popIds") || "{}");
+      dataArr.forEach(item => {
+        if (this.ids[item.id] === "1") return;
+        this.ids[item.id] = "0";
+        this.popupList.push(item);
+      });
+      localStorage.setItem("popIds", JSON.stringify(this.ids));
+    },
+    goto(url) {
       if (!url) return false;
       location.href = url;
     }
