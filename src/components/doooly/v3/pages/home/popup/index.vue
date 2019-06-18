@@ -14,7 +14,7 @@ export default {
   props: {},
   data() {
     return {
-      popupIndex: 1,
+      popupIndex: 0,
       popupList: []
     };
   },
@@ -28,7 +28,9 @@ export default {
     }
   },
   created() {
+    if (localStorage.getItem('isPopup')) return;
     this.getDialogList();
+    localStorage.setItem('isPopup', 'pop')
   },
   mounted() {},
   methods: {
