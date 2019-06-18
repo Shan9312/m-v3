@@ -1,11 +1,13 @@
 <template>
   <div class="custom-pop" v-if="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
-      <div
+      <img
         :data-baidu-stats="'关闭弹窗-' + popupList[popupIndex].name"
         class="close"
+        src="~v3/assets/images/home/pop-close.png"
         @click="close"
-      ></div>
+        alt
+      >
       <img
         :data-baidu-stats="'弹窗-' + popupList[popupIndex].name"
         :src="popupList[popupIndex] && popupList[popupIndex].imageUrl"
@@ -43,11 +45,11 @@ export default {
   },
   mounted() {},
   methods: {
-    close(){
+    close() {
       let id = this.popupList[this.popupIndex].id;
-      this.ids[id] = '1';
+      this.ids[id] = "1";
       localStorage.setItem("popIds", JSON.stringify(this.ids));
-      this.popupIndex ++;
+      this.popupIndex++;
     },
     async getDialogList() {
       const { data } = await getDialogList();
@@ -98,11 +100,11 @@ export default {
       width: 100%;
     }
     .close {
-      width: 0.8rem;
-      height: 0.8rem;
+      width: 0.58rem;
+      height: 0.58rem;
       position: absolute;
       right: 0;
-      top: 0;
+      top: -0.70rem;
       z-index: 1;
     }
   }
