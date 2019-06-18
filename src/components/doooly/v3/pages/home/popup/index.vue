@@ -1,8 +1,8 @@
 <template>
   <div class="custom-pop" v-show="showPopList" @touchmove.prevent>
     <div class="pop-wrap">
-      <div class="close" @click="popupIndex ++"></div>
-      <img :src="popupList[popupIndex] && popupList[popupIndex].imageUrl" @click="goto(popupList[popupIndex].formUrl)">
+      <div :data-baidu-stats="'关闭弹窗-' + popupList[popupIndex].name" class="close" @click="popupIndex ++"></div>
+      <img :data-baidu-stats="'弹窗-' + popupList[popupIndex].name" :src="popupList[popupIndex] && popupList[popupIndex].imageUrl" @click="goto(popupList[popupIndex].formUrl)">
     </div>
   </div>
 </template>
