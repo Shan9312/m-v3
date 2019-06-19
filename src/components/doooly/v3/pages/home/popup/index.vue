@@ -25,6 +25,7 @@ export default {
   props: {},
   data() {
     return {
+      allIds: {},
       ids: {},
       popupIndex: 0,
       popupList: []
@@ -47,9 +48,11 @@ export default {
   mounted() {},
   methods: {
     close() {
+      let userId = localStorage.getItem('userId');
       let id = this.popupList[this.popupIndex].id;
       this.ids[id] = "1";
-      localStorage.setItem("popIds", JSON.stringify(this.ids));
+      this.allIds[userId] = this.ids;
+      localStorage.setItem("popIds", JSON.stringify(this.allIds));
       this.popupIndex++;
     },
     async getDialogList() {
@@ -62,15 +65,15 @@ export default {
     },
     handleIds(dataArr) {
       let userId = localStorage.getItem('userId');
-      let allIds = JSON.parse(localStorage.getItem("popIds") || "{}");
-      this.ids = allIds[userId] || {};
+      this.allIds = JSON.parse(localStorage.getItem("popIds") || "{}");
+      this.ids = this.allIds[userId] || {};
       dataArr.forEach(item => {
         if (this.ids[item.id] === "1") return;
         this.ids[item.id] = "0";
         this.popupList.push(item);
       });
-      allIds[userId] = this.ids;
-      localStorage.setItem("popIds", JSON.stringify(allIds));
+      this.allIds[userId] = this.ids;
+      localStorage.setItem("popIds", JSON.stringify(this.allIds));
     },
     goto(url) {
       if (!url) return false;
