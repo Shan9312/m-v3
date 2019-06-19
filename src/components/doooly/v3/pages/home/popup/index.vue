@@ -18,6 +18,7 @@
 </template>
 
 <script>
+// todo 老弹窗顺序
 import { getDialogList } from "v3/services";
 export default {
   name: "home-popup",
@@ -60,13 +61,16 @@ export default {
       }
     },
     handleIds(dataArr) {
-      this.ids = JSON.parse(localStorage.getItem("popIds") || "{}");
+      let userId = localStorage.getItem('userId');
+      let allIds = JSON.parse(localStorage.getItem("popIds") || "{}");
+      this.ids = allIds[userId] || {};
       dataArr.forEach(item => {
         if (this.ids[item.id] === "1") return;
         this.ids[item.id] = "0";
         this.popupList.push(item);
       });
-      localStorage.setItem("popIds", JSON.stringify(this.ids));
+      allIds[userId] = this.ids;
+      localStorage.setItem("popIds", JSON.stringify(allIds));
     },
     goto(url) {
       if (!url) return false;
