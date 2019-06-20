@@ -68,7 +68,7 @@
     </div>
 
     <!-- giftData.giftShow && dhData.show && newGift.isShow && couponisShow -->
-    <custom-popup v-if="showCustom" @changePopStatus="changePopStatus" />
+    <custom-popup v-if="showCustom && isInitData" @changePopStatus="changePopStatus" />
     
     <footer></footer>
   </div>
@@ -130,7 +130,7 @@
         },
         localStorageObj:localStorage,
         popStatus: false, // 自定义弹窗状态
-        // showCustom: false
+        isInitData: false
       };
     },
     computed: {
@@ -140,7 +140,7 @@
       }
     },
     created() {
-      this.firstLoding();
+      this.initData();
       this.getPoints();
       this.getAdList();
       this.getTemplateByType();
@@ -149,6 +149,10 @@
       this.addUserAction();
     },
     methods: {
+      async initData(){
+        await this.firstLoding();
+        this.isInitData = true;
+      },
       changePopStatus(status){
         this.popStatus = status;
       },
