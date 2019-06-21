@@ -34,7 +34,7 @@ export default {
   computed: {
     showPopList() {
       if (this.popupList.length <= this.popupIndex) {
-        this.$emit("changePopStatus", false);
+        // this.$emit("changePopStatus", false);
         return false;
       }
       return true;
@@ -60,7 +60,7 @@ export default {
       if (data && data.code === 1000 && data.data.length) {
         let dataArr = data.data;
         this.handleIds(dataArr);
-        this.$emit("changePopStatus", true);
+        // this.$emit("changePopStatus", true);
       }
     },
     handleIds(dataArr) {
