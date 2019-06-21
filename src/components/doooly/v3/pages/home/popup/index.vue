@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// todo 老弹窗顺序
 import { getDialogList } from "v3/services";
 export default {
   name: "home-popup",
@@ -105,6 +104,7 @@ export default {
     height: 6rem;
     img {
       width: 100%;
+      max-height: 100%;
     }
     .close {
       width: 0.58rem;
