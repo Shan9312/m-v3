@@ -137,7 +137,7 @@
     },
     computed: {
       showCustom(){
-        alert(this.giftData.loaded + '---' + this.newGift.loaded);
+        // alert(this.giftData.loaded + '---' + this.newGift.loaded);
         // alert(this.giftData.giftShow + '---' + this.dhData.show + '---' + this.newGift.isShow + '---' + this.conponShow);
         return (this.giftData.loaded && this.newGift.loaded) && !(this.giftData.giftShow || this.dhData.show || this.newGift.isShow || this.conponShow);
       }
