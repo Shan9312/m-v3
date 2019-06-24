@@ -99,8 +99,7 @@ export default {
       var hours = 0,
         minutes = 0,
         seconds = 0;
-      var current = Date();
-      seconds = (Date.parse(current) - dateTim) / 1000;
+      seconds = (dateTim - Date.now()) / 1000;
     
       hours = Math.floor(seconds / 3600);
       seconds = seconds % 3600;
