@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       specialStartDate: 0,
+      specialEndDate: 0,
       isStart: false,
       activityName:
         this.$route.params.activityName &&
@@ -60,15 +61,70 @@ export default {
       ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
-      errMsg: ''
+      errMsg: '',
+      countdownTim: ''
     };
   },
   computed: {
     ...mapState(['deliveryAddress'])
   },
+  beforeCreate() {
+    document.body.style.backgroundColor = '#fff';
+  },
+  beforeDestroy() {
+    this.addAction(this.postData);
+  },
+  mounted() {
+    this.deleteAddressAction(this.deliveryAddress);
+    window.addEventListener('scroll', this.menu);
+  },
+  created() {
+    this.loadCardBuyDetailList();
+    this.getIsReceive();
+    if (browserName == 'Chrome WebView') {
+      // 在安卓app中优化轮播图禁用下拉刷新
+      RHNativeJS.visablePtrFrame(false);
+    }
+  },
   methods: {
     ...mapActions(['addAction', 'deleteAction', 'deleteAddressAction']),
-
+    countdownRun(){
+      setInterval(() => {
+        let obj = this.countdown(this.specialEndDate);
+        this.countdownTim = `${obj.hours}:${obj.minutes}:${obj.seconds}`;
+      }, 300);
+    },
+    countdown(dateTim) {
+      if (typeof dateTim !== 'number') return {};
+      var hours = 0,
+        minutes = 0,
+        seconds = 0;
+      var current = Date();
+      seconds = (Date.parse(current) - dateTim) / 1000;
+    
+      hours = Math.floor(seconds / 3600);
+      seconds = seconds % 3600;
+      minutes = Math.floor(seconds / 60);
+      seconds = seconds % 60;
+      seconds = Math.floor(seconds);
+    
+      // 添加0
+      if (hours < 10) {
+        hours = '0' + hours;
+      }
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+    
+      return {
+        hours,
+        minutes,
+        seconds
+      };
+    },
     menu() {
       this.scroll = document.documentElement.scrollTop;
       if (
@@ -308,6 +364,8 @@ export default {
         this.specialStartDate =
           data.adGroupSelfProductPrice &&
           data.adGroupSelfProductPrice.specialStartDate;
+        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
+        typeof this.specialEndDate === 'number' && this.countdownRun();
         this.handleInventory(inventory);
         for (let [index, elem] of data.skuList.entries()) {
           if (elem.inventory > 0) {
@@ -339,24 +397,6 @@ export default {
           }
         }
       });
-    }
-  },
-  beforeCreate() {
-    document.body.style.backgroundColor = '#fff';
-  },
-  beforeDestroy() {
-    this.addAction(this.postData);
-  },
-  mounted() {
-    this.deleteAddressAction(this.deliveryAddress);
-    window.addEventListener('scroll', this.menu);
-  },
-  created() {
-    this.loadCardBuyDetailList();
-    this.getIsReceive();
-    if (browserName == 'Chrome WebView') {
-      // 在安卓app中优化轮播图禁用下拉刷新
-      RHNativeJS.visablePtrFrame(false);
     }
   }
 };

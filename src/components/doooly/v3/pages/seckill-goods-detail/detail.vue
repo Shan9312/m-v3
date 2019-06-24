@@ -61,7 +61,7 @@
     </div>
     <!-- 类型 -->
     <div class="type padding_frm">
-      <div class="title">{{ !recyclingType ? "卡券类型" : "商品类型" }}</div>
+      <div class="title">类型</div>
       <ul class="label">
         <!--<#list productTypeList as productTypeList>-->
         <!--<li <#if productTypeList_index == 0>class="check"</#if> data-id="${productTypeList.id}">${productTypeList.name}</li>-->
@@ -91,14 +91,15 @@
       :class="{ hide: goTop == 2, show: goTop == 1 }"
       @click="goTopfunction"
     >
-      <img src="../../assets/images/cardbuy/go_top.png" />
+      <img src="~@/assets/images/cardbuy/go_top.png" />
     </div>
     <div v-if="!ccbType">
       <!-- 底部悬浮 -->
       <div class="footer_bg"></div>
       <footer class="box_item" v-if="!giftBagId">
         <div class="item fl-1" v-if="!recyclingType">
-          可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span>
+          <!-- 可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span> -->
+          倒计时：{{countdownTim}}
         </div>
         <div
           class="item fr-2"
