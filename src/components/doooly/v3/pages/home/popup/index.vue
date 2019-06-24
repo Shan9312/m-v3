@@ -47,12 +47,15 @@ export default {
   mounted() {},
   methods: {
     close() {
+      this.dataClose();
+      this.popupIndex++;
+    },
+    dataClose(){
       let userId = localStorage.getItem('userId');
       let id = this.popupList[this.popupIndex].id;
       this.ids[id] = "1";
       this.allIds[userId] = this.ids;
       localStorage.setItem("popIds", JSON.stringify(this.allIds));
-      this.popupIndex++;
     },
     async getDialogList() {
       const { data } = await getDialogList();
@@ -75,6 +78,7 @@ export default {
       localStorage.setItem("popIds", JSON.stringify(this.allIds));
     },
     goto(url) {
+      this.dataClose();
       if (!url) return false;
       location.href = url;
     }
