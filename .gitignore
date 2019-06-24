@@ -1,52 +1,21 @@
-# dependencies
-/node_modules
-es
-package-lock.json
-yar
-on
-yarn.lock
-settings.json
-dist.zip
-dist.rar
-settings.json
-.re
-.react-playground
-.vscode
-**/**/launch.json
-
-# production
+.DS_Store
+node_modules
 /dist
 
-# misc
-.DS_Store
-re
+# local env files
+.env.local
+.env.*.local
+
+# Log files
 npm-debug.log*
-**/target
-**/.svn
-**/bin/
-**/.classpath
-**/.project
-**/.settings
-**/.springBean
-**/*.iml
-**/*.idea
-**/.externalToolBuilders
-**/test-output
+yarn-debug.log*
+yarn-error.log*
 
-/target
-/.svn
-/bin/
-/.classpath
-/.project
-/.settings
-/.springBean
-/*.iml
-/*.idea
-/.externalToolBuilders
-/test-output
-
-**/gen-java
-
-a
-
-deploy.sh
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

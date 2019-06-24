@@ -10,15 +10,10 @@ import Component from '@/components/common/component';
 Component(Vue);
 
 /**第三方插件库**/
-import 'babel-polyfill';
+import '@babel/polyfill';
 
 import baiduStats from './util/baidu_stats.js';
 Vue.prototype.$baiduStats = baiduStats;
-
-import DL from '@/assets/js/common.js';
-if (DL.getRequest().debug) {
-  DL.use('debug');
-}
 
 import VueJsonp from 'vue-jsonp';
 Vue.use(VueJsonp);
@@ -51,14 +46,10 @@ import '@/assets/css/base/my-mintui.scss'
 
 /**实例化Vue**/
 let vm = new Vue({
-  el: '#app',
   router,
   store,
-  template: '<App/>',
-  components: {
-    App
-  }
-});
+  render: h => h(App)
+}).$mount("#app");
 
 // 百度统计事件点击统一处理
 window.addEventListener('click', (event) => {
