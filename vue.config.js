@@ -16,6 +16,7 @@ module.exports = {
         config.resolve.alias
             .set('@', resolve('src'))
             .set('v3', resolve('src/components/doooly/v3'))
+        config.plugins.delete('prefetch')
     },
     devServer: {
         port: 8888, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
