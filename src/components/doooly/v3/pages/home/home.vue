@@ -273,7 +273,7 @@
           if(data.data){
             const obj = JSON.parse(data.data.userInfo);
           }
-          if (obj.token != this.localStorageObj.token) {
+          if (obj && obj.token != this.localStorageObj.token) {
             dooolyAPP.logOut();
           }
         }
