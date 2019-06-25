@@ -65,7 +65,8 @@ export default {
       errMsg: '',
       serverDate: 0,
       countdownTim: '',
-      countdownId: null
+      countdownId: null,
+      watchEndId: null
     };
   },
   computed: {
@@ -141,9 +142,10 @@ export default {
       };
     },
     watchEndDate(){
-      setInterval(() => {
+      this.watchEndId = setInterval(() => {
         if (this.specialEndDate <= this.serverDate) {
           this.isEnd = true;
+          clearInterval(this.watchEndId);
         }
       }, 300);
     },
@@ -183,6 +185,7 @@ export default {
         }
         this.serverDate = serverDate;
         this.countdownRun();
+        this.watchEndDate();
       });
     },
     animation() {
