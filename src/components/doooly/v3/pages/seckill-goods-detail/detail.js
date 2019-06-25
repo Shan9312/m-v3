@@ -396,7 +396,7 @@ export default {
         this.specialStartDate =
           data.adGroupSelfProductPrice &&
           data.adGroupSelfProductPrice.specialStartDate;
-        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
+        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialEndDate;
         this.handleInventory(inventory);
         for (let [index, elem] of data.skuList.entries()) {
           if (elem.inventory > 0) {
