@@ -383,8 +383,8 @@ export default {
         let data = res.data.data;
         this.cardBuyDetailList = data;
         this.handleWelsh(
-          this.cardBuyDetailList.selfProduct.name,
-          this.cardBuyDetailList.selfProduct.id
+          this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
+          this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
         );
         initTitle('商品详情');
         for (let [index, elem] of data.imagesList.entries()) {
