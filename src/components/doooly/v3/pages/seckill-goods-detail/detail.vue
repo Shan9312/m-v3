@@ -103,7 +103,7 @@
         </div>
         <div
           class="item fr-2"
-          :class="{ gary: inventory === 0 || (!isStart && activityName) }"
+          :class="{ gary: inventory === 0 || (!isStart && activityName) || isEnd }"
           @click="order()"
         >
           <span v-if="!activityName">{{

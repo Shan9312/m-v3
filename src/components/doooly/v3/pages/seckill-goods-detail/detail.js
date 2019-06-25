@@ -95,7 +95,7 @@ export default {
     countdownRun(){
       clearInterval(this.countdownId);
       if (this.isStart) {
-        this.countdownTim = '已开始';
+        // this.countdownTim = '已开始';
         return;
       };
       this.countdownId = setInterval(() => {
@@ -104,7 +104,7 @@ export default {
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
           window.location.reload();
           clearInterval(this.countdownId);
-          this.countdownTim = '已开始';
+          // this.countdownTim = '已开始';
           this.isStart = true;
           return;
         }
@@ -260,6 +260,9 @@ export default {
           '-立即抢购'
       );
       if (!this.isStart && this.activityName) {
+        return;
+      }
+      if (this.isEnd) {
         return;
       }
       if (this.inventory == 0 || this.isReceive == 1) {
