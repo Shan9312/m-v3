@@ -97,7 +97,7 @@
       <!-- 底部悬浮 -->
       <div class="footer_bg"></div>
       <footer class="box_item" v-if="!giftBagId">
-        <div class="item fl-1" v-if="!recyclingType">
+        <div class="item fl-1" v-if="!recyclingType && (!isStart || !isEnd)">
           <!-- 可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span> -->
           {{countdownTim}}
         </div>
@@ -109,9 +109,10 @@
           <span v-if="!activityName">{{
             inventory === 0 ? "补货中" : "立即订购"
           }}</span>
-          <span v-else-if="isStart && activityName">{{
+          <span v-else-if="isStart && activityName && !isEnd">{{
             inventory === 0 ? "已售罄" : "立即抢购"
           }}</span>
+          <span v-else-if="isEnd">已结束</span>
           <span v-else>即将开抢</span>
           <!--{{inventory!=0?'立即订购':'已售罄'}}-->
         </div>

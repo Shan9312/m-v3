@@ -14,8 +14,9 @@ export default {
   data() {
     return {
       specialStartDate: 0,
-      // specialEndDate: 0,
+      specialEndDate: 0,
       isStart: false,
+      isEnd: false,
       activityName:
         this.$route.params.activityName &&
         this.$route.params.activityName != 'false'
@@ -62,6 +63,7 @@ export default {
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: '',
+      serverDate: 0,
       countdownTim: '',
       countdownId: null
     };
@@ -96,7 +98,8 @@ export default {
         return;
       };
       this.countdownId = setInterval(() => {
-        let obj = this.countdown(this.specialStartDate);
+        let obj = this.countdown(this.specialStartDate, this.serverDate);
+        this.serverDate = this.serverDate - 300;
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
           window.location.reload();
           clearInterval(this.countdownId);
@@ -107,12 +110,12 @@ export default {
         this.countdownTim = `倒计时：${obj.hours}:${obj.minutes}:${obj.seconds}`;
       }, 300);
     },
-    countdown(dateTim) {
+    countdown(dateTim, serverDate) {
       if (typeof dateTim !== 'number') return {};
       var hours = 0,
         minutes = 0,
         seconds = 0;
-      seconds = (dateTim - Date.now()) / 1000;
+      seconds = (dateTim - serverDate) / 1000;
     
       hours = Math.floor(seconds / 3600);
       seconds = seconds % 3600;
@@ -136,6 +139,13 @@ export default {
         minutes,
         seconds
       };
+    },
+    watchEndDate(){
+      setInterval(() => {
+        if (this.specialEndDate <= this.serverDate) {
+          this.isEnd = true;
+        }
+      }, 300);
     },
     menu() {
       this.scroll = document.documentElement.scrollTop;
@@ -165,11 +175,13 @@ export default {
         url: api.getCurrentTime + '?token=' + localStorage.token,
         method: 'get'
       }).then(res => {
+        let serverDate = 0;
         if (res.data && res.data.currentTime) {
-          let serverDate = res.data.currentTime;
+          serverDate = res.data.currentTime;
           this.isStart =
             this.specialStartDate && this.specialStartDate <= serverDate;
         }
+        this.serverDate = serverDate;
         this.countdownRun();
       });
     },
@@ -377,8 +389,7 @@ export default {
         this.specialStartDate =
           data.adGroupSelfProductPrice &&
           data.adGroupSelfProductPrice.specialStartDate;
-        // this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
-        // typeof this.specialStartDate === 'number' && this.countdownRun();
+        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
         this.handleInventory(inventory);
         for (let [index, elem] of data.skuList.entries()) {
           if (elem.inventory > 0) {
