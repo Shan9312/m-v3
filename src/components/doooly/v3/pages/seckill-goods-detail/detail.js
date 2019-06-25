@@ -94,7 +94,7 @@ export default {
     ...mapActions(['addAction', 'deleteAction', 'deleteAddressAction']),
     countdownRun(){
       clearInterval(this.countdownId);
-      if (this.isStart) {
+      if (this.isStart || this.isEnd) {
         // this.countdownTim = '已开始';
         return;
       };
@@ -180,12 +180,13 @@ export default {
         let serverDate = 0;
         if (res.data && res.data.currentTime) {
           serverDate = res.data.currentTime;
+          this.isEnd = this.specialEndDate && this.specialEndDate <= serverDate;
           this.isStart =
             this.specialStartDate && this.specialStartDate <= serverDate;
         }
         this.serverDate = serverDate;
-        this.countdownRun();
         this.watchEndDate();
+        this.countdownRun();
       });
     },
     animation() {
