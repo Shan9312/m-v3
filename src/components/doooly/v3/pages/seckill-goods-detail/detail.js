@@ -100,7 +100,7 @@ export default {
       };
       this.countdownId = setInterval(() => {
         let obj = this.countdown(this.specialStartDate, this.serverDate);
-        this.serverDate = this.serverDate - 300;
+        this.serverDate = this.serverDate + 300;
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
           window.location.reload();
           clearInterval(this.countdownId);
@@ -108,7 +108,7 @@ export default {
           this.isStart = true;
           return;
         }
-        this.countdownTim = `倒计时：${obj.hours}:${obj.minutes}:${obj.seconds}`;
+        this.countdownTim = `倒计时：${obj.hours || 0}:${obj.minutes || 0}:${obj.seconds || 0}`;
       }, 300);
     },
     countdown(dateTim, serverDate) {
