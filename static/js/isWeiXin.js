@@ -138,6 +138,7 @@ function getQueryString(name) {
   return null
 }
 if (browserName == 'otherAPP' && getQueryString('JsonData')) {
+  localStorage.removeItem('token')
   localStorage.thirdUserToken = getQueryString('JsonData')
 }
 // 第三方通用免登
