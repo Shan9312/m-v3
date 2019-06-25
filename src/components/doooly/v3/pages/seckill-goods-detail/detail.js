@@ -62,7 +62,7 @@ export default {
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: '',
-      countdownTim: '已开始',
+      countdownTim: '',
       countdownId: null
     };
   },
@@ -91,15 +91,15 @@ export default {
     ...mapActions(['addAction', 'deleteAction', 'deleteAddressAction']),
     countdownRun(){
       clearInterval(this.countdownId);
-      if (this.isStart) return;
+      if (this.isStart) {
+        this.countdownTim = '已开始';
+        return;
+      };
       this.countdownId = setInterval(() => {
-        if (this.isStart) {
-          clearInterval(this.countdownId);
-          this.countdownTim = '已开始';
-          return;
-        }
         let obj = this.countdown(this.specialStartDate);
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
+          window.location.reload();
+          clearInterval(this.countdownId);
           this.countdownTim = '已开始';
           this.isStart = true;
           return;
@@ -170,6 +170,7 @@ export default {
           this.isStart =
             this.specialStartDate && this.specialStartDate <= serverDate;
         }
+        this.countdownRun();
       });
     },
     animation() {
@@ -377,7 +378,7 @@ export default {
           data.adGroupSelfProductPrice &&
           data.adGroupSelfProductPrice.specialStartDate;
         // this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
-        typeof this.specialStartDate === 'number' && this.countdownRun();
+        // typeof this.specialStartDate === 'number' && this.countdownRun();
         this.handleInventory(inventory);
         for (let [index, elem] of data.skuList.entries()) {
           if (elem.inventory > 0) {
