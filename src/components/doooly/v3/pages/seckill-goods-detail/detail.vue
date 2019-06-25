@@ -113,7 +113,7 @@
             inventory === 0 ? "已售罄" : "立即抢购"
           }}</span>
           <span v-else-if="isEnd">已结束</span>
-          <span v-else>即将开抢</span>
+          <span v-else>{{ !this.specialStartDate ? '已售罄' : '即将开抢'}}</span>
           <!--{{inventory!=0?'立即订购':'已售罄'}}-->
         </div>
       </footer>

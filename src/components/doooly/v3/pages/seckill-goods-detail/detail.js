@@ -100,7 +100,6 @@ export default {
       };
       this.countdownId = setInterval(() => {
         let obj = this.countdown(this.specialStartDate, this.serverDate);
-        this.serverDate = this.serverDate + 300;
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
           window.location.reload();
           clearInterval(this.countdownId);
@@ -146,6 +145,7 @@ export default {
     watchEndDate(){
       this.watchEndId = setInterval(() => {
         if (this.specialEndDate <= this.serverDate) {
+          this.serverDate = this.serverDate + 300;
           this.isEnd = true;
           clearInterval(this.watchEndId);
         }
