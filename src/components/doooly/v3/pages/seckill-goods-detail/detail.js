@@ -144,8 +144,8 @@ export default {
     },
     watchEndDate(){
       this.watchEndId = setInterval(() => {
+        this.serverDate = this.serverDate + 300;
         if (this.specialEndDate <= this.serverDate) {
-          this.serverDate = this.serverDate + 300;
           this.isEnd = true;
           clearInterval(this.watchEndId);
         }
