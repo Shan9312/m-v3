@@ -108,6 +108,8 @@ export default {
           this.isStart = true;
           return;
         }
+        // adGroupSelfProductPrice undefined
+        if (obj.hours === undefined && obj.minutes === undefined && obj.seconds === undefined) return this.countdownTim = '';
         this.countdownTim = `倒计时：${obj.hours || 0}:${obj.minutes || 0}:${obj.seconds || 0}`;
       }, 300);
     },

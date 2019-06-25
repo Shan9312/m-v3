@@ -97,7 +97,7 @@
       <!-- 底部悬浮 -->
       <div class="footer_bg"></div>
       <footer class="box_item" v-if="!giftBagId">
-        <div class="item fl-1" v-if="!isStart && !isEnd">
+        <div class="item fl-1" v-if="!isStart && !isEnd && specialStartDate">
           <!-- 可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span> -->
           {{countdownTim}}
         </div>
