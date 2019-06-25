@@ -99,7 +99,7 @@
       <footer class="box_item" v-if="!giftBagId">
         <div class="item fl-1" v-if="!recyclingType">
           <!-- 可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span> -->
-          倒计时：{{countdownTim}}
+          {{countdownTim}}
         </div>
         <div
           class="item fr-2"

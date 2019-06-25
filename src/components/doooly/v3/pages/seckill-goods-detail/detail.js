@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       specialStartDate: 0,
-      specialEndDate: 0,
+      // specialEndDate: 0,
       isStart: false,
       activityName:
         this.$route.params.activityName &&
@@ -62,7 +62,8 @@ export default {
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: '',
-      countdownTim: ''
+      countdownTim: '已开始',
+      countdownId: null
     };
   },
   computed: {
@@ -89,9 +90,21 @@ export default {
   methods: {
     ...mapActions(['addAction', 'deleteAction', 'deleteAddressAction']),
     countdownRun(){
-      setInterval(() => {
-        let obj = this.countdown(this.specialEndDate);
-        this.countdownTim = `${obj.hours}:${obj.minutes}:${obj.seconds}`;
+      clearInterval(this.countdownId);
+      if (this.isStart) return;
+      this.countdownId = setInterval(() => {
+        if (this.isStart) {
+          clearInterval(this.countdownId);
+          this.countdownTim = '已开始';
+          return;
+        }
+        let obj = this.countdown(this.specialStartDate);
+        if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
+          this.countdownTim = '已开始';
+          this.isStart = true;
+          return;
+        }
+        this.countdownTim = `倒计时：${obj.hours}:${obj.minutes}:${obj.seconds}`;
       }, 300);
     },
     countdown(dateTim) {
@@ -363,8 +376,8 @@ export default {
         this.specialStartDate =
           data.adGroupSelfProductPrice &&
           data.adGroupSelfProductPrice.specialStartDate;
-        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
-        typeof this.specialEndDate === 'number' && this.countdownRun();
+        // this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialStartDate;
+        typeof this.specialStartDate === 'number' && this.countdownRun();
         this.handleInventory(inventory);
         for (let [index, elem] of data.skuList.entries()) {
           if (elem.inventory > 0) {
