@@ -66,6 +66,10 @@
       <img :src="giftData.giftBanner">
       <div class="submit" @click="goJumpPage(5);">点击领取</div>
     </div>
+
+    <!-- giftData.giftShow && dhData.show && newGift.isShow && couponisShow -->
+    <custom-popup v-if="showCustom" />
+    
     <footer></footer>
   </div>
 </template>
@@ -85,6 +89,7 @@
   import {getAddress} from '@/assets/js/wechatShare2.js';
   import NewHmoeModules from '@/components/common/newHmoeModules';
   import CouponToast from '@/components/common/couponToast';
+  import CustomPopup from './popup';
   export default {
     name: 'home',
     props: {
@@ -109,6 +114,7 @@
           img:require('@/assets/images/red_packet.png'),
           isShow:false,
           integral:'***',
+          loaded: false
         },
         conponShow:false,
         couponisShow:false,
@@ -118,16 +124,23 @@
           gifts:{},
           giftLogo:require('@/assets/images/home/gift_logo.png'),
           giftBanner:require('@/assets/images/home/gift.png'),
+          loaded: false
         },
         dhData:{
           img:'',
           show:false,
         },
         localStorageObj:localStorage,
+        // popStatus: false, // 自定义弹窗状态
+        // isInitData: false
       };
     },
     computed: {
-
+      showCustom(){
+        // alert(this.giftData.loaded + '---' + this.newGift.loaded);
+        // alert(this.giftData.giftShow + '---' + this.dhData.show + '---' + this.newGift.isShow + '---' + this.conponShow);
+        return (this.giftData.loaded && this.newGift.loaded) && !(this.giftData.giftShow || this.dhData.show || this.newGift.isShow || this.conponShow);
+      }
     },
     created() {
       this.firstLoding();
@@ -139,6 +152,9 @@
       this.addUserAction();
     },
     methods: {
+      // changePopStatus(status){
+      //   this.popStatus = status;
+      // },
       async goJumpPage(type,url,index) {
         if(type == 1){
           //  this.$baiduStats('首页-头部-待领取礼包');
@@ -219,6 +235,7 @@
         const {
           data
         } = await getNewGift();
+        this.newGift.loaded = true;
         if (data.code === '1000' && data.data) {
           this.newGift.isShow = true;
           this.newGift.integral = data.data.integral;
@@ -231,6 +248,7 @@
         const {
           data
         } = await giftBagList();
+        this.giftData.loaded = true;
         if (data.code == 1000 && data.data) {
           if(this.$cookies.get("first_giftShow") != "3" && data.data.gifts && data.data.iconShow == 1){
             this.giftData.giftShow = true;
@@ -255,7 +273,7 @@
           if(data.data){
             const obj = JSON.parse(data.data.userInfo);
           }
-          if (obj.token != this.localStorageObj.token) {
+          if (obj && obj.token != this.localStorageObj.token) {
             dooolyAPP.logOut();
           }
         }
@@ -295,7 +313,8 @@
     },
     components: {
       NewHmoeModules,
-      CouponToast
+      CouponToast,
+      CustomPopup
     },
   };
 </script>

@@ -179,3 +179,11 @@ export const getGroupEquity = () => {
 export const getEquityByEquityId = (data) => {
   return Ajax.post(`${Doooly}jersey/groupEquity/getEquityByEquityId`, data)
 }
+
+/**
+ * 首页自定义弹窗
+ * @param {*}  
+ */
+export const getDialogList = () => {
+  return Ajax.post(`${Activity}homepage/spread/list`, {})
+}

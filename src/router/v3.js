@@ -28,6 +28,12 @@ const versionControl = r => {
     return r(require('@/components/doooly/v3/pages/version/version.vue'))
   }, 'versionControl')
 };
+// 秒杀商品详情页
+const seckillGoodsDetail = r => {
+  return require.ensure([], () => {
+    return r(require('@/components/doooly/v3/pages/seckill-goods-detail/detail.vue'))
+  }, 'seckillGoodsDetail')
+};
 
 const routes = [{
   path: 'home',
@@ -64,6 +70,13 @@ const routes = [{
   component: versionControl,
   meta: {
     requireAuth: true
+  }
+},{
+  path: 'seckillGoodsDetail/:productId/:activityName',
+  name: 'seckillGoodsDetail',
+  component: seckillGoodsDetail,
+  meta: {
+    title: '秒杀商品详情'
   }
 }]
 
