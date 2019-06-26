@@ -58,7 +58,7 @@ export default {
       localStorage.setItem("popIds", JSON.stringify(this.allIds));
     },
     async getDialogList() {
-      const { data } = await getDialogList();
+      const { data } = await getDialogList(localStorage.userId,);
       if (data && data.code === 1000 && data.data.length) {
         let dataArr = data.data;
         this.handleIds(dataArr);

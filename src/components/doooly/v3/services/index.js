@@ -184,6 +184,6 @@ export const getEquityByEquityId = (data) => {
  * 首页自定义弹窗
  * @param {*}  
  */
-export const getDialogList = () => {
-  return Ajax.post(`${Activity}homepage/spread/list`, {})
+export const getDialogList = (userId) => {
+  return Ajax.post(`${Activity}homepage/spread/list`, {userId})
 }
