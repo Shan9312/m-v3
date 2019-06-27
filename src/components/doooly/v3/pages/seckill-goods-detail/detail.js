@@ -379,33 +379,35 @@ export default {
         data: params,
         url: api.detailForAjax
       }).then(res => {
-        this.getServer(); // 请求服务器时间
-        let data = res.data.data;
-        this.cardBuyDetailList = data;
-        this.handleWelsh(
-          this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
-          this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
-        );
-        initTitle('商品详情');
-        for (let [index, elem] of data.imagesList.entries()) {
-          this.imagesList.push({
-            imagePath: elem
-          });
-        }
-        this.showSellPrice = this.cardBuyDetailList.skuList[0].sellPrice;
-        this.showMarketPrice = this.cardBuyDetailList.skuList[0].marketPrice;
-        let inventory = this.cardBuyDetailList.skuList[0].inventory;
-        this.specialStartDate =
-          data.adGroupSelfProductPrice &&
-          data.adGroupSelfProductPrice.specialStartDate;
-        this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialEndDate;
-        this.handleInventory(inventory);
-        for (let [index, elem] of data.skuList.entries()) {
-          if (elem.inventory > 0) {
-            this.skuClick(index);
-            break;
+        try {
+          this.getServer(); // 请求服务器时间
+          let data = res.data.data;
+          this.cardBuyDetailList = data;
+          this.handleWelsh(
+            this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
+            this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
+          );
+          initTitle('商品详情');
+          for (let [index, elem] of data.imagesList.entries()) {
+            this.imagesList.push({
+              imagePath: elem
+            });
           }
-        }
+          this.showSellPrice = this.cardBuyDetailList.skuList[0].sellPrice;
+          this.showMarketPrice = this.cardBuyDetailList.skuList[0].marketPrice;
+          let inventory = this.cardBuyDetailList.skuList[0].inventory;
+          this.specialStartDate =
+            data.adGroupSelfProductPrice &&
+            data.adGroupSelfProductPrice.specialStartDate;
+          this.specialEndDate = data.adGroupSelfProductPrice && data.adGroupSelfProductPrice.specialEndDate;
+          this.handleInventory(inventory);
+          for (let [index, elem] of data.skuList.entries()) {
+            if (elem.inventory > 0) {
+              this.skuClick(index);
+              break;
+            }
+          }
+        } catch (error) {}
       });
     },
     getIsReceive() {
