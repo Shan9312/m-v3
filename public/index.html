@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <style>
+    a[title='站长统计'] {
+      display: none;
+    }
+  </style>
+  <title>兜礼</title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script src="//reach-life.com/dooolyConfig.js"></script>
+  <script src="./static/ua-parser.min.js"></script>
+  <script src="./static/isWeiXin.js"></script>
+  <script src="./static/dooolyAPP.20190416.js"></script>
+  <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    var secretKey = '5ddfc967a5eaf4d32a89559e293bb979';
+    var locationHref = location.href;
+    var isReach_dist = locationHref.indexOf("reach_dist") > -1 || locationHref.indexOf("localhost") > -1;
+    var isReachtest = locationHref.indexOf("reachtest") > -1;
+    if (isReach_dist) {
+      secretKey = 'cc6fe667a6867c9cf9d34ce786116ee4';
+    } else if (isReachtest) {
+      secretKey = 'd0c3ce75fb2e96dfd25e01947cf960a6';
+    } else {
+      secretKey = '4b4ed8d0c62facfd2787cafd8ff71657';
+    }
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?" + secretKey;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+</html>
