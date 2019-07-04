@@ -1,17 +1,15 @@
-import Vue from 'vue';
+import Vue, {
+  jsonp
+} from 'vue';
 import Vuex from 'vuex';
-import VuexPersistence from 'vuex-persist'
 import v3Store from 'v3/store'
 
 Vue.use(Vuex);
 
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})
 const state = {
-  cardbuy: '',
-  scan: '',
-  deliveryAddress: ''
+  cardbuy: localStorage.getItem('cardbuy') ? JSON.parse(localStorage.getItem('cardbuy')) : '',
+  scan: localStorage.getItem('scan') ? localStorage.getItem('scan') : '',
+  deliveryAddress: localStorage.getItem('deliveryAddress') ? localStorage.getItem('deliveryAddress') : ''
 };
 const getters = {
   cardbuy: function (state) {
@@ -27,27 +25,32 @@ const getters = {
 const mutations = {
   add(state, data) {
     state.cardbuy = data;
+    localStorage.setItem('cardbuy', JSON.stringify(data));
   },
   delete(state, data) {
     state.cardbuy = data;
+    localStorage.removeItem('cardbuy');
   },
   addScan(state, data) {
     state.scan = data;
+    localStorage.setItem('scan', data);
   },
   deleteScan(state) {
     state.scan = '';
+    localStorage.removeItem('scan');
   },
   addAddress(state, data) {
     state.deliveryAddress = data;
+    localStorage.setItem('deliveryAddress', data);
   },
   deleteAddress(state) {
     state.deliveryAddress = '';
+    localStorage.removeItem('deliveryAddress');
   }
 };
 const actions = {
   addAction(context, data) {
     context.commit('add', data)
-
   },
   deleteAction(context, data) {
     context.commit('delete', data)
@@ -69,8 +72,7 @@ const oldStore = {
   state: state,
   getters: getters,
   mutations: mutations,
-  actions: actions,
-  plugins: [vuexLocal.plugin]
+  actions: actions
 }
 // 将v3里面的store和oldStore合并
 const newStore = Object.assign({}, v3Store, oldStore)

@@ -113,7 +113,7 @@ function getDeviceId() {
  */
 function param2Obj(url) {
   if (!url) return {}
-  const search = url.split('?')[1]
+  var search = url.split('?')[1]
   if (!search) {
     return {}
   }
