@@ -3,6 +3,10 @@ const path = require('path');
 function resolve(dir) {
     return path.join(__dirname, dir)
 }
+
+console.log(process.env.NODE_ENV)
+console.log(process.env.PUBLIC_PATH)
+
 module.exports = {
     publicPath: process.env.PUBLIC_PATH || './',
     productionSourceMap: false,
