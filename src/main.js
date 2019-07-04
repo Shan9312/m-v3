@@ -66,17 +66,23 @@ window.addEventListener('click', (event) => {
 })
 /**vue-router拦截**/
 router.beforeEach((to, from, next) => {
-  //配置无需登陆的页面数组
-  if (!localStorage.token && !to.meta.requireAuth) {
-    dooolyAPP.logOut(1);
-  } else {
-    if (locationHref.indexOf('companyLogin') > -1) {
-      router.replace({
-        path: '/v3/home'
-      });
+  if (to.matched.length === 0) { // 匹配前往的路由不存在
+    from.name ? next({
+      name: from.name
+    }) : next('v3/error') // 判断此跳转路由的来源路由是否存在，存在的情况跳转到来源路由，否则跳转到404页面
+  }else{
+    //配置无需登陆的页面数组
+    if (!localStorage.token && !to.meta.requireAuth) {
+      dooolyAPP.logOut(1);
+    } else {
+      if (locationHref.indexOf('companyLogin') > -1) {
+        router.replace({
+          path: '/v3/home'
+        });
+      }
     }
+    next();
   }
-  next();
 });
 
 router.afterEach((to, from) => {

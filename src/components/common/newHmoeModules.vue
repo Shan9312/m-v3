@@ -355,7 +355,6 @@
           } else {
             dooolyAPP.gotoJumpJq.call(this, linkUrl)
           }
-          dooolyAPP.gotoJumpJq.call(this, linkUrl)
         } else if (type == 21) {
           // this.$baiduStats('首页-礼包-' + title)
           dooolyAPP.redirectActivity('giftGoodsList/' + linkUrl + '?name=' + title)

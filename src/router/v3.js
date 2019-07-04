@@ -34,7 +34,12 @@ const seckillGoodsDetail = r => {
     return r(require('@/components/doooly/v3/pages/seckill-goods-detail/detail.vue'))
   }, 'seckillGoodsDetail')
 };
-
+// 404
+const error = r => {
+  return require.ensure([], () => {
+    return r(require('@/components/doooly/v3/pages/error-page/404.vue'))
+  }, 'error')
+};
 const routes = [{
   path: 'home',
   name: 'home',
@@ -78,6 +83,10 @@ const routes = [{
   meta: {
     title: '秒杀商品详情'
   }
+},{
+  path: 'error',
+  name: 'error',
+  component: error
 }]
 
 export default routes;

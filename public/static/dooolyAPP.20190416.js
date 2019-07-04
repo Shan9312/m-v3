@@ -670,7 +670,7 @@ dooolyAPP.logIn = function (data, url, type) {
     window.webkit.messageHandlers.nativeUserInfomation.postMessage(params)
   } else if (browserName == 'Chrome WebView') { // 安卓
     if (url) {
-      RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl)
+      RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, localStorage.loginUrl)
     } else {
       RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), '0', jsonData.token)
     }
