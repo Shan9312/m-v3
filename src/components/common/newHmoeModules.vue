@@ -1161,7 +1161,7 @@
 
     ul {
       padding: 0 0.1rem;
-      // display: flex;
+      display: flex;
       overflow: scroll;
 
       li {
