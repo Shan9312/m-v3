@@ -44,7 +44,7 @@ const confirmOrder = {
           total = value[0].sellPrice
         }
         if (value[0] && value[1]) {
-          total = (Number(value[0].sellPrice) + Number(value[1].sellPrice)).toFixed(2)
+          total = (parseInt(value[0].sellPrice) + parseInt(value[1].sellPrice)).toFixed(2)
         }
       }
       return total
@@ -167,7 +167,7 @@ const confirmOrder = {
               'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
               'buyNum': 1
             }],
-            'subProductType': Number(this.postData[0].productType)
+            'subProductType': parseInt(this.postData[0].productType)
           }]
         }
         http({
@@ -259,7 +259,7 @@ const confirmOrder = {
                 'skuId': this.postData[0].merchantProduct[0].productSku[0].skuId,
                 'buyNum': 1
               }],
-              'subProductType': Number(this.postData[0].productType)
+              'subProductType': parseInt(this.postData[0].productType)
             }, {
               'merchantId': this.postData[1].merchantProduct[0].merchantId,
               'remarks': '',
@@ -269,7 +269,7 @@ const confirmOrder = {
                 'skuId': this.postData[1].merchantProduct[0].productSku[0].skuId,
                 'buyNum': 1
               }],
-              'subProductType': Number(this.postData[1].productType)
+              'subProductType': parseInt(this.postData[1].productType)
             }]
           }
           http({

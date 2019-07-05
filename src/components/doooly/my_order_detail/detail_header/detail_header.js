@@ -24,8 +24,8 @@ const detailHeader = {
       type: String,
       default: ''
     },
-    minutes: Number,
-    seconds: Number
+    minutes: 0,
+    seconds: 0
   },
   data () {
     return {
