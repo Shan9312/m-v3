@@ -44,26 +44,6 @@ import {
 import '@/assets/css/base/common.scss';
 import '@/assets/css/base/my-mintui.scss'
 
-/**实例化Vue**/
-let vm = new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
-
-// 百度统计事件点击统一处理
-window.addEventListener('click', (event) => {
-  // let name = vm.$route.name;
-  let name = '';
-  let target = event.target || event.srcElement
-  while (target && target.dataset && !target.dataset.baiduStats) {
-    target = target.parentNode ? target.parentNode : ''
-  }
-  if (target && target.dataset && target.dataset.baiduStats) {
-    name = target.dataset.routeName;
-    baiduStats(target.dataset.baiduStats, name, vm);
-  }
-})
 /**vue-router拦截**/
 router.beforeEach((to, from, next) => {
   if (to.matched.length === 0) { // 匹配前往的路由不存在
@@ -102,4 +82,25 @@ router.onError((error) => {
   router.replace(targetPath);
 });
 
-import './error-log';
+/**实例化Vue**/
+let vm = new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");
+
+// 百度统计事件点击统一处理
+window.addEventListener('click', (event) => {
+  // let name = vm.$route.name;
+  let name = '';
+  let target = event.target || event.srcElement
+  while (target && target.dataset && !target.dataset.baiduStats) {
+    target = target.parentNode ? target.parentNode : ''
+  }
+  if (target && target.dataset && target.dataset.baiduStats) {
+    name = target.dataset.routeName;
+    baiduStats(target.dataset.baiduStats, name, vm);
+  }
+})
+
+// import './error-log';

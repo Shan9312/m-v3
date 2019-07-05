@@ -354,6 +354,7 @@ export default {
     width: 100%;
     border: 0;
     height: 0.88rem;
+    line-height: normal;
     resize:none;
     outline: none;
     font-size: 0.28rem;

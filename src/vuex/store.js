@@ -7,9 +7,9 @@ import v3Store from 'v3/store'
 Vue.use(Vuex);
 
 const state = {
-  cardbuy: localStorage.getItem('cardbuy') ? JSON.parse(localStorage.getItem('cardbuy')) : '',
-  scan: localStorage.getItem('scan') ? localStorage.getItem('scan') : '',
-  deliveryAddress: localStorage.getItem('deliveryAddress') ? localStorage.getItem('deliveryAddress') : ''
+  cardbuy: localStorage.getItem('store_cardbuy') ? JSON.parse(localStorage.getItem('store_cardbuy')) : '',
+  scan: localStorage.getItem('store_scan') ? localStorage.getItem('scan') : '',
+  deliveryAddress: localStorage.getItem('store_deliveryAddress') ? localStorage.getItem('store_deliveryAddress') : ''
 };
 const getters = {
   cardbuy: function (state) {
@@ -25,27 +25,27 @@ const getters = {
 const mutations = {
   add(state, data) {
     state.cardbuy = data;
-    localStorage.setItem('cardbuy', JSON.stringify(data));
+    localStorage.setItem('store_cardbuy', JSON.stringify(data));
   },
   delete(state, data) {
-    state.cardbuy = data;
-    localStorage.removeItem('cardbuy');
+    state.cardbuy = '';
+    localStorage.removeItem('store_cardbuy');
   },
   addScan(state, data) {
     state.scan = data;
-    localStorage.setItem('scan', data);
+    localStorage.setItem('store_scan', data);
   },
   deleteScan(state) {
     state.scan = '';
-    localStorage.removeItem('scan');
+    localStorage.removeItem('store_scan');
   },
   addAddress(state, data) {
     state.deliveryAddress = data;
-    localStorage.setItem('deliveryAddress', data);
+    localStorage.setItem('store_deliveryAddress', data);
   },
   deleteAddress(state) {
     state.deliveryAddress = '';
-    localStorage.removeItem('deliveryAddress');
+    localStorage.removeItem('store_deliveryAddress');
   }
 };
 const actions = {
