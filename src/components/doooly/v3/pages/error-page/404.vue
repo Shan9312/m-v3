@@ -3,8 +3,8 @@
     <div class="error-img">
       <img src="./images/error.png" alt="">
     </div>
-    <p>您访问的页面不存在</p>
-    <button @click="goIndex">去首页</button>
+    <p>小兜兜迷路了~</p>
+    <button @click="goIndex">重新加载</button>
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
   p {
     text-align: center;
     font-size: 0.14rem;
-    color: #666;
+    color: #999;
     margin-top: 21px;
   }
   button {
@@ -48,7 +48,7 @@ export default {
     height: 0.36rem;
     min-height: 35px;
     line-height: 0.36rem;
-    border-radius: 5px;
+    border-radius: 0.36rem;
     background-color: #ee3f44;
     color: #fff;
     font-size: 0.14rem;
