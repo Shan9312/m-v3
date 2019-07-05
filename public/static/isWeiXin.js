@@ -8,7 +8,7 @@ if (browserName == 'WeChat' && navigator.userAgent.indexOf('wxwork') > -1) {
 if (browserName == 'Android Browser' && navigator.userAgent.indexOf('doooly') > -1) {
   browserName = 'Chrome WebView'
 }
-if (browserName == 'Chrome WebView' && localStorage.ownApp == 'other') {
+if (browserName == 'Android Browser' && localStorage.ownApp == 'other') {
   browserName = 'otherAPPAndroid'
   memberFrom = '武钢会员'
 }
