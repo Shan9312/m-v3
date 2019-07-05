@@ -1157,14 +1157,17 @@
   }
 
   .gift {
+    overflow: scroll; // todo
     margin-bottom: 0.8rem;
 
     ul {
+      width: 999999px; // todo
       padding: 0 0.1rem;
-      display: flex;
+      // display: flex; // todo
       overflow: scroll;
 
       li {
+        float: left; // todo
         padding: 0 0.1rem;
         text-align: center;
 
