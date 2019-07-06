@@ -5,10 +5,10 @@ var memberFrom = '兜礼会员'
 if (browserName == 'WeChat' && navigator.userAgent.indexOf('wxwork') > -1) {
   browserName = 'enterpriseWX'
 }
-if (browserName == 'Android Browser') {
+if (browserName == 'Android Browser' && navigator.userAgent.indexOf('doooly') > -1) {
   browserName = 'Chrome WebView'
 }
-if (browserName == 'Chrome WebView' && localStorage.ownApp == 'other') {
+if (browserName == 'Android Browser' && localStorage.ownApp == 'other') {
   browserName = 'otherAPPAndroid'
   memberFrom = '武钢会员'
 }
@@ -20,9 +20,9 @@ if (browserName == 'WebKit' && localStorage.ownApp == 'other') {
 if (/wiscowechat/.test(window.location.href)) {
   memberFrom = '钢城e家会员'
 }
-var userAgent = window.navigator.userAgent 
-var dooolyRegx = /doooly/i// 兜礼app会有标识
-var dahuatechApp = /dahuatechApp/i//大华app特殊标识
+var userAgent = window.navigator.userAgent
+var dooolyRegx = /doooly/i // 兜礼app会有标识
+var dahuatechApp = /dahuatechApp/i //大华app特殊标识
 if (browserName == "WebKit" || browserName == "Chrome WebView") {
   //第三方app兼容，第三方渠道需新建文件目录根据目录名称对browserName进行修改
   if (/thirdParty/.test(window.location.href) || localStorage.appUrlChannel == 'thirdParty') {
@@ -113,7 +113,7 @@ function getDeviceId() {
  */
 function param2Obj(url) {
   if (!url) return {}
-  const search = url.split('?')[1]
+  var search = url.split('?')[1]
   if (!search) {
     return {}
   }

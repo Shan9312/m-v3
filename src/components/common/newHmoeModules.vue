@@ -201,6 +201,46 @@
             {{item.title}}
           </div>
         </li>
+        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
+          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
+          @click="goJumpPage(21,'',item.id,item.title)">
+          <div class="img-view">
+            <img :src="item.iconUrl" :onerror="defaultImg">
+          </div>
+          <div class="tag">
+            {{item.title}}
+          </div>
+        </li>
+        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
+          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
+          @click="goJumpPage(21,'',item.id,item.title)">
+          <div class="img-view">
+            <img :src="item.iconUrl" :onerror="defaultImg">
+          </div>
+          <div class="tag">
+            {{item.title}}
+          </div>
+        </li>
+        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
+          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
+          @click="goJumpPage(21,'',item.id,item.title)">
+          <div class="img-view">
+            <img :src="item.iconUrl" :onerror="defaultImg">
+          </div>
+          <div class="tag">
+            {{item.title}}
+          </div>
+        </li>
+        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
+          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
+          @click="goJumpPage(21,'',item.id,item.title)">
+          <div class="img-view">
+            <img :src="item.iconUrl" :onerror="defaultImg">
+          </div>
+          <div class="tag">
+            {{item.title}}
+          </div>
+        </li>
         <li data-route-name="home" :data-baidu-stats="'礼包-更多'" v-if="newListV3.hasMore" @click="goJumpPage(22)">
           <div class="img-view">
             <img src="../../../src/assets/images/home/home_v3_more.png">
@@ -355,7 +395,6 @@
           } else {
             dooolyAPP.gotoJumpJq.call(this, linkUrl)
           }
-          dooolyAPP.gotoJumpJq.call(this, linkUrl)
         } else if (type == 21) {
           // this.$baiduStats('首页-礼包-' + title)
           dooolyAPP.redirectActivity('giftGoodsList/' + linkUrl + '?name=' + title)
@@ -1118,14 +1157,17 @@
   }
 
   .gift {
+    // overflow: scroll; // todo
     margin-bottom: 0.8rem;
 
     ul {
+      // width: 999999px; // todo
       padding: 0 0.1rem;
-      display: flex;
+      display: flex; // todo
       overflow: scroll;
 
       li {
+        // float: left; // todo
         padding: 0 0.1rem;
         text-align: center;
 

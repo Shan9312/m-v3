@@ -314,7 +314,7 @@ export default{
     created(){
         this.title();
         if(localStorage.rechargeTab){
-            this.tab_number=Number(localStorage.rechargeTab);
+            this.tab_number=parseInt(localStorage.rechargeTab);
             localStorage.removeItem('rechargeTab');
         }
         this.getCouponNum_method();//获取抵扣券
@@ -384,11 +384,11 @@ export default{
             this.sctcd_merchant_id = this.toRecharge.sctcd_merchant_id;
             //缓存校验
             if(localStorage.chargeListSkuId){
-                this.charge_list_sku_id = Number(localStorage.chargeListSkuId);
+                this.charge_list_sku_id = parseInt(localStorage.chargeListSkuId);
                 localStorage.removeItem('charge_list_sku_id');
             };
             if(localStorage.inputnewMobile){
-                this.newMobile = Number(localStorage.inputnewMobile);
+                this.newMobile = parseInt(localStorage.inputnewMobile);
                 localStorage.removeItem('inputnewMobile');
             };
         }

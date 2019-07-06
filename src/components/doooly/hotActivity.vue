@@ -133,7 +133,7 @@
           method: 'post',
           url: this.joinActivityUrl(localStorage.token, this.pageNumber, this.pageSize),
         }).then((res) => {
-          this.resCountPage=Number(res.data.data.countPage);
+          this.resCountPage=parseInt(res.data.data.countPage);
           this.activityData = [...res.data.data.list];
           if(this.pageNumber>=res.data.data.countPage){
             this.allLoaded=true;

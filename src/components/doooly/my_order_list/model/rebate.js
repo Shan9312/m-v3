@@ -1,6 +1,6 @@
 // 返积分判断逻辑
 function countRebateState(isUserRebate, userRebate, type) {
-  type = Number(type); // 确定type为number类型
+  type = parseInt(type); // 确定type为number类型
   let state = 0;
   let resultState = 0;
   if (isUserRebate === 0 && userRebate > 0 && (type === 1 || type === 5)) { // 返积分 && 积分大于0 && 订单完成  -- 已返积分

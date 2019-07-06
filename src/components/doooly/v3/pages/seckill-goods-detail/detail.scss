@@ -1,25 +1,13 @@
 .box_item {
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  box-orient: horizontal;
+  display: flex;
+  justify-content: space-between;
 }
-.box_item .item {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
+.fl-1{
+  min-width: 66%;
 }
-.box_item .item2 {
-  -webkit-box-flex: 2;
-  -moz-box-flex: 2;
-  box-flex: 2;
-}
-.box_item .item3 {
-  -webkit-box-flex: 3;
-  -moz-box-flex: 3;
-  box-flex: 3;
+.fr-2{
+  min-width: 33%;
+  width: 100%;
 }
 .adBannerSwipe {
   height: 7.5rem;

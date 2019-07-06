@@ -14,6 +14,7 @@ module.exports = {
         // modify html-webpack-plugin options
         config.plugin('html').tap(args => {
             args[0].commonResourcePath = process.env.COMMON_RESOURCE_PATH; // set common resource path
+            args[0].publicPath = process.env.PUBLIC_PATH; // set public path
             return args;
         });
         // config.entry('main').add('babel-polyfill');
