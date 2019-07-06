@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
@@ -20,9 +21,9 @@
   <div id="app">
   </div>
   <script src="//reach-life.com/dooolyConfig.js"></script>
-  <script src="./static/ua-parser.min.js"></script>
-  <script src="./static/isWeiXin.js"></script>
-  <script src="./static/dooolyAPP.20190416.js"></script>
+  <script src="<%= htmlWebpackPlugin.options.publicPath %>static/ua-parser.min.js"></script>
+  <script src="<%= htmlWebpackPlugin.options.publicPath %>static/isWeiXin.js"></script>
+  <script src="<%= htmlWebpackPlugin.options.publicPath %>static/dooolyAPP.20190416.js"></script>
   <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
   <script>
     var _hmt = _hmt || [];
@@ -45,4 +46,5 @@
     })();
   </script>
 </body>
+
 </html>

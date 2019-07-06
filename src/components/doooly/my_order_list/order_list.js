@@ -88,7 +88,7 @@ const myOrderList = {
   },
   mounted() {
     this.tab = this.$route.params.tab;
-    this.type = Number(this.tab) + 1;
+    this.type = parseInt(this.tab) + 1;
     this.hintState = this.hintStateFilter[this.type];
     this.userFlag = this.userFlagFilter[this.type];
     this.loadFirstPage();
@@ -235,7 +235,7 @@ const myOrderList = {
       } else {
         localStorage.selectedTab2 = index;
       }
-      this.type = Number(index) + 1;
+      this.type = parseInt(index) + 1;
       this.hintState = this.hintStateFilter[this.type];
       this.userFlag = this.userFlagFilter[this.type];
       this.pageNumber = 1;

@@ -114,7 +114,7 @@
             if(res.data.isNew == 0){
               this.alr_show = true;
             }
-            this.resCountPage=Number(res.data.data.countPage);
+            this.resCountPage=parseInt(res.data.data.countPage);
             this.activityData = [...res.data.data.adProducts];
             if(this.pageNumber>=res.data.data.countPage){
               this.allLoaded=true;

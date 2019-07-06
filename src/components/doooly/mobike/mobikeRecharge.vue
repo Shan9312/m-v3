@@ -32,7 +32,7 @@
           @click="checklist(index)"
           v-show="list.specification != '1次骑行券'"
         >
-          <span>{{ Number(list.price) }}元</span><br />
+          <span>{{ parseInt(list.price) }}元</span><br />
           <span>{{ list.specification }}</span>
         </li>
       </ul>

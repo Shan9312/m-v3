@@ -250,28 +250,28 @@ body{
   height:0.24rem;
   position: relative;
 }
-.loading_gif:before{
-  content: '';
-  width: 0.24rem;
-  height: 0.24rem;
-  background: #ee3f44;
-  position: absolute;
-  border-radius: 50%;
-  left: 0;
-  top:0;
-  animation:left 0.7s linear 0s infinite alternate;
-}
-.loading_gif:after{
-  content: '';
-  width: 0.24rem;
-  height: 0.24rem;
-  background: yellow;
-  position: absolute;
-  border-radius: 50%;
-  left: 0.66rem;
-  top:0;
-  animation:right 0.7s linear 0s infinite alternate;
-}
+// .loading_gif:before{
+//   content: '';
+//   width: 0.24rem;
+//   height: 0.24rem;
+//   background: #ee3f44;
+//   position: absolute;
+//   border-radius: 50%;
+//   left: 0;
+//   top:0;
+//   animation:left 0.7s linear 0s infinite alternate;
+// }
+// .loading_gif:after{
+//   content: '';
+//   width: 0.24rem;
+//   height: 0.24rem;
+//   background: yellow;
+//   position: absolute;
+//   border-radius: 50%;
+//   left: 0.66rem;
+//   top:0;
+//   animation:right 0.7s linear 0s infinite alternate;
+// }
 @keyframes left{
   0% {left: 0;}
   100% {left: 0.66rem}

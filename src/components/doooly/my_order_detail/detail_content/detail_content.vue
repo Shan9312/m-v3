@@ -3,7 +3,7 @@
     <div class="detail_count">
       <div class="div_describe">
         <p class="des_l">订单金额</p>
-        <p class="des_r" v-if="Number(supplierOrder.payAmount) || Number(supplierOrder.payAmount) == 0">
+        <p class="des_r" v-if="parseInt(supplierOrder.payAmount) || parseInt(supplierOrder.payAmount) == 0">
           ￥{{ supplierOrder.payAmount.toFixed(2) }}
           <span v-if="supplierOrder.amountPayable > 0 && supplierOrder.savePrice > 0">
             (原价:￥{{ supplierOrder.amountPayable.toFixed(2) }})</span>
@@ -14,7 +14,7 @@
         <p class="des_r short_text">-￥{{ supplierOrder.savePrice.toFixed(2) }}</p>
       </div>
       <div class="div_describe"
-        v-if="Number(supplierOrder.serviceCharge)">
+        v-if="parseInt(supplierOrder.serviceCharge)">
         <p class="des_l">手续费</p>
         <p class="des_r">￥{{ supplierOrder.serviceCharge }}</p>
       </div>
@@ -58,13 +58,13 @@
           <div v-if="supplierOrder.totalPrice" class="div_describe">
             <div class="des_l">商品金额</div>
             <div class="des_r" v-if="String(supplierOrder.totalPrice).indexOf('.')>0">
-              ￥{{Number(supplierOrder.totalPrice).toFixed()}}</div>
+              ￥{{parseInt(supplierOrder.totalPrice).toFixed()}}</div>
             <div class="des_r" v-else>￥{{supplierOrder.totalPrice}}.00</div>
           </div>
           <div class="div_describe">
             <div class="des_l">抵扣金额</div>
             <div class="des_r" v-if="String(supplierOrder.voucher).indexOf('.')>0">
-              ￥{{Number(supplierOrder.voucher).toFixed(2)}}</div>
+              ￥{{parseInt(supplierOrder.voucher).toFixed(2)}}</div>
             <div class="des_r" v-else>￥{{supplierOrder.voucher}}.00</div>
           </div>
         </div>
@@ -92,7 +92,7 @@
       <div class="div_describe" v-if="supplierOrder.state === '1'">
         <div class="des_l">支付方式</div>
         <div class="des_r"
-          v-if="supplierOrder.productType==3 && Number(supplierOrder.voucher).toFixed(2)>0 && supplierOrder.payAmount.toFixed(2)==0.00">
+          v-if="supplierOrder.productType==3 && parseInt(supplierOrder.voucher).toFixed(2)>0 && supplierOrder.payAmount.toFixed(2)==0.00">
           抵扣券</div>
         <div class="des_r" v-else>{{supplierOrder.payTypeStr}}</div>
       </div>

@@ -26,10 +26,7 @@
 <script>
   export default {
     props: {
-      offset: {
-        type: Number,
-        default: 40
-      },
+      offset: 40,
       enableInfinite: {
         type: Boolean,
         default: true
