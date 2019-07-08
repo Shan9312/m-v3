@@ -201,46 +201,6 @@
             {{item.title}}
           </div>
         </li>
-        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
-          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
-          @click="goJumpPage(21,'',item.id,item.title)">
-          <div class="img-view">
-            <img :src="item.iconUrl" :onerror="defaultImg">
-          </div>
-          <div class="tag">
-            {{item.title}}
-          </div>
-        </li>
-        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
-          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
-          @click="goJumpPage(21,'',item.id,item.title)">
-          <div class="img-view">
-            <img :src="item.iconUrl" :onerror="defaultImg">
-          </div>
-          <div class="tag">
-            {{item.title}}
-          </div>
-        </li>
-        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
-          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
-          @click="goJumpPage(21,'',item.id,item.title)">
-          <div class="img-view">
-            <img :src="item.iconUrl" :onerror="defaultImg">
-          </div>
-          <div class="tag">
-            {{item.title}}
-          </div>
-        </li>
-        <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
-          data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
-          @click="goJumpPage(21,'',item.id,item.title)">
-          <div class="img-view">
-            <img :src="item.iconUrl" :onerror="defaultImg">
-          </div>
-          <div class="tag">
-            {{item.title}}
-          </div>
-        </li>
         <li data-route-name="home" :data-baidu-stats="'礼包-更多'" v-if="newListV3.hasMore" @click="goJumpPage(22)">
           <div class="img-view">
             <img src="../../../src/assets/images/home/home_v3_more.png">
