@@ -90,7 +90,7 @@ const routes = [{
     title: '秒杀商品详情'
   }
 },{
-  path: 'pickUpGoods/:productId/:activityName/:sourceType',
+  path: 'pickUpGoods/:productId/:activityName',
   name: 'pickUpGoods',
   component: pickUpGoods,
   meta: {

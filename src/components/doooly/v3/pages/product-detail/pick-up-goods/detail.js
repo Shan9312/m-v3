@@ -9,7 +9,7 @@ export default {
   },
   data() {
     return {
-      sourceType: this.$route.params.sourceType,
+      // sourceType: this.$route.params.sourceType,
       specialStartDate: 0,
       specialEndDate: 0,
       isStart: false,
@@ -242,10 +242,10 @@ export default {
           // this.getServer(); // 请求服务器时间
           let data = res.data.data;
           this.cardBuyDetailList = data;
-          this.handleWelsh(
-            this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
-            this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
-          );
+          // this.handleWelsh(
+          //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
+          //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
+          // );
           initTitle('商品详情');
           for (let [index, elem] of data.imagesList.entries()) {
             this.imagesList.push({
