@@ -43,7 +43,7 @@ export default {
       scroll: '',
       offsetTop: '',
       goTop: 0,
-      isReceive: this.$route.params.isReceive,
+      // isReceive: this.$route.params.isReceive,
       giftBagId: this.$route.params.giftBagId,
       giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
       // ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
@@ -68,7 +68,6 @@ export default {
   },
   created() {
     this.loadCardBuyDetailList();
-    this.getIsReceive();
     if (browserName == 'Chrome WebView') {
       // 在安卓app中优化轮播图禁用下拉刷新
       RHNativeJS.visablePtrFrame(false);
@@ -120,18 +119,9 @@ export default {
       this.checkProTypeClass = index;
       this.proIndex = index;
     },
-    order(flag) {
-      if (!this.isStart && this.activityName) {
+    order() {
+      if (this.inventory == 0) {
         return;
-      }
-      if (this.isEnd) {
-        return;
-      }
-      if (this.inventory == 0 || this.isReceive == 1) {
-        return;
-      }
-      if (flag && this.isError) {
-        return this.$toast(this.errMsg);
       }
       this.postData = {
         productType: this.cardBuyDetailList.productTypeList[this.proIndex].id,
@@ -267,29 +257,6 @@ export default {
             }
           }
         } catch (error) {}
-      });
-    },
-    getIsReceive() {
-      if (this.isReceive === undefined && this.giftBagId === undefined) {
-        return false;
-      }
-      http({
-        method: 'post',
-        url: api.giftBagIsReceive,
-        data: {
-          userId: localStorage.userId,
-          giftBagId: this.giftBagId,
-          productSkuIds: this.$route.params.skuId
-        }
-      }).then(res => {
-        let data = res.data;
-        if (data) {
-          let code = data.code;
-          if (code !== 1000) {
-            this.isError = true;
-            this.errMsg = data.info;
-          }
-        }
       });
     }
   }
