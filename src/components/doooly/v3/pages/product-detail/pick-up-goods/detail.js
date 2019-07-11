@@ -217,10 +217,12 @@ export default {
 
     // 加载商品详情信息
     loadCardBuyDetailList() {
+      let activityName = this.activityName;
+      if (activityName === 'pickUpGoods') activityName = ''; // TODO 如果是东航提货券活动，不需要传activityName，这里的activityName只是用于在收银台判断跳哪个支付结果页
       let params = {
         userId: localStorage.userId,
         productId: this.$route.params.productId,
-        activityName: this.activityName,
+        activityName,
         token: localStorage.token
       };
       http({
