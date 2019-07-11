@@ -1,7 +1,5 @@
 ### 商品详情页代码太乱需要整理
   1、seckill-goods-detail是秒杀活动对应的商品详情页、pick-up-goods是东航提货券活动对应的商品详情页
-  2、pick-up-goods与seckill-goods-detail两个文件夹的代码功能一致，pick-up-goods删减了些无用代码
-  3、后面优化代码可以在pick-up-goods里改动，确认优化完成后把seckill-goods-detail合并在一起
 
 ### 待优化点、优化思路
   1、目前改变最多且有大量逻辑判断的是那个下单按钮，可以把下单按钮单独抽出来，根据环境切换不同的按钮

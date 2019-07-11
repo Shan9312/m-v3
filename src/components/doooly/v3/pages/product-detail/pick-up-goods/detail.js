@@ -9,6 +9,7 @@ export default {
   },
   data() {
     return {
+      sourceType: this.$route.params.sourceType,
       specialStartDate: 0,
       specialEndDate: 0,
       isStart: false,
@@ -45,7 +46,7 @@ export default {
       isReceive: this.$route.params.isReceive,
       giftBagId: this.$route.params.giftBagId,
       giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
-      ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
+      // ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: '',
@@ -74,63 +75,6 @@ export default {
     }
   },
   methods: {
-    countdownRun(){
-      clearInterval(this.countdownId);
-      if (this.isStart || this.isEnd) {
-        return;
-      };
-      this.countdownId = setInterval(() => {
-        let obj = this.countdown(this.specialStartDate, this.serverDate);
-        if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
-          window.location.reload();
-          clearInterval(this.countdownId);
-          this.isStart = true;
-          return;
-        }
-        // adGroupSelfProductPrice undefined
-        if (obj.hours === undefined && obj.minutes === undefined && obj.seconds === undefined) return this.countdownTim = '';
-        this.countdownTim = `倒计时：${obj.hours || 0}:${obj.minutes || 0}:${obj.seconds || 0}`;
-      }, 300);
-    },
-    countdown(dateTim, serverDate) {
-      if (typeof dateTim !== 'number') return {};
-      var hours = 0,
-        minutes = 0,
-        seconds = 0;
-      seconds = (dateTim - serverDate) / 1000;
-    
-      hours = Math.floor(seconds / 3600);
-      seconds = seconds % 3600;
-      minutes = Math.floor(seconds / 60);
-      seconds = seconds % 60;
-      seconds = Math.floor(seconds);
-    
-      // 添加0
-      if (hours < 10) {
-        hours = '0' + hours;
-      }
-      if (minutes < 10) {
-        minutes = '0' + minutes;
-      }
-      if (seconds < 10) {
-        seconds = '0' + seconds;
-      }
-    
-      return {
-        hours,
-        minutes,
-        seconds
-      };
-    },
-    watchEndDate(){
-      this.watchEndId = setInterval(() => {
-        this.serverDate = this.serverDate + 300;
-        if (this.specialEndDate <= this.serverDate) {
-          this.isEnd = true;
-          clearInterval(this.watchEndId);
-        }
-      }, 300);
-    },
     menu() {
       this.scroll = document.documentElement.scrollTop;
       if (
@@ -152,24 +96,6 @@ export default {
     goTopfunction() {
       clearInterval(this.timeOut);
       this.animation();
-    },
-    // 获取服务器当前时间
-    getServer() {
-      http({
-        url: api.getCurrentTime + '?token=' + localStorage.token,
-        method: 'get'
-      }).then(res => {
-        let serverDate = 0;
-        if (res.data && res.data.currentTime) {
-          serverDate = res.data.currentTime;
-          this.isEnd = this.specialEndDate && this.specialEndDate <= serverDate;
-          this.isStart =
-            this.specialStartDate && this.specialStartDate <= serverDate;
-        }
-        this.serverDate = serverDate;
-        this.watchEndDate();
-        this.countdownRun();
-      });
     },
     animation() {
       this.timeOut = setTimeout(() => {
@@ -313,7 +239,7 @@ export default {
         url: api.detailForAjax
       }).then(res => {
         try {
-          this.getServer(); // 请求服务器时间
+          // this.getServer(); // 请求服务器时间
           let data = res.data.data;
           this.cardBuyDetailList = data;
           this.handleWelsh(

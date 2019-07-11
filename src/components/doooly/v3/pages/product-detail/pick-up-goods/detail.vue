@@ -87,49 +87,21 @@
     >
       <img src="~@/assets/images/cardbuy/go_top.png" />
     </div>
-    <div v-if="!ccbType">
+    <div>
       <!-- 底部悬浮 -->
       <div class="footer_bg"></div>
-      <footer class="box_item" v-if="!giftBagId">
-        <div class="item fl-1" v-if="!isStart && !isEnd && specialStartDate">
-          <!-- 可用积分：<span>{{ cardBuyDetailList.availablePoint }}</span> -->
+      <footer class="box_item">
+        <!-- <div class="item fl-1" v-if="!isStart && !isEnd && specialStartDate">
           {{countdownTim}}
-        </div>
+        </div> -->
         <div
           class="item fr-2"
-          :class="{ gary: inventory === 0 || (!isStart && activityName) || isEnd }"
+          :class="{ gary: inventory === 0 }"
           @click="order()"
         >
-          <span v-if="!activityName">{{
-            inventory === 0 ? "补货中" : "立即订购"
+          <span>{{
+            inventory === 0 ? "已售罄" : "立即领取"
           }}</span>
-          <span v-else-if="isStart && activityName && !isEnd">{{
-            inventory === 0 ? "已售罄" : "立即抢购"
-          }}</span>
-          <span v-else-if="isEnd">已结束</span>
-          <span v-else>{{ !this.specialStartDate ? '已售罄' : '即将开抢'}}</span>
-          <!--{{inventory!=0?'立即订购':'已售罄'}}-->
-        </div>
-      </footer>
-      <footer class="box_item" v-else>
-        <div
-          class="item fr-2"
-          v-if="!giftType"
-          :class="{ gary: inventory == 0 || isReceive == 1 }"
-          @click="order('38')"
-        >
-          <span v-if="isReceive == 1">已领取</span>
-          <span v-else-if="inventory == 0">已领完</span>
-          <span v-else>{{ giftType ? "立即兑换" : "立即领取" }}</span>
-          <!--{{inventory!=0?'立即订购':'已售罄'}}-->
-        </div>
-        <div
-          class="item fr-2"
-          v-else
-          :class="{ gary: inventory == 0 || isReceive == 1 }"
-          @click="order()"
-        >
-          <span>立即兑换</span>
         </div>
       </footer>
     </div>
