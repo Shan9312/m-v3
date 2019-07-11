@@ -46,9 +46,6 @@
     <div class="specification padding_frm">
       <div class="title">规格</div>
       <ul class="label">
-        <!--<#list skuList as skuList>-->
-        <!--<li <#if skuList_index == 0>class="check"</#if> data-id="${skuList.id}" data-buyNumberLimit="${skuList.buyNumberLimit}" data-overBuyLimit="${skuList.overBuyLimit?string ("true","false")}" data-inventory="${skuList.inventory}" data-sellPrice="${skuList.sellPrice}" data-marketPrice="${skuList.marketPrice}">${skuList.specification}</li>-->
-        <!--</#list>-->
         <li
           :class="{ check: checkSkuClass == index }"
           v-for="(item, index) in cardBuyDetailList.skuList"
@@ -63,9 +60,6 @@
     <div class="type padding_frm">
       <div class="title">类型</div>
       <ul class="label">
-        <!--<#list productTypeList as productTypeList>-->
-        <!--<li <#if productTypeList_index == 0>class="check"</#if> data-id="${productTypeList.id}">${productTypeList.name}</li>-->
-        <!--</#list>-->
         <li
           :class="{ check: checkProTypeClass == index }"
           v-for="(item, index) in cardBuyDetailList.productTypeList"

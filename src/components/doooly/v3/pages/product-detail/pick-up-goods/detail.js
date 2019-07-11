@@ -1,11 +1,7 @@
 import adBanner from '@/components/common/adBanner';
 import http from '@/http/http.js';
 import api from '@/assets/js/api.js';
-import { mapState, mapActions } from 'vuex';
-import {
-  shareWithFriendsWX,
-  shareWithFriendsAPP
-} from '@/assets/js/wechatShare2.js';
+
 export default {
   name: 'seckill-goods-detail',
   components: {
@@ -17,17 +13,7 @@ export default {
       specialEndDate: 0,
       isStart: false,
       isEnd: false,
-      activityName:
-        this.$route.params.activityName &&
-        this.$route.params.activityName != 'false'
-          ? this.$route.params.activityName
-          : '',
-      umengNameObj: {
-        AirportActivity: '机场活动',
-        airportactivity: '机场活动',
-        ChristmasActivity: '圣诞平安夜',
-        christmasactivity: '圣诞平安夜'
-      },
+      activityName: this.$route.params.activityName,
       cardBuyDetailList: {
         availablePoint: '',
         code: '',
@@ -70,16 +56,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(['deliveryAddress'])
   },
   beforeCreate() {
     document.body.style.backgroundColor = '#fff';
   },
   beforeDestroy() {
-    this.addAction(this.postData);
   },
   mounted() {
-    this.deleteAddressAction(this.deliveryAddress);
     window.addEventListener('scroll', this.menu);
   },
   created() {
@@ -91,11 +74,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addAction', 'deleteAction', 'deleteAddressAction']),
     countdownRun(){
       clearInterval(this.countdownId);
       if (this.isStart || this.isEnd) {
-        // this.countdownTim = '已开始';
         return;
       };
       this.countdownId = setInterval(() => {
@@ -103,7 +84,6 @@ export default {
         if (obj.hours <= 0 && obj.minutes <= 0 && obj.seconds <= 0) {
           window.location.reload();
           clearInterval(this.countdownId);
-          // this.countdownTim = '已开始';
           this.isStart = true;
           return;
         }
@@ -200,48 +180,6 @@ export default {
         }
       }, 1);
     },
-    Wechatshare(prefix, params) {
-      var client = 'doooly';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        client = 'wechat'; // 是微信
-      } else {
-        client = 'doooly'; // 不是微信
-      }
-      this.$jsonp(
-        api.commonShareJSONPConfig +
-          '?client=' +
-          client +
-          '&prefix=' +
-          prefix +
-          '&params=' +
-          params +
-          '&url=' +
-          encodeURIComponent(window.location.href),
-        {
-          callbackName: 'jsonpCallback'
-        }
-      ).then(res => {
-        if (res.code == 4001) {
-          // 40001微信配置
-          shareWithFriendsWX(res.data);
-        } else if (res.code == 4002) {
-          // 40002兜里配置
-          shareWithFriendsAPP(res);
-        } else {
-          // 获取配置错误10001
-        }
-      });
-    },
-
-    // 威尔士的特殊处理
-    handleWelsh(name, id) {
-      if (name == '威尔士健身卡') {
-        if (browserName == 'WeChat') {
-          this.Wechatshare('selfproduct', [id]);
-        }
-      }
-    },
 
     // 选择商品规格
     skuClick(index) {
@@ -257,11 +195,6 @@ export default {
       this.proIndex = index;
     },
     order(flag) {
-      this.$baiduStats(
-        '商品详情-' +
-          (this.umengNameObj[this.activityName] || '商品') +
-          '-立即抢购'
-      );
       if (!this.isStart && this.activityName) {
         return;
       }
