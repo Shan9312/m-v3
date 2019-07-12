@@ -35,10 +35,10 @@ const seckillGoodsDetail = r => {
   }, 'seckillGoodsDetail')
 };
 // 提货券商品详情页
-const pickUpGoods = r => {
+const pickUpGoodsDetail = r => {
   return require.ensure([], () => {
     return r(require('@/components/doooly/v3/pages/product-detail/pick-up-goods/detail.vue'))
-  }, 'pickUpGoods')
+  }, 'pickUpGoodsDetail')
 };
 // 404
 const error = r => {
@@ -90,9 +90,9 @@ const routes = [{
     title: '秒杀商品详情'
   }
 },{
-  path: 'pickUpGoods/:productId/:activityName',
-  name: 'pickUpGoods',
-  component: pickUpGoods,
+  path: 'pickUpGoodsDetail/:productId/:activityName',
+  name: 'pickUpGoodsDetail',
+  component: pickUpGoodsDetail,
   meta: {
     title: '提货券商品详情'
   }
