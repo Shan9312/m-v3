@@ -1024,10 +1024,12 @@ header ul li.check{
 }
 .tab_list ul{
     width: 100%;
-    text-align: center;
-    padding: 0.4rem 0;
+    text-align: left;
+    padding: 0.4rem 0.14rem;
+    box-sizing: border-box;
 }
 .tab_list ul li{
+    text-align: center;
     display: inline-block;
     width: 2.16rem;
     height: 1.2rem;

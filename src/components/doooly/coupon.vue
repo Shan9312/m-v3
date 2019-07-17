@@ -21,7 +21,8 @@
             </div>
             <div class="fr">
               <div v-if="item.kind==0"><span>{{item.couponValue}}</span>元</div>
-              <div v-else-if="item.kind==1"><span>{{item.couponValue}}</span>折</div>
+              <div v-else-if="item.kind==1 && item.couponValue > 0"><span>{{item.couponValue}}</span>折</div>
+              <div v-else-if="item.kind==1 && item.couponValue === 0">立即兑换</div>
             </div>
           </div>
           <!-- 遮盖 -->

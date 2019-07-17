@@ -112,9 +112,9 @@ export default {
         data:{
           'userId': localStorage.userId,
           'groupId': localStorage.groupId,
-          'consigneeName':'s',
-          'consigneeMobile':'s',
-          'consigneeAddr':'s',
+          'consigneeName':this.userDeliveryList.receiverName,
+          'consigneeMobile':this.userDeliveryList.receiverTelephone,
+          'consigneeAddr':this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
           'merchantProduct':merchantProduct,
         }
       }).then((res) => {

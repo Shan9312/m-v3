@@ -59,6 +59,7 @@ const confirmOrder = {
       }
     },
     loadCardBuyDetailList (productId, skuId, productTypeId, activityName = false) {
+      if (activityName === 'pickUpGoods') activityName = ''; // TODO 如果是东航提货券活动，不需要传activityName，这里的activityName只是用于在收银台判断跳哪个支付结果页
       http({
         method: 'post',
         url: api.detailForAjax,

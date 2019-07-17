@@ -7,9 +7,10 @@
           <span class="company">{{couponDetail.coupon.businessName}}</span>
         </div>
         <span class="coupon">{{couponDetail.coupon.productName}}</span><br>
-        <span class="price">
+        <span class="price" v-if="couponDetail.coupon.couponValue > 0 && couponDetail.coupon.kind==1">
           <b>{{couponDetail.coupon.couponValue}}</b><span v-if="couponDetail.coupon.kind==0">元</span><span  v-else-if="couponDetail.coupon.kind==1">折</span>
-        </span><br>
+        </span>
+        <br>
         <span class="time">有效期：{{beginDate}}—{{endDate}}</span>
       </div>
       <span class="button" @click="exchangeCard()">立即兑换</span>
