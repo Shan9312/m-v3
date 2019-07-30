@@ -647,32 +647,32 @@ function initTitle(titleText, key, funcName) {
     dooolyAPP.errorLog(e)
   }
 };
-
 // 设置默认返回方法
 function goLastPage() {
   dooolyAPP.goBackPageIndex(1)
 };
 
 // 跳转新的收银地址页面
-dooolyAPP.redirectPay = function (orderNum, payVersion) {
-  if (window.location.href.indexOf('https://') > -1) {
-    dooolyAPP.gotoJumpJq.call(this, payUrl + orderNum + '?payVersion=' + payVersion)
+dooolyAPP.redirectPay = function (orderNum, payVersion, type) {
+  if (type == '1') {
+    if (window.location.href.indexOf('https://') > -1) {
+      dooolyAPP.gotoJumpJq.call(this, payUrl + 'cardBuyPayResult/' + orderNum)
+    } else {
+      dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPayResult/' + orderNum)
+    }
   } else {
-    dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    if (window.location.href.indexOf('https://') > -1) {
+      dooolyAPP.gotoJumpJq.call(this, payUrl + 'cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    } else {
+      dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    }
   }
+
 }
 // 获取收银台支付结果页地址
 dooolyAPP.redirectPayResult = function () {
   if (window.location.href.indexOf('https://') > -1) {
-    if (window.location.href.indexOf('reachtest') > 0) {
-      return 'https://admin.doooly.com/reachtest/cashier/#/cardBuyPayResult/'
-    } else if (window.location.href.indexOf('reach_dist') > 0) {
-      return 'https://admin.doooly.com/reach_dist/cashier/#/cardBuyPayResult/'
-    } else if (window.location.href.indexOf('pre_dist') > 0) {
-      return 'https://reach-life.com/pre_cashier/cashier/#/cardBuyPayResult/'
-    } else if (window.location.href.indexOf('pro_dist') > 0) {
-      return 'https://reach-life.com/pro_cashier/cashier/#/cardBuyPayResult/'
-    }
+    return payUrl;
   } else {
     return 'http://' + window.location.hostname + ':8002/#/cardBuyPayResult/'
   }

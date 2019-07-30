@@ -202,10 +202,10 @@ var basesUrl = {
   Doooly: 'https://reach-life.com/pro_dist/'
 }
 var payUrls = {
-  baseUrlTest: 'https://admin.doooly.com/reachtest/cashier/#/cardBuyPay/',
-  baseUrlMain: 'https://admin.doooly.com/reach_dist/cashier/#/cardBuyPay/',
-  fabuButter: 'https://reach-life.com/pre_cashier/cashier/#/cardBuyPay/',
-  Doooly: 'https://reach-life.com/pro_cashier/cashier/#/cardBuyPay/'
+  baseUrlTest: 'https://admin.doooly.com/reachtest/cashier/#/',
+  baseUrlMain: 'https://admin.doooly.com/reach_dist/cashier/#/',
+  fabuButter: 'https://reach-life.com/pre_cashier/cashier/#/',
+  Doooly: 'https://reach-life.com/pro_cashier/cashier/#/'
 }
 var activityUrls = {
   baseUrlTest: 'https://admin.doooly.com/reachtest/activity/#/',

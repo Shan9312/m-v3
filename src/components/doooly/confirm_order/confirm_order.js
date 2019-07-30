@@ -190,7 +190,7 @@ const confirmOrder = {
             }],
             'subProductType': parseInt(this.postData[0].productType)
           }],
-          redirectUrl: dooolyAPP.redirectPayResult()
+          'redirectUrl': dooolyAPP.redirectPayResult()
         }
         http({
           method: 'post',
@@ -201,8 +201,7 @@ const confirmOrder = {
           if (res.data.code == 1000) {
             // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
             if (res.data.data.zeroOrderFlag) {
-              let zeroUrl = `${res.data.data.redirectUrl+res.data.data.orderNum}`;
-              dooolyAPP.gotoJumpJq.call(this, zeroUrl);
+              dooolyAPP.redirectPay(res.data.data.orderNum, '', '1')
             } else {
               let orderNum = res.data.data.orderNum
               let url = '/cardBuyPay/' + orderNum

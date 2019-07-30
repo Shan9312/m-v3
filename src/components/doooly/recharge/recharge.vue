@@ -738,6 +738,7 @@ export default{
                             }],
                         }
                     ],
+                    'redirectUrl': dooolyAPP.redirectPayResult(),
                     'consigneeMobile': this.newMobile,
                     'cardno':"",
                     'productType': 4
@@ -775,6 +776,7 @@ export default{
                             }],
                         }
                     ],
+                    'redirectUrl': dooolyAPP.redirectPayResult(),
                     'consigneeMobile': '',
                     'cardno': this.cardno,
                     'productType': 5
@@ -797,7 +799,12 @@ export default{
                 data:this.recharge_data
             }).then((data) => {
                 if(data.data.code == 1000){
-                    dooolyAPP.redirectPay(data.data.data.orderNum)
+                    // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
+                    if (res.data.data.zeroOrderFlag) {
+                        dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
+                    } else {
+                        dooolyAPP.redirectPay(data.data.data.orderNum)
+                    }
                 }else if(data.data.msg){
                     this.$toast(data.data.msg);
                 }else{
@@ -857,7 +864,7 @@ export default{
                 url: api.verifyCardNo,
                 notNeedTransfer:true,
                 data:{
-                    cardno:card
+                    cardno:card,
                 }
             }).then((data) => {
                 var res = data.data;
@@ -869,7 +876,12 @@ export default{
                         data:this.recharge_data
                     }).then((data) => {
                         if(data.data.code == 1000){
-                            dooolyAPP.redirectPay(data.data.data.orderNum)
+                            // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
+                            if (res.data.data.zeroOrderFlag) {
+                                dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
+                            } else {
+                                dooolyAPP.redirectPay(data.data.data.orderNum)
+                            }
                         }else{
                             this.$toast('小兜兜正忙,请稍候重试!');
                         }

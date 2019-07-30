@@ -350,11 +350,7 @@
         }
         if (type == 1 || type == 3 || type == 40 || type == 52 || type == 6) {
           // this.$baiduStats('首页-楼层' + this.newListV3.type + '-' + title)
-          if (subUrl) {
-            dooolyAPP.gotoJumpVue.call(this, subUrl)
-          } else {
-            dooolyAPP.gotoJumpJq.call(this, linkUrl)
-          }
+          dooolyAPP.gotoJumpJq.call(this, linkUrl);
         } else if (type == 21) {
           // this.$baiduStats('首页-礼包-' + title)
           dooolyAPP.redirectActivity('giftGoodsList/' + linkUrl + '?name=' + title)
