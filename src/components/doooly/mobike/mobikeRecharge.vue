@@ -217,9 +217,9 @@ export default {
         }
       }).then(data => {
         if (data.data.code == 1000)
-          if (res.data.data.zeroOrderFlag) {
+          if (data.data.data.zeroOrderFlag) {
             // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
-            dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
+            dooolyAPP.redirectPay(data.data.data.orderNum, "", "1");
           } else {
             dooolyAPP.redirectPay(data.data.data.orderNum);
           }
