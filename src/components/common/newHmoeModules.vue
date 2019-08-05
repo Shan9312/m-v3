@@ -349,22 +349,16 @@
           return
         }
         if (type == 1 || type == 3 || type == 40 || type == 52 || type == 6) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-' + title)
-          dooolyAPP.gotoJumpJq.call(this, linkUrl);
+          dooolyAPP.gotoJumpJq.call(this, linkUrl)
         } else if (type == 21) {
-          // this.$baiduStats('首页-礼包-' + title)
           dooolyAPP.redirectActivity('giftGoodsList/' + linkUrl + '?name=' + title)
         } else if (type == 22) {
-          // this.$baiduStats('首页-礼包-查看更多')
           dooolyAPP.redirectActivity('giftList?type=1')
         } else if (type == 41) {
-          // this.$baiduStats('首页-热门商户-查看更多')
           this.$router.push('/v3/life?type=2')
         } else if (type == 51) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-全部卡券')
           dooolyAPP.gotoJumpVue.call(this, '/cardBuy')
         } else if (type == 50) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-我的卡券')
           dooolyAPP.gotoJumpVue.call(this, '/coupon/0')
         }
       },
