@@ -44,11 +44,11 @@
             继续付款
           </p>
         </div>
-        <div class="footer_btn_wrap" v-else-if="supplierOrder.type === 99 && supplierOrder.cashDeskSource === 'd' && supplierOrder.orderType != 1">
+        <!-- <div class="footer_btn_wrap" v-else-if="supplierOrder.type === 99 && supplierOrder.cashDeskSource === 'd' && supplierOrder.orderType != 1">
           <p class="footer_btn" data-baidu-stats="订单详情-再次购买" @click="buyAgain(supplierOrder.businessId, supplierOrder.isSource, supplierOrder.productId)">
             再次购买
           </p>
-        </div>
+        </div> -->
       </section>
     </div>
   </div>
