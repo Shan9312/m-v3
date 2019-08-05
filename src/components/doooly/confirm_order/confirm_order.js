@@ -199,17 +199,17 @@ const confirmOrder = {
           data: this.formData
         }).then((res) => {
           if (res.data.code == 1000) {
+            let orderNum = res.data.data.orderNum
+            let url = '/cardBuyPay/' + orderNum
+            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
+              let activityObj = {}
+              activityObj[orderNum] = this.activityName
+              localStorage.activity = JSON.stringify(activityObj)
+            }
             // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
             if (res.data.data.zeroOrderFlag) {
               dooolyAPP.redirectPay(res.data.data.orderNum, '', '1')
             } else {
-              let orderNum = res.data.data.orderNum
-              let url = '/cardBuyPay/' + orderNum
-              if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
-                let activityObj = {}
-                activityObj[orderNum] = this.activityName
-                localStorage.activity = JSON.stringify(activityObj)
-              }
               dooolyAPP.redirectPay(orderNum)
             }
           } else if (res.data.code == 2001) {
