@@ -142,6 +142,7 @@ const api = {
   // createOrder_v2: Doooly+'jersey/order/createOrder',
   createOrder_v2_2: Doooly + 'jersey/order/createOrder/V2',
   createOrder_CCB: Doooly + 'jersey/order/createOrder/CCB',
+  userBizRelation: Doooly + 'jersey/oneNumber/userBizRelation', //查询兜礼会员绑定的第三方商家账户
   getOrderBuy: Doooly + 'jersey/cbc/getOrderBuy', // 判断建行礼品是否超过3000份
   getCoupon: Doooly + 'jersey/daily-activity/v1/daily', // 通用  领券
   fordProductIndex: Activity + 'ford/fordProductIndex', // 福特商品聚合列表
