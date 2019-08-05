@@ -148,12 +148,7 @@ export default {
             dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
           } else {
             // gotoJumpVue.call(this,'/cardBuyPay/' + res.data.data.bigOrderNumber);
-            // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
-            if (res.data.data.zeroOrderFlag) {
-              dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
-            } else {
-              dooolyAPP.redirectPay(res.data.data.orderNum, "payV2");
-            }
+            dooolyAPP.redirectPay(res.data.data.orderNum, "payV2");
           }
         } else {
           this.$toast(res.data.msg);
