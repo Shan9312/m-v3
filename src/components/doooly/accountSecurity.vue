@@ -63,9 +63,6 @@
             <input id="selectBirthday" type="text" disabled="disabled" v-model="birthday">
           </span>
         </li>
-        <!--<li @click='pw_btn()'>-->
-          <!--<span>登录密码重置</span>-->
-        <!--</li>-->
       </ul>
     </div>
     <div class="footer_div">
@@ -318,17 +315,15 @@
         this.genderVisible=false;
       }
       ,
-      add0:function (m) {
+      add0(m) {
         return m<10?'0'+m:m
       },
       //选择生日
-      open: function (picker) {
+      open(picker) {
         this.$refs[picker].open();
       },
-      handleChange: function (value) {
-        var str=value.toLocaleDateString();
-        var temp=str.split("/");
-        var birth=temp[0]+"-"+this.add0(temp[1])+"-"+this.add0(temp[2]);
+      handleChange(value) {
+        let birth = value.getFullYear()+"-"+this.add0(value.getMonth()+1)+"-"+this.add0(value.getDate());
         http({
           method: 'post',
           url: api.updatePersonalData+"?birthday="+birth,
