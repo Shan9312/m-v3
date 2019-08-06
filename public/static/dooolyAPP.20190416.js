@@ -7,7 +7,7 @@ dooolyAPP.homeLocationVector = function (channelName, typeName) {
     if (browserName == 'WebKit') {
       window.webkit.messageHandlers.getLocationJson.postMessage('1')
     } else if (browserName == 'Chrome WebView') {
-      RHNativeJS.homeLocationVector(channelName, typeName)// (1) channelName渠道名称(2)  typeName:类型名称OPENPERMMISON弹出权限提示框OTHERVALUE 不弹出权限提示框 必填字段
+      RHNativeJS.homeLocationVector(channelName, typeName) // (1) channelName渠道名称(2)  typeName:类型名称OPENPERMMISON弹出权限提示框OTHERVALUE 不弹出权限提示框 必填字段
     }
   } catch (e) {
     dooolyAPP.errorLog(e)
@@ -87,7 +87,9 @@ dooolyAPP.jumpPersonPage = function (methods) {
     } else if (browserName == 'Chrome WebView') {
       RHNativeJS.jumpPersonPage()
     } else {
-      this.$router.push({path: '/nav/personalCenter'})
+      this.$router.push({
+        path: '/nav/personalCenter'
+      })
     }
   } catch (e) {
     dooolyAPP.errorLog(e)
@@ -146,7 +148,9 @@ dooolyAPP.openMapView = function (company, id) {
       RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
     } else {
       localStorage.storeMapCompany = company
-      this.$router.push({path: '/storeMap/' + id})
+      this.$router.push({
+        path: '/storeMap/' + id
+      })
     }
   } catch (e) {
     dooolyAPP.errorLog(e)
@@ -183,7 +187,9 @@ dooolyAPP.openScanDiscount = function () {
     this.emitDate.userId = localStorage.userId
     this.emitDate.groupShortName = localStorage.groupShortName
     this.addScanAction(this.emitDate)
-    this.$router.push({path: '/scanDetail/' + this.adBusiness.company})
+    this.$router.push({
+      path: '/scanDetail/' + this.adBusiness.company
+    })
   }
 }
 // 11.隐藏头部导航栏黑色覆盖及禁止下拉刷新()
@@ -234,7 +240,12 @@ dooolyAPP.AppealAgainst = function (jsonObj, type) {
     } else if (browserName == 'Chrome WebView') {
       RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
     } else {
-      this.$router.push({name: 'appeal', params: {dataType: type}})
+      this.$router.push({
+        name: 'appeal',
+        params: {
+          dataType: type
+        }
+      })
     }
   } catch (e) {
     dooolyAPP.errorLog(e)
@@ -271,7 +282,7 @@ dooolyAPP.getPaymentType = function (data) {
     if (browserName == 'WebKit') { // ios
       window.webkit.messageHandlers.getPaymentType.postMessage(JSON.stringify(data))
     } else if (browserName == 'Chrome WebView') {
-      RHNativeJS.successPay(JSON.stringify(data))// 保存修改之后的值告诉android
+      RHNativeJS.successPay(JSON.stringify(data)) // 保存修改之后的值告诉android
     } else {
       localStorage.isPayPassword = data
     }
@@ -306,7 +317,10 @@ dooolyAPP.androidGoMerchantApp = function (MerchantName, MerchantUrl) {
     name: '网易严选',
     id: 'com.netease.yanxuan'
   }]
-  var merchant = {id: '', url: MerchantUrl}
+  var merchant = {
+    id: '',
+    url: MerchantUrl
+  }
   for (var i = 0; i < MerchantInfo.length; i++) {
     if (MerchantInfo[i].name === MerchantName) {
       merchant.id = MerchantInfo[i].id
@@ -341,7 +355,7 @@ dooolyAPP.APPpay = function (data, funcName, type) { // 支付参数,回调函�
       } else {
         var form = data.aLiPayUrl
         var div = document.createElement('div')
-        div.innerHTML = form// 此处form就是后台返回接收到的数据
+        div.innerHTML = form // 此处form就是后台返回接收到的数据
         document.body.appendChild(div)
         document.forms[0].submit()
       }
@@ -365,112 +379,251 @@ dooolyAPP.APPpay = function (data, funcName, type) { // 支付参数,回调函�
   }
 }
 // 设置头部方法封装(类型待整理)
-function initTitle (titleText, key, funcName) {
+function initTitle(titleText, key, funcName) {
   document.title = titleText
   var jsonObj
   if (key == 1) {
     jsonObj = {
-      'title': {'text': titleText},
-      'leftButton': {'name': 'lbs', 'text': '城市', 'func': 'goLastPage()', 'visable': 'true'},
-      'rightButton': {'name': 'notice', 'visable': 'true'},
+      'title': {
+        'text': titleText
+      },
+      'leftButton': {
+        'name': 'lbs',
+        'text': '城市',
+        'func': 'goLastPage()',
+        'visable': 'true'
+      },
+      'rightButton': {
+        'name': 'notice',
+        'visable': 'true'
+      },
       'visable': 'true'
     }
   } else if (key == 2) {
     if (window.location.href.indexOf('/dist/') > -1) { // app旧版本兼容
       jsonObj = {
-        'title': { 'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     } else {
       jsonObj = {
-        'title': { 'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': funcName, 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': funcName,
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     }
   } else if (key == 3) { // 导购规则的弹窗
     if (browserName == 'WebKit' || browserName == 'otherAPPIos') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': 'request', 'func': 'altNotice()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'altNotice()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     } else if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': 'request', 'func': 'altNoticeAndriod()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'altNoticeAndriod()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     }
   } else if (key == 13) {
     if (browserName == 'WebKit' || browserName == 'otherAPPIos') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'false'},
-        'rightButton': {'name': 'request', 'func': 'altNotice()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'false'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'altNotice()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     } else if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'false'},
-        'rightButton': {'name': 'request', 'func': 'altNoticeAndriod()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'false'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'altNoticeAndriod()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     }
   } else if (key == 4) { // 导购文章分享
     if (browserName == 'WebKit' || browserName == 'otherAPPIos') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': 'request', 'func': 'altNotice()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'altNotice()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     } else if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') {
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': 'share', 'func': 'shareShopping()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': 'share',
+          'func': 'shareShopping()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     }
   } else if (key == 8) { // 积分充值
     if (browserName == 'WebKit' || browserName == 'otherAPPIos') { // 判断iPhone|iPad|iPod|iOS
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': funcName || 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': '疑问提示', 'func': 'APP_card_question()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': funcName || 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': '疑问提示',
+          'func': 'APP_card_question()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     } else if (browserName == 'Chrome WebView' || browserName == 'otherAPPAndroid') { // 判断Android
       jsonObj = {
-        'title': {'text': titleText},
-        'leftButton': {'name': 'return', 'text': '返回', 'func': funcName || 'goLastPage()', 'visable': 'true'},
-        'rightButton': {'name': 'request', 'func': 'APP_card_question()', 'visable': 'true'},
+        'title': {
+          'text': titleText
+        },
+        'leftButton': {
+          'name': 'return',
+          'text': '返回',
+          'func': funcName || 'goLastPage()',
+          'visable': 'true'
+        },
+        'rightButton': {
+          'name': 'request',
+          'func': 'APP_card_question()',
+          'visable': 'true'
+        },
         'visable': 'true'
       }
     }
   } else if (key == 5) { // 发现
     jsonObj = {
-      'title': {'text': titleText},
-      'leftButton': {'name': 'lbs', 'text': '城市', 'func': 'goLastPage()', 'visable': 'false'},
-      'rightButton': {'name': 'notice', 'visable': 'false'},
+      'title': {
+        'text': titleText
+      },
+      'leftButton': {
+        'name': 'lbs',
+        'text': '城市',
+        'func': 'goLastPage()',
+        'visable': 'false'
+      },
+      'rightButton': {
+        'name': 'notice',
+        'visable': 'false'
+      },
       'visable': 'true'
     }
   } else if (key == 6) { // 我的
     jsonObj = {
-      'title': {'text': '我的', 'name': 'WhiteTextView'},
-      'leftButton': {'name': 'whiteSetting', 'func': 'systemSetting()', 'visable': 'true'},
-      'rightButton': {'name': 'whiteNotice', 'visable': 'true'},
+      'title': {
+        'text': '我的',
+        'name': 'WhiteTextView'
+      },
+      'leftButton': {
+        'name': 'whiteSetting',
+        'func': 'systemSetting()',
+        'visable': 'true'
+      },
+      'rightButton': {
+        'name': 'whiteNotice',
+        'visable': 'true'
+      },
       'visable': 'true'
     }
   } else {
     jsonObj = {
-      'title': { 'text': titleText},
-      'leftButton': {'name': 'return', 'text': '返回', 'func': 'goLastPage()', 'visable': 'true'},
+      'title': {
+        'text': titleText
+      },
+      'leftButton': {
+        'name': 'return',
+        'text': '返回',
+        'func': 'goLastPage()',
+        'visable': 'true'
+      },
       'visable': 'true'
     }
   }
@@ -494,18 +647,34 @@ function initTitle (titleText, key, funcName) {
     dooolyAPP.errorLog(e)
   }
 };
-
 // 设置默认返回方法
-function goLastPage () {
+function goLastPage() {
   dooolyAPP.goBackPageIndex(1)
 };
 
 // 跳转新的收银地址页面
-dooolyAPP.redirectPay = function (orderNum, payVersion) {
-  if (window.location.href.indexOf('https://') > -1) {
-    dooolyAPP.gotoJumpJq.call(this, payUrl + orderNum + '?payVersion=' + payVersion)
+dooolyAPP.redirectPay = function (orderNum, payVersion, type) {
+  if (type == '1') {
+    if (window.location.href.indexOf('https://') > -1) {
+      dooolyAPP.gotoJumpJq.call(this, payUrl + 'cardBuyPayResult/' + orderNum)
+    } else {
+      dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPayResult/' + orderNum)
+    }
   } else {
-    dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    if (window.location.href.indexOf('https://') > -1) {
+      dooolyAPP.gotoJumpJq.call(this, payUrl + 'cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    } else {
+      dooolyAPP.gotoJumpJq.call(this, 'http://' + window.location.hostname + ':8002/#/cardBuyPay/' + orderNum + '?payVersion=' + payVersion)
+    }
+  }
+
+}
+// 获取收银台支付结果页地址
+dooolyAPP.redirectPayResult = function () {
+  if (window.location.href.indexOf('https://') > -1) {
+    return payUrl;
+  } else {
+    return 'http://' + window.location.hostname + ':8002/#/cardBuyPayResult/'
   }
 }
 // 跳转活动项目
@@ -533,7 +702,9 @@ dooolyAPP.gotoJumpJq = function (url) {
       var baseURL = base + 'dist'
       if (url.indexOf(baseURL) > -1) {
         var subUrl = url.substring(url.indexOf('#') + 1)
-        this.$router.push({path: subUrl})
+        this.$router.push({
+          path: subUrl
+        })
       } else {
         window.location.href = url
       }
@@ -610,7 +781,7 @@ dooolyAPP.logOut = function (type) {
 
     sessionStorage.removeItem('oauthCode')
     sessionStorage.removeItem('source')
-    
+
     var splitIndex = location.href.indexOf('#')
     var domain = location.href.substring(0, splitIndex + 2)
     if (/wiscowechat/.test(window.location.href)) {
@@ -634,7 +805,7 @@ dooolyAPP.logIn = function (data, url, type) {
     if (window.location.href.indexOf('wiscowechat') > 0) {
       localStorage.wiscoToken = token
       localStorage.token = token
-    } else{
+    } else {
       localStorage.dooolyToken = token
       localStorage.token = token
     }

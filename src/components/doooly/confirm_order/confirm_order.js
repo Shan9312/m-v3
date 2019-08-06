@@ -1,14 +1,21 @@
 import http from '@/http/http'
 import api from '@/assets/js/api.js'
-import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import {
+  mapState,
+  mapMutations,
+  mapGetters,
+  mapActions
+} from 'vuex'
 
 const confirmOrder = {
-  data () {
+  data() {
     return {
       activityName: (!this.$route.params.activityName || this.$route.params.activityName == 0 ? '' : this.$route.params.activityName),
       userDeliveryList: [],
       postData: [],
-      confirmClassObj: { click_btn: false },
+      confirmClassObj: {
+        click_btn: false
+      },
       viewShow: false,
       isBankNumber: false, // 是否需要银行卡号
       cardNumber: '', // 银行卡号
@@ -19,10 +26,15 @@ const confirmOrder = {
       disabled: false // 按钮控制
     }
   },
-  created () {
+  created() {
     initTitle('确认订单')
     if (this.$route.params.productId) {
-      const { productId, skuId, productTypeId, activityName } = this.$route.params
+      const {
+        productId,
+        skuId,
+        productTypeId,
+        activityName
+      } = this.$route.params
       this.loadCardBuyDetailList(productId, skuId, productTypeId, activityName)
       this.ccbLoadCardBuyDetailList()
     } else {
@@ -37,7 +49,7 @@ const confirmOrder = {
     ...mapState(['cardbuy'])
   },
   filters: {
-    formatPrice (value) {
+    formatPrice(value) {
       let total = 0
       if (value.length > 0) {
         if (value[0]) {
@@ -52,13 +64,17 @@ const confirmOrder = {
   },
   methods: {
     // 建行一元购
-    ccbLoadCardBuyDetailList () {
-      const { productId, skuId, productTypeId } = this.$route.query
+    ccbLoadCardBuyDetailList() {
+      const {
+        productId,
+        skuId,
+        productTypeId
+      } = this.$route.query
       if (productId && skuId && productTypeId) {
         this.loadCardBuyDetailList(productId, skuId, productTypeId)
       }
     },
-    loadCardBuyDetailList (productId, skuId, productTypeId, activityName = false) {
+    loadCardBuyDetailList(productId, skuId, productTypeId, activityName = false) {
       if (activityName === 'pickUpGoods') activityName = ''; // TODO 如果是东航提货券活动，不需要传activityName，这里的activityName只是用于在收银台判断跳哪个支付结果页
       http({
         method: 'post',
@@ -100,7 +116,7 @@ const confirmOrder = {
         }
       })
     },
-    getUserDelivery () {
+    getUserDelivery() {
       http({
         method: 'get',
         url: api.getUserDelivery
@@ -111,19 +127,21 @@ const confirmOrder = {
           } else {
             this.userDeliveryList = data.data.userDeliveryList[0]
           }
-          this.confirmClassObj = { click_btn: true }
+          this.confirmClassObj = {
+            click_btn: true
+          }
         } else {
 
         }
         this.viewShow = true
       })
     },
-    link () {
+    link() {
       dooolyAPP.gotoJumpVue.call(this, '/userDeliveryList')
     },
 
     // 提交订单
-    async refer () {
+    async refer() {
       if (!this.userDeliveryList || this.userDeliveryList.length <= 0) {
         this.$toast('请选择收货地址')
         return
@@ -133,7 +151,9 @@ const confirmOrder = {
         http({
           method: 'post',
           url: api.getOrderBuy,
-          data: { businessId: this.$route.query.businessId }
+          data: {
+            businessId: this.$route.query.businessId
+          }
         }).then((res) => {
           if (res.data.code == 1000) {
             if (res.data.data) {
@@ -169,7 +189,8 @@ const confirmOrder = {
               'buyNum': 1
             }],
             'subProductType': parseInt(this.postData[0].productType)
-          }]
+          }],
+          'redirectUrl': dooolyAPP.redirectPayResult()
         }
         http({
           method: 'post',
@@ -185,7 +206,12 @@ const confirmOrder = {
               activityObj[orderNum] = this.activityName
               localStorage.activity = JSON.stringify(activityObj)
             }
-            dooolyAPP.redirectPay(orderNum)
+            // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
+            if (res.data.data.zeroOrderFlag) {
+              dooolyAPP.redirectPay(res.data.data.orderNum, '', '1')
+            } else {
+              dooolyAPP.redirectPay(orderNum)
+            }
           } else if (res.data.code == 2001) {
             this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
           } else if (res.data.code == 2002) {
@@ -202,8 +228,10 @@ const confirmOrder = {
       this.$baiduStats('提交订单页面-提交订单-确认提交')
     },
     // 验证银行卡号
-    cardBlur () {
-      const { cardNumber } = this
+    cardBlur() {
+      const {
+        cardNumber
+      } = this
       const myreg = /^[1-9]\d{10,19}$/
       if (cardNumber) {
         if (!myreg.test(cardNumber)) {
@@ -216,8 +244,10 @@ const confirmOrder = {
       }
     },
     // 验证手机号码
-    mobileBlur () {
-      const { mobile } = this
+    mobileBlur() {
+      const {
+        mobile
+      } = this
       const myreg = /^1[3456789]\d{9}$/
       if (mobile) {
         if (!myreg.test(mobile)) {
@@ -230,8 +260,14 @@ const confirmOrder = {
       }
     },
     // 确定提交
-    handlBankSub () {
-      const { mobile, cardNumber, mobileError, bankError, postData } = this
+    handlBankSub() {
+      const {
+        mobile,
+        cardNumber,
+        mobileError,
+        bankError,
+        postData
+      } = this
       if (mobile && cardNumber && postData[1]) {
         if (!mobileError && !bankError) {
           this.disabled = true

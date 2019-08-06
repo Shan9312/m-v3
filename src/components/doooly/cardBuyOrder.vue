@@ -14,7 +14,7 @@
             @click="deleteInputValue1()"
             class="input_delete"
           >
-            <img src="../../assets/images/cardbuy/input_delete.png">
+            <img src="../../assets/images/cardbuy/input_delete.png" />
           </div>
           <input
             id="name"
@@ -22,7 +22,7 @@
             maxlength="10"
             placeholder="请输入姓名"
             v-model="defaultDelivery.receiverName"
-          >
+          />
         </div>
       </div>
 
@@ -35,7 +35,7 @@
             @click="deleteInputValue2()"
             class="input_delete"
           >
-            <img src="../../assets/images/cardbuy/input_delete.png">
+            <img src="../../assets/images/cardbuy/input_delete.png" />
           </div>
           <input
             id="tel"
@@ -45,7 +45,7 @@
             v-model="defaultDelivery.receiverTelephone"
             onkeyup="this.value=this.value.replace(/\D/g,'')"
             onafterpaste="this.value=this.value.replace(/\D/g,'')"
-          >
+          />
         </div>
       </div>
     </div>
@@ -54,13 +54,13 @@
     <div class="company">
       <div class="clearfix picture_view">
         <div class="fl picture">
-          <img :src="receiveData.img">
+          <img :src="receiveData.img" />
         </div>
         <div class="fl price">
           <span class="name">{{receiveData.name}}</span>
-          <br>
+          <br />
           <span class="type">规格：{{receiveData.specification}}</span>
-          <br>
+          <br />
           <span>
             <span style="font-size:0.24rem;margin: 0;padding: 0;color:#ee3f44;">￥</span>
             <span
@@ -175,10 +175,10 @@ export default {
       }
     }
   },
-  beforeRouteEnter(to, from, next){
-    if (from.name !== 'coupon') {
-      localStorage.removeItem('couponId');
-      localStorage.removeItem('saveMoney');
+  beforeRouteEnter(to, from, next) {
+    if (from.name !== "coupon") {
+      localStorage.removeItem("couponId");
+      localStorage.removeItem("saveMoney");
     }
     next();
   },
@@ -233,7 +233,8 @@ export default {
               }
             ]
           }
-        ]
+        ],
+        redirectUrl: dooolyAPP.redirectPayResult()
       };
       http({
         method: "post",
@@ -244,9 +245,14 @@ export default {
         .then(res => {
           this.loadingState = false;
           if (res.data.code == 1000) {
-            let orderNum = res.data.data.orderNum;
-            let url = "/cardBuyPay/" + orderNum;
-            dooolyAPP.redirectPay(orderNum);
+            // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
+            if (res.data.data.zeroOrderFlag) {
+              dooolyAPP.redirectPay(res.data.data.orderNum, "", "1");
+            } else {
+              let orderNum = res.data.data.orderNum;
+              let url = "/cardBuyPay/" + orderNum;
+              dooolyAPP.redirectPay(orderNum);
+            }
           } else {
             this.$toast(res.data.msg);
           }
