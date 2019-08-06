@@ -26,17 +26,21 @@
     <section class="life" ref='life' v-if="lifeEnd">
       <div class="life-navbar">
         <mt-navbar v-model="selected">
-          <div data-route-name="life" :data-baidu-stats="'生活场景名-' + item.subTitle" v-for="(item,index) in lifeList" :key="index" @click="lifeActiveIndex = index">
-            <mt-tab-item :id="'tab'+index">
-              <img slot="icon" :src="selected==='tab'+index?item.iconUrlActive:item.iconUrl" :onerror="errorIcon">
-              {{item.subTitle}}
-            </mt-tab-item>
+          <div class="view" :class="{'is-selected':lifeActiveIndex == index}" data-route-name="life" :data-baidu-stats="'生活场景名-' + item.subTitle" v-for="(item,index) in lifeList" :key="index" @click="lifeActiveIndex = index">
+            <div class="img-view">
+              <img slot="icon" :src="lifeActiveIndex==index?item.iconUrlActive:item.iconUrl" :onerror="errorIcon">
+            </div>
+            <div class="text">{{item.subTitle}}</div>
+            <!-- <mt-tab-item :id="'tab'+index">
+              
+              
+            </mt-tab-item> -->
           </div>
         </mt-navbar>
       </div>
 
       <mt-tab-container v-model="selected">
-        <mt-tab-container-item v-for="(item,index) in lifeList" :key="index" :id="'tab'+index">
+        <div v-for="(item,index) in lifeList" :key="index" v-show="index == lifeActiveIndex">
           <ul v-if="item.subList.length > 0" class="subLife-con" :class="{'openList':open,'hidden':item.subList.length > maxCount,'onHidden':item.subList.length <= maxCount}">
             <li v-for="(subItem,subIndex) in item.subList" :key="subIndex"
               data-route-name="life" :data-baidu-stats="'生活场景-' + item.subTitle + '-' + subItem.mainTitle"
@@ -52,7 +56,7 @@
           <div v-else class="no-content">
             暂无内容
           </div>
-        </mt-tab-container-item>
+        </div>
       </mt-tab-container>
       <div v-for="(item,index) in lifeItemList" :key="index">
         <div v-if="(item.length > maxCount) && (lifeActiveIndex === index)" class="arrow" @click="open=!open">

@@ -121,31 +121,33 @@
       }
 
       .mint-navbar {
-        width: auto;
+        max-width: 999999px;
         white-space: nowrap;
-        .mint-tab-item{
-          padding: 0.1rem 0;
-        }
-        .mint-tab-item-icon {
-          width: 0.44rem;
-          height: 0.38rem;
-          margin: 0 auto 0.08rem;
-        }
-
-        .mint-tab-item.is-selected {
-          margin-bottom: 0;
-        }
-
-        .mint-tab-item-label {
+        .view{
           width: 1.18rem;
-          margin: 0 auto;
-          font-size: 0.26rem;
-          line-height: normal;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          line-height: 0.36rem;
-          height: 0.36rem;
+          min-width: 1.18rem;
+          padding: 0.1rem 0;
+          border-bottom: 3px solid transparent;
+          &.is-selected{
+            border-bottom: 3px solid #ee3f43;
+            color: #ee3f43;
+          }
+          .img-view{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 0.08rem;
+            img{
+              width: .44rem;
+              height: .38rem;
+            }
+          }
+          .text{
+            font-size: .26rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: .36rem;
+          }
         }
       }
     }
