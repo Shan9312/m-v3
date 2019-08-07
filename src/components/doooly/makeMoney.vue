@@ -23,10 +23,10 @@
             }
     },
     created(){
- 	    initTitle('发现','')
+ 	    dooolyAPP.initTitle('发现','')
     },
     activated(){
-      initTitle('发现','')
+      dooolyAPP.initTitle('发现','')
     },
     methods:{
       link() {

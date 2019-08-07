@@ -272,7 +272,7 @@
       },
     },
     created() {
-      initTitle('忘记密码');
+      dooolyAPP.initTitle('忘记密码');
       this.appInit();
     },
   }

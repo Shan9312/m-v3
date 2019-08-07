@@ -103,11 +103,11 @@
       getAddress.call(this);
       this.getList();//获取商户列表数据
       bus.$on('mapStore',(function(data){}).bind(this));
-      initTitle('花积分');
+      dooolyAPP.initTitle('花积分');
     },
     activated(){
       this.getList();
-      initTitle('花积分');
+      dooolyAPP.initTitle('花积分');
     },
     beforeDestroy(){
       document.body.style.backgroundColor="";

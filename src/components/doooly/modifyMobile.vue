@@ -57,7 +57,7 @@
           }
       },
       created(){
-        initTitle('修改手机号','')
+        dooolyAPP.initTitle('修改手机号','')
       },
       mounted(){
         let mobile=localStorage.mobile;
@@ -166,7 +166,7 @@
         //账号不存在
         nonValidPhone() {
           if(browserName == "otherAPPAndroid"){
-            RHNativeJS.callPhone('400-158-2212');
+            dooolyAPP.callPhone('4001582212');
           }else{
             this.altNonentity=true;
           }

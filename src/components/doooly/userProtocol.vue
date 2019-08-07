@@ -211,7 +211,7 @@
         }
       },
       created(){
-        initTitle('用户协议','')
+        dooolyAPP.initTitle('用户协议','')
       },
       mounted(){
       },

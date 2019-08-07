@@ -59,10 +59,10 @@
       },
       methods:{
         gobankIndex(){
-          dooolyAPP.jumpIndexPage.call(this);
+          dooolyAPP.jumpIndexPage();
         },
         link(orderId){
-          dooolyAPP.gotoJumpVue.call(this,'/myOrderDetail/'+orderId);
+          dooolyAPP.gotoJumpVue(this.$router,'/myOrderDetail/'+orderId);
         },
         Wechatshare(prefix,channel,params){
           var client = 'doooly';
@@ -89,7 +89,7 @@
         }
       },
       mounted(){
-          initTitle('支付结果');
+          dooolyAPP.initTitle('支付结果');
           this.Wechatshare('huafeiRefill',"doooly", [this.$route.params.openId,this.$route.params.activityParam]);
       }
     }

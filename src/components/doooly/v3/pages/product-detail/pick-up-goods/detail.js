@@ -238,7 +238,7 @@ export default {
           //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
           //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
           // );
-          initTitle('商品详情');
+          dooolyAPP.initTitle('商品详情');
           for (let [index, elem] of data.imagesList.entries()) {
             this.imagesList.push({
               imagePath: elem

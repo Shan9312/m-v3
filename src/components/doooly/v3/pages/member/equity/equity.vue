@@ -38,7 +38,7 @@
 
     },
     created() {
-      initTitle('权益说明', '');
+      dooolyAPP.initTitle('权益说明', '');
       this.getEquityList();
     },
     mounted() {

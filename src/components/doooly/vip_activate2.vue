@@ -73,7 +73,7 @@
         }
       },
       created(){
-        initTitle('会员激活','')
+        dooolyAPP.initTitle('会员激活','')
       },
       mounted:function(){
         this.activateMobile=localStorage.activateMobile;
@@ -147,7 +147,7 @@
         },
         yesBtn:function () {
           this.popupVisible=false;
-          dooolyAPP.forceLoginOut();
+          dooolyAPP.forceLoginOut(this.$router);
         },
         //用户协议
         gotoProtocal:function () {

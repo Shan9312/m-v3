@@ -31,7 +31,7 @@
         }
     },
     created(){
-      initTitle('关于兜礼','');
+      dooolyAPP.initTitle('关于兜礼','');
       globalVue = this;
       dooolyAPP.getAppVersionName('getAppVersionName');
       if(browserName == "WebKit" || browserName == "Chrome WebView"){
@@ -42,7 +42,7 @@
     },
     methods: {
       user_agreement(){
-        dooolyAPP.gotoJumpVue.call(this,'/userProtocol');
+        dooolyAPP.gotoJumpVue(this.$router,'/userProtocol');
       },
       check(){
         dooolyAPP.checkAppVersion.call(this);

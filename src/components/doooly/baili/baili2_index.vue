@@ -48,7 +48,7 @@
         localStorage.activityfunction= "";
         this.my_welfare();
       }
-      initTitle('百丽踏青季-兜礼会员三大福利','');
+      dooolyAPP.initTitle('百丽踏青季-兜礼会员三大福利','');
       if(isWeiXin()){
         this.Wechatshare('baili2');  
       } 

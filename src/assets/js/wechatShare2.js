@@ -248,8 +248,6 @@ export function shareWithFriendsWX2(data) {
 };
 //调用微信接口获取用户数据
 export function onWechatConfig() {
-  // Vue.jsonp("http://test1.doooly.com/shop/activity/jsonp/wechatConfig.jhtml?url="+encodeURIComponent(window.location.href),
-  // Vue.jsonp("http://test2.doooly.com/Doooly/jersey/share/commonShareJSONPConfig"+"?client=wechat",
   Vue.jsonp(api.commonShareJSONPConfig + "?client=wechat&url=" + encodeURIComponent(window.location.href), {
     callbackName: 'jsonpCallback',
   }).then((res) => {

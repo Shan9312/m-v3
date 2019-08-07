@@ -59,7 +59,7 @@
       }
     },
     created(){
-      initTitle('修改手机号','')
+      dooolyAPP.initTitle('修改手机号','')
     },
     mounted(){
     },

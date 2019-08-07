@@ -141,7 +141,7 @@
           this.$baiduStats('我的福利-点击去使用-' + this.couponDetail.coupon.productName);
         },
         businessDetail: function (id, company) {
-          dooolyAPP.openMapView.call(this,company,id);
+          dooolyAPP.openMapView(this.$router,company,id);
         },
         cloe: function () {
           this.popupVisible = false;
@@ -205,7 +205,7 @@
       },
       created() {
         this.loadPageData();
-        initTitle('我的福利');
+        dooolyAPP.initTitle('我的福利');
       },
     }
 </script>

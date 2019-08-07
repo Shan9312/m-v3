@@ -182,7 +182,7 @@ export default {
             this.$baiduStats('首页-卡券活动-下午茶-点击关闭按钮');
         },
         goConpon(id){
-            dooolyAPP.gotoJumpVue.call(this,'/couponExchange/'+id);
+            dooolyAPP.gotoJumpVue(this.$router,'/couponExchange/'+id);
         },
         CheckImgExists(imgurl) {  
             let ImgObj = new Image(); //判断图片是否存在  

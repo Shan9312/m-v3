@@ -84,7 +84,7 @@ const myOrderList = {
   },
   created() {
     document.body.style.backgroundColor = "#f5f5f5";
-    initTitle('我的订单', '')
+    dooolyAPP.initTitle('我的订单', '')
   },
   mounted() {
     this.tab = this.$route.params.tab;

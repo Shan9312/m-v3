@@ -74,7 +74,7 @@
       if(localStorage.activityfunction){
         localStorage.activityfunction= "";
       }
-      initTitle('世界杯活动','');
+      dooolyAPP.initTitle('世界杯活动','');
     },
     methods: {
       confirmBtn(){//取消弹框
@@ -93,7 +93,7 @@
         let company="酒老板";
         getAddress.call(this);
         bus.$on('mapStore',(function(data){}).bind(this));
-        dooolyAPP.openMapView.call(this,company,businessId);
+        dooolyAPP.openMapView(this.$router,company,businessId);
       },
       btn_recharge(){
         localStorage.activityfunction = 1;

@@ -265,7 +265,7 @@ export default {
     },
     checkCoupon() {
       let url = "/coupon/" + 15;
-      dooolyAPP.gotoJumpVue.call(this, url);
+      dooolyAPP.gotoJumpVue(this.$router, url);
     },
     loadCardBuyDetailList() {
       http({
@@ -323,7 +323,7 @@ export default {
     localStorage.cardBuyOrdersellPrice = this.receiveData.sellPrice;
   },
   mounted() {
-    initTitle("确认订单");
+    dooolyAPP.initTitle("确认订单");
     if (this.$route.params.productId) {
       this.loadCardBuyDetailList();
     } else {

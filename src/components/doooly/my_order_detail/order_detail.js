@@ -38,7 +38,7 @@ const myOrderDetail = {
   beforeDestroy() {
   },
   created() {
-    initTitle('我的订单-订单详情', '')
+    dooolyAPP.initTitle('我的订单-订单详情', '')
   },
   mounted() {
     this.queryOrderDetail();
@@ -103,7 +103,7 @@ const myOrderDetail = {
         if (proId) jumpUrl = '/cardBuyDetail/' + proId;
       }
       if (!jumpUrl) return this.$toast("找不到该商品");
-      dooolyAPP.gotoJumpVue.call(this, jumpUrl);
+      dooolyAPP.gotoJumpVue(this.$router, jumpUrl);
     },
     jumpExternalLink(id){
       http({
@@ -111,7 +111,7 @@ const myOrderDetail = {
         url: api.getTargetUrl+"?businessId="+id+"&targetUrl="+"",
       }).then((result) => {
           if(result.data.code == 1000){
-              dooolyAPP.gotoJumpJq.call(this,result.data.resultUrl);
+              dooolyAPP.gotoJumpJq(this.$router,result.data.resultUrl);
           }
           if(result.data.code == 1001){
             this.$toast("获取1号通跳转链接出错,请稍候重试!");
@@ -121,7 +121,7 @@ const myOrderDetail = {
     order_details(bid) {
       localStorage.selectedTab2 = 0;
       let url = "/myOrderList/0/" + bid;
-      dooolyAPP.gotoJumpVue.call(this, url);
+      dooolyAPP.gotoJumpVue(this.$router, url);
     },
     keepBuying(orderNumber) {
       dooolyAPP.redirectPay(orderNumber)      
@@ -176,7 +176,7 @@ const myOrderDetail = {
       if (index > 0) {
         let id = newUrl.substring(index + 15, index + 17);
         let url = newUrl.substring(index + 18);
-        dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/'+id+'/'+encodeURIComponent(url));
+        dooolyAPP.gotoJumpVue(this.$router,'/openOneNnumber/'+id+'/'+encodeURIComponent(url));
       } else {
         window.location.href = newUrl;
       }

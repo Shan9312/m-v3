@@ -63,7 +63,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('兜礼权益限时领');
+      dooolyAPP.initTitle('兜礼权益限时领');
     },
     mounted(){
     },

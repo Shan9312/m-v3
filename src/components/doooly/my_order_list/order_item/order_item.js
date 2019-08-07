@@ -82,7 +82,7 @@ const orderItem = {
     },
     order_Detail: function (id) {
       this.$baiduStats('订单列表-查看订单详情');
-      dooolyAPP.gotoJumpVue.call(this, '/myOrderDetail/' + id);
+      dooolyAPP.gotoJumpVue(this.$router, '/myOrderDetail/' + id);
     },
     orderDelete(companyName, orderId){
       this.$baiduStats('订单列表-删除订单');

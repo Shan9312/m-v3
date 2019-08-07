@@ -18,7 +18,7 @@
         if(!link){
           return;
         }
-        dooolyAPP.gotoJumpJq.call(this,link);
+        dooolyAPP.gotoJumpJq(this.$router,link);
       },
     }
   }

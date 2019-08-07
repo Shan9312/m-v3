@@ -194,7 +194,7 @@ export default {
     document.body.style.backgroundColor="";
   },
   created(){
-    initTitle('常见问题','')
+    dooolyAPP.initTitle('常见问题','')
   },
   methods:{
   }

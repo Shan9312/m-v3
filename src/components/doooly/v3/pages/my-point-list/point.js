@@ -48,7 +48,7 @@ export default {
     };
   },
   created() {
-    initTitle('我的积分', '');
+    dooolyAPP.initTitle('我的积分', '');
   },
   mounted() {
     this.vmCannelUserFlag();
@@ -197,14 +197,9 @@ export default {
     },
     businessDetail: function(itemId, itemPointType) {
       //关闭新手引导
-      if (browserName == 'WebKit') {
-        window.webkit.messageHandlers.hideNavgationBar.postMessage('false');
-      } else if (browserName == 'Chrome WebView') {
-        RHNativeJS.setTopDialog(false);
-        RHNativeJS.visablePtrFrame(true);
-      }
+      dooolyAPP.showNavgationBar();
       let jumpUrl = '/myPointDetail/' + itemId + '/' + itemPointType;
-      dooolyAPP.gotoJumpVue.call(this, jumpUrl);
+      dooolyAPP.gotoJumpVue(this.$router, jumpUrl);
     },
     //判断是否是第一次进入
     beforeCreate() {
@@ -215,7 +210,7 @@ export default {
     },
     appeal: function() {
       let jumpUrl = '/pointsService';
-      dooolyAPP.gotoJumpVue.call(this, jumpUrl);
+      dooolyAPP.gotoJumpVue(this.$router, jumpUrl);
     }
   }
 };

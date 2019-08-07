@@ -43,7 +43,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('付款码','');
+      dooolyAPP.initTitle('付款码','');
       onWechatConfigNew('hideMenuItems');
       this.postScan_discount_default();
       setInterval(() => {this.active()}, 1000);

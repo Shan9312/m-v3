@@ -46,7 +46,7 @@
       }
     },
     created(){
-      initTitle('夏日送清凉','');
+      dooolyAPP.initTitle('夏日送清凉','');
       onWechatConfigNew('hideMenuItems');
     },
     mounted(){
@@ -121,9 +121,9 @@
       },
       onlink(type){
         if(type == 1){
-          dooolyAPP.gotoJumpVue.call(this,'/cardBuyDetail/145');
+          dooolyAPP.gotoJumpVue(this.$router,'/cardBuyDetail/145');
         }else if(type == 2){
-          dooolyAPP.gotoJumpVue.call(this,'/cardBuyDetail/148');
+          dooolyAPP.gotoJumpVue(this.$router,'/cardBuyDetail/148');
         }
       }
     }

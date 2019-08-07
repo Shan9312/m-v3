@@ -104,7 +104,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('我的申诉','')
+        dooolyAPP.initTitle('我的申诉','')
       },
       mounted(){
         let complaintTab=localStorage.complaintTab;
@@ -170,10 +170,10 @@
         },
         detailLink:function (complainId) {
           let jumpUrl="/complainDetail/"+complainId;
-          dooolyAPP.gotoJumpVue.call(this,jumpUrl);
+          dooolyAPP.gotoJumpVue(this.$router,jumpUrl);
         },
         skip:function () {
-          dooolyAPP.AppealAgainst.call(this,{"jumpType":"Native","jumpUrl":"AppealAgainst"},"6");
+          this.$router.push({name: 'appeal', params: {dataType: 6}})
         }
       },
       beforeRouteLeave(to, from, next) {

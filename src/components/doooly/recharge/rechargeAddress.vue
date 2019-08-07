@@ -268,7 +268,7 @@ export default {
     document.body.style.backgroundColor="";
   },
   created(){
-    initTitle('自助充值机地址','')
+    dooolyAPP.initTitle('自助充值机地址','')
   },
   methods:{
   }

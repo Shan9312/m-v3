@@ -164,13 +164,13 @@
             return;
           }
           // this.$baiduStats('首页-头部-权益icon');
-          dooolyAPP.gotoJumpVue.call(this,'/v3/memberEquity');
+          dooolyAPP.gotoJumpVue(this.$router,'/v3/memberEquity');
         }else if(type == 3){
           // this.$baiduStats('首页-头部-花积分');
-          dooolyAPP.gotoJumpVue.call(this,'/takeIntegral');
+          dooolyAPP.gotoJumpVue(this.$router,'/takeIntegral');
         }else if(type == 4){
           // this.$baiduStats('首页-banner-'+index);
-          dooolyAPP.gotoJumpJq.call(this,url);
+          dooolyAPP.gotoJumpJq(this.$router,url);
         }else if(type == 5){
           // this.$baiduStats('首页-大华活动-领取礼包-点击领取');
           if(this.giftData.gifts.length < 2){
@@ -287,7 +287,7 @@
       },
       async firstLoding(){
         document.body.style.backgroundColor="#fff";
-        initTitle(this.localStorageObj.groupShortName ? this.localStorageObj.groupShortName + '专享':'兜礼');
+        dooolyAPP.initTitle(this.localStorageObj.groupShortName ? this.localStorageObj.groupShortName + '专享':'兜礼');
         //获取地址
         getAddress.call(this);
         //大华首次登录闪屏

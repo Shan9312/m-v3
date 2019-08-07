@@ -135,7 +135,7 @@ export default {
       }
     },
     resets(){//重置状态
-      initTitle('身份验证');
+      dooolyAPP.initTitle('身份验证');
       this.step = 0;
       this.numbers = '';
     },
@@ -143,11 +143,11 @@ export default {
   watch:{
     numbers(val){
       if(this.step === 0){
-        initTitle('身份验证');
+        dooolyAPP.initTitle('身份验证');
       }else if(this.step ===1){
-        initTitle('设置密码');
+        dooolyAPP.initTitle('设置密码');
       }else{
-        initTitle('确认密码');
+        dooolyAPP.initTitle('确认密码');
       }
       this.numbers=this.numbers.replace(/[^\d]/g,'');
       if(val.length === 6 && this.step === 0){ // 第一步
@@ -164,7 +164,7 @@ export default {
             }
           }).then((res) => {
             if(res.data.code == "1000"){
-              initTitle('设置密码');
+              dooolyAPP.initTitle('设置密码');
               this.step = 1;
               this.numbers = '';
             }else if(res.data.code == "1002") {
@@ -227,7 +227,7 @@ export default {
     },
   },
   created(){
-    initTitle('身份验证');
+    dooolyAPP.initTitle('身份验证');
   },
 }
 </script>

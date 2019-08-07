@@ -105,7 +105,7 @@ import http from '@/http/http.js'
         this.$toast('活动尚未开始')
           return;
       }
-      dooolyAPP.gotoJumpVue.call(this, '/cardBuyDetail/' + id)
+      dooolyAPP.gotoJumpVue(this.$router, '/cardBuyDetail/' + id)
       },
     // 计算当月最后一天
     daysBetween (DateOne, DateTwo) {
@@ -217,7 +217,7 @@ import http from '@/http/http.js'
   },
   created () {
     document.title = localStorage.groupShortName + '专享-消费卡券'
-        initTitle(localStorage.groupShortName + '专享-消费卡券')
+        dooolyAPP.initTitle(localStorage.groupShortName + '专享-消费卡券')
         this.loadCardList()
 
       },

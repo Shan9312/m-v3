@@ -30,7 +30,7 @@
         gotoJumpJq_old(){
           clearTimeout(this.timeOut);
           this.sendfirstShow();
-          dooolyAPP.gotoJumpVue.call(this,'/businessinfo/'+this.toastData.dealType+'/'+this.toastData.id);
+          dooolyAPP.gotoJumpVue(this.$router,'/businessinfo/'+this.toastData.dealType+'/'+this.toastData.id);
         },
         sendfirstShow(){
           this.$emit('child-say',0);
@@ -43,9 +43,9 @@
             if(!this.toastData.openOneNnumberUrl){
               this.toastData.openOneNnumberUrl = '1';
             }
-            dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/'+this.toastData.openOneNnumberId+'/'+encodeURIComponent(this.toastData.openOneNnumberUrl));
+            dooolyAPP.gotoJumpVue(this.$router,'/openOneNnumber/'+this.toastData.openOneNnumberId+'/'+encodeURIComponent(this.toastData.openOneNnumberUrl));
           }else{
-            dooolyAPP.gotoJumpJq.call(this,this.toastData.url);
+            dooolyAPP.gotoJumpJq(this.$router,this.toastData.url);
           }
         }, 1000);
       },

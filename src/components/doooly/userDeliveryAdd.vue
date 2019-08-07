@@ -114,10 +114,10 @@ export default {
   },
   created(){
     if(this.Addtype=="add"){
-      initTitle('新增收货地址');
+      dooolyAPP.initTitle('新增收货地址');
       this.loding = true;
     }else {
-      initTitle('编辑收货地址');
+      dooolyAPP.initTitle('编辑收货地址');
       this.loadList();
     }
   },

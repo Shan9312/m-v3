@@ -90,11 +90,11 @@
       toast:toast
     },
     activated(){
-      initTitle('发现');
+      dooolyAPP.initTitle('发现');
     },
     mounted(){
       this.loadtabList();
-      initTitle('发现');
+      dooolyAPP.initTitle('发现');
     },
     methods: {
       loadFirstPage() {
@@ -126,7 +126,7 @@
             this.htmlShow = true;
           }
           if(res.data.data.actName){
-            initTitle(res.data.data.actName);
+            dooolyAPP.initTitle(res.data.data.actName);
           }
         });
       },
@@ -194,7 +194,7 @@
       },
       linkToast(logo, discount, maxUserRebate, dealType, url,id,activityId,isStar) {
         if(isStar == 1){
-          dooolyAPP.gotoJumpJq.call(this,url);
+          dooolyAPP.gotoJumpJq(this.$router,url);
           return;
         }
         this.$baiduStats('兜礼导购-' + this.checkedTabName + '-商品' + id);

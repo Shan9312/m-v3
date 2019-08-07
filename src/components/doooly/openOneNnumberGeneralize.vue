@@ -23,7 +23,7 @@ export default {
           window.location.href = result.data.resultUrl;
         }else if(result.data.code == 1001){
           this.$toast("小兜兜正忙,请稍候重试!");
-          dooolyAPP.gotoJumpVue.call(this,'/nav/newHome');
+          dooolyAPP.gotoJumpVue(this.$router,'/nav/newHome');
         }
     })
   },

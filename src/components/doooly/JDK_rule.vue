@@ -18,7 +18,7 @@
       }
     },
     created(){
-      initTitle('京东返利规则','');
+      dooolyAPP.initTitle('京东返利规则','');
       http({
           method: 'get',
           url: api.businessInfoForAjax+'?dealType=0&id='+this.id,

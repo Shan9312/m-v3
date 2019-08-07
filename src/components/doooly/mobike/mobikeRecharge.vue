@@ -136,7 +136,7 @@ export default {
     document.body.style.backgroundColor = ''
   },
   created () {
-    initTitle('摩拜骑行券充值', '')
+    dooolyAPP.initTitle('摩拜骑行券充值', '')
     this.getList()
   },
   watch: {

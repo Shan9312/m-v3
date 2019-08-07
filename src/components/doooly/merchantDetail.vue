@@ -133,7 +133,7 @@
     watch:{
       //详情信息处理
       adBusiness(){
-        initTitle(this.adBusiness.company);
+        dooolyAPP.initTitle(this.adBusiness.company);
         if (this.adBusiness.company === '网易严选') {
           this.getBrowser();
           // 第一次进入弹窗提示
@@ -355,7 +355,7 @@
           if(this.footer_type == 1 || this.footer_type == 6 || this.footer_type == 11){
             this.link('','',this.productId);
           }else if(this.footer_type == 2 || this.footer_type == 7){
-            dooolyAPP.gotoJumpVue.call(this,'/didi_integral/'+this.toastData.id);
+            dooolyAPP.gotoJumpVue(this.$router,'/didi_integral/'+this.toastData.id);
           }else if(this.footer_type == 5 || this.footer_type == 10){
             this.link(this.adBusiness.sAppJumpUrl,1);
           }else if(this.footer_type == 12){
@@ -409,7 +409,7 @@
       href(){
         this.lod_logo_show = 0;
         clearTimeout(this.timeOut);
-        dooolyAPP.gotoJumpVue.call(this,'/businessinfo/'+this.toastData.dealType+'/'+this.toastData.id);
+        dooolyAPP.gotoJumpVue(this.$router,'/businessinfo/'+this.toastData.dealType+'/'+this.toastData.id);
       },
       chaildDialogState(data){
         this.dialogState=false;
@@ -422,18 +422,35 @@
           return false
         }else{
           if(type==1){
-           dooolyAPP.gotoJumpJq.call(this,link);
+           dooolyAPP.gotoJumpJq(this.$router,link);
           }
           else{
-            dooolyAPP.gotoJumpVue.call(this,'/cardBuyDetail/' + id);
+            dooolyAPP.gotoJumpVue(this.$router,'/cardBuyDetail/' + id);
           }
         }
       },
       businessDetail(){
-        dooolyAPP.openMapView.call(this,this.adBusiness.company,this.adBusiness.id);
+        dooolyAPP.openMapView(this.$router,this.adBusiness.company,this.adBusiness.id);
       },
       linkscan(){
-        dooolyAPP.openScanDiscount.call(this);
+        this.emitDate.dealType = this.adBusiness.dealType
+        this.emitDate.id = this.adBusiness.id
+        this.emitDate.businessId = this.adBusiness.id
+        this.emitDate.company = this.adBusiness.company
+        this.emitDate.miniLogo = this.adBusiness.miniLogo
+        this.emitDate.userId = localStorage.userId
+        this.emitDate.groupShortName = localStorage.groupShortName
+        this.addScanAction(this.emitDate)
+        dooolyAPP.openScanDiscount(this.$router,{
+          'businessId': this.adBusiness.businessId,
+          'company': this.adBusiness.company,
+          'dealType': this.adBusiness.dealType,
+          'delFlag': this.adBusiness.delFlag,
+          'id': this.adBusiness.id,
+          'isSupportIntegral': this.adBusiness.isSupportIntegral,
+          'miniLogo': this.adBusiness.miniLogo,
+          'scanImageUrl': this.adBusiness.scanImageUrl
+        });
       },
       judgeIsIphoneX(){
         let isIphoneX = window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 375 && testUA('iPhone');

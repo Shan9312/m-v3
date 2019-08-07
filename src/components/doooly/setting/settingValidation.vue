@@ -52,7 +52,7 @@
             showCancelButton: true
           }).then(action => {
             if (action == 'confirm') {
-              dooolyAPP.gotoJumpVue.call(this, '/startusePassword/1'); //未设置支付密码跳转密码启动
+              dooolyAPP.gotoJumpVue(this.$router, '/startusePassword/1'); //未设置支付密码跳转密码启动
               this.value1 = !this.value1;
             }
           })
@@ -77,7 +77,7 @@
               showCancelButton: true
             }).then(action => {
               if (action == 'confirm') {
-                dooolyAPP.gotoJumpVue.call(this, '/startusePassword/1'); //未设置支付密码跳转密码启动
+                dooolyAPP.gotoJumpVue(this.$router, '/startusePassword/1'); //未设置支付密码跳转密码启动
                 this.value1 = !this.value1;
               }
             })
@@ -86,7 +86,7 @@
       },
     },
     created() {
-      initTitle('设置支付验证', '')
+      dooolyAPP.initTitle('设置支付验证', '')
     }
   }
 

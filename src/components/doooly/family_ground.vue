@@ -209,7 +209,7 @@ export default {
       }
   },
   created () {
-    initTitle('邀请亲友')
+    dooolyAPP.initTitle('邀请亲友')
       if (this.channel == 'wechat') {
       // 兜礼微信公众号
       this.code_img = true

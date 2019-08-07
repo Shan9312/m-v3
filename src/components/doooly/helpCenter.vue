@@ -55,7 +55,7 @@
         }
       },
       created(){
-        initTitle('帮助中心','')
+        dooolyAPP.initTitle('帮助中心','')
       },
       mounted(){
       },

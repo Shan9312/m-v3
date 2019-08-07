@@ -67,10 +67,10 @@ export default {
   },
   methods:{
     gobankIndex(){
-      dooolyAPP.jumpIndexPage.call(this);
+      dooolyAPP.jumpIndexPage();
     },
     link(){
-      dooolyAPP.gotoJumpVue.call(this,'/myOrderDetail/'+this.orderId);
+      dooolyAPP.gotoJumpVue(this.$router,'/myOrderDetail/'+this.orderId);
     },
     judgeIsIphoneX(){
       var isIphoneX = window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 375 && testUA('iPhone');
@@ -104,7 +104,7 @@ export default {
       dooolyAPP.goBackPageIndex("2");
     };
     document.title="支付结果";
-    initTitle('支付结果','2','isConfirmShow()');
+    dooolyAPP.initTitle('支付结果','2','isConfirmShow()');
   },
   beforeRouteLeave(to, from, next) {
     if(browserName != "WebKit" && browserName != "Chrome WebView"){

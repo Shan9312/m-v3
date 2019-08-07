@@ -173,12 +173,12 @@
           this.card4 = this.$cookies.get("card4");
         }
         if(/dist2.2.1/.test(window.location.href)){
-          initTitle('礼券绑定','8',"isreturn()");
+          dooolyAPP.initTitle('礼券绑定','8',"isreturn()");
         }else{
-          initTitle('礼券绑定','8');
+          dooolyAPP.initTitle('礼券绑定','8');
         }
         window.isreturn = function(){
-          dooolyAPP.jumpAPPHOME(3);
+          dooolyAPP.jumpAppHome(3);
         };
       },
       computed:{
@@ -211,9 +211,9 @@
         },
         activated(){
           if(/dist2.2.1/.test(window.location.href)){
-            initTitle('礼券绑定','8',"isreturn()");
+            dooolyAPP.initTitle('礼券绑定','8',"isreturn()");
           }else{
-            initTitle('礼券绑定','8');
+            dooolyAPP.initTitle('礼券绑定','8');
           }
           this.loadFirstPage();
         },
@@ -315,7 +315,7 @@
         },
         confirmActivateBtn(){//跳转个人中心
           this.nonentityVisible1=false;
-          dooolyAPP.gotoJumpVue.call(this,'/pointsService');
+          dooolyAPP.gotoJumpVue(this.$router,'/pointsService');
         },
         confirmRechargeBtn(){//
           this.nonentityVisible1=false;

@@ -30,7 +30,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('申诉成功','')
+        dooolyAPP.initTitle('申诉成功','')
       },
       mounted(){
         let t = setTimeout(() => {

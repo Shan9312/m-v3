@@ -33,7 +33,7 @@ export default {
     }
   },
   created () {
-    initTitle('我的', 6)
+    dooolyAPP.initTitle('我的', 6)
   },
   mounted () {
     this.getUserProfile()
@@ -71,7 +71,7 @@ export default {
         // this.newFinishFlag = false;
         // this.newCancelFlag = false;
       }
-      dooolyAPP.gotoJumpVue.call(this, urlStr)
+      dooolyAPP.gotoJumpVue(this.$router, urlStr)
       // baiduStatsMsgObj[direct] && this.$baiduStats(baiduStatsMsgObj[direct])
     },
     jumpGiftList () {

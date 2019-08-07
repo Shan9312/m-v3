@@ -26,7 +26,7 @@
   export default {
     name: "activePage",
     created(){
-      initTitle('会员激活','')
+      dooolyAPP.initTitle('会员激活','')
     },
     mounted(){
     },

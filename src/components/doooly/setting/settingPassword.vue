@@ -27,14 +27,14 @@
     methods:{
       link(type){
         if(type ==1){
-          dooolyAPP.gotoJumpVue.call(this,'/verification/1/3')
+          dooolyAPP.gotoJumpVue(this.$router,'/verification/1/3')
         }else{
-          dooolyAPP.gotoJumpVue.call(this,'/verification/0/3')
+          dooolyAPP.gotoJumpVue(this.$router,'/verification/0/3')
         }
       }
     },
     created(){
-      initTitle('密码设置')
+      dooolyAPP.initTitle('密码设置')
     },
     watch:{
         

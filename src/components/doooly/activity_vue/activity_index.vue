@@ -67,7 +67,7 @@
       if(localStorage.activityisShare){
        this.isShare=true;
       }
-      initTitle('兜礼话费优惠活动','');
+      dooolyAPP.initTitle('兜礼话费优惠活动','');
       onWechatConfigNew('hideMenuItems');
     },
     mounted:function(){

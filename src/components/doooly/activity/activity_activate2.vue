@@ -77,7 +77,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('会员激活','')
+        dooolyAPP.initTitle('会员激活','')
       },
       mounted:function(){
         this.phone=localStorage.activateMobile;

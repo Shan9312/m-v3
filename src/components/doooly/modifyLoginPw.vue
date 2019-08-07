@@ -43,7 +43,7 @@
           }
       },
       created(){
-        initTitle('修改登录密码','')
+        dooolyAPP.initTitle('修改登录密码','')
       },
       mounted(){
       },
@@ -93,15 +93,8 @@
           );
         },
         app_url:function () {
-          if(browserName == "WebKit"){
-            window.webkit.messageHandlers.forceLoginOut.postMessage('forceLoginOut');
-          }else if(browserName == "Chrome WebView"){
-            RHNativeJS.forceLoginOut('修改成功！');//登录页
-          }
-          else {
-            localStorage.redirectUrl="/nav/personalCenter";
-            this.$router.push('/');
-          }
+          localStorage.redirectUrl="/nav/personalCenter";
+          dooolyAPP.forceLoginOut(this.$router);
         }
       }
     }

@@ -31,11 +31,11 @@
       if(openOneNnumber==1){
         this.getTargetUrl(link,businessId).then((link)=> {
           link = this.resultUrl;
-         dooolyAPP.gotoJumpJq.call(this,link);
+         dooolyAPP.gotoJumpJq(this.$router,link);
         })
       }
       else{
-        dooolyAPP.gotoJumpJq.call(this,link);
+        dooolyAPP.gotoJumpJq(this.$router,link);
       }
     },
 

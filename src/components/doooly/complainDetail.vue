@@ -82,7 +82,7 @@
           }
       },
       created(){
-        initTitle('申诉详情','')
+        dooolyAPP.initTitle('申诉详情','')
       },
       mounted:function () {
         this.isOwnApp=localStorage.ownApp;

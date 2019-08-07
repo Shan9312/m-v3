@@ -91,7 +91,7 @@
 
       },
       created(){
-        initTitle('常见问题','')
+        dooolyAPP.initTitle('常见问题','')
       },
       mounted(){
       },

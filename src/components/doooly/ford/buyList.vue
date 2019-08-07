@@ -134,7 +134,7 @@
         if(this.shopsList.length <= 0){
           return;
         }
-        dooolyAPP.gotoJumpVue.call(this,'/fordBuyOrder');
+        dooolyAPP.gotoJumpVue(this.$router,'/fordBuyOrder');
       },
       //购物车添加商品
       shoppingAdd(item){
@@ -304,7 +304,7 @@
           this.$toast('活动尚未开始');
           return;
         }
-        dooolyAPP.gotoJumpVue.call(this,'/fordBuyDetail/'+ id +'/'+ skuId);
+        dooolyAPP.gotoJumpVue(this.$router,'/fordBuyDetail/'+ id +'/'+ skuId);
 
       },
       //计算当月最后一天
@@ -421,7 +421,7 @@
       document.body.style.backgroundColor="";
     },
     created() {
-      initTitle('360礼包兑换');
+      dooolyAPP.initTitle('360礼包兑换');
       this.loadCardList();//商品列表
     },
     mounted() {

@@ -35,7 +35,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('充值记录','')
+      dooolyAPP.initTitle('充值记录','')
     },
     mounted (){
       http({

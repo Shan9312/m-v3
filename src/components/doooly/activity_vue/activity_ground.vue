@@ -41,7 +41,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('兜礼话费优惠活动','');
+      dooolyAPP.initTitle('兜礼话费优惠活动','');
       http({
           method: 'get',
           url: api.getQRCode+"?openId="+this.openId+"&sourceOpenId="+this.sourceOpenId

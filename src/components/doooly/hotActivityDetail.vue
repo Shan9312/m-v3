@@ -27,7 +27,7 @@
               method: 'get',
               url: api.CouponActivity + '/' + this.$route.params.activityId,
             }).then((res) => {
-              initTitle(res.data.data.activityName);
+              dooolyAPP.initTitle(res.data.data.activityName);
               this.introduction=res.data.data.introduction;
 
             })

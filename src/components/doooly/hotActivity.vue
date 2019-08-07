@@ -76,7 +76,7 @@
       document.body.style.backgroundColor="";
     },
     activated(){
-      initTitle('活动',5);
+      dooolyAPP.initTitle('活动',5);
     },
     methods: {
 
@@ -177,7 +177,7 @@
           this.dialogBoxData.company = company;
           this.dialogBoxData.logo = logo;
         }else{
-          dooolyAPP.gotoJumpJq.call(this,detailUrl);
+          dooolyAPP.gotoJumpJq(this.$router,detailUrl);
         }
       },
       chaildDialogState(data) {
@@ -249,7 +249,7 @@
         this.toastData.id = id;
          }
          else if(activityType==13){
-           dooolyAPP.gotoJumpVue.call(this,'/hotActivityDetail/'+activityId)
+           dooolyAPP.gotoJumpVue(this.$router,'/hotActivityDetail/'+activityId)
          }
 
       },
@@ -282,7 +282,7 @@
       if(browserName == "otherAPPAndroid"){
         RHNativeJS.visablePtrFrame(false);
       };
-      initTitle('活动',5);
+      dooolyAPP.initTitle('活动',5);
     }
   }
 </script>

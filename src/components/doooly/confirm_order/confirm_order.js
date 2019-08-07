@@ -20,7 +20,7 @@ const confirmOrder = {
     }
   },
   created () {
-    initTitle('确认订单')
+    dooolyAPP.initTitle('确认订单')
     if (this.$route.params.productId) {
       const { productId, skuId, productTypeId, activityName } = this.$route.params
       this.loadCardBuyDetailList(productId, skuId, productTypeId, activityName)
@@ -119,7 +119,7 @@ const confirmOrder = {
       })
     },
     link () {
-      dooolyAPP.gotoJumpVue.call(this, '/userDeliveryList')
+      dooolyAPP.gotoJumpVue(this.$router, '/userDeliveryList')
     },
 
     // 提交订单

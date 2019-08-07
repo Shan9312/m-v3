@@ -12,7 +12,7 @@
         components:{dyfooter},
       created(){
         document.title = '个人中心';
-        initTitle('个人中心',1);
+        dooolyAPP.initTitle('个人中心',1);
 
 
       }

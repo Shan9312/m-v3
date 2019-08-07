@@ -351,9 +351,9 @@
         if (type == 1 || type == 3 || type == 40 || type == 52 || type == 6) {
           // this.$baiduStats('首页-楼层' + this.newListV3.type + '-' + title)
           if (subUrl) {
-            dooolyAPP.gotoJumpVue.call(this, subUrl)
+            dooolyAPP.gotoJumpVue(this.$router, subUrl)
           } else {
-            dooolyAPP.gotoJumpJq.call(this, linkUrl)
+            dooolyAPP.gotoJumpJq(this.$router, linkUrl)
           }
         } else if (type == 21) {
           // this.$baiduStats('首页-礼包-' + title)
@@ -366,18 +366,18 @@
           this.$router.push('/v3/life?type=2')
         } else if (type == 51) {
           // this.$baiduStats('首页-楼层' + this.newListV3.type + '-全部卡券')
-          dooolyAPP.gotoJumpVue.call(this, '/cardBuy')
+          dooolyAPP.gotoJumpVue(this.$router, '/cardBuy')
         } else if (type == 50) {
           // this.$baiduStats('首页-楼层' + this.newListV3.type + '-我的卡券')
-          dooolyAPP.gotoJumpVue.call(this, '/coupon/0')
+          dooolyAPP.gotoJumpVue(this.$router, '/coupon/0')
         }
       },
       link(subUrl, linkUrl, title) {
         // this.$baiduStats(this.origin + '-' + this.name + '-' + title)
         if (subUrl) {
-          dooolyAPP.gotoJumpVue.call(this, subUrl)
+          dooolyAPP.gotoJumpVue(this.$router, subUrl)
         } else {
-          dooolyAPP.gotoJumpJq.call(this, linkUrl)
+          dooolyAPP.gotoJumpJq(this.$router, linkUrl)
         }
       },
       animation(cur, old) {
@@ -420,7 +420,7 @@
           const baseURL = api.baseURL + 'dist'
           if (this.list[0].linkUrl.indexOf(baseURL) > -1) {
             const subUrl = this.list[0].linkUrl.substring(this.list[0].linkUrl.indexOf('#') + 1)
-            dooolyAPP.gotoJumpVue.call(this, subUrl)
+            dooolyAPP.gotoJumpVue(this.$router, subUrl)
           } else {
             window.location.href = this.list[0].linkUrl
           }
@@ -1117,20 +1117,16 @@
   }
 
   .gift {
-    // overflow: scroll; // todo
     margin-bottom: 0.8rem;
 
     ul {
-      // width: 999999px; // todo
       padding: 0 0.1rem;
       display: flex; // todo
       overflow: scroll;
-
       li {
-        // float: left; // todo
         padding: 0 0.1rem;
         text-align: center;
-
+        min-width: 2rem;
         .img-view {
           width: 2rem;
           height: 1.6rem;

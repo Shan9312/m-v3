@@ -102,7 +102,7 @@
     mounted(){
       document.body.style.backgroundColor="#f5f5f5";
       this.loadtabList();
-      initTitle('优惠券');
+      dooolyAPP.initTitle('优惠券');
     },
     destroy(){
       document.body.style.backgroundColor="";

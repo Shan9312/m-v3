@@ -88,7 +88,7 @@ export default {
       })
     },
     link() {
-      dooolyAPP.gotoJumpVue.call(this,'/userDeliveryList');
+      dooolyAPP.gotoJumpVue(this.$router,'/userDeliveryList');
     },
     refer(){
       let merchantProduct = [];
@@ -165,7 +165,7 @@ export default {
     
   },
   created(){
-    initTitle('确认订单');
+    dooolyAPP.initTitle('确认订单');
     //确认收货地址
     this.getUserDelivery();
   },

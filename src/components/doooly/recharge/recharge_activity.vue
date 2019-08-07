@@ -63,7 +63,7 @@ export default {
     }
   },
   created(){
-    initTitle('话费充值','');
+    dooolyAPP.initTitle('话费充值','');
     this.initData();
     this.queryToRecharge();
     this.queryActivityInfo();

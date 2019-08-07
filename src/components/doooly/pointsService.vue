@@ -38,12 +38,12 @@
       }
     },
     created(){
-      initTitle('可用积分商户','');
+      dooolyAPP.initTitle('可用积分商户','');
       this.getlist();
       this.$baiduStats('我的-可用积分-可用积分商户');
     },
     activated(){
-      initTitle('可用积分商户','');
+      dooolyAPP.initTitle('可用积分商户','');
       this.getlist();
     },
     computed:{
@@ -82,11 +82,11 @@
       linkPointsService(url,name,businessId,dealType,index) {
         this.$baiduStats('我的-可用积分-可用积分商户-' + name);
         if(url.substring(0,4)=='http' || url.substring(0,4)=='HTTP'){
-          dooolyAPP.gotoJumpJq.call(this,url);
+          dooolyAPP.gotoJumpJq(this.$router,url);
         }else if(!isNaN(url)){//判断是否是一号通链接
-          dooolyAPP.gotoJumpVue.call(this,'/openOneNnumber/'+url+'/1');
+          dooolyAPP.gotoJumpVue(this.$router,'/openOneNnumber/'+url+'/1');
         }else{
-           dooolyAPP.gotoJumpVue.call(this,url);
+           dooolyAPP.gotoJumpVue(this.$router,url);
         }
       },
     },

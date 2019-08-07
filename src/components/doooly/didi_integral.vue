@@ -93,7 +93,7 @@
     },
     created(){
         this.getbalance();
-        initTitle('滴滴打车积分兑换','')
+        dooolyAPP.initTitle('滴滴打车积分兑换','')
     },
     mounted (){
 
@@ -186,7 +186,7 @@
         })
       },
       gotoOrder() {
-        dooolyAPP.gotoJumpVue.call(this, '/myOrderList/0/' + this.id);
+        dooolyAPP.gotoJumpVue(this.$router, '/myOrderList/0/' + this.id);
       },
     },
     beforeCreate(){

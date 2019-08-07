@@ -111,7 +111,7 @@
       },
       //获取手机通讯录
       click_tel(){
-        dooolyAPP.openTelePhoneList.call(this,'getTel');
+        dooolyAPP.openTelePhoneList('getTel');
       },
       click_teldiv(){
         this.isTel_close=true;
@@ -286,7 +286,7 @@
 
     created() {
       this.loadPageData();
-      initTitle('邀请亲友');
+      dooolyAPP.initTitle('邀请亲友');
       if(browserName=="WeChat"){
         this.isTel=false;
       }

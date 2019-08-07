@@ -30,7 +30,7 @@
       }
     },
     created(){
-      initTitle('我的绑定信息','')
+      dooolyAPP.initTitle('我的绑定信息','')
     },
     
     

@@ -176,7 +176,7 @@
       },
       created(){
         globalVue = this;
-        initTitle('联系客服','')
+        dooolyAPP.initTitle('联系客服','')
       },
       computed:{
         submitDisable: function () {
@@ -326,7 +326,7 @@
         //app选择照片
         chooseImgAPP(){
           if(browserName == 'otherAPPAndroid'){
-            RHNativeJS.photographNative('APP_chooseImage');
+            dooolyAPP.photographNative('APP_chooseImage');
           }
         },
         //选择照片

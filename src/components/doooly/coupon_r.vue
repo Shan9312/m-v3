@@ -154,7 +154,7 @@
       },
       mounted:function(){
         this.loadPageData();
-        initTitle('我的福利');
+        dooolyAPP.initTitle('我的福利');
 
       },
       beforeDestroy(){

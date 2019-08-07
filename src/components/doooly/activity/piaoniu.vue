@@ -64,7 +64,7 @@
       if(localStorage.activityfunction){
         localStorage.activityfunction= "";
       }
-      initTitle('兜礼&票牛福利大FUN送','');
+      dooolyAPP.initTitle('兜礼&票牛福利大FUN送','');
     },
     methods: {
       confirmBtn(){//取消弹框

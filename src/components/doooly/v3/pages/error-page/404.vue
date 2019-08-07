@@ -14,11 +14,11 @@ export default {
     return {}
   },
   created() {
-    initTitle('出错啦')
+    dooolyAPP.initTitle('出错啦')
   },
   methods: {
     goIndex() {
-      dooolyAPP.jumpIndexPage.call(this);
+      dooolyAPP.jumpIndexPage();
     }
   }
 }

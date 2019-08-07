@@ -48,7 +48,7 @@
            if (res.data.code = 1000) {
              this.pageList = res.data.data.adProducts;
              this.content = res.data.data.adProducts[0].content;
-             initTitle(res.data.data.adProducts[0].title, 4);
+             dooolyAPP.initTitle(res.data.data.adProducts[0].title, 4);
              this.shareParams.digest = this.pageList[0].digest;
              localStorage.articledigest = this.shareParams.digest;
              this.shareParams.imgUrl = this.pageList[0].imgUrl;

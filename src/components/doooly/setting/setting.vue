@@ -59,10 +59,10 @@
     methods: {
       link(number) {
         if (number == 2) {
-          dooolyAPP.gotoJumpVue.call(this, '/settingValidation');
+          dooolyAPP.gotoJumpVue(this.$router, '/settingValidation');
           this.$baiduStats('我的-系统设置-支付验证');
         } else if (number == 3) {
-          dooolyAPP.gotoJumpVue.call(this, '/aboutDoooly');
+          dooolyAPP.gotoJumpVue(this.$router, '/aboutDoooly');
           this.$baiduStats('我的-系统设置-关于兜礼');
         }
       },
@@ -80,9 +80,9 @@
             localStorage.isSetPayPassword = this.isSetPayPassword;
           }
           if (this.isSetPayPassword === 0) { // 未设置过跳转启用密码设置
-            dooolyAPP.gotoJumpVue.call(this, '/startusePassword/0');
+            dooolyAPP.gotoJumpVue(this.$router, '/startusePassword/0');
           } else if (this.isSetPayPassword === 1) { // 设置过跳转密码设置
-            dooolyAPP.gotoJumpVue.call(this, '/settingPassword');
+            dooolyAPP.gotoJumpVue(this.$router, '/settingPassword');
           }
         })
         this.$baiduStats('我的-系统设置-密码设置');
@@ -110,7 +110,7 @@
       }
     },
     created() {
-      initTitle('系统设置')
+      dooolyAPP.initTitle('系统设置')
     },
   }
 

@@ -204,7 +204,7 @@
         this.nearby(data);
         this.addMarker2();
       }).bind(this));
-      initTitle(localStorage.storeMapCompany);
+      dooolyAPP.initTitle(localStorage.storeMapCompany);
     },
     beforeCreate(){
       if(!localStorage.reload){

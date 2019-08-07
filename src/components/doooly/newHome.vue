@@ -265,7 +265,7 @@
             this.groupShortName = res.data.data.adGroup.groupShortName;
             localStorage.groupShortName = res.data.data.adGroup.groupShortName;
             if(document.title == "兜礼"){
-              initTitle(localStorage.groupShortName + '专享', 1);
+              dooolyAPP.initTitle(localStorage.groupShortName + '专享', 1);
             }
             this.myPoints = res.data.data;
           }
@@ -295,9 +295,9 @@
       this.loadAdList();
       bus.$on('mapStore',(function(data){}).bind(this));
       if(localStorage.groupShortName){
-        initTitle(localStorage.groupShortName + '专享', 1);
+        dooolyAPP.initTitle(localStorage.groupShortName + '专享', 1);
       }else{
-        initTitle('兜礼', 1);
+        dooolyAPP.initTitle('兜礼', 1);
       }
       if(localStorage.appStartUpUrl && localStorage.appStartUpUrl != 'undefined'){
         this.dahuaimg = localStorage.appStartUpUrl;
@@ -329,9 +329,9 @@
       this.loadAdList();
       this.getList();
       if(localStorage.groupShortName){
-        initTitle(localStorage.groupShortName + '专享', 1);
+        dooolyAPP.initTitle(localStorage.groupShortName + '专享', 1);
       }else{
-        initTitle('兜礼', 1);
+        dooolyAPP.initTitle('兜礼', 1);
       }
     },
     beforeDestroy(){
@@ -342,7 +342,7 @@
     },
     beforeCreate(){
       if(browserName=="WebKit" || browserName=="Chrome WebView"){
-        dooolyAPP.forceLoginOut();
+        dooolyAPP.forceLoginOut(this.$router);
       }
       document.body.style.backgroundColor="#fff";
       if ( window.__wxjs_is_wkwebview === true && !localStorloadPrivilegeDataage.latitude) {

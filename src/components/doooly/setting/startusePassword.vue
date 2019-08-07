@@ -27,14 +27,14 @@
       // 启用支付密码--身份验证
       jump(){
         if(this.type==0){ 
-          dooolyAPP.gotoJumpVue.call(this,'/verification/0/0');
+          dooolyAPP.gotoJumpVue(this.$router,'/verification/0/0');
         }else if(this.type==1){ 
-          dooolyAPP.gotoJumpVue.call(this,'/verification/0/1');
+          dooolyAPP.gotoJumpVue(this.$router,'/verification/0/1');
         }
       }
     },
     created(){
-      initTitle('密码设置')
+      dooolyAPP.initTitle('密码设置')
     },
   }
 

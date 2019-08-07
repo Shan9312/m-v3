@@ -90,7 +90,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('企业口令','')
+        dooolyAPP.initTitle('企业口令','')
       },
       mounted:function(){
         this.phone=localStorage.activateMobile;

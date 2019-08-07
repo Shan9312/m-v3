@@ -41,7 +41,7 @@
       }
     },
     created(){
-      initTitle('话费限量领','');
+      dooolyAPP.initTitle('话费限量领','');
       onWechatConfigNew('hideMenuItems');
     },
     mounted(){
@@ -62,10 +62,10 @@
         }).then((data) => {
             if(data.data.code == 1000){
               this.$toast('抵扣券已到账');
-              dooolyAPP.gotoJumpVue.call(this,'/recharge/0/0');
+              dooolyAPP.gotoJumpVue(this.$router,'/recharge/0/0');
             }else if(data.data.code == 1002){
               this.$toast('抵扣券已领取');
-              dooolyAPP.gotoJumpVue.call(this,'/recharge/0/0');
+              dooolyAPP.gotoJumpVue(this.$router,'/recharge/0/0');
             }else{
               if(data.data.mess){
                 this.$toast(data.data.mess);
@@ -74,7 +74,7 @@
         })
       },
       order(){
-        dooolyAPP.gotoJumpVue.call(this,'/myOrderList/0/all');
+        dooolyAPP.gotoJumpVue(this.$router,'/myOrderList/0/all');
       }
     },
   }

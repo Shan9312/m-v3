@@ -75,7 +75,7 @@
       }
     },
     created(){
-      initTitle('兜礼体验官','');
+      dooolyAPP.initTitle('兜礼体验官','');
       onWechatConfigNew('hideMenuItems');
       this.postShopAssistantInvite();
     },

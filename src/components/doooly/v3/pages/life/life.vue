@@ -150,7 +150,7 @@ export default {
     }
   },
   created() {
-    initTitle('生活');
+    dooolyAPP.initTitle('生活');
     this.recentView();
     this.getLifeFloors();
     this.getGuideCategory();
@@ -235,7 +235,7 @@ export default {
     },
     goDetail(url, moduleName, name) {
       // this.$baiduStats('生活-' + moduleName + name);
-      dooolyAPP.gotoJumpJq.call(this, url);
+      dooolyAPP.gotoJumpJq(this.$router, url);
     },
     handleGuideTag(arr) {
       let list = arr.split(',')

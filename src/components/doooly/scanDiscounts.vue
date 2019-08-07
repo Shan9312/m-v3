@@ -56,7 +56,7 @@
       }
     },
     activated(){
-      initTitle('付款码');
+      dooolyAPP.initTitle('付款码');
     },
     methods:{
       ...mapActions(['addScanAction','deleteScanAction']),
@@ -100,7 +100,7 @@
 
     created(){
       this.loadPageData();
-      initTitle('付款码');
+      dooolyAPP.initTitle('付款码');
     },
     mounted(){
 

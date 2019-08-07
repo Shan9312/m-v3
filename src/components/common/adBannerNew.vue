@@ -40,7 +40,7 @@
         if(!link){
           return;
         }
-        dooolyAPP.gotoJumpJq.call(this,link);
+        dooolyAPP.gotoJumpJq(this.$router,link);
       },
       swipeRight(){
         if(this.swipe_left != 0 || this.items.length < 2){

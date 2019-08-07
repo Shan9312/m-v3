@@ -61,7 +61,7 @@ export default {
     }
   },
   created(){
-    initTitle('新开户绑定','')
+    dooolyAPP.initTitle('新开户绑定','')
   },
   methods:{
     submit(){
@@ -112,7 +112,7 @@ export default {
             if(data.data.resultCode == "success"){
                 this.$toast("恭喜您绑定成功！");
                 this.timeOut = setTimeout(() => {
-                  dooolyAPP.gotoJumpVue.call(this,'/recharge/2/0');
+                  dooolyAPP.gotoJumpVue(this.$router,'/recharge/2/0');
                 }, 1500);
             }else{
                 this.$toast("网络异常，请重试！");

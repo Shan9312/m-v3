@@ -358,19 +358,9 @@ export default{
             }
         },
         novice (){
-            if(browserName == "WebKit"){
-                window.webkit.messageHandlers.hideNavgationBar.postMessage("false");
-            }else if(browserName == "Chrome WebView"){
-                RHNativeJS.setTopDialog(false);
-                RHNativeJS.visablePtrFrame(true);
-            }
+            dooolyAPP.showNavgationBar();
             if(this.novice == 1){
-                if(browserName == "WebKit"){
-                  window.webkit.messageHandlers.hideNavgationBar.postMessage("true");
-                }else if(browserName == "Chrome WebView"){
-                  RHNativeJS.setTopDialog(true);
-                  RHNativeJS.visablePtrFrame(false);
-                }
+                dooolyAPP.hideNavgationBar();
             }
         },
         toRecharge(){
@@ -541,33 +531,33 @@ export default{
         title(){
             if(this.tab_number == 0){
                 if(localStorage.groupShortName){
-                    initTitle(localStorage.groupShortName + '专享-话费充值','')
+                    dooolyAPP.initTitle(localStorage.groupShortName + '专享-话费充值','')
                 }else{
-                    initTitle('话费充值','')
+                    dooolyAPP.initTitle('话费充值','')
                 }
             }else if(this.tab_number == 1){
                 if(localStorage.groupShortName){
-                    initTitle(localStorage.groupShortName + '专享-流量充值','')
+                    dooolyAPP.initTitle(localStorage.groupShortName + '专享-流量充值','')
                 }else{
-                    initTitle('流量充值','')
+                    dooolyAPP.initTitle('流量充值','')
                 }
             }else if(this.tab_number == 2){
                 if(localStorage.groupShortName){
-                    initTitle(localStorage.groupShortName + '专享-旅游卡充值','')
+                    dooolyAPP.initTitle(localStorage.groupShortName + '专享-旅游卡充值','')
                 }else{
-                    initTitle('旅游卡充值','')
+                    dooolyAPP.initTitle('旅游卡充值','')
                 }
             }
         },
         verify_link(){
-            dooolyAPP.gotoJumpVue.call(this,'/travelCard_add/'+this.cardno);
+            dooolyAPP.gotoJumpVue(this.$router,'/travelCard_add/'+this.cardno);
         },
         // 充值活动跳转
         gotoActivity(){
             // this.$baiduStats('话费充值-周五充值活动');
             let jumpUrl = this.activityUrl || '/rechargeActivity/';
             jumpUrl += this.activityName;
-            dooolyAPP.gotoJumpVue.call(this, jumpUrl);
+            dooolyAPP.gotoJumpVue(this.$router, jumpUrl);
         },
         pirce_check(id,price,index){
             this.quota_div_show = false;
@@ -623,19 +613,19 @@ export default{
             });
         },
         binding_view(){
-            dooolyAPP.gotoJumpVue.call(this,'/travelCard_details/'+this.sctcdAccount[0].idCard+'/'+this.sctcdAccount[0].userName+'/'+this.sctcdAccount[0].phoneno);
+            dooolyAPP.gotoJumpVue(this.$router,'/travelCard_details/'+this.sctcdAccount[0].idCard+'/'+this.sctcdAccount[0].userName+'/'+this.sctcdAccount[0].phoneno);
         },
         rechargeList(){
-            dooolyAPP.gotoJumpVue.call(this,'/rechargeList/'+this.sctcdAccount[0].cardno);
+            dooolyAPP.gotoJumpVue(this.$router,'/rechargeList/'+this.sctcdAccount[0].cardno);
         },
         rechargeHelpCenter(){
-            dooolyAPP.gotoJumpVue.call(this,'/rechargeHelpCenter');
+            dooolyAPP.gotoJumpVue(this.$router,'/rechargeHelpCenter');
         },
         rechargeAddress(){
-            dooolyAPP.gotoJumpVue.call(this,'/rechargeAddress');
+            dooolyAPP.gotoJumpVue(this.$router,'/rechargeAddress');
         },
         rechargeRule(){
-            dooolyAPP.gotoJumpVue.call(this,'/rechargeRule');
+            dooolyAPP.gotoJumpVue(this.$router,'/rechargeRule');
         },
         tab_change(index){
             this.tab_number = index;

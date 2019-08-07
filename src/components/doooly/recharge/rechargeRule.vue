@@ -24,7 +24,7 @@ export default {
     }
   },
   created(){
-    initTitle('圈存流程','')
+    dooolyAPP.initTitle('圈存流程','')
   },
   methods:{
   }

@@ -331,7 +331,7 @@ export default {
     }
   },
   created(){
-    initTitle('确认订单');
+    dooolyAPP.initTitle('确认订单');
     this.getUserDelivery();
     globalVue = this;
   },
@@ -415,7 +415,7 @@ export default {
       });
     },
     link() {
-      dooolyAPP.gotoJumpVue.call(this,'/userDeliveryList');
+      dooolyAPP.gotoJumpVue(this.$router,'/userDeliveryList');
     },
     //地区选择
     distpicker(disType){

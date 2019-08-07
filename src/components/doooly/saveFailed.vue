@@ -28,7 +28,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('申诉失败','')
+        dooolyAPP.initTitle('申诉失败','')
       },
       mounted(){
         let t = setTimeout(() => {

@@ -337,7 +337,7 @@ export default {
     window.addEventListener('scroll', this.menu);
   },
   created(){
-    initTitle('商品详情');
+    dooolyAPP.initTitle('商品详情');
     this.loadCardBuyDetailList();
     this.getShoppingList();
   }

@@ -29,19 +29,19 @@ export default {
       }).then((res) => {
         if(res.data.code==1000 || res.data.code==1001){
           if(this.productType == 7){
-            dooolyAPP.gotoJumpVue.call(this,'/activity_cardBuyPayResult/'+res.data.data.code+'/'+res.data.data.totalAmount+'/'+res.data.data.orderId+'/'+res.data.data.orderNum+'/'+res.data.data.activityParam+'/'+res.data.data.openId);
+            dooolyAPP.gotoJumpVue(this.$router,'/activity_cardBuyPayResult/'+res.data.data.code+'/'+res.data.data.totalAmount+'/'+res.data.data.orderId+'/'+res.data.data.orderNum+'/'+res.data.data.activityParam+'/'+res.data.data.openId);
           }else{
             let pathStr = '/cardBuyPayResult/'+res.data.data.code+'/'+res.data.data.totalAmount+'/'+res.data.data.orderId+'/'+res.data.data.orderNum+'/'+this.productType
             if (this.activityName){
               pathStr += '/' + this.activityName;
             }
-            dooolyAPP.gotoJumpVue.call(this, pathStr);
+            dooolyAPP.gotoJumpVue(this.$router, pathStr);
           }
         }else if(res.data.code==1002){
           let timeOut = setTimeout(() => {this.getPayResult();}, 500);
         }else{
           this.$toast(res.data.msg);
-          dooolyAPP.gotoJumpVue.call(this, '/nav/newHome');
+          dooolyAPP.gotoJumpVue(this.$router, '/nav/newHome');
         }
       });
     },

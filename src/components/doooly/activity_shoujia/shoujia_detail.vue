@@ -47,7 +47,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('夏日送清凉','');
+      dooolyAPP.initTitle('夏日送清凉','');
       http({//判断之前是否领取过礼品
           method: 'post',
           url: api.isReceiveGift,
@@ -92,7 +92,7 @@
         })
      },
       pop_click_btn(){
-        dooolyAPP.gotoJumpVue.call(this,'/shoujia_index/-1/-1');
+        dooolyAPP.gotoJumpVue(this.$router,'/shoujia_index/-1/-1');
       }
     },
   }

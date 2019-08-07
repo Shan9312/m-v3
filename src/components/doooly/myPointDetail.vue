@@ -328,7 +328,7 @@ export default {
     }
   },
   created() {
-    initTitle('积分详情', '')
+    dooolyAPP.initTitle('积分详情', '')
     this.getDetail()
   },
   methods: {

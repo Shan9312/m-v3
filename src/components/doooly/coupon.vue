@@ -169,7 +169,7 @@ export default {
       })
     },
     jumpIndexPage(){
-      dooolyAPP.jumpIndexPage.call(this);
+      dooolyAPP.jumpIndexPage();
       this.$baiduStats('我的福利-返回首页');
     }
   },
@@ -177,7 +177,7 @@ export default {
   },
   created(){
     this.loadPageData();
-    initTitle('我的福利');
+    dooolyAPP.initTitle('我的福利');
   },
   beforeDestroy(){
     localStorage.removeItem('cardBuyOrdersellPrice');

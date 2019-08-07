@@ -1,5 +1,3 @@
-var keepAliveArr = []
-
 var browserName = getBrowser()
 var memberFrom = '兜礼会员'
 if (browserName == 'WeChat' && navigator.userAgent.indexOf('wxwork') > -1) {
@@ -294,20 +292,10 @@ var httpsbase = {
   Action: 'https://api.doooly.com/pro_action/'
 }
 
-var Butterfly
-var Doooly
-var Activity
-var Order
-var Action
 var base
 var is_https = document.location.protocol == 'https:'
-var WxAppIdUrl
-var Releasestage
-var payUrl
-var activityUrl
 if (is_https) {
   if (window.location.href.indexOf('reachtest') > 0) {
-    Butterfly = httpsbase.baseUrlTestButterfly
     Doooly = httpsbase.baseUrlTestDoooly
     Activity = httpsbase.baseUrlTestActivity
     Order = httpsbase.baseUrlTestOrder
@@ -327,7 +315,6 @@ if (is_https) {
       activityUrl = activityUrls.baseUrlTest
     }
   } else if (window.location.href.indexOf('reach_dist') > 0) {
-    Butterfly = httpsbase.baseUrlMainButterfly
     Doooly = httpsbase.baseUrlMainDoooly
     Activity = httpsbase.baseUrlMainActivity
     Order = httpsbase.baseUrlMainOrder
@@ -347,7 +334,6 @@ if (is_https) {
       activityUrl = activityUrls.baseUrlMain
     }
   } else if (window.location.href.indexOf('pre_dist') > 0) {
-    Butterfly = httpsbase.fabuButterfly
     Doooly = httpsbase.fabuDoooly
     Activity = httpsbase.fabuActivity
     Order = httpsbase.fabuOrder
@@ -367,7 +353,6 @@ if (is_https) {
       activityUrl = activityUrls.fabuButter
     }
   } else if (window.location.href.indexOf('pro_dist') > 0) {
-    Butterfly = httpsbase.Butterfly
     Doooly = httpsbase.Doooly
     Activity = httpsbase.Activity
     Order = httpsbase.Order
@@ -387,7 +372,6 @@ if (is_https) {
       activityUrl = activityUrls.Doooly
     }
   } else {
-    Butterfly = httpsbase.baseUrlTestButterfly
     Doooly = httpsbase.baseUrlTestDoooly
     Activity = httpsbase.baseUrlTestActivity
     Order = httpsbase.baseUrlTestOrder
@@ -404,22 +388,18 @@ if (is_https) {
   }
 } else {
   if (window.location.href.indexOf('reachtest') > 0) {
-    Butterfly = httpbase.baseUrlTestButterfly
     Doooly = httpbase.baseUrlTestDoooly
     base = baseUrl.baseUrlTest
     Releasestage = 'reachtest'
   } else if (window.location.href.indexOf('reach_dist') > 0) {
-    Butterfly = httpbase.baseUrlMainButterfly
     Doooly = httpbase.baseUrlMainDoooly
     base = baseUrl.baseUrlMain
     Releasestage = 'reach_dist'
   } else if (window.location.href.indexOf('pre_dist') > 0) {
-    Butterfly = httpbase.fabuButterfly
     Doooly = httpbase.fabuDoooly
     base = baseUrl.fabuButter
     Releasestage = 'pre_dist'
   } else {
-    Butterfly = httpsbase.baseUrlTestButterfly
     Doooly = httpsbase.baseUrlTestDoooly
     Activity = '/admin/activity/'
     Order = '/admin/doooly-order/'

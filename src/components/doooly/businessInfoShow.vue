@@ -87,7 +87,7 @@
           this.adBusiness=res.data.data.adBusiness;
           this.productId=res.data.productId;
           document.title = res.data.data.adBusiness.company;
-          initTitle(res.data.data.adBusiness.company);
+          dooolyAPP.initTitle(res.data.data.adBusiness.company);
           this.checkWelsh(res.data.data.adBusiness.company,res.data.data.adBusiness.id,res.data.data.adBusiness.dealType);
       })
       },
@@ -112,72 +112,15 @@
       //link是vue和jquery混用
       link(link,type,id) {
         if(type==1){
-          // if(browserName=="WeChat"){
-          //   window.location.href=link;
-          // }else{
-          //  let jsonObj={
-          //     "jumpType":"InsideJump",
-          //     "jumpUrl":link
-          //   };
-          //   if (browserName == "WebKit") {  //判断iPhone|iPad|iPod|iOS
-          //     window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
-          //   } else if (browserName == "Chrome WebView") {   //判断Android
-          //     RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
-          //   }else{
-          //     window.location.href=link;
-          //   }
-          // }
-         dooolyAPP.gotoJumpJq.call(this,link);
-
+         dooolyAPP.gotoJumpJq(this.$router,link);
         }
         else{
-          // if(browserName=="WeChat"){
-          //   this.$router.push({path: '/cardBuyDetail/' + id});
-          //   //window.location.href=$("#base").val()+link;
-          // }
-          // else{
-          //  let jsonObj={
-          //     "jumpType":"InsideJump",
-          //    // "jumpUrl":$("#httpsBase").val()+link+'&token='+token
-          //     "jumpUrl":api.baseURL+'/#/cardBuyDetail/'+id+'?token='+localStorage.token
-          //   };
-          //   if (browserName == "WebKit") {  //判断iPhone|iPad|iPod|iOS
-          //     window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
-          //   } else if (browserName == "Chrome WebView") {   //判断Android
-          //     RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
-          //   }else{
-          //     this.$router.push({path: '/cardBuyDetail/' + id});
-          //   }
-          // }
-          dooolyAPP.gotoJumpVue.call(this,'/cardBuyDetail/' + id);
+          dooolyAPP.gotoJumpVue(this.$router,'/cardBuyDetail/' + id);
         }
       },
-
      businessDetail(company,miniLogo,id){
-
-    // if(browserName=="WeChat"){
-    //   //window.location.href=api.baseURL+ '/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id+'&userId='+userId+'&token='+token;
-    //   window.location.href=api.baseURL+ '/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id+'&token='+localStorage.token;
-    // }else{
-    // let  jsonObj={
-    //     "jumpType":"InsideJump",
-    //     "jumpUrl":"MapView",
-    //     "company":company,
-    //     "id":id
-    //   };
-    //   if (browserName == "WebKit") {  //判断iPhone|iPad|iPod|iOS
-    //     window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
-    //   } else if (browserName == "Chrome WebView") {   //判断Android
-    //     RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
-    //   }else{
-    //     //window.location.href=api.baseURL+ '/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id+'&userId='+userId+'&token='+token;
-    //     window.location.href=api.baseURL+ '/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id+'&token='+localStorage.token;
-    //   }
-    // }
-
-    dooolyAPP.gotoJumpJq.call(this,'/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id);
-
-  },
+  dooolyAPP.gotoJumpJq(this.$router,'/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id);
+},
       checkWelsh(company,id,dealType){
         if(browserName == "WeChat"){
           // if(res.data.data.adBusiness.company=='威尔士'){

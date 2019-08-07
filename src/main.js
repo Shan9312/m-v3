@@ -14,6 +14,13 @@ import '@babel/polyfill';
 
 import baiduStats from './util/baidu_stats.js';
 Vue.prototype.$baiduStats = baiduStats;
+Vue.prototype.$allConfig = {
+  jumpDomain: globalProperties.getFrontendDomain(),
+  logObj: globalProperties.getLocalStorage(),
+  apiDomain: globalProperties.getAPIDomain(),
+  headers: globalProperties.getHeaders()
+};
+Vue.prototype.$browserName = globalProperties.getBrowserName();
 
 import VueJsonp from 'vue-jsonp';
 Vue.use(VueJsonp);

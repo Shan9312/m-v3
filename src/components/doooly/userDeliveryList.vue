@@ -55,7 +55,7 @@
         document.body.style.backgroundColor="";
       },
       created(){
-        initTitle('选择收货地址');
+        dooolyAPP.initTitle('选择收货地址');
         this.loadList();
       },
       methods:{
@@ -107,7 +107,7 @@
         },
         //新增/编辑收货地址
         link(type) {
-          dooolyAPP.gotoJumpVue.call(this,"/userDeliveryAdd/" + type);
+          dooolyAPP.gotoJumpVue(this.$router,"/userDeliveryAdd/" + type);
         },
       }
     }

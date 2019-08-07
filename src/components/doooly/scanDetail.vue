@@ -108,12 +108,12 @@ export default {
     },
     //商户详情跳转
     businessDetail(dealType, id) {
-      dooolyAPP.gotoJumpVue.call(this,'/businessinfo/'+dealType+'/'+id);
+      dooolyAPP.gotoJumpVue(this.$router,'/businessinfo/'+dealType+'/'+id);
     },
   },
   created(){
     this.apiGetparams=this.scan;
-    initTitle('付款码');
+    dooolyAPP.initTitle('付款码');
   },
   beforeDestroy () {
     clearInterval(this.i);

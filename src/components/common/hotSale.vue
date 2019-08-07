@@ -46,7 +46,7 @@
       },
         methods:{
           checkMore(){
-            dooolyAPP.gotoJumpVue.call(this,'/shoppingGuide');
+            dooolyAPP.gotoJumpVue(this.$router,'/shoppingGuide');
           },
           imgLink(articleId)
           {

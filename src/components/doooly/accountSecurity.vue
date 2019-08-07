@@ -174,7 +174,7 @@
       document.body.style.backgroundColor="";
     },
     created(){
-      initTitle('个人信息','')
+      dooolyAPP.initTitle('个人信息','')
     },
     mounted:function(){
       const userId=this.$route.params.userid;
@@ -251,7 +251,7 @@
       //拨打电话修改个人信息
       dial_phone(){
         if(browserName == "otherAPPAndroid"){
-          RHNativeJS.callPhone('4001582212');
+          dooolyAPP.callPhone('4001582212');
         }else if(browserName == "otherAPPIos"){
           this.resetInfoVisibleAPP=true;
         }else{
@@ -261,7 +261,7 @@
       //app拨打电话
       dial_phone_app(){
         if(browserName == "otherAPPIos"){
-          window.webkit.messageHandlers.callPhone.postMessage('400-158-2212');
+          dooolyAPP.callPhone('4001582212');
         }
       },
       //取消按钮

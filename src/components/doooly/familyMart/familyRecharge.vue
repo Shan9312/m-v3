@@ -63,7 +63,7 @@ export default{
     },
     created(){
         document.body.style.backgroundColor="";
-        initTitle('集享积分兑换','');
+        dooolyAPP.initTitle('集享积分兑换','');
         this.getList();
         http({
             method: 'post',
@@ -133,7 +133,7 @@ export default{
             this.integral = price;
         },
         helpCenter(){
-            dooolyAPP.gotoJumpVue.call(this,'/familyHelpCenter');
+            dooolyAPP.gotoJumpVue(this.$router,'/familyHelpCenter');
         },
         recharge_refer(id){
             if(this.newMobile.length != 11 || this.click == -1){
@@ -179,9 +179,9 @@ export default{
                 if(data.data.code == 1000){
                     if(this.firstBindQuery){
                         if(window.location.href.indexOf('pre_dist') > 0 ||window.location.href.indexOf('pro_dist') > 0){
-                            dooolyAPP.gotoJumpJq.call(this,'http://api.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=74D33C18BF3811B2&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
+                            dooolyAPP.gotoJumpJq(this.$router,'http://api.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=74D33C18BF3811B2&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
                         }else{
-                            dooolyAPP.gotoJumpJq.call(this,'http://app-uat.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=844AB181D6878FF9&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
+                            dooolyAPP.gotoJumpJq(this.$router,'http://app-uat.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=844AB181D6878FF9&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
                         }
                     }else{
                         dooolyAPP.redirectPay(this.orderNum)
