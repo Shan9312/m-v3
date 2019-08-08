@@ -46,8 +46,7 @@ export default {
       });
     },
     gobank(){
-      let browserName = getBrowser();
-      if(browserName == "WebKit"){
+      if(this.$browserName == "WebKit"){
         window.history.go(-2);
       }else{
         window.history.go(-3);

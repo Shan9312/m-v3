@@ -5,6 +5,7 @@ Vue.use(VueJsonp);
 import bus from '@/components/common/bus';
 import api from '@/assets/js/api.js';
 var address;
+const browserName = globalProperties.getBrowserName();
 export function Wechatshare(prefix, params) {
   var client = 'doooly';
   var ua = window.navigator.userAgent.toLowerCase();

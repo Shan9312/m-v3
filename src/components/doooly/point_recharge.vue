@@ -106,11 +106,7 @@
   import http from '@/http/http.js'
   import api from '@/assets/js/api.js';
   window["APP_card_question"] = function() {
-    if(browserName == "WeChat"){
-      window.location.href = '#/card_question';
-    }else{
-      dooolyAPP.gotoJumpVue('/card_question');
-    }
+    dooolyAPP.gotoJumpVue('/card_question');
   };
     export default {
       name: "point_recharge",

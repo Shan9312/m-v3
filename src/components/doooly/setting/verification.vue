@@ -198,9 +198,9 @@ export default {
                 if(this.way==1){
                   localStorage.isPayPassword = 2;
                 }
-                if(browserName == "WebKit"){ // ios
+                if(this.$browserName == "WebKit"){ // ios
                   window.webkit.messageHandlers.popToRoot.postMessage(JSON.stringify({isPayPassword:localStorage.isPayPassword}));
-                }else if(browserName == "Chrome WebView"){
+                }else if(this.$browserName == "Chrome WebView"){
                   RHNativeJS.successPay(localStorage.isPayPassword);
                   RHNativeJS.jumpSysSetting();
                 }else{
@@ -209,9 +209,9 @@ export default {
               }else if(this.way==2){
                 dooolyAPP.goBackPageIndex(1);
               }else{
-                if(browserName == "WebKit"){ // ios
+                if(this.$browserName == "WebKit"){ // ios
                   window.webkit.messageHandlers.popToRoot.postMessage(JSON.stringify({isPayPassword:this.option}));
-                }else if(browserName == "Chrome WebView"){
+                }else if(this.$browserName == "Chrome WebView"){
                   RHNativeJS.successPay(this.option);
                   RHNativeJS.jumpSysSetting();
                 }else{

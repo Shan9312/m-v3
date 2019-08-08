@@ -56,8 +56,8 @@
              this.shareParams.title = this.pageList[0].title;
              localStorage.articletitle = this.shareParams.title;
              this.IndicatorState = true;
-             if (browserName != "WebKit" && browserName != "Chrome WebView" && browserName != "otherAPPAndroid" &&
-               browserName != "otherAPPIos") {
+             if (this.$browserName != "WebKit" && this.$browserName != "Chrome WebView" && this.$browserName != "otherAPPAndroid" &&
+               this.$browserName != "otherAPPIos") {
                this.shareShopping2();
              }
            } else {

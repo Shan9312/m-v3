@@ -298,7 +298,7 @@ export default{
             sctcd_merchant_id:'',
             sctcd_product_id:'',
             discountsDateshow:true,
-            otherAPP:browserName,
+            otherAPP:this.$browserName,
             activityName: '',
             activityImgUrl: '',
             isStartActivity: false,

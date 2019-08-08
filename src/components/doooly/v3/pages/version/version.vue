@@ -15,7 +15,7 @@
     },
     data() {
       return {
-        browserName:browserName
+        browserName:this.$browserName
       };
     },
     computed: {

@@ -1,3 +1,4 @@
+const browserName = globalProperties.getBrowserName();
 // 百度统计
 function baiduStats(operation, label, vm){
   var $route = (this && this.$route) || (vm && vm.$route);

@@ -45,12 +45,12 @@
         versionName: localStorage.versionName,
         isSetPayPassword: '',
         isPayPassword: localStorage.isPayPassword,
-        dahuaShow: (localStorage.thirdUserToken && browserName != 'WeChat' ? false : true),
+        dahuaShow: (localStorage.thirdUserToken && this.$browserName != 'WeChat' ? false : true),
       }
     },
     // 退出账号
     mounted() {
-      if (browserName == "WebKit" || browserName == "Chrome WebView") { // 判断iPhone|iPad|iPod|iOS
+      if (this.$browserName == "WebKit" || this.$browserName == "Chrome WebView") { // 判断iPhone|iPad|iPod|iOS
         this.wechatisShow = true;
       } else {
         this.wechatisShow = false; //测试改成true  记得改回
@@ -94,7 +94,7 @@
           url: api.logout,
           headers: {
             appSource: 'H5', //渠道
-            deviceId: getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId, //设备id
+            deviceId: this.$allConfig.headers.deviceId, //设备id
             userId: localStorage.userId,
           }
         }).then((res) => {

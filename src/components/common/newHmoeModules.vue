@@ -7,7 +7,7 @@
     </div>
     <div v-if="type == 8" class="selects center_view">
       <ul class="list" :class="{'listdown':listsect,'small':list.length < 8}">
-        <li v-for="(item,index) in list" @click="link(item.subUrl,item.linkUrl,item.mainTitle)" :key="index">
+        <li v-for="(item,index) in list" @click="link(item.linkUrl,item.mainTitle)" :key="index">
           <!-- <div v-if="item.isSupportIntegral === '0'" class="corner"></div> -->
           <div class="corner_mark" v-if="item.cornerMark">{{item.cornerMark}}</div>
           <img class="logo" :src="item.iconUrl" :onerror="defaultImg">
@@ -27,7 +27,7 @@
     <div v-if="type == 2" class="selects">
       <v-touch class="swipeveiw" v-on:swipeleft="swipeLeft()" v-on:swiperight="swipeRight()">
         <ul class="swipe" v-for="(data,key) in nweListlength" :key="key">
-          <li v-for="(item,index) in nweList['list'+key]" @click="link(item.subUrl,item.linkUrl,item.mainTitle)"
+          <li v-for="(item,index) in nweList['list'+key]" @click="link(item.linkUrl,item.mainTitle)"
             :key="index" :class="{'color1':name == '特惠折扣专区','color2':name == '充值缴费','color3':name == '消费卡券'}">
             <img :src="item.iconUrl" :onerror="defaultImg">
             <div class="contitle">
@@ -46,7 +46,7 @@
     <div v-if="type == 13" class="selects">
       <v-touch class="swipeveiw" v-on:swipeleft="swipeLeft()" v-on:swiperight="swipeRight()">
         <ul class="swipe" v-for="(data,key) in nweListlength" :key="key">
-          <li v-for="(item,index) in nweList['list'+key]" @click="link(item.subUrl,item.linkUrl,item.mainTitle)"
+          <li v-for="(item,index) in nweList['list'+key]" @click="link(item.linkUrl,item.mainTitle)"
             :key="index" :class="{'color1':name == '特惠折扣专区','color2':name == '充值缴费','color3':name == '消费卡券'}">
             <img :src="item.iconUrl" :onerror="defaultImg">
             <div class="contitle">
@@ -70,7 +70,7 @@
     </div>
     <div v-if="type == 10" class="preference_view">
       <ul class="preference" :class="{'listdown':listsect,'small':list.length < 8}">
-        <li v-for="(item,index) in list" @click="link(item.subUrl,item.linkUrl,item.mainTitle)" :key="index">
+        <li v-for="(item,index) in list" @click="link(item.linkUrl,item.mainTitle)" :key="index">
           <img class="backgroundImg" :src="item.iconUrl" :onerror="defaultImg">
           <div class="contitle">
             {{item.mainTitle.substring(0,item.mainTitle.indexOf('<'))}}<span
@@ -91,7 +91,7 @@
     </div>
     <div v-if="type == 11" class="hot_view">
       <ul class="hot">
-        <li v-for="(item,index) in list" :key="index" @click="link(item.subUrl,item.linkUrl,item.mainTitle)">
+        <li v-for="(item,index) in list" :key="index" @click="link(item.linkUrl,item.mainTitle)">
           <img :src="item.guideIconUrl" v-if="index == 0" :onerror="defaultImg">
           <div v-else>
             <div class="logo">
@@ -113,7 +113,7 @@
     <div v-if="type == 12" class="type7_view">
       <ul class="type7">
         <!-- fix bug zhaoyang 11-25 添加点击事件 -->
-        <li v-for="(item,index) in list" :key="index" @click="link(item.subUrl,item.linkUrl,item.mainTitle)">
+        <li v-for="(item,index) in list" :key="index" @click="link(item.linkUrl,item.mainTitle)">
           <div class="img"><img :src="item.iconUrl" :onerror="defaultImg"></div>
           <div class="contitle">
             {{item.title.substring(0,item.title.indexOf('<'))}}<span
@@ -135,7 +135,7 @@
     <div v-if="type == 5" class="type8_view">
       <ul class="type8" :class="{center:list.length < 3,left:list.length > 5}">
         <li v-for="(item,index) in list" :key="index" :class="{list4:list.length == 4,list3:list.length < 4}"
-          @click="link(item.subUrl,item.linkUrl,item.mainTitle)">
+          @click="link(item.linkUrl,item.mainTitle)">
           <img :src="item.iconUrl" :onerror="defaultImg">
           <div class="contitle">
             {{item.mainTitle.substring(0,item.mainTitle.indexOf('<'))}}<span
@@ -153,7 +153,7 @@
     </div>
     <div v-if="type == 9" class="selects">
       <ul class="type9" :class="{'listdown':listsect,'small':list.length < 8}">
-        <li v-for="(item,index) in list" @click="link(item.subUrl,item.linkUrl,item.mainTitle)" :key="index">
+        <li v-for="(item,index) in list" @click="link(item.linkUrl,item.mainTitle)" :key="index">
           <div class="img-view">
             <img :src="item.businessLogo" :onerror="defaultImg">
           </div>
@@ -175,7 +175,7 @@
       <ul class="type8 left">
         <li v-for="(item,index) in newListV3.items" :key="index"
           data-route-name="home" :data-baidu-stats="'导航栏-' + item.title"
-          @click="goJumpPage(1,item.subUrl,item.linkUrl,item.title)" v-show="index < 10">
+          @click="goJumpPage(1,item.linkUrl,item.title)" v-show="index < 10">
           <img :src="item.iconUrl" :onerror="defaultImg">
           <div class="contitle">
             {{item.title.substring(0,item.title.indexOf('<'))}}<span
@@ -193,7 +193,7 @@
       <ul>
         <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 6"
           data-route-name="home" :data-baidu-stats="'礼包-' + item.title"
-          @click="goJumpPage(21,'',item.id,item.title)">
+          @click="goJumpPage(21,item.id,item.title)">
           <div class="img-view">
             <img :src="item.iconUrl" :onerror="defaultImg">
           </div>
@@ -215,7 +215,7 @@
       <mt-swipe :auto="0" :showIndicators="newListV3.items.length > 1">
         <mt-swipe-item v-for="(item,index) in newListV3.items" :key="index"><img
             data-route-name="home" :data-baidu-stats="'中部通栏-广告位-' + item.title"
-            @click="goJumpPage(3,item.subUrl,item.linkUrl,item.title,item.linkType);" :src="item.imageUrl"
+            @click="goJumpPage(3,item.linkUrl,item.title,item.linkType);" :src="item.imageUrl"
             :onerror="defaultImg"></mt-swipe-item>
       </mt-swipe>
     </div>
@@ -224,8 +224,8 @@
       <div class="new-title">{{newListV3.title}}</div>
       <ul :class="{merchantUp:listsect,merchantDown:newListV3.items.length > 8 && !listsect}">
         <li v-for="(item,index) in newListV3.items" :key="index"
-          data-route-name="home" :data-baidu-stats="newListV3.title + '-' + item.subUrl"
-          @click="goJumpPage(40,item.subUrl,item.linkUrl,item.title);">
+          data-route-name="home" :data-baidu-stats="newListV3.title + '-' + item.linkUrl"
+          @click="goJumpPage(40,item.linkUrl,item.title);">
           <div class="img-view">
             <img :src="item.iconUrl" :onerror="defaultImg">
           </div>
@@ -234,7 +234,6 @@
           </div>
         </li>
       </ul>
-      <!-- <div class="all" @click="goJumpPage(41)"> -->
       <div class="all" data-route-name="home" @click="listsect = !listsect; $baiduStats(newListV3.title + '-' + (listsect ? '更多' : '收起'))" :class="{up:listsect}" v-if="newListV3.items.length > 8">
         <div class="line"></div>
         <div class="arrow-img">
@@ -256,7 +255,7 @@
       <ul>
         <li v-for="(item,index) in newListV3.items" :key="index" v-show="index < 3"
           data-route-name="home" :data-baidu-stats="newListV3.title + '-' + item.title"
-          @click="goJumpPage(52,item.subUrl,item.linkUrl,item.title);">
+          @click="goJumpPage(52,item.linkUrl,item.title);">
           <div class="img-view">
             <img :src="item.iconUrl" :onerror="defaultImg">
           </div>
@@ -285,7 +284,7 @@
       <ul>
         <li v-for="(item,index) in newListV3.items" :key="index"
           data-route-name="home" :data-baidu-stats="newListV3.title + '-' + item.title"
-          @click="goJumpPage(6,item.subUrl,item.linkUrl,item.title);">
+          @click="goJumpPage(6,item.linkUrl,item.title);">
           <div class="img-view">
             <img :src="item.iconUrl" :onerror="defaultImg">
           </div>
@@ -342,43 +341,28 @@
       }
     },
     methods: {
-      async goJumpPage(type, subUrl, linkUrl, title, conponType) {
+      async goJumpPage(type, linkUrl, title, conponType) {
         if (conponType == 0) { // 下午茶弹框
           this.$parent.conponShow = true
           this.$parent.couponisShow = true
           return
         }
         if (type == 1 || type == 3 || type == 40 || type == 52 || type == 6) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-' + title)
-          if (subUrl) {
-            dooolyAPP.gotoJumpVue(this.$router, subUrl)
-          } else {
-            dooolyAPP.gotoJumpJq(this.$router, linkUrl)
-          }
+          dooolyAPP.gotoJumpJq(this.$router, linkUrl)
         } else if (type == 21) {
-          // this.$baiduStats('首页-礼包-' + title)
           dooolyAPP.redirectActivity('giftGoodsList/' + linkUrl + '?name=' + title)
         } else if (type == 22) {
-          // this.$baiduStats('首页-礼包-查看更多')
           dooolyAPP.redirectActivity('giftList?type=1')
         } else if (type == 41) {
-          // this.$baiduStats('首页-热门商户-查看更多')
           this.$router.push('/v3/life?type=2')
         } else if (type == 51) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-全部卡券')
           dooolyAPP.gotoJumpVue(this.$router, '/cardBuy')
         } else if (type == 50) {
-          // this.$baiduStats('首页-楼层' + this.newListV3.type + '-我的卡券')
           dooolyAPP.gotoJumpVue(this.$router, '/coupon/0')
         }
       },
-      link(subUrl, linkUrl, title) {
-        // this.$baiduStats(this.origin + '-' + this.name + '-' + title)
-        if (subUrl) {
-          dooolyAPP.gotoJumpVue(this.$router, subUrl)
-        } else {
-          dooolyAPP.gotoJumpJq(this.$router, linkUrl)
-        }
+      link(linkUrl, title) {
+        dooolyAPP.gotoJumpJq(this.$router, linkUrl)
       },
       animation(cur, old) {
         this.timeOut = setTimeout(() => {
@@ -417,16 +401,8 @@
         if (this.type == 3 || this.type == 7) {
           this.$parent.conponShow = true
         } else if (this.type == 4 || this.type == 6) {
-          const baseURL = api.baseURL + 'dist'
-          if (this.list[0].linkUrl.indexOf(baseURL) > -1) {
-            const subUrl = this.list[0].linkUrl.substring(this.list[0].linkUrl.indexOf('#') + 1)
-            dooolyAPP.gotoJumpVue(this.$router, subUrl)
-          } else {
-            window.location.href = this.list[0].linkUrl
-          }
+          dooolyAPP.gotoJumpJq(this.$router, this.list[0].linkUrl)
         }
-        let btnName = (this.list && this.list[0] && this.list[0].mainTitle) || '活动banner'
-        // this.$baiduStats(this.origin + '-每日特惠banner-' + btnName)
       }
     },
     mounted() {

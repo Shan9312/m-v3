@@ -182,7 +182,7 @@ export default {
       code_wiscowechat: false,
       douli_div: true,
       e_div: false,
-      member: memberFrom
+      member: '兜礼会员'
     }
     },
   methods: {
@@ -210,22 +210,27 @@ export default {
   },
   created () {
     dooolyAPP.initTitle('邀请亲友')
-      if (this.channel == 'wechat') {
+    if (localStorage.ownApp == 'other') {
+      this.member = '武钢会员'
+    }else if (/wiscowechat/.test(window.location.href)) {
+      this.member = '钢城e家会员'
+    }
+    if (this.channel == 'wechat') {
       // 兜礼微信公众号
       this.code_img = true
-        this.douli_div = true
-        this.e_div = false
-      } else if (this.channel == 'wiscoapp') {
+      this.douli_div = true
+      this.e_div = false
+    } else if (this.channel == 'wiscoapp') {
       // 武钢app
       this.e_div = true
-        this.code_wiscowechat = true
-        this.douli_div = false //暂时没有不武钢的APP显示关注公众账号图片
-      } else if (this.channel == 'wiscowechat') {
+      this.code_wiscowechat = true
+      this.douli_div = false //暂时没有不武钢的APP显示关注公众账号图片
+    } else if (this.channel == 'wiscowechat') {
       // 钢城e家公众号
       this.e_div = true
-        this.code_wiscowechat = true
-        this.douli_div = false
-      } else if (this.channel == 'h5') {
+      this.code_wiscowechat = true
+      this.douli_div = false
+    } else if (this.channel == 'h5') {
       // H5
     } else if (this.channel == 'app') {
       // 兜礼app
@@ -234,7 +239,7 @@ export default {
       } else {
     }
     this.loadPageData()
-    }
+  }
 }
 </script>
 

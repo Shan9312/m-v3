@@ -113,7 +113,7 @@
           },
           headers: {
             appSource: 'H5',//渠道
-            deviceId: getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId,//设备id
+            deviceId: this.$allConfig.headers.deviceId,//设备id
             userId:localStorage.userId,
           }
         })
@@ -125,13 +125,13 @@
         let myDate = new Date();
         let myTime = new Date().getTime();//获取当前时间
         let getClientChannel = "";
-        if (browserName == "WeChat") {
+        if (this.$browserName == "WeChat") {
           getClientChannel = 'wechat';
-        }else if (browserName == "WebKit" || browserName == "Chrome WebView") {
+        }else if (this.$browserName == "WebKit" || this.$browserName == "Chrome WebView") {
           getClientChannel = 'app';
-        }else if(browserName == "otherAPPAndroid"){
+        }else if(this.$browserName == "otherAPPAndroid"){
           getClientChannel = 'wiscoapp';
-        }else if(browserName == "otherAPPIos"){
+        }else if(this.$browserName == "otherAPPIos"){
           getClientChannel = 'app';
         }else {
           getClientChannel = 'brower';
@@ -164,16 +164,16 @@
         let myDate = new Date();
         let mytime = new Date().getTime(); //获取当前时间
         let getClientChannel = "";
-        if (browserName == "WeChat") {
+        if (this.$browserName == "WeChat") {
           getClientChannel = 'wechat';
         }
-        else if (browserName == "WebKit" || browserName == "Chrome WebView") {
+        else if (this.$browserName == "WebKit" || this.$browserName == "Chrome WebView") {
             getClientChannel = 'app';
         }
-        else if(browserName == "otherAPPAndroid"){
+        else if(this.$browserName == "otherAPPAndroid"){
           getClientChannel = 'wiscoapp';
         }
-        else if(browserName == "otherAPPIos"){
+        else if(this.$browserName == "otherAPPIos"){
           getClientChannel = 'app';
         }
         else {
@@ -305,7 +305,7 @@
         this.dfShow = true;
         setTimeout(() => {this.dfShow = false;}, 3000);
       }
-      if(localStorage.thirdUserToken && browserName != 'WeChat'){
+      if(localStorage.thirdUserToken && this.$browserName != 'WeChat'){
         http({
           method: 'post',
           url: api.thirdLogin,
@@ -341,7 +341,7 @@
       this.isNewGift();//是否领取过新手礼积分
     },
     beforeCreate(){
-      if(browserName=="WebKit" || browserName=="Chrome WebView"){
+      if(this.$browserName=="WebKit" || this.$browserName=="Chrome WebView"){
         dooolyAPP.forceLoginOut(this.$router);
       }
       document.body.style.backgroundColor="#fff";

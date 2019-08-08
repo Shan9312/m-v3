@@ -225,7 +225,7 @@
           this.localStorageObj.blocId,
           '', {
             appSource: 'H5',
-            deviceId: getDeviceId() == 'undefined' ? this.localStorageObj.userId : getDeviceId(),
+            deviceId: this.$allConfig.headers.deviceId,
             userId: this.localStorageObj.userId,
           }
         );
@@ -300,7 +300,7 @@
           this.isNewGift();
         }
         //大华免登录
-        if(this.localStorageObj.thirdUserToken && browserName != 'WeChat'){
+        if(this.localStorageObj.thirdUserToken && this.$browserName != 'WeChat'){
           this.thirdLogin();
         }
       },

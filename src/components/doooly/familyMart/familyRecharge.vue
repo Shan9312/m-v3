@@ -102,7 +102,7 @@ export default{
             };
         },
         first_card_show(newValue, oldValue){
-          if(browserName=='Chrome WebView'){
+          if(this.$browserName=='Chrome WebView'){
             if(newValue){
               RHNativeJS.visablePtrFrame("false");
             }else{
@@ -147,14 +147,6 @@ export default{
                 method: 'post',
                 url: api.createOrder_v2_2,
                 notNeedTransfer:true,
-                // data:{
-                //     'phoneNumber':this.newMobile,
-                //     'cardno':"",
-                //     'merchantId':this.list.merchant_id,
-                //     'productId':this.list.product_id,
-                //     'skuId':this.list.sku_list[this.click].id,
-                //     'productType':9
-                // },
                 data: {
                     'userId': localStorage.userId,
                     'groupId': localStorage.groupId,
@@ -179,9 +171,9 @@ export default{
                 if(data.data.code == 1000){
                     if(this.firstBindQuery){
                         if(window.location.href.indexOf('pre_dist') > 0 ||window.location.href.indexOf('pro_dist') > 0){
-                            dooolyAPP.gotoJumpJq(this.$router,'http://api.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=74D33C18BF3811B2&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
+                            dooolyAPP.gotoJumpJq(this.$router,'http://api.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=74D33C18BF3811B2&redirect_uri='+encodeURIComponent(this.$allConfig.jumpDomain.m)+'familyTo%2f'+this.orderNum+'&status=199210219');
                         }else{
-                            dooolyAPP.gotoJumpJq(this.$router,'http://app-uat.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=844AB181D6878FF9&redirect_uri='+encodeURIComponent(api.baseURL)+'dist%2f%23%2ffamilyTo%2f'+this.orderNum+'&status=199210219');
+                            dooolyAPP.gotoJumpJq(this.$router,'http://app-uat.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=844AB181D6878FF9&redirect_uri='+encodeURIComponent(this.$allConfig.jumpDomain.m)+'familyTo%2f'+this.orderNum+'&status=199210219');
                         }
                     }else{
                         dooolyAPP.redirectPay(this.orderNum)

@@ -327,7 +327,7 @@ export default {
       empCard_mediaIds:"",
       isRefering:false,
       isloading:false,
-      browserName:browserName,
+      browserName:this.$browserName,
     }
   },
   created(){
@@ -428,7 +428,7 @@ export default {
       this.cityBorder=false;
       this.type=1;
       this.doubleList=disType;
-      if(browserName=='Chrome WebView'){
+      if(this.$browserName=='Chrome WebView'){
         RHNativeJS.visablePtrFrame(false);
       }
     },
@@ -469,7 +469,7 @@ export default {
             this.noStores=false;
           }
           this.storePopVisible=true;
-          if(browserName=='Chrome WebView'){
+          if(this.$browserName=='Chrome WebView'){
             RHNativeJS.visablePtrFrame(false);
           }
         }
@@ -481,7 +481,7 @@ export default {
     hidde(){
       this.distPopVisible=false;
       this.storePopVisible=false;
-      if(browserName=='Chrome WebView'){
+      if(this.$browserName=='Chrome WebView'){
         RHNativeJS.visablePtrFrame(true);
       }
     },

@@ -34,7 +34,7 @@
       dooolyAPP.initTitle('关于兜礼','');
       globalVue = this;
       dooolyAPP.getAppVersionName('getAppVersionName');
-      if(browserName == "WebKit" || browserName == "Chrome WebView"){
+      if(this.$browserName == "WebKit" || this.$browserName == "Chrome WebView"){
         this.browserVersion=true;
       }else {
         this.browserVersion=false;

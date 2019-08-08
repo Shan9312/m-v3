@@ -23,7 +23,7 @@ export default {
         return;
       }
       //版本升级
-      if (browserName == "WebKit" || browserName == "Chrome WebView") {
+      if (this.$browserName == "WebKit" || this.$browserName == "Chrome WebView") {
         const versions = ['dist2.2.1', 'dist2.2.0', 'dist2.1.4'];
         if(versions.filter(x => location.href.indexOf(x) > -1 ).length > 0 && !newV.meta.version){
           this.$router.replace({path: '/v3/versionControl'});

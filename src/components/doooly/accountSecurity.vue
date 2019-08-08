@@ -164,7 +164,7 @@
         resetInfoVisible:false,
         companyType:"",
         serviceTime:dooolyConfig.serviceTime,
-        dahuaShow:(localStorage.thirdUserToken && browserName != 'WeChat'? false : true ),
+        dahuaShow:(localStorage.thirdUserToken && this.$browserName != 'WeChat'? false : true ),
       }
     },
     beforeCreate(){
@@ -250,9 +250,9 @@
       },
       //拨打电话修改个人信息
       dial_phone(){
-        if(browserName == "otherAPPAndroid"){
+        if(this.$browserName == "otherAPPAndroid"){
           dooolyAPP.callPhone('4001582212');
-        }else if(browserName == "otherAPPIos"){
+        }else if(this.$browserName == "otherAPPIos"){
           this.resetInfoVisibleAPP=true;
         }else{
           this.resetInfoVisible=true;
@@ -260,7 +260,7 @@
       },
       //app拨打电话
       dial_phone_app(){
-        if(browserName == "otherAPPIos"){
+        if(this.$browserName == "otherAPPIos"){
           dooolyAPP.callPhone('4001582212');
         }
       },
@@ -344,7 +344,7 @@
           url: api.logout,
           headers: {
             appSource: 'H5',//渠道
-            deviceId: getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId,//设备id
+            deviceId: this.$allConfig.headers.deviceId || localStorage.userId,//设备id
             userId:localStorage.userId,
           }
         }).then((res) => {

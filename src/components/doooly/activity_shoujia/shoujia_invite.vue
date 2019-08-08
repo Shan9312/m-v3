@@ -94,7 +94,7 @@
       Wechatshare(prefix,userId,telephone){
         var client = 'wechat';
         var channel = 'wechat';
-        if(browserName != "WeChat"){
+        if(this.$browserName != "WeChat"){
           client = 'doooly';
           channel = 'app';
         }

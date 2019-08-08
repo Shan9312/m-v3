@@ -12,6 +12,7 @@ import api from '@/assets/js/api.js'
 const http = axios.create({
   timeout: 10000
 })
+const browserName = globalProperties.getBrowserName();
 if (!sessionStorage.httpTimestamp) {
   sessionStorage.httpTimestamp = new Date().getTime()
 } else if (new Date().getTime() - sessionStorage.httpTimestamp > 86400000) {

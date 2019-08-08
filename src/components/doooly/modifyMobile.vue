@@ -165,7 +165,7 @@
         },
         //账号不存在
         nonValidPhone() {
-          if(browserName == "otherAPPAndroid"){
+          if(this.$browserName == "otherAPPAndroid"){
             dooolyAPP.callPhone('4001582212');
           }else{
             this.altNonentity=true;

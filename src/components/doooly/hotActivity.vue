@@ -274,12 +274,12 @@
       this.loadtabList();
     },
     beforeCreated(){
-      if(browserName == "otherAPPAndroid"){
+      if(this.$browserName == "otherAPPAndroid"){
         RHNativeJS.visablePtrFrame(true);
       };
     },
     created(){
-      if(browserName == "otherAPPAndroid"){
+      if(this.$browserName == "otherAPPAndroid"){
         RHNativeJS.visablePtrFrame(false);
       };
       dooolyAPP.initTitle('活动',5);

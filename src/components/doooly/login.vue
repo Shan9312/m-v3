@@ -151,7 +151,7 @@
         screenHeight: '',
         codeState2: false,
         loding: false,
-        dahuaShow: !(localStorage.thirdUserToken && browserName != 'WeChat')
+        dahuaShow: !(localStorage.thirdUserToken && this.$browserName != 'WeChat')
       }
     },
     computed: {
@@ -232,7 +232,7 @@
         },
         headers: {
           appSource: 'H5', // 渠道
-          deviceId: getDeviceId() == 'undefined' ? getDeviceId() : localStorage.userId, // 设备id
+          deviceId:this.$allConfig.headers.deviceId || localStorage.userId, // 设备id
           userId: localStorage.userId
         }
       })
@@ -418,7 +418,7 @@
       // 建行一元购活动登录
       getCcbLogin() {
         const loginUrl = localStorage.loginUrl
-        const urlData = param2Obj(loginUrl)
+        const urlData = this.param2Obj(loginUrl)
         const {
           groupId,
           isSimpleAtuoRegister,
@@ -427,7 +427,21 @@
         if (!isSimpleAtuoRegister || !groupId || !businessId) return
         return urlData
       },
-
+      param2Obj(url) {
+        if (!url) return {}
+        var search = url.split('?')[1]
+        if (!search) {
+          return {}
+        }
+        return JSON.parse(
+          '{"' +
+          decodeURIComponent(search)
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g, '":"') +
+          '"}'
+        )
+      },
       mobileLogin() {
         const urlData = this.getCcbLogin() // 建行一元购活动登录
         if (this.checkMobile() == false) {
@@ -573,7 +587,7 @@
     this.appInit()
       // 通过大华令牌判断是否在大华app
       if (
-        (localStorage.thirdUserToken && browserName != 'WeChat') ||
+        (localStorage.thirdUserToken && this.$browserName != 'WeChat') ||
         (sessionStorage.oauthCode && sessionStorage.source)
       ) {
         http({
@@ -606,7 +620,7 @@
     beforeRouteEnter(to, from, next) {
       if (!from.name) {
         if (localStorage.token) {
-          if (browserName == 'WeChat' && api.WxAppIdUrl) {
+          if (this.$browserName == 'WeChat' && api.WxAppIdUrl) {
             window.location.href = api.WxAppIdUrl
           } else {
             next(vm => {
@@ -626,7 +640,7 @@
         to.name != 'userProtocol' &&
         to.name != 'vip_activate' &&
         to.name != 'resetPassword' &&
-        browserName == 'WeChat'
+        this.$browserName == 'WeChat'
       ) {
         if (!localStorage.token) {
           wx.closeWindow()

@@ -68,7 +68,7 @@ export default {
   },
   created() {
     this.loadCardBuyDetailList();
-    if (browserName == 'Chrome WebView') {
+    if (this.$browserName == 'Chrome WebView') {
       // 在安卓app中优化轮播图禁用下拉刷新
       RHNativeJS.visablePtrFrame(false);
     }

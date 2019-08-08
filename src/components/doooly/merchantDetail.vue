@@ -124,7 +124,7 @@
         this.productId=res.data.productId;
       })
       //区分APP与安卓
-      if(browserName == "WebKit" || browserName == "Chrome WebView" || browserName == "otherAPPAndroid" || browserName == "otherAPPIos"){
+      if(this.$browserName == "WebKit" || this.$browserName == "Chrome WebView" || this.$browserName == "otherAPPAndroid" || this.$browserName == "otherAPPIos"){
         this.channel = 0;
       }else{
         this.channel = 1;
@@ -149,7 +149,7 @@
           localStorage.yanxuanFirst = 1;
         }
         //微信端威尔士开启分享
-        if(browserName == "WeChat"){
+        if(this.$browserName == "WeChat"){
           if(this.adBusiness.company=='威尔士'){
             Wechatshare('hotbusiness',[this.adBusiness.id,this.adBusiness.dealType]);
           }
@@ -400,7 +400,7 @@
         // alert(1);
         this.lod_logo_show = 0;
         clearTimeout(this.timeOut);
-        if(browserName == "WebKit" || browserName == "otherAPPIos" || browserName == "Chrome WebView" || browserName == "otherAPPAndroid"){
+        if(this.$browserName == "WebKit" || this.$browserName == "otherAPPIos" || this.$browserName == "Chrome WebView" || this.$browserName == "otherAPPAndroid"){
           dooolyAPP.openJDHome();
         }else{
           window.location.href = url + '&mopenbp5='+localStorage.mobile;

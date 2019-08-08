@@ -152,7 +152,7 @@
             i=3;
           };
           if(this.vActivate != '' && this.vActivate.length == 12){
-            if(browserName == "otherAPPAndroid" || browserName == "otherAPPIos"){
+            if(this.$browserName == "otherAPPAndroid" || this.$browserName == "otherAPPIos"){
               if(localStorage.versionName && localStorage.versionName.indexOf('2.1') == 0){
                 i=4;
               }else{

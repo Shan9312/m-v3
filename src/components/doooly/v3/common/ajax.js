@@ -16,7 +16,7 @@ if (!sessionStorage.httpTimestamp) {
 const http = axios.create({
   timeout: 10000
 });
-
+const browserName = globalProperties.getBrowserName();
 http.interceptors.request.use(config => {
   Indicator.open({
     text: '加载中...',

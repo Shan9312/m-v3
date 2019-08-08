@@ -312,7 +312,7 @@ export default {
         this.cardBuyDetailList = res.data.data;
         this.shopNum();
         if(this.cardBuyDetailList.selfProduct.name == '威尔士健身卡'){
-          if(browserName == "WeChat" ){
+          if(this.$browserName == "WeChat" ){
             this.Wechatshare('selfproduct',[this.cardBuyDetailList.selfProduct.id]);
           }
         }

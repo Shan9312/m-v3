@@ -49,7 +49,7 @@
         this.my_welfare();
       }
       dooolyAPP.initTitle('百丽踏青季-兜礼会员三大福利','');
-      if(isWeiXin()){
+      if(this.$browserName == 'WeChat'){
         this.Wechatshare('baili2');  
       } 
     },

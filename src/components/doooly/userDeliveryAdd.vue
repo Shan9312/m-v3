@@ -165,13 +165,13 @@ export default {
       this.provinceBorder=false;
       this.cityBorder=false;
       this.type=1;
-      if(browserName=='Chrome WebView'){
+      if(this.$browserName=='Chrome WebView'){
         RHNativeJS.visablePtrFrame(false);
       }
     },
     hidde(){
       this.distPopVisible=false;
-      if(browserName=='Chrome WebView'){
+      if(this.$browserName=='Chrome WebView'){
         RHNativeJS.visablePtrFrame(false);
       }
     },

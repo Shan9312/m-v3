@@ -94,7 +94,7 @@
         tel:"",
         tel_name:"",
         ChinaTel:"",
-        member:memberFrom,
+        member:'兜礼会员',
         placeholderTxt: '填写亲友手机号'
       }
     },
@@ -215,7 +215,7 @@
           }
         }).then((res) => {
           if (res.data.code == '1000') {
-            if (browserName == "WeChat") {
+            if (this.$browserName == "WeChat") {
               this.shareBgState = true;
                this.Wechatshare('swing', res.data.userId);
               setTimeout(function () {
@@ -229,7 +229,7 @@
           }else if (res.data.code == '1003') {
             this.$toast("您为亲友，不可以邀请亲友！");
           } else if (res.data.code == '1002') {
-            if (browserName == "WeChat") {
+            if (this.$browserName == "WeChat") {
               this.shareBgState = true;
               this.Wechatshare('swing', res.data.userId);
               setTimeout(function () {
@@ -258,13 +258,13 @@
           client = 'doooly';//不是微信
         }
         let channel;
-        if(browserName == "WeChat"){
+        if(this.$browserName == "WeChat"){
           channel = 'wechat';
-        }else if(browserName == "WebKit"||browserName == "Chrome WebView"){
+        }else if(this.$browserName == "WebKit"||this.$browserName == "Chrome WebView"){
           channel = 'app';
-        }else if(browserName == "otherAPPAndroid"){
+        }else if(this.$browserName == "otherAPPAndroid"){
           channel = 'wiscoapp';
-        }else if(browserName == "otherAPPIos"){
+        }else if(this.$browserName == "otherAPPIos"){
           channel = 'wiscoapp';
         }else {
           channel = 'h5';
@@ -287,13 +287,18 @@
     created() {
       this.loadPageData();
       dooolyAPP.initTitle('邀请亲友');
-      if(browserName=="WeChat"){
+      if (localStorage.ownApp == 'other') {
+        this.member = '武钢会员'
+      }else if (/wiscowechat/.test(window.location.href)) {
+        this.member = '钢城e家会员'
+      }
+      if(this.$browserName=="WeChat"){
         this.isTel=false;
       }
-      else if(browserName=="WebKit"){
+      else if(this.$browserName=="WebKit"){
         this.isTel=true;
       }
-      else if(browserName=="Chrome WebView"){
+      else if(this.$browserName=="Chrome WebView"){
         this.isTel=true;
       }
       else{

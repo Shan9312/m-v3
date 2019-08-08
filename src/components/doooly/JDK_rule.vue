@@ -28,7 +28,7 @@
     },
     methods:{
       JDK_jump(){
-        if(browserName == "WebKit" || browserName == "Chrome WebView"){
+        if(this.$browserName == "WebKit" || this.$browserName == "Chrome WebView"){
           dooolyAPP.openJDHome();
         }else{
           window.location.href = this.url + '&mopenbp5='+localStorage.mobile;

@@ -144,7 +144,7 @@
                 this.listData=res.data.data.groupList;
                 this.popupVisible=true;
                 if(this.popupVisible){
-                  if(browserName=='Chrome WebView'){
+                  if(this.$browserName=='Chrome WebView'){
                     RHNativeJS.visablePtrFrame(false);
                   }
                 }
@@ -218,7 +218,7 @@
           this.selectCompanyId=id;
           this.selectCompany=name;
           this.popupVisible=false;
-          if(browserName=='Chrome WebView'){
+          if(this.$browserName=='Chrome WebView'){
             if(!this.popupVisible){
               RHNativeJS.visablePtrFrame(true);
             }

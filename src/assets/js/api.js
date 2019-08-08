@@ -6,7 +6,6 @@ const action = globalProperties.getAPIDomain().action;
 const WxAppIdUrl = globalProperties.getFrontendDomain().wx;
 const api = {
   WxAppIdUrl: WxAppIdUrl,
-  baseURL: base,
   getLoginVCode: butterfly + 'wechat/register/getValidCode.jhtml', // 获取登录验证码
   telLogin: butterfly + 'wechat/login/telLogin.jhtml', // 验证码登录
   submit1: butterfly + 'wechat/login/submit.jhtml', // 账号密码登录

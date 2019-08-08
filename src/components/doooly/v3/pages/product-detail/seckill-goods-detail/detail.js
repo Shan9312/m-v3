@@ -85,7 +85,7 @@ export default {
   created() {
     this.loadCardBuyDetailList();
     this.getIsReceive();
-    if (browserName == 'Chrome WebView') {
+    if (this.$browserName == 'Chrome WebView') {
       // 在安卓app中优化轮播图禁用下拉刷新
       RHNativeJS.visablePtrFrame(false);
     }
@@ -237,7 +237,7 @@ export default {
     // 威尔士的特殊处理
     handleWelsh(name, id) {
       if (name == '威尔士健身卡') {
-        if (browserName == 'WeChat') {
+        if (this.$browserName == 'WeChat') {
           this.Wechatshare('selfproduct', [id]);
         }
       }

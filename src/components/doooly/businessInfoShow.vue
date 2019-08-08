@@ -42,7 +42,7 @@
     },
     created(){
       this.init();
-      if(browserName == "WebKit" || browserName == "Chrome WebView"){
+      if(this.$browserName == "WebKit" || this.$browserName == "Chrome WebView"){
         http({
             method: 'post',
             url: api.flow,
@@ -122,7 +122,7 @@
   dooolyAPP.gotoJumpJq(this.$router,'/reachtest/wechat/mall/businessDetail.jhtml?company='+company +'&miniLogo='+miniLogo+'&id='+id);
 },
       checkWelsh(company,id,dealType){
-        if(browserName == "WeChat"){
+        if(this.$browserName == "WeChat"){
           // if(res.data.data.adBusiness.company=='威尔士'){
           //   Wechatshare('hotbusiness',[res.data.data.adBusiness.id,res.data.data.adBusiness.dealType]);
           // }
@@ -140,13 +140,6 @@
 
 
     },
-    // mounted(){
-    //   if(IsPC() || isWeiXin()){
-    //     if($(document).attr("title") == '威尔士'){
-    //       Wechatshare('hotbusiness',[$("#adBusinessId").val(),$("#dealType").val()]);
-    //     }
-    //   }
-    // }
   }
 </script>
 <style>

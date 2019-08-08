@@ -163,7 +163,7 @@
             imgTargetList:[],
             isSubmitting:false,
             submitText:"提交",
-            otherAPP:browserName,
+            otherAPP:this.$browserName,
             textName:'',
             serviceTime:dooolyConfig.serviceTime,
           }
@@ -325,7 +325,7 @@
         },
         //app选择照片
         chooseImgAPP(){
-          if(browserName == 'otherAPPAndroid'){
+          if(this.$browserName == 'otherAPPAndroid'){
             dooolyAPP.photographNative('APP_chooseImage');
           }
         },
@@ -399,7 +399,7 @@
             this.$toast("手机号格式不正确");
             return;
           }
-          if(browserName == 'otherAPPAndroid'){
+          if(this.$browserName == 'otherAPPAndroid'){
             this.appRef();
             return;
           }

@@ -107,7 +107,7 @@ export default {
     dooolyAPP.initTitle('支付结果','2','isConfirmShow()');
   },
   beforeRouteLeave(to, from, next) {
-    if(browserName != "WebKit" && browserName != "Chrome WebView"){
+    if(this.$browserName != "WebKit" && this.$browserName != "Chrome WebView"){
       if(to.name == "cardBuyPay"){
         window.history.go(-1);
         return;

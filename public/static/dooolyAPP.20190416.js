@@ -1,81 +1,81 @@
+'use strict';
+
 //兜礼app 安卓与ios方法封装
-var dooolyAPP = function () {
+var dooolyAPP = function dooolyAPP() {
   this.allConfig = {
     jumpDomain: globalProperties.getFrontendDomain(),
     logObj: globalProperties.getLocalStorage(),
     apiDomain: globalProperties.getAPIDomain(),
     headers: globalProperties.getHeaders()
-  }
-  this.browserName = globalProperties.getBrowserName()
-}
+  };
+  this.browserName = globalProperties.getBrowserName();
+};
 dooolyAPP.prototype = {
-  errorLog: function(){
-
-  },
+  errorLog: function errorLog() {},
   //1.获取定位信息
-  homeLocationVector: function (channelName, typeName) {
+  homeLocationVector: function homeLocationVector(channelName, typeName) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.getLocationJson.postMessage('1')
+        window.webkit.messageHandlers.getLocationJson.postMessage('1');
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.homeLocationVector(channelName, typeName) //(1) channelName渠道名称(2)  typeName:类型名称OPENPERMMISON弹出权限提示框OTHERVALUE 不弹出权限提示框 必填字段
+        RHNativeJS.homeLocationVector(channelName, typeName); //(1) channelName渠道名称(2)  typeName:类型名称OPENPERMMISON弹出权限提示框OTHERVALUE 不弹出权限提示框 必填字段
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //2.检测版本升级(关于兜礼)
-  checkAppVersion: function (methods) {
+  checkAppVersion: function checkAppVersion(methods) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.checkUpdateVersion.postMessage('1')
+        window.webkit.messageHandlers.checkUpdateVersion.postMessage('1');
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.checkAppVersion()
+        RHNativeJS.checkAppVersion();
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //3.获取版本号方法1.0(关于兜礼)
-  getAppVersionName: function (methods) {
+  getAppVersionName: function getAppVersionName(methods) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.getAppVersionName.postMessage(methods)
+        window.webkit.messageHandlers.getAppVersionName.postMessage(methods);
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.getAppVersionName(methods)
+        RHNativeJS.getAppVersionName(methods);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //4.返回登陆页方法(会员激活)
-  forceLoginOut: function (router, methods) {
+  forceLoginOut: function forceLoginOut(router, methods) {
     try {
       if (this.browserName == 'WebKit' || this.browserName == 'otherAPPIos') {
-        window.webkit.messageHandlers.forceLoginOut.postMessage('1')
+        window.webkit.messageHandlers.forceLoginOut.postMessage('1');
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
-        RHNativeJS.forceLoginOut('')
+        RHNativeJS.forceLoginOut('');
       } else {
-        router.push('/')
+        router.push('/');
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //5.获取设备号方法(会员激活)
-  getPhoneDeviceId: function (methods) {
+  getPhoneDeviceId: function getPhoneDeviceId(methods) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.getPhoneDeviceId.postMessage(methods)
+        window.webkit.messageHandlers.getPhoneDeviceId.postMessage(methods);
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.getPhoneDeviceId(methods)
+        RHNativeJS.getPhoneDeviceId(methods);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //6.返回首页(支付完成)
-  jumpIndexPage: function () {
+  jumpIndexPage: function jumpIndexPage() {
     try {
       if (this.browserName == 'WebKit') {
         window.webkit.messageHandlers.jumpTabarItemIndex.postMessage('0');
@@ -89,21 +89,22 @@ dooolyAPP.prototype = {
     }
   },
   //返回个人中心
-  jumpPersonPage: function (methods) {
+  jumpPersonPage: function jumpPersonPage(methods) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.gotoPersonCenter.postMessage('PersonCenter')
+        window.webkit.messageHandlers.gotoPersonCenter.postMessage('PersonCenter');
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.jumpPersonPage()
+        RHNativeJS.jumpPersonPage();
       } else {
         window.location.replace(this.allConfig.jumpDomain.m + 'nav/personalCenter');
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //返回个人中心
-  jumpAppHome: function (type) { //返回app端tab页面-1代表最后打开的页面0,1,2,3依次对应
+  jumpAppHome: function jumpAppHome(type) {
+    //返回app端tab页面-1代表最后打开的页面0,1,2,3依次对应
     try {
       if (this.browserName == "WebKit") {
         window.webkit.messageHandlers.htmlToNativeTabBarIndex.postMessage(String(type));
@@ -115,113 +116,113 @@ dooolyAPP.prototype = {
     }
   },
   //7.拨打电话方法(商户详情,常见问题,帮助中心)
-  callPhone: function (methods) {
+  callPhone: function callPhone(methods) {
     try {
       if (this.browserName == 'otherAPPAndroid' || this.browserName == 'Chrome WebView') {
-        RHNativeJS.callPhone(methods)
+        RHNativeJS.callPhone(methods);
       } else if (this.browserName == 'otherAPPIos' || this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.callPhone.postMessage(methods)
+        window.webkit.messageHandlers.callPhone.postMessage(methods);
       } else {
-        window.location.href = 'tel:' + methods
+        window.location.href = 'tel:' + methods;
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //8.打开京东首页方法(商户详情)
-  openJDHome: function (methods) {
+  openJDHome: function openJDHome(methods) {
     try {
       if (this.browserName == 'WebKit' || this.browserName == 'otherAPPIos') {
-        window.webkit.messageHandlers.openJDHome.postMessage('1')
+        window.webkit.messageHandlers.openJDHome.postMessage('1');
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
-        RHNativeJS.openJDHome()
+        RHNativeJS.openJDHome();
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //9.打开APP地图(商户详情,我的福利)
-  openMapView: function (router, company, id) {
+  openMapView: function openMapView(router, company, id) {
     var jsonObj = {
       jumpType: 'InsideJump',
       jumpUrl: 'MapView',
       company: company,
       id: id
-    }
+    };
     try {
       if (this.browserName == 'WebKit') {
         //判断iPhone|iPad|iPod|iOS
-        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj))
+        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
       } else if (this.browserName == 'Chrome WebView') {
         //判断Android
-        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
+        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
       } else {
-        localStorage.storeMapCompany = company
+        localStorage.storeMapCompany = company;
         router.push({
           path: '/storeMap/' + id
-        })
+        });
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   // 10.打开扫码优惠(商户详情)
-  openScanDiscount: function (router,data) {
+  openScanDiscount: function openScanDiscount(router, data) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.openScanDiscount.postMessage(JSON.stringify(data))
+        window.webkit.messageHandlers.openScanDiscount.postMessage(JSON.stringify(data));
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.openScanDiscount(JSON.stringify(data))
+        RHNativeJS.openScanDiscount(JSON.stringify(data));
       } else {
-        router.push({path: '/scanDetail/' + data.company})
+        router.push({ path: '/scanDetail/' + data.company });
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //11.隐藏头部导航栏及禁止下拉刷新()
-  hideNavgationBar: function () {
+  hideNavgationBar: function hideNavgationBar() {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.hideNavgationBar.postMessage('true')
+        window.webkit.messageHandlers.hideNavgationBar.postMessage('true');
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.setTopDialog(true)
-        RHNativeJS.visablePtrFrame(false)
+        RHNativeJS.setTopDialog(true);
+        RHNativeJS.visablePtrFrame(false);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //12.显示头部导航栏及恢复下拉刷新()
-  showNavgationBar: function () {
+  showNavgationBar: function showNavgationBar() {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.hideNavgationBar.postMessage('false')
+        window.webkit.messageHandlers.hideNavgationBar.postMessage('false');
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.setTopDialog(false)
-        RHNativeJS.visablePtrFrame(true)
+        RHNativeJS.setTopDialog(false);
+        RHNativeJS.visablePtrFrame(true);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //13.返回上级页面(支付完成)
-  goBackPageIndex: function (index) {
+  goBackPageIndex: function goBackPageIndex(index) {
     try {
       if (this.browserName == 'WebKit') {
         // ios
-        window.webkit.messageHandlers.goBackPageIndex.postMessage(index)
+        window.webkit.messageHandlers.goBackPageIndex.postMessage(index);
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.backWebPage(index)
+        RHNativeJS.backWebPage(index);
       } else {
-        window.history.go(-index)
+        window.history.go(-index);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //14.跳转联系客服(我的申诉)
-  appealAgainst: function (router, jsonObj, type) {
+  appealAgainst: function appealAgainst(router, jsonObj, type) {
     try {
       if (this.browserName == "WebKit") {
         window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
@@ -241,109 +242,102 @@ dooolyAPP.prototype = {
   },
   //15.打开手机通讯录(家属邀请)
   //返回参数(tel,name)
-  openTelePhoneList: function (methods) {
+  openTelePhoneList: function openTelePhoneList(methods) {
     try {
       if (this.browserName == 'WebKit') {
-        window.webkit.messageHandlers.getAddressBook.postMessage(methods)
+        window.webkit.messageHandlers.getAddressBook.postMessage(methods);
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.openTelePhoneList(methods)
+        RHNativeJS.openTelePhoneList(methods);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //16.app选择上传照片(线下订单)
-  photographNative: function (methods) {
+  photographNative: function photographNative(methods) {
     try {
       if (this.browserName == 'WebKit' || this.browserName == 'otherAPPIos') {
-        window.webkit.messageHandlers.photographNative.postMessage(methods)
+        window.webkit.messageHandlers.photographNative.postMessage(methods);
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
-        RHNativeJS.photographNative(methods)
+        RHNativeJS.photographNative(methods);
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //17.修改APP本地支付方式
-  getPaymentType: function (data) {
+  getPaymentType: function getPaymentType(data) {
     try {
       if (this.browserName == 'WebKit') {
         // ios
-        window.webkit.messageHandlers.getPaymentType.postMessage(JSON.stringify(data))
+        window.webkit.messageHandlers.getPaymentType.postMessage(JSON.stringify(data));
       } else if (this.browserName == 'Chrome WebView') {
-        RHNativeJS.successPay(JSON.stringify(data)) //保存修改之后的值告诉android
+        RHNativeJS.successPay(JSON.stringify(data)); //保存修改之后的值告诉android
       } else {
-        localStorage.isPayPassword = data
+        localStorage.isPayPassword = data;
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //18.安卓APP跳转供应商app方法
-  androidGoMerchantApp: function (MerchantName, MerchantUrl) {
+  androidGoMerchantApp: function androidGoMerchantApp(MerchantName, MerchantUrl) {
     var MerchantInfo = [{
-        name: '滴滴出行',
-        id: 'com.sdu.didi.psnger'
-      },
-      {
-        name: '唯品会',
-        id: 'com.achievo.vipshop'
-      },
-      {
-        name: '1药网',
-        id: 'com.yiwang'
-      },
-      {
-        name: '票牛',
-        id: 'com.ipiaoniu.android'
-      },
-      {
-        name: '西十区',
-        id: 'com.aiyou.androidxsq001'
-      },
-      {
-        name: '典典养车',
-        id: 'com.chediandian.customer'
-      },
-      {
-        name: '易果生鲜',
-        id: 'com.yiguo.app'
-      },
-      {
-        name: '网易严选',
-        id: 'com.netease.yanxuan'
-      }
-    ]
+      name: '滴滴出行',
+      id: 'com.sdu.didi.psnger'
+    }, {
+      name: '唯品会',
+      id: 'com.achievo.vipshop'
+    }, {
+      name: '1药网',
+      id: 'com.yiwang'
+    }, {
+      name: '票牛',
+      id: 'com.ipiaoniu.android'
+    }, {
+      name: '西十区',
+      id: 'com.aiyou.androidxsq001'
+    }, {
+      name: '典典养车',
+      id: 'com.chediandian.customer'
+    }, {
+      name: '易果生鲜',
+      id: 'com.yiguo.app'
+    }, {
+      name: '网易严选',
+      id: 'com.netease.yanxuan'
+    }];
     var merchant = {
       id: '',
       url: MerchantUrl
-    }
+    };
     for (var i = 0; i < MerchantInfo.length; i++) {
       if (MerchantInfo[i].name === MerchantName) {
-        merchant.id = MerchantInfo[i].id
+        merchant.id = MerchantInfo[i].id;
       }
     }
     try {
       if (this.browserName == 'Chrome WebView') {
         // 安卓中跳第三方app,特殊跳转方式
-        RHNativeJS.goCooperationApp(merchant.id, merchant.url)
+        RHNativeJS.goCooperationApp(merchant.id, merchant.url);
       } else {
-        window.location.href = MerchantUrl
+        window.location.href = MerchantUrl;
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   },
   //19.app支付
-  appPay: function (data, funcName, type) { //支付参数,回调函数名,支付方式 ('wx'微信支付,'zfb'支付宝支付)
+  appPay: function appPay(data, funcName, type) {
+    //支付参数,回调函数名,支付方式 ('wx'微信支付,'zfb'支付宝支付)
     try {
       if (type == 'wx') {
-        if (this.browserName == "WebKit" || this.browserName == "otherAPPIos") { //判断iPhone|iPad|iPod|iOS
-          data.func = funcName
-          window.webkit.messageHandlers.wechatPay.postMessage(
-            JSON.stringify(data)
-          )
-        } else if (this.browserName == "Chrome WebView" || this.browserName == "otherAPPAndroid") { //判断Android
+        if (this.browserName == "WebKit" || this.browserName == "otherAPPIos") {
+          //判断iPhone|iPad|iPod|iOS
+          data.func = funcName;
+          window.webkit.messageHandlers.wechatPay.postMessage(JSON.stringify(data));
+        } else if (this.browserName == "Chrome WebView" || this.browserName == "otherAPPAndroid") {
+          //判断Android
           RHNativeJS.wechatPay(JSON.stringify(data), funcName);
         }
       } else if (type == 'zfb') {
@@ -354,8 +348,8 @@ dooolyAPP.prototype = {
         } else if (this.browserName == 'Chrome WebView') {
           RHNativeJS.aliPay(data.aLiPayUrl, funcName);
         } else {
-          let form = data.aLiPayUrl;
-          let div = document.createElement('div');
+          var form = data.aLiPayUrl;
+          var div = document.createElement('div');
           div.innerHTML = form; // 此处form就是后台返回接收到的数据
           document.body.appendChild(div);
           document.forms[0].submit();
@@ -368,10 +362,10 @@ dooolyAPP.prototype = {
         } else if (this.browserName == 'Chrome WebView') {
           RHNativeJS.unionPay(JSON.stringify(data), funcName);
         } else {
-          let form = data.unionPayUrl;
-          let div = document.createElement("div");
-          div.innerHTML = form;
-          document.body.appendChild(div);
+          var _form = data.unionPayUrl;
+          var _div = document.createElement("div");
+          _div.innerHTML = _form;
+          document.body.appendChild(_div);
           document.getElementById('pay_form').submit();
         }
       }
@@ -380,112 +374,111 @@ dooolyAPP.prototype = {
     }
   },
   //跳转新的收银地址页面
-  redirectPay: function (orderNum, payVersion) {
-    window.location.href = this.allConfig.jumpDomain.cashier + 'cardBuyPay/' + orderNum + '?payVersion=' + payVersion
+  redirectPay: function redirectPay(orderNum, payVersion) {
+    window.location.href = this.allConfig.jumpDomain.cashier + 'cardBuyPay/' + orderNum + '?payVersion=' + payVersion;
   },
   //跳转活动项目
-  redirectActivity: function (url) {
-    window.location.href = this.allConfig.jumpDomain.activity + url
+  redirectActivity: function redirectActivity(url) {
+    window.location.href = this.allConfig.jumpDomain.activity + url;
   },
   //跳转第三方
-  gotoJumpJq: function (router, url) {
+  gotoJumpJq: function gotoJumpJq(router, url) {
     if (this.browserName == 'WeChat') {
-      window.location.href = url
+      window.location.href = url;
     } else {
-      let jsonObj = {
+      var jsonObj = {
         jumpType: 'InsideJump',
         jumpUrl: url
-      }
+      };
       if (this.browserName == 'WebKit') {
         //判断iPhone|iPad|iPod|iOS
-        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj))
+        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(jsonObj));
       } else if (this.browserName == 'Chrome WebView') {
         //判断Android
-        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
+        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
       } else {
-        let currentBaseUrl = window.location.href.substring(
-          0,
-          window.location.href.indexOf('#') + 1
-        )
+        var currentBaseUrl = window.location.href.substring(0, window.location.href.indexOf('#') + 1);
         if (url.indexOf(currentBaseUrl) > -1) {
-          const subUrl = url.substring(url.indexOf('#') + 1)
+          var subUrl = url.substring(url.indexOf('#') + 1);
           router.push({
             path: subUrl
-          })
+          });
         } else {
-          window.location.href = url
+          window.location.href = url;
         }
       }
     }
   },
   //项目内部跳转
-  gotoJumpVue: function (router, url, dataType) {
-    let _jsonObj
+  gotoJumpVue: function gotoJumpVue(router, url, dataType) {
+    var _jsonObj = void 0;
     if (this.browserName == 'WeChat') {
       router.push({
         path: url
-      })
+      });
     } else {
-      let jsonObj = {
+      var jsonObj = {
         jumpType: 'InsideJump',
         jumpUrl: window.location.href.substring(0, window.location.href.indexOf('#') + 1) + url
-      }
+      };
       if (this.browserName == 'WebKit') {
         //判断iPhone|iPad|iPod|iOS
         if (dataType && dataType[this.browserName]) {
-          _jsonObj = _.extend(jsonObj, dataType[this.browserName])
+          _jsonObj = _.extend(jsonObj, dataType[this.browserName]);
         } else {
-          _jsonObj = jsonObj
+          _jsonObj = jsonObj;
         }
-        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(_jsonObj))
+        window.webkit.messageHandlers.gotoNativeJump.postMessage(JSON.stringify(_jsonObj));
       } else if (this.browserName == 'Chrome WebView') {
         //判断Android
-        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
+        RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj));
       } else {
         router.push({
           path: url
-        })
+        });
       }
     }
   },
   // cookie方法
-  setCookie: function (name, value) {
-    let Days = 30
-    let exp = new Date()
-    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
-    document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString()
+  setCookie: function setCookie(name, value) {
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString();
   },
-  getCookie: function (name) {
-    let arr,
-      reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-    if ((arr = document.cookie.match(reg))) return unescape(arr[2])
-    else return null
+  getCookie: function getCookie(name) {
+    var arr = void 0,
+        reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
+    if (arr = document.cookie.match(reg)) return unescape(arr[2]);else return null;
   },
-  removeCookie: function (name) {
-    let exp = new Date()
-    exp.setTime(exp.getTime() - 1)
-    let cval = this.getCookie(name)
-    if (cval != null) document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
+  removeCookie: function removeCookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval = this.getCookie(name);
+    if (cval != null) document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString();
   },
   //退出登录方法
-  logOut: function (type, url) {
+  logOut: function logOut(type, url) {
     if (this.browserName == "WebKit" || this.browserName == "otherAPPIos") {
       window.webkit.messageHandlers.forceLoginOut.postMessage("1");
     } else if (this.browserName == "Chrome WebView" || this.browserName == "otherAPPAndroid") {
       RHNativeJS.forceLoginOut("");
     } else {
       //cookies本地测试用
-      this.removeCookie('token')
-      this.removeCookie('userId')
-      this.removeCookie('loginUrl')
-      if (window.location.href.indexOf('wiscowechat') > 0) { //武钢公众号登出
+      this.removeCookie('token');
+      this.removeCookie('userId');
+      this.removeCookie('loginUrl');
+      if (window.location.href.indexOf('wiscowechat') > 0) {
+        //武钢公众号登出
         localStorage.removeItem('wiscoToken');
         localStorage.removeItem('token');
-      } else { //兜礼公众号登出
+      } else {
+        //兜礼公众号登出
         localStorage.removeItem('dooolyToken');
         localStorage.removeItem('token');
       }
-      if (type == 1) { //非正常登出
+      if (type == 1) {
+        //非正常登出
         if (url) {
           localStorage.setItem('loginUrl', url);
         } else {
@@ -525,7 +518,7 @@ dooolyAPP.prototype = {
     }
   },
   //登录/记录用户信息方法
-  logIn: function (data, url, type) {
+  logIn: function logIn(data, url, type) {
     if (data) {
       var jsonData = JSON.parse(data);
       var token = jsonData.token;
@@ -558,9 +551,11 @@ dooolyAPP.prototype = {
         localStorage.loginUrl = domain + url;
       }
     }
-    if (this.browserName == "WeChat" && type != 1) { // 微信
+    if (this.browserName == "WeChat" && type != 1) {
+      // 微信
       location.replace(this.allConfig.jumpDomain.wx);
-    } else if (this.browserName == "WebKit") { // ios
+    } else if (this.browserName == "WebKit") {
+      // ios
       var params = {
         "userInfo": jsonData.adUserConn,
         "type": "0",
@@ -568,7 +563,8 @@ dooolyAPP.prototype = {
         'url': url
       };
       window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
-    } else if (this.browserName == "Chrome WebView") { // 安卓
+    } else if (this.browserName == "Chrome WebView") {
+      // 安卓
       if (url) {
         RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
       } else {
@@ -587,9 +583,9 @@ dooolyAPP.prototype = {
     }
   },
   //设置头部方法封装(类型待整理)
-  initTitle: function (titleText, key, funcName) {
-    document.title = titleText
-    var jsonObj
+  initTitle: function initTitle(titleText, key, funcName) {
+    document.title = titleText;
+    var jsonObj;
     if (key == 1) {
       jsonObj = {
         title: {
@@ -606,7 +602,7 @@ dooolyAPP.prototype = {
           visable: 'true'
         },
         visable: 'true'
-      }
+      };
     } else if (key == 2) {
       if (window.location.href.indexOf('/dist/') > -1) {
         //app旧版本兼容
@@ -621,7 +617,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       } else {
         jsonObj = {
           title: {
@@ -634,7 +630,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       }
     } else if (key == 3) {
       //导购规则的弹窗
@@ -655,7 +651,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
         jsonObj = {
           title: {
@@ -673,7 +669,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       }
     } else if (key == 13) {
       if (this.browserName == 'WebKit' || this.browserName == 'otherAPPIos') {
@@ -693,7 +689,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
         jsonObj = {
           title: {
@@ -711,7 +707,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       }
     } else if (key == 4) {
       //导购文章分享
@@ -732,7 +728,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
         jsonObj = {
           title: {
@@ -750,7 +746,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       }
     } else if (key == 8) {
       //积分充值
@@ -772,7 +768,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       } else if (this.browserName == 'Chrome WebView' || this.browserName == 'otherAPPAndroid') {
         //判断Android
         jsonObj = {
@@ -791,7 +787,7 @@ dooolyAPP.prototype = {
             visable: 'true'
           },
           visable: 'true'
-        }
+        };
       }
     } else if (key == 5) {
       //发现
@@ -810,7 +806,7 @@ dooolyAPP.prototype = {
           visable: 'false'
         },
         visable: 'true'
-      }
+      };
     } else if (key == 6) {
       //我的
       jsonObj = {
@@ -828,7 +824,7 @@ dooolyAPP.prototype = {
           visable: 'true'
         },
         visable: 'true'
-      }
+      };
     } else {
       jsonObj = {
         title: {
@@ -841,34 +837,34 @@ dooolyAPP.prototype = {
           visable: 'true'
         },
         visable: 'true'
-      }
+      };
     }
     try {
       if (this.browserName == 'WebKit') {
         //判断iPhone|iPad|iPod|iOS
         // jsonObj.title.text += "ios";//测试
-        window.webkit.messageHandlers.initPageTitle.postMessage(JSON.stringify(jsonObj))
-        window.webkit.messageHandlers.hiddenBotomTabBar.postMessage('true')
+        window.webkit.messageHandlers.initPageTitle.postMessage(JSON.stringify(jsonObj));
+        window.webkit.messageHandlers.hiddenBotomTabBar.postMessage('true');
       } else if (this.browserName == 'otherAPPIos') {
-        window.webkit.messageHandlers.initPageTitle.postMessage(JSON.stringify(jsonObj))
+        window.webkit.messageHandlers.initPageTitle.postMessage(JSON.stringify(jsonObj));
       } else if (this.browserName == 'Chrome WebView') {
         //判断Android
-        RHNativeJS.initPageTitle(JSON.stringify(jsonObj))
+        RHNativeJS.initPageTitle(JSON.stringify(jsonObj));
         if (key == 6) {
-          RHNativeJS.setPersonalCenterHeader(true)
+          RHNativeJS.setPersonalCenterHeader(true);
         }
-        RHNativeJS.hideWaitPanel()
+        RHNativeJS.hideWaitPanel();
       } else if (this.browserName == 'otherAPPAndroid') {
-        RHNativeJS.initPageTitle(JSON.stringify(jsonObj))
+        RHNativeJS.initPageTitle(JSON.stringify(jsonObj));
       }
     } catch (e) {
-      dooolyAPP.errorLog(e)
+      dooolyAPP.errorLog(e);
     }
   }
-}
-var dooolyAPP = new dooolyAPP()
+};
+var dooolyAPP = new dooolyAPP();
 
 //设置默认返回方法
 function goLastPage() {
-  dooolyAPP.goBackPageIndex(1)
+  dooolyAPP.goBackPageIndex(1);
 }

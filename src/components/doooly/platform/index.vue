@@ -17,12 +17,23 @@ export default {
 
   },
   created() {
-    this.jump();
+    window['receivePosition'] = this.getDeviceHash;
+    if (this.$browserName == 'Chrome WebView' || this.$browserName == 'otherAPPAndroid') {
+      RHNativeJS.getPhoneDeviceId('getDeviceHash')
+    }else if (this.$browserName == 'WebKit') {
+      window.webkit.messageHandlers.getPhoneDeviceId.postMessage('getDeviceHash')
+    }else{
+      this.jump();
+    }
   },
   mounted() {
 
   },
   methods: {
+    getDeviceHash(id){
+      localStorage.setItem('deviceHash', id)
+      this.jump();
+    },
     jump() {
       let token = localStorage.token;
       let userId = localStorage.userId;

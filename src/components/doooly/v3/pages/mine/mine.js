@@ -11,11 +11,7 @@ export default {
   name: 'mine',
   data () {
     return {
-      // newCancelFlag: false,
-      // newFinishFlag: false,
-      // newOrderFlag: false,
-      browserName: browserName,
-
+      browserName: this.$browserName,
       availablePoints: 0,
       memberName: '',
       giftBagCount: 0,
@@ -82,11 +78,11 @@ export default {
         jumpType: 'Native',
         jumpUrl: 'AccountSecurity'
       }
-      if (browserName == 'WebKit') {
+      if (this.$browserName == 'WebKit') {
         window.webkit.messageHandlers.gotoNativeJump.postMessage(
           JSON.stringify(jsonObj)
         )
-      } else if (browserName == 'Chrome WebView') {
+      } else if (this.$browserName == 'Chrome WebView') {
         RHNativeJS.gotoNativeJump(JSON.stringify(jsonObj))
       } else {
         this.$router.push({

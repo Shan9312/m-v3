@@ -68,7 +68,7 @@ export default {
       // this.$baiduStats(this.statsFilter[tobarLink]);
     },
     changeFooterState() {
-      if (browserName == "WebKit" || browserName == "Chrome WebView") {
+      if (this.$browserName == "WebKit" || this.$browserName == "Chrome WebView") {
         this.dyfooterState = false;
       } else {
         this.dyfooterState = true;

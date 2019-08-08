@@ -128,7 +128,7 @@
                 content:"支出"
               }
             ],
-            browserName:browserName,
+            browserName:this.$browserName,
             tab:"0",
             mainPointList:true,
             noRecords:false,

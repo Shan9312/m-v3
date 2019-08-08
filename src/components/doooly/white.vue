@@ -30,18 +30,8 @@
        goWhite(){
           let url = window.location.href;
           if(!localStorage.wiscowechatCodeType && window.location.href.indexOf('wiscowechat') > 0){
-
             localStorage.wiscowechatCodeType = 1;
-            var channelText = encodeURIComponent(api.baseURL+'wiscowechat/#/white');
-            var appidText = 'wx2d328083c1b00c6a';
-            if(window.location.href.indexOf('reachtest')>0 || window.location.href.indexOf('reach_dist')>0){
-              channelText = encodeURIComponent(api.baseURL+'wiscowechat/#/white');
-              appidText = 'wx2d328083c1b00c6a';
-            }else if(window.location.href.indexOf('pre_dist')>0 || window.location.href.indexOf('pro_dist')>0){
-              channelText = encodeURIComponent(api.baseURL+'wiscowechat/#/white');
-              appidText = 'wx07dc2a87c3d4ec88';
-            }
-            window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+ appidText +'&redirect_uri='+ channelText +'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+            window.location.href=this.$allConfig.jumpDomain.wx;
           }else{
             localStorage.removeItem('wiscowechatCodeType');
             dooolyAPP.logIn('','',1);

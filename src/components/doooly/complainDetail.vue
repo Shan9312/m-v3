@@ -119,7 +119,7 @@
           });
         },
         previewImage:function (imageSrc) {
-          if(browserName == "WeChat"){
+          if(this.$browserName == "WeChat"){
             wx.previewImage({
               current: imageSrc, // 当前显示图片的http链接
               urls: this.imagePaths // 需要预览的图片http链接列表

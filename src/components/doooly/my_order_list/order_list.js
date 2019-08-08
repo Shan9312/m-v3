@@ -72,7 +72,7 @@ const myOrderList = {
       detailOrderNum: "",
       popupVisible: false,
       businessId: this.$route.params.businessId,
-      browserName: browserName,
+      browserName: this.$browserName,
     }
   },
   components: {

@@ -122,7 +122,7 @@
         }).then((res) => {
           if (res.data.code == '1000') {
           localStorage.activityfunction = "";
-            if(browserName=="WeChat"){
+            if(this.$browserName=="WeChat"){
               this.getOrder();
             }else {
               this.$toast("请在微信中打开进行下单");
@@ -162,7 +162,7 @@
         }).then((res) => {
           if (res.data.code == '1000') {
             localStorage.activityfunction = "";
-            if(browserName=="WeChat"){
+            if(this.$browserName=="WeChat"){
               this.getOrder();
             }else{
               this.$toast("请在微信中打开进行下单");
