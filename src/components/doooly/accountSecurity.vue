@@ -325,8 +325,10 @@
       open: function (picker) {
         this.$refs[picker].open();
       },
-      handleChange: function (value) {
-        var str=value.toLocaleDateString();
+      handleChange: function (dataObj) {
+        // var str=value.toLocaleDateString();
+        // fix bug 20190808
+        var str = dataObj.getFullYear() + '/' + (dataObj.getMonth() + 1) + '/' + dataObj.getDate();
         var temp=str.split("/");
         var birth=temp[0]+"-"+this.add0(temp[1])+"-"+this.add0(temp[2]);
         http({
