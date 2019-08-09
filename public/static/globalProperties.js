@@ -294,7 +294,7 @@ var globalProperties = {
       }
 
     var currentAppId = ['pre', 'pro'].indexOf(currentEnv) > -1 ? appId[1] : appId[0];
-    frontendDomain.wx = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + currentAppId + '&redirect_uri=' + frontendDomain.m.replace('/dist/', redirectType) + 'white&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+    frontendDomain.wx = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + currentAppId + '&redirect_uri=' + encodeURIComponent(frontendDomain.m.replace('/dist/', redirectType)) + 'white&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
 
     return frontendDomain;
   },
