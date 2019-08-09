@@ -79,6 +79,9 @@ const myOrderList = {
     'v-loadmore': Loadmore,
     orderItem
   },
+  beforeDestroy() {
+    document.body.style.backgroundColor = "";
+  },
   destroy() {
     document.body.style.backgroundColor = "";
   },
