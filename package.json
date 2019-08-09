@@ -23,6 +23,7 @@
     "jsencrypt": "^3.0.0-rc.1",
     "mint-ui": "^2.2.13",
     "mobile-detect": "^1.4.3",
+    "mpvue-calendar": "^2.3.0",
     "qrcode.vue": "^1.6.2",
     "vue": "^2.6.10",
     "vue-amap": "^0.5.9",

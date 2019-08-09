@@ -146,6 +146,7 @@ export default {
         giftBagId: this.giftBagId,
         orderType: this.cardBuyDetailList.selfProduct.productAttr
       };
+      if (this.activityName === 'jianhangTicketOther') return this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
       if (this.postData.productType == 1) {
         this.$router.push({ path: '/orderInfo_entity' });
       } else if (this.postData.productType === '11') {
@@ -218,7 +219,7 @@ export default {
     // 加载商品详情信息
     loadCardBuyDetailList() {
       let activityName = this.activityName;
-      if (activityName === 'pickUpGoods') activityName = ''; // TODO 如果是东航提货券活动，不需要传activityName，这里的activityName只是用于在收银台判断跳哪个支付结果页
+      if (activityName === 'pickUpGoods' || activityName === 'jianhangTicket' || activityName === 'jianhangTicketOther') activityName = ''; // TODO 如果是东航提货券活动，不需要传activityName，这里的activityName只是用于在收银台判断跳哪个支付结果页
       let params = {
         userId: localStorage.userId,
         productId: this.$route.params.productId,

@@ -46,6 +46,12 @@ const error = r => {
     return r(require('@/components/doooly/v3/pages/error-page/404.vue'))
   }, 'error')
 };
+// 建设活动详情页
+const constructOrderDetail = r => {
+  return require.ensure([], () => {
+    return r(require('@/components/doooly/v3/pages/order-detail-activity/order-detail.vue'))
+  }, 'constructOrderDetail')
+}
 const routes = [{
   path: 'home',
   name: 'home',
@@ -67,39 +73,46 @@ const routes = [{
   meta: {
     isShowBar: true
   }
-},  {
+}, {
   path: 'memberEquity',
   name: 'memberEquity',
   component: memberEquity
-},  {
+}, {
   path: 'memberEquity/:id',
   name: 'memberEquity1',
   component: memberEquity
-},{
+}, {
   path: 'versionControl',
   name: 'versionControl',
   component: versionControl,
   meta: {
     requireAuth: true
   }
-},{
+}, {
   path: 'seckillGoodsDetail/:productId/:activityName',
   name: 'seckillGoodsDetail',
   component: seckillGoodsDetail,
   meta: {
     title: '秒杀商品详情'
   }
-},{
+}, {
   path: 'pickUpGoodsDetail/:productId/:activityName',
   name: 'pickUpGoodsDetail',
   component: pickUpGoodsDetail,
   meta: {
     title: '提货券商品详情'
   }
-},{
+}, {
   path: 'error',
   name: 'error',
   component: error
+}, {
+  path: 'constructOrderDetail/:productId/:activityName',
+  name: 'constructOrderDetail',
+  component: constructOrderDetail,
+  meta: {
+    title: '建行活动订单详情页'
+  }
 }]
 
 export default routes;
