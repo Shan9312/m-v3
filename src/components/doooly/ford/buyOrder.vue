@@ -119,7 +119,6 @@ export default {
         }
       }).then((res) => {
         if(res.data.code == 1000){
-          // gotoJumpVue.call(this,'/cardBuyPay/' + res.data.data.bigOrderNumber);
           dooolyAPP.redirectPay(res.data.data.orderNum,'payV2');
         }else{
           this.$toast(res.data.msg);

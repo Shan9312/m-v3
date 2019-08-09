@@ -152,8 +152,8 @@ export default {
       } else if (this.postData.productType === '11') {
         // productType: 11 机场活动实物商品
         if (this.activityName) {
-          dooolyAPP.gotoJumpVue.call(
-            this,
+          dooolyAPP.gotoJumpVue(
+            this.$router,
             '/confirm_order/' +
               this.activityName +
               '/' +
@@ -164,8 +164,8 @@ export default {
               this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         } else {
-          dooolyAPP.gotoJumpVue.call(
-            this,
+          dooolyAPP.gotoJumpVue(
+            this.$router,
             '/confirm_order/0/' +
               this.cardBuyDetailList.selfProduct.id +
               '/' +
@@ -176,8 +176,8 @@ export default {
         }
       } else {
         if (this.activityName) {
-          dooolyAPP.gotoJumpVue.call(
-            this,
+          dooolyAPP.gotoJumpVue(
+            this.$router,
             '/cardBuyOrder/' +
               this.activityName +
               '/' +
@@ -188,8 +188,8 @@ export default {
               this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         } else {
-          dooolyAPP.gotoJumpVue.call(
-            this,
+          dooolyAPP.gotoJumpVue(
+            this.$router,
             '/cardBuyOrder/0/' +
               this.cardBuyDetailList.selfProduct.id +
               '/' +

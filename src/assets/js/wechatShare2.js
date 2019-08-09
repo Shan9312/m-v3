@@ -35,9 +35,7 @@ export function Wechatshare(prefix, params) {
 //获取省
 export function getAddress(count) {
   if (browserName == "WeChat") {
-    //    if(false){
     onWechatConfig.call(this);
-    // address_func.call(this);
   } else if (browserName == "WebKit") { //判断iPhone|iPad|iPod|iOS
     window.webkit.messageHandlers.nativeLbsCity.postMessage("address_func");
   } else if (browserName == "Chrome WebView") { //判断Android

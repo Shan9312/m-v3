@@ -28,7 +28,7 @@ import http from '@/http/http.js'
           location.replace(result.data.resultUrl)
         } else if (result.data.code == 1001) {
           vm.$toast('小兜兜正忙,请稍候重试!')
-            dooolyAPP.gotoJumpVue.call(vm, '/nav/newHome')
+            dooolyAPP.gotoJumpVue(vm.$router, '/nav/newHome')
           }
       })
     })

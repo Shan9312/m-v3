@@ -485,8 +485,8 @@ export default {
         ) {
           this.link("", "", this.productId);
         } else if (this.footer_type == 2 || this.footer_type == 7) {
-          dooolyAPP.gotoJumpVue.call(
-            this,
+          dooolyAPP.gotoJumpVue(
+            this.$router,
             "/didi_integral/" + this.toastData.id
           );
         } else if (this.footer_type == 5 || this.footer_type == 10) {
@@ -552,8 +552,8 @@ export default {
     href() {
       this.lod_logo_show = 0;
       clearTimeout(this.timeOut);
-      dooolyAPP.gotoJumpVue.call(
-        this,
+      dooolyAPP.gotoJumpVue(
+        this.$router,
         "/businessinfo/" + this.toastData.dealType + "/" + this.toastData.id
       );
     },
