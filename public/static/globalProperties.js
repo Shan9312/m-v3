@@ -79,7 +79,7 @@ var globalProperties = {
     var source = this.getJsonData('source');
     // in app of dahua
     // if the hash of url contains a key that named 'JsonData' then set value of thirdUserToken to that key's value
-    if (this.jsonData) {
+    if (jsonData) {
       localStorage.removeItem('token');
       localStorage.setItem('thirdUserToken', jsonData);
     }

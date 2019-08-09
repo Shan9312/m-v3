@@ -32,7 +32,7 @@
           if(localStorage.token)
           {
             if (this.$browserName == "WeChat") {
-              window.location.href=api.WxAppIdUrl;
+              window.location.href=this.$allConfig.jumpDomain.wx;
             }else {
               this.$router.push({path: '/nav/newHome'});
             }

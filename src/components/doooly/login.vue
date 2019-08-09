@@ -618,36 +618,30 @@
       }
     },
     beforeRouteEnter(to, from, next) {
-      if (!from.name) {
-        if (localStorage.token) {
-          if (this.$browserName == 'WeChat' && api.WxAppIdUrl) {
-            window.location.href = api.WxAppIdUrl
-          } else {
-            next(vm => {
-              if (!localStorage.thirdUserToken) {
-                vm.$router.push({
-                  path: '/v3/home'
-                })
-              }
+      next(vm => {
+        if (!from.name && localStorage.token) {
+          if (vm.$browserName == 'WeChat' && this.$allConfig.jumpDomain.wx) {
+            window.location.href = this.$allConfig.jumpDomain.wx
+          } else if (!localStorage.thirdUserToken) {
+            vm.$router.push({
+              path: '/v3/home'
             })
           }
         }
-      }
-      next()
+      })
     },
     beforeRouteLeave(to, from, next) {
-      if (
-        to.name != 'userProtocol' &&
-        to.name != 'vip_activate' &&
-        to.name != 'resetPassword' &&
-        this.$browserName == 'WeChat'
-      ) {
-        if (!localStorage.token) {
+      next(vm => {
+        if (
+          to.name != 'userProtocol' &&
+          to.name != 'vip_activate' &&
+          to.name != 'resetPassword' &&
+          vm.$browserName == 'WeChat' && 
+          !localStorage.token
+        ) {
           wx.closeWindow()
-          return;
         }
-      }
-      next()
+      })
     }
   }
 </script>

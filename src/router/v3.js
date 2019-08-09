@@ -73,7 +73,7 @@ const routes = [{
   component: memberEquity
 },  {
   path: 'memberEquity/:id',
-  name: 'memberEquity',
+  name: 'memberEquity1',
   component: memberEquity
 },{
   path: 'versionControl',

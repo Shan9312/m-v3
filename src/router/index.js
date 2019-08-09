@@ -334,59 +334,47 @@ export default new Router({
     },
     {
       path: '/cardBuyDetail/:productId',
-      // redirect:{
-      name: 'cardBuyDetail',
-      // },
+      name: 'cardBuyDetail1',
       component: cardBuyDetail
     },
     {
       path: '/cardBuyDetail/:productId/:activityName',
-      name: 'cardBuyDetail',
+      name: 'cardBuyDetail2',
       component: cardBuyDetail
     },
     {
       path: '/cardBuyDetail/:productId/:activityName/:skuId/:giftBagId/:productTypeId/:isReceive',
-      // redirect:{
       name: 'cardBuyDetail',
-      // },
       component: cardBuyDetail
     },
     {
       path: '/cardBuyOrder',
-      name: 'cardBuyOrder',
+      name: 'cardBuyOrder1',
       component: cardBuyOrder
     },
     {
       path: '/cardBuyOrder/:activityName',
-      // redirect:{
-      name: 'cardBuyOrder',
-      // },
+      name: 'cardBuyOrder2',
       component: cardBuyOrder
     },
     {
       path: '/cardBuyOrder/:activityName/:productId/:skuId/:giftBagId/:productTypeId',
-      // redirect:{
       name: 'cardBuyOrder',
-      // },
       component: cardBuyOrder
     },
     {
       path: '/confirm_order',
-      name: 'confirm_order',
+      name: 'confirm_order1',
       component: confirmOrder
     },
     {
       path: '/confirm_order/:activityName',
-      // redirect:{
-      name: 'confirm_order',
-      // },
+      name: 'confirm_order2',
       component: confirmOrder
     },
     {
       path: '/confirm_order/:activityName/:productId/:skuId/:giftBagId/:productTypeId',
-      // redirect:{
       name: 'confirm_order',
-      // },
       component: confirmOrder
     },
     {
@@ -401,9 +389,7 @@ export default new Router({
     },
     {
       path: '/shoppingGuide/:activityId',
-      // redirect:{
-      name: 'shoppingGuide',
-      // },
+      name: 'shoppingGuide1',
       component: shoppingGuide
     },
     {
@@ -793,9 +779,7 @@ export default new Router({
     },
     {// 福特购物车订单
       path: '/fordBuyOrder/:skuId',
-      // redirect:{
-      name: 'fordBuyOrder',
-      // },
+      name: 'fordBuyOrder1',
       component: fordBuyOrder
     },
     {

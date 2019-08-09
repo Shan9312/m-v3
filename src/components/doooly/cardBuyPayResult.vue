@@ -107,13 +107,11 @@ export default {
     dooolyAPP.initTitle('支付结果','2','isConfirmShow()');
   },
   beforeRouteLeave(to, from, next) {
-    if(this.$browserName != "WebKit" && this.$browserName != "Chrome WebView"){
-      if(to.name == "cardBuyPay"){
+    next(vm => {
+      if(vm.$browserName != "WebKit" && vm.$browserName != "Chrome WebView" && to.name == "cardBuyPay"){
         window.history.go(-1);
-        return;
       }
-    }
-    next();
+    });
   },
 }
 </script>
