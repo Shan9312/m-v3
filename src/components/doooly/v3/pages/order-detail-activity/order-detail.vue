@@ -142,7 +142,7 @@ export default {
         consigneeName: "",
         consigneeMobile: "",
         productType: 0, // 默认传 0
-        redirectUrl: this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/',
+        redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
         orderExt: {
           deliveryName: "", // 用户姓名
           deliveryTelephone: "", // 用户手机号
@@ -179,7 +179,7 @@ export default {
   created() {
     // 获取当前3天日期
     this.getDayList();
-    dooolyAPP.initTitle('确认订单');
+    dooolyAPP.initTitle("确认订单");
   },
   mounted() {
     this.getOrderDetail();
@@ -301,7 +301,7 @@ export default {
         this.$toast("请输入身份证");
         return false;
       }
-      if (isCardNo(this.formObj.orderExt.identityCard)) {
+      if (!isCardNo(this.formObj.orderExt.identityCard)) {
         this.$toast("身份证号有误");
         return false;
       }
