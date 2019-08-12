@@ -233,7 +233,8 @@ export default {
               }
             ]
           }
-        ]
+        ],
+        redirectUrl: this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
       };
       http({
         method: "post",
@@ -244,9 +245,7 @@ export default {
         .then(res => {
           this.loadingState = false;
           if (res.data.code == 1000) {
-            let orderNum = res.data.data.orderNum;
-            let url = "/cardBuyPay/" + orderNum;
-            dooolyAPP.redirectPay(orderNum);
+            dooolyAPP.redirectPay(res.data.data.orderNum,'',res.data.data.zeroOrderFlag);
           } else {
             this.$toast(res.data.msg);
           }

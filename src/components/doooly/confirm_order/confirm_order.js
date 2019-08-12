@@ -169,7 +169,8 @@ const confirmOrder = {
               'buyNum': 1
             }],
             'subProductType': parseInt(this.postData[0].productType)
-          }]
+          }],
+          'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
         }
         http({
           method: 'post',
@@ -179,13 +180,12 @@ const confirmOrder = {
         }).then((res) => {
           if (res.data.code == 1000) {
             let orderNum = res.data.data.orderNum
-            let url = '/cardBuyPay/' + orderNum
             if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
               let activityObj = {}
               activityObj[orderNum] = this.activityName
               localStorage.activity = JSON.stringify(activityObj)
             }
-            dooolyAPP.redirectPay(orderNum)
+            dooolyAPP.redirectPay(orderNum,'',res.data.data.zeroOrderFlag)
           } else if (res.data.code == 2001) {
             this.$toast('您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧')
           } else if (res.data.code == 2002) {
@@ -271,7 +271,8 @@ const confirmOrder = {
                 'buyNum': 1
               }],
               'subProductType': parseInt(this.postData[1].productType)
-            }]
+            }],
+            'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
           }
           http({
             method: 'post',
@@ -282,13 +283,12 @@ const confirmOrder = {
             this.disabled = false
             if (res.data.code == 1000) {
               let orderNum = res.data.data.orderNum
-              let url = '/cardBuyPay/' + orderNum
               if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
                 let activityObj = {}
                 activityObj[orderNum] = this.activityName
                 localStorage.activity = JSON.stringify(activityObj)
               }
-              dooolyAPP.redirectPay(orderNum)
+              dooolyAPP.redirectPay(orderNum,'',res.data.data.zeroOrderFlag)
             } else if (res.data.code == 2016 && res.data.data) {
               window.scrollTo(0, 0) // IOS弹出键盘将页面顶走
               this.$messageBox({

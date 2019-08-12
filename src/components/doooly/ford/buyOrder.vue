@@ -116,10 +116,11 @@ export default {
           'consigneeMobile':this.userDeliveryList.receiverTelephone,
           'consigneeAddr':this.userDeliveryList.province + this.userDeliveryList.city + this.userDeliveryList.area + this.userDeliveryList.address,
           'merchantProduct':merchantProduct,
+          'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
         }
       }).then((res) => {
         if(res.data.code == 1000){
-          dooolyAPP.redirectPay(res.data.data.orderNum,'payV2');
+          dooolyAPP.redirectPay(res.data.data.orderNum,'payV2',res.data.data.zeroOrderFlag);
         }else{
           this.$toast(res.data.msg);
         }

@@ -641,15 +641,6 @@ export default{
         recharge_refer(){
             if(this.tab_number == 0){
                if(this.couponCodeId){ //使用抵扣券
-                // this.recharge_data = {
-                //     'phoneNumber':this.newMobile,
-                //     'cardno':"",
-                //     'merchantId':this.mobile_merchant_id,
-                //     'productId':this.mobile_product_id,
-                //     'skuId':this.charge_list_sku_id,
-                //     'productType':3,
-                //     'couponId':this.couponCodeId, //使用抵扣券
-                // };
                 this.recharge_data = {
                     'userId': localStorage.userId,
                     'groupId': localStorage.groupId,
@@ -668,17 +659,10 @@ export default{
                     ],
                     'consigneeMobile':this.newMobile,
                     'cardno':"",
-                    'productType':3
+                    'productType':3,
+                    'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
                 };
                }else{ //没有选择使用抵扣券
-                //  this.recharge_data = { 
-                //     'phoneNumber':this.newMobile,
-                //     'cardno':"",
-                //     'merchantId':this.mobile_merchant_id,
-                //     'productId':this.mobile_product_id,
-                //     'skuId':this.charge_list_sku_id,
-                //     'productType':3
-                // };
                 this.recharge_data = {
                     'userId': localStorage.userId,
                     'groupId': localStorage.groupId,
@@ -696,7 +680,8 @@ export default{
                     ],
                     'consigneeMobile':this.newMobile,
                     'cardno':"",
-                    'productType':3
+                    'productType':3,
+                    'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
                 };
                }
                 
@@ -705,14 +690,6 @@ export default{
                     return;
                 }
             }else if(this.tab_number == 1){
-                // this.recharge_data = {
-                //     'phoneNumber':this.newMobile,
-                //     'cardno':"",
-                //     'merchantId':this.flow_merchant_id,
-                //     'productId':this.flow_product_id,
-                //     'skuId':this.rateOfFlow_list_sku_id,
-                //     'productType':4
-                // };
                 this.recharge_data = {
                     'userId': localStorage.userId,
                     'groupId': localStorage.groupId,
@@ -730,7 +707,8 @@ export default{
                     ],
                     'consigneeMobile': this.newMobile,
                     'cardno':"",
-                    'productType': 4
+                    'productType': 4,
+                    'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
                 };
                 if(checkMobile(this.newMobile)){
                     this.$toast('请输入正确手机号码');
@@ -741,14 +719,6 @@ export default{
                     this.alrCard_bg_show = true;
                     return;
                 }
-                // this.recharge_data = {
-                //     'phoneNumber':'',
-                //     'cardno':this.cardno,
-                //     'merchantId':this.sctcd_merchant_id,
-                //     'productId':this.sctcd_product_id,
-                //     'skuId':this.card_list_sku_id,
-                //     'productType':5
-                // };
                 this.recharge_data = {
                     'userId': localStorage.userId,
                     'groupId': localStorage.groupId,
@@ -767,7 +737,8 @@ export default{
                     ],
                     'consigneeMobile': '',
                     'cardno': this.cardno,
-                    'productType': 5
+                    'productType': 5,
+                    'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
                 };
                 if(this.cardno == ""){
                     this.$toast('请输入旅游卡号码');
@@ -787,7 +758,7 @@ export default{
                 data:this.recharge_data
             }).then((data) => {
                 if(data.data.code == 1000){
-                    dooolyAPP.redirectPay(data.data.data.orderNum)
+                    dooolyAPP.redirectPay(data.data.data.orderNum,'',data.data.data.zeroOrderFlag)
                 }else if(data.data.msg){
                     this.$toast(data.data.msg);
                 }else{
@@ -859,7 +830,7 @@ export default{
                         data:this.recharge_data
                     }).then((data) => {
                         if(data.data.code == 1000){
-                            dooolyAPP.redirectPay(data.data.data.orderNum)
+                            dooolyAPP.redirectPay(data.data.data.orderNum,'',data.data.data.zeroOrderFlag)
                         }else{
                             this.$toast('小兜兜正忙,请稍候重试!');
                         }

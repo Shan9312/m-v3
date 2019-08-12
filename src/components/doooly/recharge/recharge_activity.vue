@@ -124,7 +124,8 @@ export default {
             'skuId': this.activityData.skuId,
             'buyNum': 1
           }]
-        }]
+        }],
+        'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
       };
       http({
         method: 'post',
@@ -133,7 +134,7 @@ export default {
         data: params
       }).then((data) => {
         if(data.data.code === '1000'){
-          dooolyAPP.redirectPay(data.data.data.orderNum)
+          dooolyAPP.redirectPay(data.data.data.orderNum,'',data.data.data.zeroOrderFlag)
         }else if(data.data.msg){
           this.$toast(data.data.msg);
         }else{

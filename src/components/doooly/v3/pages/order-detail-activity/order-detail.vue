@@ -142,7 +142,7 @@ export default {
         consigneeName: "",
         consigneeMobile: "",
         productType: 0, // 默认传 0
-        redirectUrl: dooolyAPP.redirectPayResult(),
+        redirectUrl: this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/',
         orderExt: {
           deliveryName: "", // 用户姓名
           deliveryTelephone: "", // 用户手机号
@@ -329,12 +329,8 @@ export default {
               activityObj[data.orderNum] = this.userObj.activityName;
               localStorage.activity = JSON.stringify(activityObj);
             }
-            if (data.zeroOrderFlag) {
-              // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
-              dooolyAPP.redirectPay(data.orderNum, "", "1");
-            } else {
-              dooolyAPP.redirectPay(data.orderNum);
-            }
+            // 若返回的zeroOrderFlag 为true，则表示 0元支付，直接跳转支付结果页
+            dooolyAPP.redirectPay(data.orderNum, "", data.zeroOrderFlag);
           } else {
             if (res.data.msg) {
               this.$toast(res.data.msg);

@@ -217,11 +217,12 @@ export default {
           ],
           consigneeMobile: this.newMobile,
           cardno: '',
-          productType: 8
+          productType: 8,
+          redirectUrl: this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
         }
       }).then(data => {
         if (data.data.code == 1000) {
-          dooolyAPP.redirectPay(data.data.data.orderNum)
+          dooolyAPP.redirectPay(data.data.data.orderNum,'',res.data.data.zeroOrderFlag)
         } else if (data.data.code == 3003) {
           this.$toast(data.data.msg)
         } else if (data.data.code == 3001) {

@@ -732,6 +732,7 @@ export default {
             'buyNum':1
           }],
         }],
+        'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
       };
       this.isRefering=true;
       http({
@@ -743,7 +744,7 @@ export default {
         this.isRefering=false;
         if(res.data.code==1000){
           let url='/cardBuyPay/'+res.data.data.orderNum;
-          dooolyAPP.redirectPay(res.data.data.orderNum)
+          dooolyAPP.redirectPay(res.data.data.orderNum,'',res.data.data.zeroOrderFlag)
         }
         else if(res.data.code==2001){
           this.$toast("您有笔相同订单尚未支付，请勿重复提交，立即前往支付吧");

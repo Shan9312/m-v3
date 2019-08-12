@@ -164,7 +164,8 @@ export default{
                     ],
                     'consigneeMobile': this.newMobile,
                     'cardno': '',
-                    'productType': 9
+                    'productType': 9,
+                    'redirectUrl': this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
                 }
             }).then((data) => {
                 this.orderNum = data.data.data.orderNum;
@@ -176,7 +177,7 @@ export default{
                             dooolyAPP.gotoJumpJq(this.$router,'http://app-uat.maxxipoint.com/NexusService/auth.do?response_type=token&client_id=844AB181D6878FF9&redirect_uri='+encodeURIComponent(this.$allConfig.jumpDomain.m)+'familyTo%2f'+this.orderNum+'&status=199210219');
                         }
                     }else{
-                        dooolyAPP.redirectPay(this.orderNum)
+                        dooolyAPP.redirectPay(this.orderNum,'',data.data.data.zeroOrderFlag)
                     }
                 }else if(data.data.code == 3003){
                     this.$toast(data.data.msg);
