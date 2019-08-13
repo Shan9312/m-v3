@@ -463,7 +463,9 @@ export default {
         color: #999;
         width: 1.3rem;
         float: left;
-        margin-right: 0.3rem;
+      }
+      input {
+        padding: 0 0.3rem;
       }
     }
   }
