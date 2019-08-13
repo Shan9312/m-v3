@@ -364,9 +364,6 @@ export default {
   bottom: 0;
   box-sizing: border-box;
   background-color: #f9f9f9;
-  input {
-    outline: none;
-  }
   .msg-box {
     width: 100%;
     border-radius: 0.08rem;
@@ -469,6 +466,7 @@ export default {
       }
       input {
         padding: 0 0.3rem;
+        width: 4rem;
       }
     }
   }
