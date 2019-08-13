@@ -99,9 +99,16 @@
           :class="{ gary: inventory === 0 }"
           @click="order()"
         >
-          <span>{{
-            inventory === 0 ? "已售罄" : "立即领取"
-          }}</span>
+          <span v-if="activityName === 'jianhangTicket' || activityName === 'jianhangTicketOther'">
+            {{
+              inventory === 0 ? "已售罄" : "立即抢购"
+            }}
+          </span>
+          <span v-else>
+            {{
+              inventory === 0 ? "已售罄" : "立即领取"
+            }}
+          </span>
         </div>
       </footer>
     </div>
