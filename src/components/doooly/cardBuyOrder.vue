@@ -245,6 +245,12 @@ export default {
         .then(res => {
           this.loadingState = false;
           if (res.data.code == 1000) {
+            let orderNum = res.data.data.orderNum
+            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
+              let activityObj = {}
+              activityObj[orderNum] = this.activityName
+              localStorage.activity = JSON.stringify(activityObj)
+            }
             dooolyAPP.redirectPay(res.data.data.orderNum,'',res.data.data.zeroOrderFlag);
           } else {
             this.$toast(res.data.msg);
