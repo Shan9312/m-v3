@@ -115,6 +115,7 @@ import Calendar from "mpvue-calendar";
 import { checkMobile, isCardNo } from "@/assets/js/verify.js";
 import "mpvue-calendar/src/style.css";
 import "./style.scss";
+import { setTimeout } from "timers";
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
 const day = new Date().getDate();
@@ -264,7 +265,9 @@ export default {
         }日`;
         this.yearDate = val2.date;
         this.handleIsInDayList(this.formObj.selectDate);
-        this.handleSelectDate("2");
+        setTimeout(() => {
+          this.handleSelectDate("2");
+        }, 100);
       }
     },
     /**
