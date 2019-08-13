@@ -260,6 +260,7 @@ export default {
         }日`;
         this.yearDate = val2.date;
         this.handleIsInDayList(this.formObj.selectDate);
+        this.handleSelectDate("2");
       }
     },
     /**
