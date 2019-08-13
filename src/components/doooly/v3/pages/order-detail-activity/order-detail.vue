@@ -142,7 +142,7 @@ export default {
       formObj: {
         consigneeName: "",
         consigneeMobile: "",
-        orderType: 4, // 默认传 4
+        orderType: 0, // 其余默认传 0,礼包订单默认传1，
         productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
         orderExt: {
