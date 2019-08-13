@@ -141,7 +141,8 @@ export default {
       formObj: {
         consigneeName: "",
         consigneeMobile: "",
-        productType: 0, // 默认传 0
+        orderType: 4, // 默认传 4
+        productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
         orderExt: {
           deliveryName: "", // 用户姓名
@@ -157,7 +158,7 @@ export default {
               {
                 productId: this.$route.params.productId,
                 skuId: "",
-                productType: "0",
+                productType: 0,
                 buyNum: 1
               }
             ]
@@ -200,6 +201,9 @@ export default {
             data.selfProduct.businessId;
           this.formObj.merchantProduct[0].productSku[0].skuId =
             data.skuList[0].id;
+          this.formObj.productType = data.productTypeList[0].id;
+          this.formObj.merchantProduct[0].productSku[0].productType =
+            data.productTypeList[0].id;
         } else {
           if (res.data.msg) {
             this.$toast(res.data.msg);
@@ -454,9 +458,9 @@ export default {
       }
       li > p {
         color: #999;
-        width: 1.43rem;
+        width: 1.3rem;
         float: left;
-        margin-right: 0.38rem;
+        margin-right: 0.3rem;
       }
     }
   }
