@@ -120,89 +120,90 @@ export default {
       this.proIndex = index;
     },
     order() {
-      try {
-        if (this.inventory == 0) {
-          return;
-        }
-        this.postData = {
-          productType: this.cardBuyDetailList.productTypeList[this.proIndex].id,
-          merchantProduct: [
-            {
-              merchantId: this.cardBuyDetailList.selfProduct.businessId,
-              remarks: '',
-              productSku: [
-                {
-                  productId: this.cardBuyDetailList.selfProduct.id,
-                  skuId: this.cardBuyDetailList.skuList[this.skuIndex].id,
-                  buyNum: 1
-                }
-              ]
-            }
-          ],
-          img: this.cardBuyDetailList.imagesList[0],
-          name: this.cardBuyDetailList.selfProduct.name,
-          specification: this.cardBuyDetailList.skuList[this.skuIndex]
-            .specification,
-          sellPrice: this.showSellPrice,
-          giftBagId: this.giftBagId,
-          orderType: this.cardBuyDetailList.selfProduct.productAttr
-        };
-        // if (this.activityName === 'jianhangTicketOther') return this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
-        if (this.activityName === 'jianhangTicketOther') return dooolyAPP.gotoJumpVue(this.$router, '/v3/constructOrderDetail/' + this.$route.params.productId + '/' + this.activityName);
-        if (this.postData.productType == 1) {
-          this.$router.push({ path: '/orderInfo_entity' });
-        } else if (this.postData.productType === '11') {
-          // productType: 11 机场活动实物商品
-          if (this.activityName) {
-            dooolyAPP.gotoJumpVue(
-              this.$router,
-              '/confirm_order/' +
-                this.activityName +
-                '/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-            );
-          } else {
-            dooolyAPP.gotoJumpVue(
-              this.$router,
-              '/confirm_order/0/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-            );
+      if (this.inventory == 0) {
+        return;
+      }
+      this.postData = {
+        productType: this.cardBuyDetailList.productTypeList[this.proIndex].id,
+        merchantProduct: [
+          {
+            merchantId: this.cardBuyDetailList.selfProduct.businessId,
+            remarks: '',
+            productSku: [
+              {
+                productId: this.cardBuyDetailList.selfProduct.id,
+                skuId: this.cardBuyDetailList.skuList[this.skuIndex].id,
+                buyNum: 1
+              }
+            ]
           }
+        ],
+        img: this.cardBuyDetailList.imagesList[0],
+        name: this.cardBuyDetailList.selfProduct.name,
+        specification: this.cardBuyDetailList.skuList[this.skuIndex]
+          .specification,
+        sellPrice: this.showSellPrice,
+        giftBagId: this.giftBagId,
+        orderType: this.cardBuyDetailList.selfProduct.productAttr
+      };
+      if (this.activityName === 'jianhangTicketOther') {
+        alert('jianhangTicketOther')
+      }
+      alert('start');
+      // if (this.activityName === 'jianhangTicketOther') return this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
+      if (this.activityName === 'jianhangTicketOther') return dooolyAPP.gotoJumpVue(this.$router, '/v3/constructOrderDetail/' + this.$route.params.productId + '/' + this.activityName);
+      alert('end');
+      if (this.postData.productType == 1) {
+        this.$router.push({ path: '/orderInfo_entity' });
+      } else if (this.postData.productType === '11') {
+        // productType: 11 机场活动实物商品
+        if (this.activityName) {
+          dooolyAPP.gotoJumpVue(
+            this.$router,
+            '/confirm_order/' +
+              this.activityName +
+              '/' +
+              this.cardBuyDetailList.selfProduct.id +
+              '/' +
+              this.cardBuyDetailList.skuList[this.skuIndex].id +
+              '/0/' +
+              this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         } else {
-          if (this.activityName) {
-            dooolyAPP.gotoJumpVue(
-              this.$router,
-              '/cardBuyOrder/' +
-                this.activityName +
-                '/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-            );
-          } else {
-            dooolyAPP.gotoJumpVue(
-              this.$router,
-              '/cardBuyOrder/0/' +
-                this.cardBuyDetailList.selfProduct.id +
-                '/' +
-                this.cardBuyDetailList.skuList[this.skuIndex].id +
-                '/0/' +
-                this.cardBuyDetailList.productTypeList[this.proIndex].id
-            );
-          }
+          dooolyAPP.gotoJumpVue(
+            this.$router,
+            '/confirm_order/0/' +
+              this.cardBuyDetailList.selfProduct.id +
+              '/' +
+              this.cardBuyDetailList.skuList[this.skuIndex].id +
+              '/0/' +
+              this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
         }
-      } catch (error) {
-        alert('error');
+      } else {
+        if (this.activityName) {
+          dooolyAPP.gotoJumpVue(
+            this.$router,
+            '/cardBuyOrder/' +
+              this.activityName +
+              '/' +
+              this.cardBuyDetailList.selfProduct.id +
+              '/' +
+              this.cardBuyDetailList.skuList[this.skuIndex].id +
+              '/0/' +
+              this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
+        } else {
+          dooolyAPP.gotoJumpVue(
+            this.$router,
+            '/cardBuyOrder/0/' +
+              this.cardBuyDetailList.selfProduct.id +
+              '/' +
+              this.cardBuyDetailList.skuList[this.skuIndex].id +
+              '/0/' +
+              this.cardBuyDetailList.productTypeList[this.proIndex].id
+          );
+        }
       }
     },
 
@@ -264,9 +265,7 @@ export default {
               break;
             }
           }
-        } catch (error) {
-          alert(error);
-        }
+        } catch (error) {}
       });
     }
   }
