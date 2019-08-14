@@ -115,6 +115,7 @@ import Calendar from "mpvue-calendar";
 import { checkMobile, isCardNo } from "@/assets/js/verify.js";
 import "mpvue-calendar/src/style.css";
 import "./style.scss";
+import { setTimeout } from "timers";
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
 const day = new Date().getDate();
@@ -141,7 +142,8 @@ export default {
       formObj: {
         consigneeName: "",
         consigneeMobile: "",
-        productType: 0, // 默认传 0
+        orderType: 0, // 其余默认传 0,礼包订单默认传1，
+        productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
         orderExt: {
           deliveryName: "", // 用户姓名
@@ -157,7 +159,7 @@ export default {
               {
                 productId: this.$route.params.productId,
                 skuId: "",
-                productType: "0",
+                productType: 0,
                 buyNum: 1
               }
             ]
@@ -200,6 +202,9 @@ export default {
             data.selfProduct.businessId;
           this.formObj.merchantProduct[0].productSku[0].skuId =
             data.skuList[0].id;
+          this.formObj.productType = data.productTypeList[0].id;
+          this.formObj.merchantProduct[0].productSku[0].productType =
+            data.productTypeList[0].id;
         } else {
           if (res.data.msg) {
             this.$toast(res.data.msg);
@@ -260,7 +265,9 @@ export default {
         }日`;
         this.yearDate = val2.date;
         this.handleIsInDayList(this.formObj.selectDate);
-        this.handleSelectDate("2");
+        setTimeout(() => {
+          this.handleSelectDate("2");
+        }, 100);
       }
     },
     /**
@@ -454,9 +461,12 @@ export default {
       }
       li > p {
         color: #999;
-        width: 1.43rem;
+        width: 1.3rem;
         float: left;
-        margin-right: 0.38rem;
+      }
+      input {
+        padding: 0 0.3rem;
+        width: 4rem;
       }
     }
   }
