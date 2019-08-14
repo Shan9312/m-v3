@@ -111,9 +111,9 @@ import point from '../my-point-list/point.vue';
 <script>
 import http from "@/http/http.js";
 import api from "@/assets/js/api.js";
-import Calendar from "mpvue-calendar";
+import Calendar from "./src/mpvue-calendar";
 import { checkMobile, isCardNo } from "@/assets/js/verify.js";
-import "mpvue-calendar/src/style.css";
+import "./src/style.css";
 import "./style.scss";
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
