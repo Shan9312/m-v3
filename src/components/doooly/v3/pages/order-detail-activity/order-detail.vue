@@ -96,12 +96,12 @@
           />
         </p>
         <div class="calender">
-          <Calendar
+          <!-- <Calendar
             :monthRange="mounthArr"
             :begin="beginDate"
             rangeMonthFormat="yyyy年MM月"
             @select="select"
-          />
+          /> -->
         </div>
       </div>
     </div>
@@ -110,18 +110,18 @@
 <script>
 import http from "@/http/http.js";
 import api from "@/assets/js/api.js";
-import Calendar from "mpvue-calendar";
+// import Calendar from "mpvue-calendar";
 import { checkMobile, isCardNo } from "@/assets/js/verify.js";
-import "mpvue-calendar/src/style.css";
+// import "mpvue-calendar/src/style.css";
 import "./style.scss";
-import { setTimeout } from "timers";
+// import { setTimeout } from "timers";
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
 const day = new Date().getDate();
 
 export default {
   name: "constructOrderDetail",
-  components: { Calendar },
+  // components: { Calendar },
   data() {
     return {
       mounthArr: [`${year}-${month}`, `${year}-${month + 1}`],
