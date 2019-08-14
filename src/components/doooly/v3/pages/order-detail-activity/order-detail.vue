@@ -1,4 +1,3 @@
-import point from '../my-point-list/point.vue';
 <template>
   <div class="order-detail-wrraper">
     <!-- 商品信息 -->
