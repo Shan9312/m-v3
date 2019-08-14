@@ -1,4 +1,3 @@
-import point from '../my-point-list/point.vue';
 <template>
   <div class="order-detail-wrraper">
     <!-- 商品信息 -->
@@ -115,7 +114,6 @@ import Calendar from "mpvue-calendar";
 import { checkMobile, isCardNo } from "@/assets/js/verify.js";
 import "mpvue-calendar/src/style.css";
 import "./style.scss";
-import { setTimeout } from "timers";
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
 const day = new Date().getDate();
