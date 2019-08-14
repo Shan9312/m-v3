@@ -177,6 +177,9 @@ export default {
     }
   },
   created() {
+    // 禁止通过分享链接进入
+    let activityName = this.$route.params.activityName;
+    if (history.length <= 1 && (activityName === 'jianhangTicket' || activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
     // 获取当前3天日期
     this.getDayList();
     dooolyAPP.initTitle("确认订单");

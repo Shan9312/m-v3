@@ -20,6 +20,8 @@ const confirmOrder = {
     }
   },
   created () {
+    // 禁止通过分享链接进入
+    if (history.length <= 1 && (this.activityName === 'jianhangTicket' || this.activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
     dooolyAPP.initTitle('确认订单')
     if (this.$route.params.productId) {
       const { productId, skuId, productTypeId, activityName } = this.$route.params
