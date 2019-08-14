@@ -147,12 +147,10 @@ export default {
         orderType: this.cardBuyDetailList.selfProduct.productAttr
       };
       if (this.activityName === 'jianhangTicketOther') {
-        alert('jianhangTicketOther')
-      }
-      alert('start');
-      // if (this.activityName === 'jianhangTicketOther') return this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
-      if (this.activityName === 'jianhangTicketOther') return dooolyAPP.gotoJumpVue(this.$router, '/v3/constructOrderDetail/' + this.$route.params.productId + '/' + this.activityName);
-      alert('end');
+        this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
+        return alert('suc');
+      } 
+      // if (this.activityName === 'jianhangTicketOther') return dooolyAPP.gotoJumpVue(this.$router, '/v3/constructOrderDetail/' + this.$route.params.productId + '/' + this.activityName);
       if (this.postData.productType == 1) {
         this.$router.push({ path: '/orderInfo_entity' });
       } else if (this.postData.productType === '11') {
