@@ -67,6 +67,8 @@ export default {
     window.addEventListener('scroll', this.menu);
   },
   created() {
+    // 禁止通过分享链接进入
+    if (history.length <= 1 && (this.activityName === 'jianhangTicket' || this.activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
     this.loadCardBuyDetailList();
     if (this.$browserName == 'Chrome WebView') {
       // 在安卓app中优化轮播图禁用下拉刷新

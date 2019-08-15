@@ -140,7 +140,7 @@ export default {
       formObj: {
         consigneeName: "",
         consigneeMobile: "",
-        orderType: 0, // 其余默认传 0,礼包订单默认传1，
+        orderType: 5, // 5代表改商品有邀请券,礼包订单默认传1，
         productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
         orderExt: {
@@ -177,6 +177,9 @@ export default {
     }
   },
   created() {
+    // 禁止通过分享链接进入
+    let activityName = this.$route.params.activityName;
+    if (history.length <= 1 && (activityName === 'jianhangTicket' || activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
     // 获取当前3天日期
     this.getDayList();
     dooolyAPP.initTitle("确认订单");
