@@ -80,7 +80,7 @@
       <div v-if="usualPopupVisible" class="usualPopup">
         <div class="close" @click="cloe()"></div>
         <div class="title"><span>兑换礼券</span></div>
-        <div class="coupon">
+        <div v-if="couponDetail.couponId !== 1072 && couponDetail.couponId !== 1073 && couponDetail.couponId !== 1074" class="coupon">
           <span class="coupon_title">兑换码</span><span id="copyCode" class="detail">{{couponDetail.couponCode}}</span>
           <div class="bottom_btn">
             <div v-if="couponDetail.adBusiness.dealType == 0">
@@ -91,6 +91,11 @@
               <input class="confirm" @click="cloe()" type="button" value="确定">
             </div>
           </div>
+        </div>
+        <div v-else class="coupon">
+          <p class="tips-msg">
+            您的门票将于出游前3日左右通过短信形式发出
+          </p>
         </div>
       </div>
     </div>
@@ -215,6 +220,11 @@
   }
 </style>
 <style scoped>
+  .tips-msg{
+    padding-top: 1rem;
+    font-size: 0.18rem;
+    text-align: center;
+  }
   @font-face {
     font-family: 'iconfont';  /* project id 402124 */
     src: url('//at.alicdn.com/t/font_402124_r3z8okj55855ewmi.eot');
