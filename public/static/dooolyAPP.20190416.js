@@ -381,6 +381,10 @@ dooolyAPP.prototype = {
       window.location.href = this.allConfig.jumpDomain.cashier + 'cardBuyPay/' + orderNum + '?payVersion=' + payVersion;
     }
   },
+  //跳转活动项目
+  redirectActivity: function redirectActivity(url) {
+    window.location.href = this.allConfig.jumpDomain.activity + url;
+  },
   //跳转第三方
   gotoJumpJq: function gotoJumpJq(router, url) {
     if (this.browserName == 'WeChat') {
