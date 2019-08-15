@@ -94,7 +94,7 @@
         </div>
         <div v-else class="coupon">
           <p class="tips-msg">
-            您的门票将于出游前3日左右通过短信形式发出
+            您的门票将于出游前2日左右通过短信形式发出
           </p>
         </div>
       </div>
@@ -222,7 +222,7 @@
 <style scoped>
   .tips-msg{
     padding-top: 1rem;
-    font-size: 0.18rem;
+    font-size: 0.28rem;
     text-align: center;
   }
   @font-face {
