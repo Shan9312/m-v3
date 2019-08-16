@@ -1,0 +1,31 @@
+.month-range-mode .month-rang-head {
+  text-align: center !important;
+  margin: 0.1rem 0px !important;
+}
+
+.mpvue-calendar td.selected span {
+  background: linear-gradient(90deg, rgba(255, 16, 35, 1) 0%, rgba(253, 55, 87, 1) 100%);
+  color: #fff;
+  border-radius: 0.08rem;
+}
+
+.mpvue-calendar .mc-month-range-mode-head {
+  background: rgba(241, 241, 241, 1) !important;
+}
+
+.mpvue-calendar td.selected span {
+  color: #fff;
+}
+
+.mpvue-calendar-change {
+  display: none;
+}
+
+.mc-today {
+  color: #000;
+}
+
+.mc-head-box>div:first-child,
+.mc-head-box>div:last-child {
+  color: #ff1023;
+}
