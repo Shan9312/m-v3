@@ -40,22 +40,34 @@
         <h2 class="title">取票人信息</h2>
         <ul class="user-msg-box">
           <li>
-            <p>姓名</p>
-            <input type="text" maxlength="10" v-model="formObj.orderExt.deliveryName" />
+            <label for="name">
+              姓名
+              <input id="name" type="text" maxlength="10" v-model="formObj.orderExt.deliveryName" />
+            </label>
           </li>
           <li>
-            <p>手机号</p>
-            <input type="tel" maxlength="11" v-model="formObj.orderExt.deliveryTelephone" />
+            <label for="phone">
+              手机号
+              <input
+                id="phone"
+                type="tel"
+                maxlength="11"
+                v-model="formObj.orderExt.deliveryTelephone"
+              />
+            </label>
           </li>
           <li>
-            <p>身份证</p>
-            <input
-              type="text"
-              maxlength="18"
-              v-model="formObj.orderExt.identityCard"
-              onkeyup="value=value.replace(/[\W]/g,'')"
-              onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
-            />
+            <label for="identityCard">
+              身份证
+              <input
+                id="identityCard"
+                type="text"
+                maxlength="18"
+                v-model="formObj.orderExt.identityCard"
+                onkeyup="value=value.replace(/[\W]/g,'')"
+                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+              />
+            </label>
           </li>
         </ul>
       </div>
@@ -100,6 +112,7 @@
             :monthRange="mounthArr"
             :begin="beginDate"
             rangeMonthFormat="yyyy年MM月"
+            :tileContent="tileContent"
             @select="select"
           />
         </div>
@@ -125,8 +138,11 @@ export default {
     return {
       mounthArr: [`${year}-${month}`, `${year}-${month + 1}`],
       dayList: [],
+      tileContent: [
+        { date: `${year}-${month}-${day + 3}`, className: "holiday " }
+      ],
       productName: "",
-      beginDate: [year, month, day],
+      beginDate: [year, month, day + 3],
       buyNum: 1, // 购买数量
       amount: "0",
       selectDate: "", // 临时选中的日期
@@ -179,7 +195,12 @@ export default {
   created() {
     // 禁止通过分享链接进入
     let activityName = this.$route.params.activityName;
-    if (history.length <= 1 && (activityName === 'jianhangTicket' || activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
+    if (
+      history.length <= 1 &&
+      (activityName === "jianhangTicket" ||
+        activityName === "jianhangTicketOther")
+    )
+      return dooolyAPP.redirectActivity("jianhangGiftEntry");
     // 获取当前3天日期
     this.getDayList();
     dooolyAPP.initTitle("确认订单");
@@ -232,7 +253,7 @@ export default {
     },
     // 获取3天内的日期
     getDayList() {
-      for (let i = 0; i < 3; i++) {
+      for (let i = 3; i < 6; i++) {
         this.dayList.push(this.getDay(i));
       }
       this.selectedDay = this.dayList[0].nowDay;
@@ -460,14 +481,13 @@ export default {
         border-bottom: 1px solid #f9f9f9;
         padding: 0.2rem 0;
       }
-      li > p {
+      li > label {
         color: #999;
-        width: 1.3rem;
-        float: left;
       }
       input {
         padding: 0 0.3rem;
         width: 4rem;
+        color: #333;
       }
     }
   }

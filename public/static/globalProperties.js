@@ -142,16 +142,16 @@ var globalProperties = {
     }
     // Determine if the current enviorment is test by the host name is starts with 't' or the href is contains 'reach_dist'
     else if (location.host.indexOf('t') == 0 || location.href.indexOf('reach_dist') > -1) {
-        env = 'test';
-      }
-      // Determine if the current enviorment is pre by the href is contains 'pre_'
-      else if (location.href.indexOf('pre_') > -1) {
-          env = 'pre';
-        }
-        // Determine if the current enviorment is pre by the href is contains 'pro_'
-        else if (location.href.indexOf('pro_') > -1) {
-            env = 'pro';
-          }
+      env = 'test';
+    }
+    // Determine if the current enviorment is pre by the href is contains 'pre_'
+    else if (location.href.indexOf('pre_') > -1) {
+      env = 'pre';
+    }
+    // Determine if the current enviorment is pre by the href is contains 'pro_'
+    else if (location.href.indexOf('pro_') > -1) {
+      env = 'pro';
+    }
 
     return env;
   },
@@ -163,8 +163,8 @@ var globalProperties = {
   getAPIDomain: function getAPIDomain() {
     var apiDomainMap = {
       local: {
-        butterfly: 'https://admin.doooly.com/reachtest/',
-        doooly: 'https://admin.doooly.com/Doooly/',
+        butterfly: 'https://admin.doooly.com/reach_api/',
+        doooly: 'https://admin.doooly.com/doooly_api/',
         activity: 'https://admin.doooly.com/activity/',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
@@ -212,7 +212,7 @@ var globalProperties = {
     var frontendDomain = {};
 
     var appId = ['wx2d328083c1b00c6a', // dev and test's appid
-    'wx07dc2a87c3d4ec88' // pre and prod's appid
+      'wx07dc2a87c3d4ec88' // pre and prod's appid
     ];
     var redirectType = '/dist/'; // default type
     if (/wiscowechat/.test(location.href)) {
@@ -280,18 +280,18 @@ var globalProperties = {
     }
     // old version domain judge rules
     else {
-        currentEnv = this.getCurrentEnv();
+      currentEnv = this.getCurrentEnv();
 
-        frontendDomain = frontendDomainMap[currentEnv];
-        var storage = this.getLocalStorage();
-        var htmlVersion = storage.getItem('htmlVersion') || '';
-        // if localstorage has exists htmlVersion then replace version
-        if (htmlVersion) {
-          frontendDomain.m = frontendDomain.m.replace('/dist/', '/dist_v' + htmlVersion + '/');
-          frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/activity_v' + htmlVersion + '/');
-          frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/cashier_v' + htmlVersion + '/');
-        }
+      frontendDomain = frontendDomainMap[currentEnv];
+      var storage = this.getLocalStorage();
+      var htmlVersion = storage.getItem('htmlVersion') || '';
+      // if localstorage has exists htmlVersion then replace version
+      if (htmlVersion) {
+        frontendDomain.m = frontendDomain.m.replace('/dist/', '/dist_v' + htmlVersion + '/');
+        frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/activity_v' + htmlVersion + '/');
+        frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/cashier_v' + htmlVersion + '/');
       }
+    }
 
     var currentAppId = ['pre', 'pro'].indexOf(currentEnv) > -1 ? appId[1] : appId[0];
     frontendDomain.wx = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + currentAppId + '&redirect_uri=' + encodeURIComponent(frontendDomain.m.replace('/dist/', redirectType)) + 'white&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
