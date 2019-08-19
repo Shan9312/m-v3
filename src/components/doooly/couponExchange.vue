@@ -278,7 +278,7 @@
   header span.logo{
     width: 1.2rem;
     height: 1.2rem;
-    margin: 0.4rem 0.4rem 0 0;
+    margin: 0.4rem 0.4rem 0 0.15rem;
     font-size: 0;
   }
   header span.logo img{
@@ -287,7 +287,7 @@
     border-radius: 100%;
   }
   header span.company{
-    width: 1.2rem;
+    width: 1.5rem;
     margin: 0.16rem 0.4rem 0 0;
     font-size: 0.28rem;
     color: #666;
