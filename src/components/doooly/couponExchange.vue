@@ -221,8 +221,8 @@
 </style>
 <style scoped>
   .tips-msg{
-    padding-top: 1rem;
-    font-size: 0.28rem;
+    padding: 1rem 1rem 0rem;
+    font-size: 0.26rem;
     text-align: center;
   }
   @font-face {
