@@ -85,7 +85,7 @@
           <div class="bottom_btn">
             <div v-if="couponDetail.adBusiness.dealType == 0">
               <input class="confirm copy_btn" data-clipboard-action="copy" data-clipboard-target="#copyCode"
-                     type="button" value="复制去使用" @click="copyBtn()">
+                     type="button" :value="couponDetail.coupon.businessOnlineUrl ? '复制去使用' : '复制'" @click="copyBtn()">
             </div>
             <div v-else>
               <input class="confirm" @click="cloe()" type="button" value="确定">
@@ -142,6 +142,7 @@
       },
       methods: {
         link() {
+          if (!this.couponDetail.coupon.businessOnlineUrl) return;
           window.location.href=this.couponDetail.coupon.businessOnlineUrl;
           this.$baiduStats('我的福利-点击去使用-' + this.couponDetail.coupon.productName);
         },
@@ -221,8 +222,8 @@
 </style>
 <style scoped>
   .tips-msg{
-    padding-top: 1rem;
-    font-size: 0.28rem;
+    padding: 1rem 1rem 0rem;
+    font-size: 0.26rem;
     text-align: center;
   }
   @font-face {

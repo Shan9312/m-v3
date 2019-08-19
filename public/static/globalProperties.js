@@ -31,7 +31,7 @@ var globalProperties = {
    * Get value of the key named JsonData in the url hash value
    */
   getJsonData: function getJsonData(key) {
-    if (!location.hash.indexOf('?') > -1) return null;
+    if (location.hash.indexOf('?') < 0) return null;
 
     var reg = new RegExp('(^|&)' + key + '=([^&]*)(&|$)', 'i');
     var r = location.hash.split('?')[1].match(reg);
@@ -290,6 +290,11 @@ var globalProperties = {
         frontendDomain.m = frontendDomain.m.replace('/dist/', '/dist_v' + htmlVersion + '/');
         frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/activity_v' + htmlVersion + '/');
         frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/cashier_v' + htmlVersion + '/');
+      }
+      if(location.href.indexOf("thirdParty") > -1){
+        frontendDomain.m = frontendDomain.m.replace('/dist/', '/thirdParty/');
+        frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/thirdPartyActivity/');
+        frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/thirdPartyPay/');
       }
     }
 
