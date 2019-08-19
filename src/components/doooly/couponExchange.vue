@@ -142,6 +142,7 @@
       },
       methods: {
         link() {
+          if (!this.couponDetail.coupon.businessOnlineUrl) return;
           window.location.href=this.couponDetail.coupon.businessOnlineUrl;
           this.$baiduStats('我的福利-点击去使用-' + this.couponDetail.coupon.productName);
         },
