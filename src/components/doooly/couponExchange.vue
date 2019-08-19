@@ -85,7 +85,7 @@
           <div class="bottom_btn">
             <div v-if="couponDetail.adBusiness.dealType == 0">
               <input class="confirm copy_btn" data-clipboard-action="copy" data-clipboard-target="#copyCode"
-                     type="button" value="复制去使用" @click="copyBtn()">
+                     type="button" :value="couponDetail.coupon.businessOnlineUrl ? '复制去使用' : '复制'" @click="copyBtn()">
             </div>
             <div v-else>
               <input class="confirm" @click="cloe()" type="button" value="确定">
