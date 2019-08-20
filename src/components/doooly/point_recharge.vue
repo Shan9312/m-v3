@@ -336,7 +336,10 @@ export default {
   },
   mounted() {
     this.loadFirstPage();
-    window["APP_card_question"] = this.jumpCard();
+    var _this = this;
+    window["APP_card_question"] = function() {
+      _this.jumpCard();
+    };
   },
   methods: {
     jumpCard() {
