@@ -165,14 +165,14 @@ var globalProperties = {
       local: {
         butterfly: 'https://admin.doooly.com/dev_butterfly/',
         doooly: 'https://admin.doooly.com/dev_doooly/',
-        activity: 'https://admin.doooly.com/dev_activity',
+        activity: 'https://admin.doooly.com/dev_reach-activity/',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
       dev: {
         butterfly: 'https://admin.doooly.com/dev_butterfly/',
         doooly: 'https://admin.doooly.com/dev_doooly/',
-        activity: 'https://admin.doooly.com/dev_activity/',
+        activity: 'https://admin.doooly.com/dev_reach-activity//',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
