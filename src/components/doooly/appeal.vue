@@ -399,7 +399,7 @@
             this.$toast("手机号格式不正确");
             return;
           }
-          if(this.$browserName == 'otherAPPAndroid'){
+          if(this.$browserName == 'otherAPPAndroid'  || this.$browserName == 'Chrome WebView'){
             this.appRef();
             return;
           }
