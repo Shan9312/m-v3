@@ -325,7 +325,7 @@
         },
         //app选择照片
         chooseImgAPP(){
-          if(this.$browserName == 'otherAPPAndroid'){
+          if(this.$browserName == 'otherAPPAndroid' || this.$browserName == 'Chrome WebView'){ 
             dooolyAPP.photographNative('APP_chooseImage');
           }
         },
