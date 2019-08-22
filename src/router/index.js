@@ -446,11 +446,6 @@ export default new Router({
       name: 'aboutDoooly',
       component: aboutDoooly
     },
-    // {
-    //   path:'/modifyLoginPw',
-    //   name:'modifyLoginPw',
-    //   component:modifyLoginPw
-    // },
     {
       path: '/myPointList/:pointType',
       name: 'myPointList',
