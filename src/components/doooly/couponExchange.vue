@@ -80,6 +80,7 @@
       <div v-if="usualPopupVisible" class="usualPopup">
         <div class="close" @click="cloe()"></div>
         <div class="title"><span>兑换礼券</span></div>
+        <!-- pro couponId [1072, 1073, 1074] -->
         <div v-if="couponDetail.couponId !== 1072 && couponDetail.couponId !== 1073 && couponDetail.couponId !== 1074" class="coupon">
           <span class="coupon_title">兑换码</span><span id="copyCode" class="detail">{{couponDetail.couponCode}}</span>
           <div class="bottom_btn">

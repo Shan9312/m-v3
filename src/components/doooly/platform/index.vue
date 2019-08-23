@@ -5,54 +5,51 @@
 </template>
 
 <script>
-import { getUrlParams } from '@/util/methods.js';
+import { getUrlParams } from "@/util/methods.js";
 export default {
-  name: 'platform',
+  name: "platform",
   data() {
     return {
-      link: getUrlParams('redirect_url')
-    }
+      link: getUrlParams("redirect_url")
+    };
   },
-  computed: {
-
-  },
+  computed: {},
   created() {
-    window['receivePosition'] = this.getDeviceHash;
-    if (this.$browserName == 'Chrome WebView' || this.$browserName == 'otherAPPAndroid') {
-      RHNativeJS.getPhoneDeviceId('getDeviceHash')
-    }else if (this.$browserName == 'WebKit') {
-      window.webkit.messageHandlers.getPhoneDeviceId.postMessage('getDeviceHash')
-    }else{
+    window["receivePosition"] = this.getDeviceHash;
+    if (
+      this.$browserName == "Chrome WebView" ||
+      this.$browserName == "otherAPPAndroid"
+    ) {
+      RHNativeJS.getPhoneDeviceId("receivePosition");
+    } else if (this.$browserName == "WebKit") {
+      window.webkit.messageHandlers.getPhoneDeviceId.postMessage(
+        "receivePosition"
+      );
+    } else {
       this.jump();
     }
   },
-  mounted() {
-
-  },
+  mounted() {},
   methods: {
-    getDeviceHash(id){
-      localStorage.setItem('deviceHash', id)
+    getDeviceHash(id) {
+      localStorage.setItem("deviceHash", id);
       this.jump();
     },
     jump() {
       let token = localStorage.token;
       let userId = localStorage.userId;
-      let deviceHash = localStorage.getItem('deviceHash');
-      let paramsUrl = '';
-      let url = '';
+      let deviceHash = localStorage.getItem("deviceHash");
+      let paramsUrl = "";
+      let url = "";
       if (this.link) {
-        paramsUrl = this.link.indexOf('?') > -1 ? '&' : '?'
-        url = `${this.link}${paramsUrl}token=${token}&userId=${userId}&deviceHash=${deviceHash}`
+        paramsUrl = this.link.indexOf("?") > -1 ? "&" : "?";
+        url = `${this.link}${paramsUrl}token=${token}&userId=${userId}&deviceHash=${deviceHash}`;
         window.location.replace(url);
       }
     }
   },
-  watch: {
-
-  },
-  components: {
-
-  },
+  watch: {},
+  components: {}
 };
 </script>
 

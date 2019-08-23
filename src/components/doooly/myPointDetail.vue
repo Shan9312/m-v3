@@ -12,13 +12,13 @@
         <div class="detail_all_div">
           <div class="detail_div">
             <div class="detail_Name">
-              <span>{{company}}</span><span v-if="storeName!=undefined">-{{storeName}}</span>
+              <span>{{company}}</span><span v-if="storeName">-{{storeName}}</span>
             </div>
           </div>
         </div>
       </section>
       <section>
-        <div class="details_con clearfix">
+        <div class="details_con">
           <div class="fl">付款金额</div>
           <div class="fr" v-if="String(totalAmount).indexOf('.')>0">￥{{totalAmount.toFixed(2)}}</div>
           <div class="fr" v-else>￥{{totalAmount}}.00</div>
@@ -98,7 +98,7 @@
         <div class="detail_all_div">
           <div class="detail_div">
             <div class="detail_Name">
-              <span>{{company}}</span><span v-if="storeName!=undefined">-{{storeName}}</span>
+              <span>{{company}}</span><span v-if="storeName">-{{storeName}}</span>
             </div>
           </div>
         </div>
@@ -478,12 +478,13 @@ export default {
 }
 
 .details_con {
-  height: 0.4rem;
+  min-height: 0.4rem;
   font-size: 0.28rem;
   line-height: 0.4rem;
   margin-top: 0.2rem;
   margin: 0.2rem 0.3rem;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 .details_con .sign_mark {
@@ -498,19 +499,18 @@ export default {
 }
 
 .details_con .fl {
-  float: left;
   display: inline-block;
-  width: 30%;
+  min-width: 1.2rem;
   color: #999;
   text-align: left;
 }
 
 .details_con .fr {
-  float: left;
-  display: inline-block;
-  width: 70%;
+  /* width: 70%; */
   color: #333;
-  text-align: right;
+  word-break: break-all;
+  display: flex;
+  justify-content: space-between;
 }
 
 .details_record {

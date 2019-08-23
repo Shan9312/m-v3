@@ -42,7 +42,13 @@
           <li>
             <label for="name">
               姓名
-              <input id="name" type="text" maxlength="10" v-model="formObj.orderExt.deliveryName" />
+              <input
+                class="name_input"
+                id="name"
+                type="text"
+                maxlength="10"
+                v-model="formObj.orderExt.deliveryName"
+              />
             </label>
           </li>
           <li>
@@ -485,9 +491,13 @@ export default {
         color: #999;
       }
       input {
-        padding: 0 0.3rem;
+        margin-left: 0.3rem;
+        padding: 0 0.35rem;
         width: 4rem;
         color: #333;
+      }
+      .name_input {
+        margin-left: 0.58rem !important;
       }
     }
   }

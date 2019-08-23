@@ -107,16 +107,6 @@ const myOrderList = {
       this.amountListData = [];
       this.loadFirstPage(true);
     },
-    orderListUrl(token, pageNumber, pageSize) {
-      let stateTemp = 1; // 订单状态  小红点
-      let url = "";
-      if (this.businessId == "all") {
-        url = api.myOrderList + "?token=" + token + "&state=" + stateTemp + "&pageNumber=" + pageNumber + "&pageSize=" + pageSize;
-      } else {
-        url = api.myOrderList + "?token=" + token + "&state=" + stateTemp + "&pageNumber=" + pageNumber + "&pageSize=" + pageSize + "&company=" + this.businessId;
-      }
-      return url;
-    },
     loadFirstPage(isReload) {
       let params = {
         type: this.type,
