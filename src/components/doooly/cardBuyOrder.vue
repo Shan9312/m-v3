@@ -19,7 +19,7 @@
           <input
             id="name"
             type="text"
-            maxlength="10"
+            maxlength="11"
             placeholder="请输入姓名"
             v-model="defaultDelivery.receiverName"
           />
