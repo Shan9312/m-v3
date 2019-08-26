@@ -526,6 +526,7 @@ dooolyAPP.prototype = {
     if (data) {
       var jsonData = JSON.parse(data);
       var token = jsonData.token;
+      var hasOpenId = jsonData.hasOpenId;
       this.setCookie('token', token);
       this.setCookie('userId', jsonData.adUserConn.userId);
       this.removeCookie("first_conponShow");
@@ -535,6 +536,11 @@ dooolyAPP.prototype = {
       } else {
         localStorage.dooolyToken = token;
         localStorage.token = token;
+      }
+      if(hasOpenId == 1){
+        localStorage.openId = true
+      }else{
+        localStorage.openId = false
       }
       localStorage.userId = jsonData.adUserConn.userId;
       localStorage.mobile = jsonData.adUserConn.telephone;
