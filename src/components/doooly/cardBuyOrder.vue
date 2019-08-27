@@ -14,15 +14,15 @@
             @click="deleteInputValue1()"
             class="input_delete"
           >
-            <img src="../../assets/images/cardbuy/input_delete.png">
+            <img src="../../assets/images/cardbuy/input_delete.png" />
           </div>
           <input
             id="name"
             type="text"
-            maxlength="10"
+            maxlength="11"
             placeholder="请输入姓名"
             v-model="defaultDelivery.receiverName"
-          >
+          />
         </div>
       </div>
 
@@ -35,7 +35,7 @@
             @click="deleteInputValue2()"
             class="input_delete"
           >
-            <img src="../../assets/images/cardbuy/input_delete.png">
+            <img src="../../assets/images/cardbuy/input_delete.png" />
           </div>
           <input
             id="tel"
@@ -45,7 +45,7 @@
             v-model="defaultDelivery.receiverTelephone"
             onkeyup="this.value=this.value.replace(/\D/g,'')"
             onafterpaste="this.value=this.value.replace(/\D/g,'')"
-          >
+          />
         </div>
       </div>
     </div>
@@ -54,13 +54,13 @@
     <div class="company">
       <div class="clearfix picture_view">
         <div class="fl picture">
-          <img :src="receiveData.img">
+          <img :src="receiveData.img" />
         </div>
         <div class="fl price">
           <span class="name">{{receiveData.name}}</span>
-          <br>
+          <br />
           <span class="type">规格：{{receiveData.specification}}</span>
-          <br>
+          <br />
           <span>
             <span style="font-size:0.24rem;margin: 0;padding: 0;color:#ee3f44;">￥</span>
             <span
@@ -175,10 +175,10 @@ export default {
       }
     }
   },
-  beforeRouteEnter(to, from, next){
-    if (from.name !== 'coupon') {
-      localStorage.removeItem('couponId');
-      localStorage.removeItem('saveMoney');
+  beforeRouteEnter(to, from, next) {
+    if (from.name !== "coupon") {
+      localStorage.removeItem("couponId");
+      localStorage.removeItem("saveMoney");
     }
     next();
   },
@@ -199,9 +199,9 @@ export default {
         this.$toast("手机号不能为空");
         return;
       }
-      var reg = /^[a-zA-Z\u4e00-\u9fa5\s]{1,20}$/;
+      var reg = /^[0-9a-zA-Z\u4e00-\u9fa5\s]{1,20}$/;
       if (!reg.test(this.defaultDelivery.receiverName)) {
-        this.$toast("姓名只能输入中文或英文");
+        this.$toast("姓名只能输入中文,英文或数字");
         return;
       }
       if (checkMobile(this.defaultDelivery.receiverTelephone)) {
@@ -234,7 +234,7 @@ export default {
             ]
           }
         ],
-        redirectUrl: this.$allConfig.jumpDomain.cashier + 'cardBuyPayResult/'
+        redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/"
       };
       http({
         method: "post",
@@ -245,13 +245,21 @@ export default {
         .then(res => {
           this.loadingState = false;
           if (res.data.code == 1000) {
-            let orderNum = res.data.data.orderNum
-            if (this.activityName && this.activityName !== '0' && this.activityName !== 'false') {
-              let activityObj = {}
-              activityObj[orderNum] = this.activityName
-              localStorage.activity = JSON.stringify(activityObj)
+            let orderNum = res.data.data.orderNum;
+            if (
+              this.activityName &&
+              this.activityName !== "0" &&
+              this.activityName !== "false"
+            ) {
+              let activityObj = {};
+              activityObj[orderNum] = this.activityName;
+              localStorage.activity = JSON.stringify(activityObj);
             }
-            dooolyAPP.redirectPay(res.data.data.orderNum,'',res.data.data.zeroOrderFlag);
+            dooolyAPP.redirectPay(
+              res.data.data.orderNum,
+              "",
+              res.data.data.zeroOrderFlag
+            );
           } else {
             this.$toast(res.data.msg);
           }
@@ -323,7 +331,12 @@ export default {
   },
   created() {
     // 禁止通过分享链接进入
-    if (history.length <= 1 && (this.activityName === 'jianhangTicket' || this.activityName === 'jianhangTicketOther')) return dooolyAPP.redirectActivity('jianhangGiftEntry');
+    if (
+      history.length <= 1 &&
+      (this.activityName === "jianhangTicket" ||
+        this.activityName === "jianhangTicketOther")
+    )
+      return dooolyAPP.redirectActivity("jianhangGiftEntry");
   },
   beforeDestroy() {
     localStorage.removeItem("couponId");
