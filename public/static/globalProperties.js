@@ -179,7 +179,7 @@ var globalProperties = {
       test: {
         butterfly: 'https://admin.doooly.com/reach_api/',
         doooly: 'https://admin.doooly.com/doooly_api/',
-        activity: 'https://admin.doooly.com/dev_activity/',
+        activity: 'https://admin.doooly.com/test_reach-activity/',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
