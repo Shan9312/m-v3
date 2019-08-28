@@ -14,7 +14,7 @@
         <p class="des_r short_text">-￥{{ supplierOrder.savePrice.toFixed(2) }}</p>
       </div>
       <div class="div_describe"
-        v-if="parseInt(supplierOrder.serviceCharge)">
+        v-if="parseFloat(supplierOrder.serviceCharge)">
         <p class="des_l">手续费</p>
         <p class="des_r">￥{{ supplierOrder.serviceCharge }}</p>
       </div>
