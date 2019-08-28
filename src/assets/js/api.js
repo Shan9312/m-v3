@@ -133,6 +133,8 @@ const api = {
   couponList: doooly + 'jersey/homeCoupon/couponList', // 获取商家的优惠券列表
   getRechargeActivityByType: doooly + 'jersey/selfProduct/getActivityByType', // 暂时供话费充值活动使用
   getRechargeActivity: doooly + 'jersey/selfProduct/getSelfProductByName', // 根据活动名称获取活动sku
+  // uploadOssImg: doooly  + 'jersey/doooly/oss/policy', // 微信上传图片
+  uploadOssImg: 'http://121.40.79.96:8904/upload/open/oss/policy', // 微信上传图片
   // -----------------订单2.2优化接口-------------------------
   getOrderList: doooly + 'jersey/myorder/list/v2/',
   getOrderDetail: doooly + 'jersey/myorder/detail/v2/',
@@ -156,5 +158,6 @@ const api = {
   findlist: activity + 'guide/findlist', // 发现新接口
   giftBagIsReceive: activity + 'gift/bag/isReceive', // 判断能否领取
   ccbActivityList: activity + 'cbcAct/findCbcActivityProList' // 判断建行一元购是否重复提交
+  
 }
 export default api

@@ -163,16 +163,16 @@ var globalProperties = {
   getAPIDomain: function getAPIDomain() {
     var apiDomainMap = {
       local: {
-        butterfly: 'https://admin.doooly.com/reach_api/',
-        doooly: 'https://admin.doooly.com/doooly_api/',
-        activity: 'https://admin.doooly.com/activity/',
+        butterfly: 'https://admin.doooly.com/dev_butterfly/',
+        doooly: 'https://admin.doooly.com/dev_doooly/',
+        activity: 'https://admin.doooly.com/dev_reach-activity/',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
       dev: {
-        butterfly: 'https://admin.doooly.com/reachtest/',
-        doooly: 'https://admin.doooly.com/Doooly/',
-        activity: 'https://admin.doooly.com/activity/',
+        butterfly: 'https://admin.doooly.com/dev_butterfly/',
+        doooly: 'https://admin.doooly.com/dev_doooly/',
+        activity: 'https://admin.doooly.com/dev_reach-activity/',
         order: 'https://admin.doooly.com/doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
@@ -291,7 +291,7 @@ var globalProperties = {
         frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/activity_v' + htmlVersion + '/');
         frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/cashier_v' + htmlVersion + '/');
       }
-      if(location.href.indexOf("thirdParty") > -1){
+      if (location.href.indexOf("thirdParty") > -1) {
         frontendDomain.m = frontendDomain.m.replace('/dist/', '/thirdParty/');
         frontendDomain.activity = frontendDomain.activity.replace('/activity/', '/thirdPartyActivity/');
         frontendDomain.cashier = frontendDomain.cashier.replace('/cashier/', '/thirdPartyPay/');
