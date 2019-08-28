@@ -239,9 +239,6 @@ export default {
       otherAPP: this.$browserName,
       textName: "",
       serviceTime: dooolyConfig.serviceTime,
-      ossObj: {},
-      getTime: 0,
-      firstPost: true
     };
   },
   beforeCreate() {
@@ -311,7 +308,6 @@ export default {
           url: api.uploadOssImg
         }).then(res => {
             if (res.data.code == "1000") {
-              this.ossObj=res.data.data;
               this.postOssImg(res.data.data, file);
               this.firstPost = false;
               this.getTime = parseInt(res.data.data.expire);
@@ -321,14 +317,14 @@ export default {
         });
     },
     // 判断获取的时间是否失效
-    handleIsExpire(time){
-     let now =Date.parse(new Date()) / 1000;
-     // 若服务器存储时间 小于当前时间，则失效了。
-      if (time < now +3) {
-        return false;
-      }
-      return true;
-    },
+    // handleIsExpire(time){
+    //  let now =Date.parse(new Date()) / 1000;
+    //  // 若服务器存储时间 小于当前时间，则失效了。
+    //   if (time < now +3) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     // 发送的图片和签名等
     getFormData(obj = {}, file) {
       const fd = new FormData();
