@@ -307,7 +307,7 @@ export default {
     // 获取后端的oss信息
     getOssMsg(file) {
         http({
-          method: "get",
+          method: "post",
           url: api.uploadOssImg
         }).then(res => {
             if (res.data.code == "1000") {
@@ -331,7 +331,6 @@ export default {
     },
     // 发送的图片和签名等
     getFormData(obj = {}, file) {
-      // console.dir("1111123123", JSON.stringify(file));
       const fd = new FormData();
       const { policy, accessKeyId, signature, expire, callback, dir } = obj;
       let content_len = Math.round((file.size * 100) / 1024) / 100;
@@ -493,24 +492,6 @@ export default {
         if (this.selectImgNum + this.imgNum == this.maxImgNum) {
           this.defaultImg = false;
         }
-        // let previewUrl = this.getFileUrl(e.srcElement);
-        // for (let i = 0; i < previewUrl.length; i++) {
-        //   let imgObj = {};
-        //   imgObj.deleteImg = true;
-        //   imgObj.imgUrl = previewUrl[i];
-        //   this.imgList.push(imgObj);
-        // }
-        // this.newAddImg = true;
-        // if (this.selectImgNum + this.imgNum == this.maxImgNum) {
-        //   this.defaultImg = false;
-        // }
-        // this.imgNum = this.imgList.length;
-        // if (this.selectImgNum > 0) {
-        //   for (let i = 0; i < this.selectImgNum; i++) {
-        //     let file = img[i];
-        //     this.imgTargetList.push(file);
-        //   }
-        // }
       }
     },
     //照片预览
