@@ -28,14 +28,13 @@
        },
        // 绑定信息后的回调函数
        goWhite(){
-          let url = window.location.href;
-          if(!localStorage.wiscowechatCodeType && window.location.href.indexOf('wiscowechat') > 0){
-            localStorage.wiscowechatCodeType = 1;
-            window.location.href=this.$allConfig.jumpDomain.wx;
-          }else{
-            localStorage.removeItem('wiscowechatCodeType');
+          // if(!localStorage.wiscowechatCodeType && window.location.href.indexOf('wiscowechat') > 0){
+          //   localStorage.wiscowechatCodeType = 1;
+          //   window.location.href=this.$allConfig.jumpDomain.wx;
+          // }else{
+          //   localStorage.removeItem('wiscowechatCodeType');
             dooolyAPP.logIn('','',1);
-          }
+          // }
        }
       },
       mounted() {

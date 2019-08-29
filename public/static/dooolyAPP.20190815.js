@@ -523,8 +523,6 @@ dooolyAPP.prototype = {
   },
   //登录/记录用户信息方法
   logIn: function logIn(data, url, type) {
-    alert(localStorage.loginUrl);
-    alert(url);
     if (data) {
       var jsonData = JSON.parse(data);
       var token = jsonData.token;
@@ -555,7 +553,7 @@ dooolyAPP.prototype = {
     }
     var domain = this.allConfig.jumpDomain.m;
     //记录登录特殊跳转url
-    if (url) {
+    if (url && url != '') {
       var reg = new RegExp('^http(s)?://');
       if (reg.test(url)) {
         localStorage.loginUrl = url;
