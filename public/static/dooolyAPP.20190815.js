@@ -523,6 +523,8 @@ dooolyAPP.prototype = {
   },
   //登录/记录用户信息方法
   logIn: function logIn(data, url, type) {
+    alert(localStorage.loginUrl);
+    alert(url);
     if (data) {
       var jsonData = JSON.parse(data);
       var token = jsonData.token;
