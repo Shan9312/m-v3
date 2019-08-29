@@ -28,10 +28,8 @@
        },
        // 绑定信息后的回调函数
        goWhite(){
-         alert(2);
           let url = window.location.href;
           if(!localStorage.wiscowechatCodeType && window.location.href.indexOf('wiscowechat') > 0){
-            alert(3)
             localStorage.wiscowechatCodeType = 1;
             window.location.href=this.$allConfig.jumpDomain.wx;
           }else{
@@ -41,7 +39,7 @@
        }
       },
       mounted() {
-        alert(1);
+        alert(localStorage.loginUrl)
         let url = window.location.href;
         if (url.match(/code=([^&]+)/)) {
           let code = url.match(/code=([^&]+)/)[1];
