@@ -38,7 +38,6 @@
        }
       },
       mounted() {
-        alert(localStorage.loginUrl)
         let url = window.location.href;
         if (url.match(/code=([^&]+)/)) {
           let code = url.match(/code=([^&]+)/)[1];
