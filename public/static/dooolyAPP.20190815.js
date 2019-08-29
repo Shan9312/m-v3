@@ -489,7 +489,7 @@ dooolyAPP.prototype = {
           localStorage.setItem('loginUrl', location.href);
         }
       } else {
-        // localStorage.removeItem('loginUrl');
+        localStorage.removeItem('loginUrl');
       }
       localStorage.removeItem('userId');
       localStorage.removeItem('mobile');
@@ -582,7 +582,7 @@ dooolyAPP.prototype = {
       }
     } else {
       var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
-      // localStorage.removeItem('loginUrl');
+      localStorage.removeItem('loginUrl');
       this.removeCookie('loginUrl');
       if (loginUrl) {
         location.replace(loginUrl);
