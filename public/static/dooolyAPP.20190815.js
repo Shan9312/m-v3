@@ -553,7 +553,7 @@ dooolyAPP.prototype = {
     }
     var domain = this.allConfig.jumpDomain.m;
     //记录登录特殊跳转url
-    if (url) {
+    if (url && url != '') {
       var reg = new RegExp('^http(s)?://');
       if (reg.test(url)) {
         localStorage.loginUrl = url;
@@ -586,7 +586,7 @@ dooolyAPP.prototype = {
       this.removeCookie('loginUrl');
       if (loginUrl) {
         location.replace(loginUrl);
-        window.location.reload();
+        // window.location.reload();
       } else {
         location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
       }
