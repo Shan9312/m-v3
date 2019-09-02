@@ -603,7 +603,6 @@
             localStorage.appStartUpUrl = res.data.data.adGroup.appStartUpUrl
           }
           if (res.data.code == '1000') {
-            var str1 = JSON.parse(res.data.data.userInfo)
             dooolyAPP.logIn(res.data.data.userInfo)
           } else if (res.data.code == '1001') {
             dooolyAPP.logOut()

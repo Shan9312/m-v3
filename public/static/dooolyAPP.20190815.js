@@ -581,15 +581,15 @@ dooolyAPP.prototype = {
         RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), "0", jsonData.token);
       }
     } else {
-      var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
-      localStorage.removeItem('loginUrl');
-      this.removeCookie('loginUrl');
-      if (loginUrl) {
-        location.replace(loginUrl);
-        // window.location.reload();
-      } else {
-        location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
-      }
+      location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home'
+      // var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
+      // localStorage.removeItem('loginUrl');
+      // this.removeCookie('loginUrl');
+      // if (loginUrl) {
+      //   location.replace(loginUrl);
+      // } else {
+      //   location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
+      // }
     }
   },
   //设置头部方法封装(类型待整理)
