@@ -554,14 +554,14 @@ dooolyAPP.prototype = {
     
     var domain = this.allConfig.jumpDomain.m;
     //记录登录特殊跳转url
-    // if (url && url != '') {
-    //   var reg = new RegExp('^http(s)?://');
-    //   if (reg.test(url)) {
-    //     localStorage.loginUrl = url;
-    //   } else {
-    //     localStorage.loginUrl = domain + url;
-    //   }
-    // }
+    if (url && url != '') {
+      var reg = new RegExp('^http(s)?://');
+      if (reg.test(url)) {
+        localStorage.loginUrl = url;
+      } else {
+        localStorage.loginUrl = domain + url;
+      }
+    }
     location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
     // if (this.browserName == "WeChat" && type != 1) {
     //   // 微信
