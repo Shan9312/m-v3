@@ -193,7 +193,7 @@ export default {
       selectedDay: "", // 判断是否当天选中的状态
       isShowMore: true, // 显示更多按钮
       yearDate: "", // 选中某一时的 日期
-      isLowSea: false
+      isLowSea: localStorage.getItem("skuListCardId") == 1217 ? false : true // id ：1217 淡季；id:1218:旺季
     };
   },
   filters: {
