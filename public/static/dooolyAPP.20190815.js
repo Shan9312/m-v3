@@ -551,8 +551,8 @@ dooolyAPP.prototype = {
       localStorage.groupId = jsonData.adUserConn.groupId;
       localStorage.blocId = jsonData.adUserConn.blocId;
     }
-    location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
-    // var domain = this.allConfig.jumpDomain.m;
+    
+    var domain = this.allConfig.jumpDomain.m;
     //记录登录特殊跳转url
     // if (url && url != '') {
     //   var reg = new RegExp('^http(s)?://');
@@ -562,6 +562,7 @@ dooolyAPP.prototype = {
     //     localStorage.loginUrl = domain + url;
     //   }
     // }
+    location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
     // if (this.browserName == "WeChat" && type != 1) {
     //   // 微信
     //   location.replace(this.allConfig.jumpDomain.wx);
