@@ -117,9 +117,11 @@
           <Calendar
             :monthRange="mounthArr"
             :begin="beginDate"
+            :disabled="disabledArr"
             rangeMonthFormat="yyyy年MM月"
             :tileContent="tileContent"
             @select="select"
+            ref="calendar"
           />
         </div>
       </div>
@@ -143,6 +145,7 @@ export default {
   data() {
     return {
       mounthArr: [`${year}-${month}`, `${year}-${month + 1}`],
+      disabledArr: [],
       dayList: [],
       tileContent: [
         { date: `${year}-${month}-${day + 3}`, className: "holiday " }
@@ -189,7 +192,8 @@ export default {
       isShowDate: false, // 是否显示选中的日期
       selectedDay: "", // 判断是否当天选中的状态
       isShowMore: true, // 显示更多按钮
-      yearDate: "" // 选中某一时的 日期
+      yearDate: "", // 选中某一时的 日期
+      isLowSea: false
     };
   },
   filters: {
@@ -210,11 +214,74 @@ export default {
     // 获取当前3天日期
     this.getDayList();
     dooolyAPP.initTitle("确认订单");
+    this.getDecSevenDay(); // 10月国庆不需要加进去
   },
   mounted() {
     this.getOrderDetail();
+    this.randerLowSea();
   },
   methods: {
+    /**
+     * 判断当前活动是否 淡 旺季
+     * 旺季： 每个月的周六和周日的日期 都可选
+     * 平季： 每个月的周一和周五的日期 都可选 排除 9月13号
+     * */
+    randerLowSea() {
+      let y = new Date().getFullYear();
+      let m = new Date().getMonth() + 1;
+      let obj1 = this.getWeekDay(y, m);
+      let obj2 = this.getWeekDay(y, m + 1);
+      // console.log(obj1, obj2);
+      let busySeasonArr = obj1.weekDay.concat(obj2.weekDay);
+      let lowSeasonArr = obj1.workDay.concat(obj2.workDay);
+      // 如果19年 淡季中含有 9-13号，则删除加到是旺季数组中;
+      let str = "2019-9-13";
+      if (lowSeasonArr.indexOf(str) > 0) {
+        lowSeasonArr.splice(lowSeasonArr.indexOf(str), 1);
+        busySeasonArr.push(str);
+      }
+      // 若活动是淡季
+      if (this.isLowSea) {
+        lowSeasonArr.forEach(item => {
+          this.disabledArr.push(item);
+        });
+      } else {
+        busySeasonArr.forEach(item => {
+          this.disabledArr.push(item);
+        });
+      }
+    },
+    // 获取周1——周5 && 周6-周7的日期
+    getWeekDay(y, m) {
+      let tempTime = new Date(y, m, 0);
+      let time = new Date();
+      let weekDay = new Array();
+      let workDay = new Array();
+      let t = m == 10 ? 8 : 1;
+      for (var i = t; i <= tempTime.getDate(); i++) {
+        time.setFullYear(y, m - 1, i);
+        var day = time.getDay();
+        if (day == 6 || day == 0) {
+          weekDay.push(`${y}-${m}-${i}`);
+        } else {
+          workDay.push(`${y}-${m}-${i}`);
+        }
+      }
+      let obj = {
+        weekDay: weekDay,
+        workDay: workDay
+      };
+      return obj;
+    },
+    // 获取10月份的1-7号
+    getDecSevenDay() {
+      let mounth = 10;
+      let year = new Date().getFullYear();
+      for (let i = 1; i < 8; i++) {
+        let date = `${year}-${mounth}-${i}`;
+        this.disabledArr.push(date);
+      }
+    },
     // 获取订单信息
     getOrderDetail() {
       http({
