@@ -562,20 +562,21 @@ dooolyAPP.prototype = {
         localStorage.loginUrl = domain + url;
       }
     }
+    if (this.browserName == "WeChat" && type != 1) {
+      // 微信
+      location.replace(this.allConfig.jumpDomain.wx);
+    }else if (this.browserName == "WebKit") {
+      // ios
+      var params = {
+        "userInfo": jsonData.adUserConn,
+        "type": "0",
+        "token": jsonData.token,
+        'url': url
+      };
+      window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
+    } 
     location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
-    // if (this.browserName == "WeChat" && type != 1) {
-    //   // 微信
-    //   location.replace(this.allConfig.jumpDomain.wx);
-    // } else if (this.browserName == "WebKit") {
-    //   // ios
-    //   var params = {
-    //     "userInfo": jsonData.adUserConn,
-    //     "type": "0",
-    //     "token": jsonData.token,
-    //     'url': url
-    //   };
-    //   window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
-    // } else if (this.browserName == "Chrome WebView") {
+    // else if (this.browserName == "Chrome WebView") {
     //   // 安卓
     //   if (url) {
     //     RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
