@@ -231,7 +231,6 @@ export default {
       let m = new Date().getMonth() + 1;
       let obj1 = this.getWeekDay(y, m);
       let obj2 = this.getWeekDay(y, m + 1);
-      // console.log(obj1, obj2);
       let busySeasonArr = obj1.weekDay.concat(obj2.weekDay);
       let lowSeasonArr = obj1.workDay.concat(obj2.workDay);
       // 如果19年 淡季中含有 9-13号，则删除加到是旺季数组中;
@@ -240,7 +239,7 @@ export default {
         lowSeasonArr.splice(lowSeasonArr.indexOf(str), 1);
         busySeasonArr.push(str);
       }
-      // 若活动是淡季
+      // 判断当前活动是淡季/旺季
       if (this.isLowSea) {
         lowSeasonArr.forEach(item => {
           this.disabledArr.push(item);
@@ -251,7 +250,7 @@ export default {
         });
       }
     },
-    // 获取周1——周5 && 周6-周7的日期
+    // 获取每个月的 淡季/旺季的周几天
     getWeekDay(y, m) {
       let tempTime = new Date(y, m, 0);
       let time = new Date();
