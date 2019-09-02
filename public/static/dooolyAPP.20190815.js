@@ -481,7 +481,7 @@ dooolyAPP.prototype = {
         localStorage.removeItem('dooolyToken');
         localStorage.removeItem('token');
       }
-      if (type == 1) {
+      if (type == 1 ) {
         //非正常登出
         if (url) {
           localStorage.setItem('loginUrl', url);
@@ -585,11 +585,10 @@ dooolyAPP.prototype = {
       var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
       localStorage.removeItem('loginUrl');
       this.removeCookie('loginUrl');
-      if (loginUrl) {
+      if (loginUrl && loginUrl != domain) {
         location.replace(loginUrl);
       } else {
-        location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
-        // location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
+        location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
       }
     }
   },
