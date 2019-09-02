@@ -604,7 +604,6 @@
           }
           if (res.data.code == '1000') {
             dooolyAPP.logIn(res.data.data.userInfo)
-            this.loding = true
           } else if (res.data.code == '1001') {
             dooolyAPP.logOut()
             this.loding = true

@@ -551,46 +551,46 @@ dooolyAPP.prototype = {
       localStorage.groupId = jsonData.adUserConn.groupId;
       localStorage.blocId = jsonData.adUserConn.blocId;
     }
-    location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
-    // var domain = this.allConfig.jumpDomain.m;
-    //记录登录特殊跳转url
-    // if (url && url != '') {
-    //   var reg = new RegExp('^http(s)?://');
-    //   if (reg.test(url)) {
-    //     localStorage.loginUrl = url;
-    //   } else {
-    //     localStorage.loginUrl = domain + url;
-    //   }
-    // }
-    // if (this.browserName == "WeChat" && type != 1) {
-    //   // 微信
-    //   location.replace(this.allConfig.jumpDomain.wx);
-    // } else if (this.browserName == "WebKit") {
-    //   // ios
-    //   var params = {
-    //     "userInfo": jsonData.adUserConn,
-    //     "type": "0",
-    //     "token": jsonData.token,
-    //     'url': url
-    //   };
-    //   window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
-    // } else if (this.browserName == "Chrome WebView") {
-    //   // 安卓
-    //   if (url) {
-    //     RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
-    //   } else {
-    //     RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), "0", jsonData.token);
-    //   }
-    // } else {
-    //   var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
-    //   localStorage.removeItem('loginUrl');
-    //   this.removeCookie('loginUrl');
-    //   if (loginUrl) {
-    //     location.replace(loginUrl);
-    //   } else {
-    //     location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
-    //   }
-    // }
+    var domain = this.allConfig.jumpDomain.m;
+    记录登录特殊跳转url
+    if (url && url != '') {
+      var reg = new RegExp('^http(s)?://');
+      if (reg.test(url)) {
+        localStorage.loginUrl = url;
+      } else {
+        localStorage.loginUrl = domain + url;
+      }
+    }
+    if (this.browserName == "WeChat" && type != 1) {
+      // 微信
+      location.replace(this.allConfig.jumpDomain.wx);
+    } else if (this.browserName == "WebKit") {
+      // ios
+      var params = {
+        "userInfo": jsonData.adUserConn,
+        "type": "0",
+        "token": jsonData.token,
+        'url': url
+      };
+      window.webkit.messageHandlers.nativeUserInfomation.postMessage(params);
+    } else if (this.browserName == "Chrome WebView") {
+      // 安卓
+      if (url) {
+        RHNativeJS.setUserInfo(JSON.stringify(jsonData.adUserConn), jsonData.token, base + localStorage.loginUrl);
+      } else {
+        RHNativeJS.nativeUserInfomation(JSON.stringify(jsonData.adUserConn), "0", jsonData.token);
+      }
+    } else {
+      location.href = 'https://admin.doooly.com/reach_dist/thirdParty/#/v3/home';
+      // var loginUrl = localStorage.loginUrl || dooolyAPP.getCookie('loginUrl');
+      // localStorage.removeItem('loginUrl');
+      // this.removeCookie('loginUrl');
+      // if (loginUrl) {
+      //   location.replace(loginUrl);
+      // } else {
+      //   location.replace(this.browserName == "otherAPP" ? domain + 'nav/newHome?first=1' : domain + 'nav/newHome');
+      // }
+    }
   },
   //设置头部方法封装(类型待整理)
   initTitle: function initTitle(titleText, key, funcName) {
