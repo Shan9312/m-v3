@@ -193,7 +193,7 @@ export default {
       selectedDay: "", // 判断是否当天选中的状态
       isShowMore: true, // 显示更多按钮
       yearDate: "", // 选中某一时的 日期
-      isLowSea: localStorage.getItem("skuListCardId") == 1217 ? false : true // id ：1217 淡季；id:1218:旺季
+      isLowSea: localStorage.getItem("skuListCardId") // id ：1217 淡季；id:1218:旺季
     };
   },
   filters: {
@@ -239,12 +239,12 @@ export default {
         lowSeasonArr.splice(lowSeasonArr.indexOf(str), 1);
         busySeasonArr.push(str);
       }
-      // 判断当前活动是淡季/旺季
-      if (this.isLowSea) {
+      // 判断当前活动是淡季/旺季 ; // id ：1217 平季；id:1218:旺季
+      if (this.isLowSea == 1217) {
         lowSeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });
-      } else {
+      } else if (this.isLowSea == 1218) {
         busySeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });

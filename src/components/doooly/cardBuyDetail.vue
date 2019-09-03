@@ -292,10 +292,6 @@ export default {
 
     // 选择商品规格
     skuClick(index) {
-      localStorage.setItem(
-        "skuListCardId",
-        this.cardBuyDetailList.skuList[index].id
-      );
       this.checkSkuClass = index;
       this.skuIndex = index;
       this.showSellPrice = this.cardBuyDetailList.skuList[index].sellPrice;

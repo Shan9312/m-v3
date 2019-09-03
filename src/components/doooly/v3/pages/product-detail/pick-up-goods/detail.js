@@ -20,12 +20,10 @@ export default {
         code: '',
         groupShortName: '',
         imagesList: [],
-        productTypeList: [
-          {
-            id: '',
-            name: ''
-          }
-        ],
+        productTypeList: [{
+          id: '',
+          name: ''
+        }],
         selfProduct: '',
         skuList: ''
       },
@@ -56,13 +54,11 @@ export default {
       watchEndId: null
     };
   },
-  computed: {
-  },
+  computed: {},
   beforeCreate() {
     document.body.style.backgroundColor = '#fff';
   },
-  beforeDestroy() {
-  },
+  beforeDestroy() {},
   mounted() {
     window.addEventListener('scroll', this.menu);
   },
@@ -110,6 +106,10 @@ export default {
 
     // 选择商品规格
     skuClick(index) {
+      localStorage.setItem(
+        "skuListCardId",
+        this.cardBuyDetailList.skuList[index].id
+      );
       this.checkSkuClass = index;
       this.skuIndex = index;
       this.showSellPrice = this.cardBuyDetailList.skuList[index].sellPrice;
@@ -127,19 +127,15 @@ export default {
       }
       this.postData = {
         productType: this.cardBuyDetailList.productTypeList[this.proIndex].id,
-        merchantProduct: [
-          {
-            merchantId: this.cardBuyDetailList.selfProduct.businessId,
-            remarks: '',
-            productSku: [
-              {
-                productId: this.cardBuyDetailList.selfProduct.id,
-                skuId: this.cardBuyDetailList.skuList[this.skuIndex].id,
-                buyNum: 1
-              }
-            ]
-          }
-        ],
+        merchantProduct: [{
+          merchantId: this.cardBuyDetailList.selfProduct.businessId,
+          remarks: '',
+          productSku: [{
+            productId: this.cardBuyDetailList.selfProduct.id,
+            skuId: this.cardBuyDetailList.skuList[this.skuIndex].id,
+            buyNum: 1
+          }]
+        }],
         img: this.cardBuyDetailList.imagesList[0],
         name: this.cardBuyDetailList.selfProduct.name,
         specification: this.cardBuyDetailList.skuList[this.skuIndex]
@@ -148,32 +144,36 @@ export default {
         giftBagId: this.giftBagId,
         orderType: this.cardBuyDetailList.selfProduct.productAttr
       };
-      if (this.activityName === 'jianhangTicketOther') return this.$router.push({ path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}` });
+      if (this.activityName === 'jianhangTicketOther') return this.$router.push({
+        path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}`
+      });
       if (this.postData.productType == 1) {
-        this.$router.push({ path: '/orderInfo_entity' });
+        this.$router.push({
+          path: '/orderInfo_entity'
+        });
       } else if (this.postData.productType === '11') {
         // productType: 11 机场活动实物商品
         if (this.activityName) {
           dooolyAPP.gotoJumpVue(
             this.$router,
             '/confirm_order/' +
-              this.activityName +
-              '/' +
-              this.cardBuyDetailList.selfProduct.id +
-              '/' +
-              this.cardBuyDetailList.skuList[this.skuIndex].id +
-              '/0/' +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.activityName +
+            '/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         } else {
           dooolyAPP.gotoJumpVue(
             this.$router,
             '/confirm_order/0/' +
-              this.cardBuyDetailList.selfProduct.id +
-              '/' +
-              this.cardBuyDetailList.skuList[this.skuIndex].id +
-              '/0/' +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         }
       } else {
@@ -181,23 +181,23 @@ export default {
           dooolyAPP.gotoJumpVue(
             this.$router,
             '/cardBuyOrder/' +
-              this.activityName +
-              '/' +
-              this.cardBuyDetailList.selfProduct.id +
-              '/' +
-              this.cardBuyDetailList.skuList[this.skuIndex].id +
-              '/0/' +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.activityName +
+            '/' +
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         } else {
           dooolyAPP.gotoJumpVue(
             this.$router,
             '/cardBuyOrder/0/' +
-              this.cardBuyDetailList.selfProduct.id +
-              '/' +
-              this.cardBuyDetailList.skuList[this.skuIndex].id +
-              '/0/' +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.selfProduct.id +
+            '/' +
+            this.cardBuyDetailList.skuList[this.skuIndex].id +
+            '/0/' +
+            this.cardBuyDetailList.productTypeList[this.proIndex].id
           );
         }
       }
@@ -237,6 +237,9 @@ export default {
           // this.getServer(); // 请求服务器时间
           let data = res.data.data;
           this.cardBuyDetailList = data;
+          if (data.skuList && data.skuList.length > 0) {
+            localStorage.setItem("skuListCardId", res.data.data.skuList[0].id);
+          }
           // this.handleWelsh(
           //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
           //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.id
