@@ -240,11 +240,11 @@ export default {
         busySeasonArr.push(str);
       }
       // 判断当前活动是淡季/旺季 ; // id ：1217 平季；id:1218:旺季
-      if (this.isLowSea == 1217) {
+      if (this.isLowSea == 1218) {
         lowSeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });
-      } else if (this.isLowSea == 1218) {
+      } else if (this.isLowSea == 1217) {
         busySeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });
