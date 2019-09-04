@@ -323,7 +323,7 @@ export default {
         if (res.data.code == "1000") {
           let { data } = res.data;
           this.productName = data.selfProduct.name;
-          this.amount = data.selfProduct.sellPrice;
+          this.amount = data.skuList[this.skuIdIndex].sellPrice;
           this.formObj.merchantProduct[0].merchantId =
             data.selfProduct.businessId;
           this.formObj.merchantProduct[0].productSku[0].skuId =
