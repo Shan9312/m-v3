@@ -117,9 +117,11 @@
           <Calendar
             :monthRange="mounthArr"
             :begin="beginDate"
+            :disabled="disabledArr"
             rangeMonthFormat="yyyy年MM月"
             :tileContent="tileContent"
             @select="select"
+            ref="calendar"
           />
         </div>
       </div>
@@ -143,6 +145,7 @@ export default {
   data() {
     return {
       mounthArr: [`${year}-${month}`, `${year}-${month + 1}`],
+      disabledArr: [],
       dayList: [],
       tileContent: [
         { date: `${year}-${month}-${day + 3}`, className: "holiday " }
@@ -189,7 +192,9 @@ export default {
       isShowDate: false, // 是否显示选中的日期
       selectedDay: "", // 判断是否当天选中的状态
       isShowMore: true, // 显示更多按钮
-      yearDate: "" // 选中某一时的 日期
+      yearDate: "", // 选中某一时的 日期
+      isLowSea: localStorage.getItem("skuListCardId"), // id ：1217 淡季；id:1218:旺季
+      skuIdIndex: localStorage.getItem("skuIdIndex") // 获取sku的index
     };
   },
   filters: {
@@ -210,11 +215,104 @@ export default {
     // 获取当前3天日期
     this.getDayList();
     dooolyAPP.initTitle("确认订单");
+    this.getDecSevenDay(); // 10月国庆不需要加进去
   },
   mounted() {
     this.getOrderDetail();
+    this.randerLowSea();
   },
   methods: {
+    /**
+     * 判断当前活动是否 淡 旺季
+     * 旺季： 每个月的周六和周日的日期 都可选
+     * 平季： 每个月的周一和周五的日期 都可选 排除 9月13号
+     * */
+    randerLowSea() {
+      let y = new Date().getFullYear();
+      let m = new Date().getMonth() + 1;
+      let obj1 = this.getWeekDay(y, m);
+      let obj2 = this.getWeekDay(y, m + 1);
+      let busySeasonArr = obj1.weekDay.concat(obj2.weekDay);
+      let lowSeasonArr = obj1.workDay.concat(obj2.workDay);
+      // 如果19年 淡季中含有 9-13号，则删除加到是旺季数组中;
+      let str = "2019-9-13";
+      if (lowSeasonArr.indexOf(str) > 0) {
+        lowSeasonArr.splice(lowSeasonArr.indexOf(str), 1);
+        busySeasonArr.splice(3, 0, str);
+      }
+      // 判断当前活动是淡季/旺季 ; // id ：1217 平季；id:1218:旺季
+      if (this.isLowSea == 1218) {
+        this.handleDayArr(busySeasonArr);
+        lowSeasonArr.forEach(item => {
+          this.disabledArr.push(item);
+        });
+      } else if (this.isLowSea == 1217) {
+        this.handleDayArr(lowSeasonArr);
+        busySeasonArr.forEach(item => {
+          this.disabledArr.push(item);
+        });
+      }
+    },
+    // 判断当前是特殊季节
+    handleDayArr(arr) {
+      let dayArr = [];
+      let dateArr = [];
+      let Index = 0;
+      this.dayList.forEach(child => {
+        if (arr.indexOf(child.date) > 0) {
+          Index = arr.indexOf(child.date) + 1;
+          dayArr.push(child);
+        }
+      });
+      if (dayArr && dayArr.length < 3) {
+        dateArr = arr.slice(Index, Index + 3 - dayArr.length);
+      }
+      // 处理格式
+      if (dateArr && dateArr.length > 0) {
+        dateArr.forEach(item => {
+          let str = item.split("-");
+          let date = `${str[1]}月${str[2]}日`;
+          let obj = {
+            date: item,
+            nowDay: date
+          };
+          dayArr.push(obj);
+        });
+      }
+      this.dayList = dayArr;
+      this.selectedDay = this.dayList[0].nowDay;
+    },
+    // 获取每个月的 淡季/旺季的周几天
+    getWeekDay(y, m) {
+      let tempTime = new Date(y, m, 0);
+      let time = new Date();
+      let weekDay = new Array();
+      let workDay = new Array();
+      let t = m == 10 ? 8 : 1;
+      for (var i = t; i <= tempTime.getDate(); i++) {
+        time.setFullYear(y, m - 1, i);
+        var day = time.getDay();
+        if (day == 6 || day == 0) {
+          weekDay.push(`${y}-${m}-${i}`);
+        } else {
+          workDay.push(`${y}-${m}-${i}`);
+        }
+      }
+      let obj = {
+        weekDay: weekDay,
+        workDay: workDay
+      };
+      return obj;
+    },
+    // 获取10月份的1-7号
+    getDecSevenDay() {
+      let mounth = 10;
+      let year = new Date().getFullYear();
+      for (let i = 1; i < 8; i++) {
+        let date = `${year}-${mounth}-${i}`;
+        this.disabledArr.push(date);
+      }
+    },
     // 获取订单信息
     getOrderDetail() {
       http({
@@ -225,11 +323,11 @@ export default {
         if (res.data.code == "1000") {
           let { data } = res.data;
           this.productName = data.selfProduct.name;
-          this.amount = data.selfProduct.sellPrice;
+          this.amount = data.skuList[this.skuIdIndex].sellPrice;
           this.formObj.merchantProduct[0].merchantId =
             data.selfProduct.businessId;
           this.formObj.merchantProduct[0].productSku[0].skuId =
-            data.skuList[0].id;
+            data.skuList[this.skuIdIndex].id;
           this.formObj.productType = data.productTypeList[0].id;
           this.formObj.merchantProduct[0].productSku[0].productType =
             data.productTypeList[0].id;
