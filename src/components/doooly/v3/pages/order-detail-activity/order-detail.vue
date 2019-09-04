@@ -254,7 +254,6 @@ export default {
     },
     // 判断当前是特殊季节
     handleDayArr(arr) {
-      console.log(arr);
       let dayArr = [];
       let dateArr = [];
       let Index = 0;
@@ -280,6 +279,7 @@ export default {
         });
       }
       this.dayList = dayArr;
+      this.selectedDay = this.dayList[0].nowDay;
     },
     // 获取每个月的 淡季/旺季的周几天
     getWeekDay(y, m) {
