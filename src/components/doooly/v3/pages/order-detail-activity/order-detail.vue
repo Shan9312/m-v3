@@ -237,18 +237,49 @@ export default {
       let str = "2019-9-13";
       if (lowSeasonArr.indexOf(str) > 0) {
         lowSeasonArr.splice(lowSeasonArr.indexOf(str), 1);
-        busySeasonArr.push(str);
+        busySeasonArr.splice(3, 0, str);
       }
       // 判断当前活动是淡季/旺季 ; // id ：1217 平季；id:1218:旺季
       if (this.isLowSea == 1218) {
+        this.handleDayArr(busySeasonArr);
         lowSeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });
       } else if (this.isLowSea == 1217) {
+        this.handleDayArr(lowSeasonArr);
         busySeasonArr.forEach(item => {
           this.disabledArr.push(item);
         });
       }
+    },
+    // 判断当前是特殊季节
+    handleDayArr(arr) {
+      console.log(arr);
+      let dayArr = [];
+      let dateArr = [];
+      let Index = 0;
+      this.dayList.forEach(child => {
+        if (arr.indexOf(child.date) > 0) {
+          Index = arr.indexOf(child.date) + 1;
+          dayArr.push(child);
+        }
+      });
+      if (dayArr && dayArr.length < 3) {
+        dateArr = arr.slice(Index, Index + 3 - dayArr.length);
+      }
+      // 处理格式
+      if (dateArr && dateArr.length > 0) {
+        dateArr.forEach(item => {
+          let str = item.split("-");
+          let date = `${str[1]}月${str[2]}日`;
+          let obj = {
+            date: item,
+            nowDay: date
+          };
+          dayArr.push(obj);
+        });
+      }
+      this.dayList = dayArr;
     },
     // 获取每个月的 淡季/旺季的周几天
     getWeekDay(y, m) {

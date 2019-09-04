@@ -106,10 +106,11 @@ export default {
 
     // 选择商品规格
     skuClick(index) {
-      localStorage.setItem(
-        "skuListCardId",
-        this.cardBuyDetailList.skuList[index].id
-      );
+      if (this.cardBuyDetailList.skuList[index].specification.indexOf('平季')) {
+        localStorage.setItem("skuListCardId", 1217);
+      } else if (this.cardBuyDetailList.skuList[index].specification.indexOf('旺季')) {
+        localStorage.setItem("skuListCardId", 1218);
+      }
       this.checkSkuClass = index;
       this.skuIndex = index;
       this.showSellPrice = this.cardBuyDetailList.skuList[index].sellPrice;
@@ -238,7 +239,11 @@ export default {
           let data = res.data.data;
           this.cardBuyDetailList = data;
           if (data.skuList && data.skuList.length > 0) {
-            localStorage.setItem("skuListCardId", res.data.data.skuList[0].id);
+            if (data.skuList[0].specification.indexOf('平季')) {
+              localStorage.setItem("skuListCardId", 1217);
+            } else if (data.skuList[0].specification.indexOf('旺季')) {
+              localStorage.setItem("skuListCardId", 1218);
+            }
           }
           // this.handleWelsh(
           //   this.cardBuyDetailList && this.cardBuyDetailList.selfProduct && this.cardBuyDetailList.selfProduct.name,
