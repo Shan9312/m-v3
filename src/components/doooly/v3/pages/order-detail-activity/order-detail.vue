@@ -193,7 +193,8 @@ export default {
       selectedDay: "", // 判断是否当天选中的状态
       isShowMore: true, // 显示更多按钮
       yearDate: "", // 选中某一时的 日期
-      isLowSea: localStorage.getItem("skuListCardId") // id ：1217 淡季；id:1218:旺季
+      isLowSea: localStorage.getItem("skuListCardId"), // id ：1217 淡季；id:1218:旺季
+      skuIdIndex: localStorage.getItem("skuIdIndex") // 获取sku的index
     };
   },
   filters: {
@@ -326,7 +327,7 @@ export default {
           this.formObj.merchantProduct[0].merchantId =
             data.selfProduct.businessId;
           this.formObj.merchantProduct[0].productSku[0].skuId =
-            data.skuList[0].id;
+            data.skuList[this.skuIdIndex].id;
           this.formObj.productType = data.productTypeList[0].id;
           this.formObj.merchantProduct[0].productSku[0].productType =
             data.productTypeList[0].id;
