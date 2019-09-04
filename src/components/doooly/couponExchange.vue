@@ -108,7 +108,7 @@
           <span>兑换礼券</span>
         </div>
         <!-- pro couponId [1072, 1073, 1074] -->
-        <div
+        <!-- <div
           v-if="couponDetail.couponId !== 1072 && couponDetail.couponId !== 1073 && couponDetail.couponId !== 1074"
           class="coupon"
         >
@@ -129,8 +129,8 @@
               <input class="confirm" @click="cloe()" type="button" value="确定" />
             </div>
           </div>
-        </div>
-        <div v-else class="coupon">
+        </div>-->
+        <div class="coupon">
           <p class="tips-msg">您的门票将于出游前1日左右通过短信形式发出</p>
         </div>
       </div>
