@@ -130,7 +130,7 @@
             </div>
           </div>
         </div>
-        <div class="coupon">
+        <div v-else class="coupon">
           <p class="tips-msg">您的门票将于出游前1日左右通过短信形式发出</p>
         </div>
       </div>
