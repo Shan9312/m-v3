@@ -104,7 +104,7 @@
         </div>
       </section>
       <section>
-        <div class="details_con clearfix">
+        <div class="details_con">
           <div class="fl">付款金额</div>
           <div class="fr" v-if="String(businessRebateAmount).indexOf('.')>0">{{businessRebateAmount.toFixed(2)}}积分</div>
           <div class="fr" v-else>{{businessRebateAmount}}.00积分</div>
