@@ -96,7 +96,7 @@ dooolyAPP.prototype = {
       } else if (this.browserName == 'Chrome WebView') {
         RHNativeJS.jumpPersonPage();
       } else {
-        window.location.replace(this.allConfig.jumpDomain.m + 'nav/personalCenter');
+        window.location.replace(this.allConfig.jumpDomain.m + 'v3/mine');
       }
     } catch (e) {
       dooolyAPP.errorLog(e);
