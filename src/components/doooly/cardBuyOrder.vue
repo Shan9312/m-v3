@@ -148,8 +148,9 @@ export default {
       couponNum: 0, //可选抵扣券的数量
       saveMoney: localStorage.saveMoney,
       cardbuy2: "",
-      checkindex: 0
-    };
+      checkindex: 0,
+      ccbType: this.$route.query.ccbType || "", // 建设银行一元购活动跳转至此
+    }; 
   },
   computed: {
     checkedCount() {
@@ -211,6 +212,7 @@ export default {
       this.loadingState = true;
       let data = {
         userId: localStorage.userId,
+        specialType: this.ccbType ? 'ccbVolunteer' : '',
         groupId: localStorage.groupId,
         consigneeName: this.defaultDelivery.receiverName,
         consigneeMobile: this.defaultDelivery.receiverTelephone,

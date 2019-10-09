@@ -6,7 +6,7 @@ export default {
   name: 'seckill-goods-detail',
   components: {
     adBanner
-  },
+  }, 
   data() {
     return {
       // sourceType: this.$route.params.sourceType,
@@ -44,7 +44,7 @@ export default {
       // isReceive: this.$route.params.isReceive,
       giftBagId: this.$route.params.giftBagId,
       giftType: this.$route.query.giftType || '', // 礼包页面跳转至此
-      // ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
+      ccbType: this.$route.query.ccbType || '', // 建设银行一元购活动跳转至此
       recyclingType: this.$route.query.recyclingType || '', // 回收活动跳转至此
       isError: false,
       errMsg: '',
@@ -167,7 +167,8 @@ export default {
             '/' +
             this.cardBuyDetailList.skuList[this.skuIndex].id +
             '/0/' +
-            this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+            "?ccbType=" + this.ccbType
           );
         } else {
           dooolyAPP.gotoJumpVue(
@@ -177,7 +178,8 @@ export default {
             '/' +
             this.cardBuyDetailList.skuList[this.skuIndex].id +
             '/0/' +
-            this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+            "?ccbType=" + this.ccbType
           );
         }
       } else {
@@ -191,7 +193,8 @@ export default {
             '/' +
             this.cardBuyDetailList.skuList[this.skuIndex].id +
             '/0/' +
-            this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+            "?ccbType=" + this.ccbType
           );
         } else {
           dooolyAPP.gotoJumpVue(
@@ -201,7 +204,8 @@ export default {
             '/' +
             this.cardBuyDetailList.skuList[this.skuIndex].id +
             '/0/' +
-            this.cardBuyDetailList.productTypeList[this.proIndex].id
+            this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+            "?ccbType=" + this.ccbType
           );
         }
       }
