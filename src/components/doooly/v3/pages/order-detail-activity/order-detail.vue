@@ -168,6 +168,7 @@ export default {
         orderType: 5, // 5代表改商品有邀请券,礼包订单默认传1，
         productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
+        specialType: this.$route.query.ccbType ? 'ccbVolunteer' : '',
         orderExt: {
           deliveryName: "", // 用户姓名
           deliveryTelephone: "", // 用户手机号
@@ -194,7 +195,8 @@ export default {
       isShowMore: true, // 显示更多按钮
       yearDate: "", // 选中某一时的 日期
       isLowSea: localStorage.getItem("skuListCardId"), // id ：1217 淡季；id:1218:旺季
-      skuIdIndex: localStorage.getItem("skuIdIndex") // 获取sku的index
+      skuIdIndex: localStorage.getItem("skuIdIndex"), // 获取sku的index
+      ccbType: this.$route.query.ccbType || "", // 建设银行一元购活动跳转至此
     };
   },
   filters: {

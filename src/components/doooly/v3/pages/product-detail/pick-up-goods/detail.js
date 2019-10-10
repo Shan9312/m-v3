@@ -149,7 +149,7 @@ export default {
         orderType: this.cardBuyDetailList.selfProduct.productAttr
       };
       if (this.activityName === 'jianhangTicketOther') return this.$router.push({
-        path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}`
+        path: `/v3/constructOrderDetail/${this.$route.params.productId}/${this.activityName}?ccbType=${this.ccbType}`
       });
       if (this.postData.productType == 1) {
         this.$router.push({
