@@ -355,7 +355,8 @@ export default {
               "/" +
               this.cardBuyDetailList.skuList[this.skuIndex].id +
               "/0/" +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+              this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+              "?ccbType=" + this.ccbType
           );
         } else {
           dooolyAPP.gotoJumpVue(
@@ -365,7 +366,8 @@ export default {
               "/" +
               this.cardBuyDetailList.skuList[this.skuIndex].id +
               "/0/" +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+              this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+              "?ccbType=" + this.ccbType
           );
         }
       } else {
@@ -379,7 +381,8 @@ export default {
               "/" +
               this.cardBuyDetailList.skuList[this.skuIndex].id +
               "/0/" +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+              this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+              "?ccbType=" + this.ccbType
           );
         } else {
           dooolyAPP.gotoJumpVue(
@@ -389,7 +392,8 @@ export default {
               "/" +
               this.cardBuyDetailList.skuList[this.skuIndex].id +
               "/0/" +
-              this.cardBuyDetailList.productTypeList[this.proIndex].id
+              this.cardBuyDetailList.productTypeList[this.proIndex].id + 
+              "?ccbType=" + this.ccbType
           );
         }
       }

@@ -16,7 +16,8 @@ const confirmOrder = {
       bankError: '', // 银行卡错误
       mobileError: '', // 手机号错误
       formData: null, // 提交数据
-      disabled: false // 按钮控制
+      disabled: false, // 按钮控制
+      ccbType: this.$route.query.ccbType || "", // 建设银行一元购活动跳转至此
     }
   },
   created () {
@@ -151,6 +152,7 @@ const confirmOrder = {
         this.formData = {
           'token': localStorage.token,
           'userId': localStorage.userId,
+          'specialType': this.ccbType ? 'ccbVolunteer' : '',
           'groupId': localStorage.groupId,
           'consigneeName': this.userDeliveryList.receiverName,
           'consigneeMobile': this.userDeliveryList.receiverTelephone,
@@ -240,6 +242,7 @@ const confirmOrder = {
           this.formData = {
             'token': localStorage.token,
             'userId': localStorage.userId,
+            'specialType': this.ccbType ? 'ccbVolunteer' : '',
             'groupId': localStorage.groupId,
             'businessId': this.$route.query.businessId || '',
             'cardNumber': cardNumber,

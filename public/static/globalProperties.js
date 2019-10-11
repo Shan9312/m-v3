@@ -170,10 +170,10 @@ var globalProperties = {
         action: 'https://admin.doooly.com/doooly-action/'
       },
       dev: {
-        butterfly: 'https://admin.doooly.com/dev_butterfly/',
-        doooly: 'https://admin.doooly.com/dev_doooly/',
-        activity: 'https://admin.doooly.com/dev_reach-activity/',
-        order: 'https://admin.doooly.com/doooly-order/',
+        butterfly: 'https://admin.doooly.com/reach_api/',
+        doooly: 'https://admin.doooly.com/test_doooly/',
+        activity: 'https://admin.doooly.com/test_reach-activity/',
+        order: 'https://admin.doooly.com/test_doooly-order/',
         action: 'https://admin.doooly.com/doooly-action/'
       },
       test: {
