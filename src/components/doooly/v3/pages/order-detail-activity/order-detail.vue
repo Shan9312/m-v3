@@ -168,7 +168,7 @@ export default {
         orderType: 5, // 5代表改商品有邀请券,礼包订单默认传1，
         productType: 0,
         redirectUrl: this.$allConfig.jumpDomain.cashier + "cardBuyPayResult/",
-        specialType: this.$route.query.ccbType ? 'ccbVolunteer' : '',
+        specialType: this.$route.query.ccbType ? "ccbVolunteer" : "",
         orderExt: {
           deliveryName: "", // 用户姓名
           deliveryTelephone: "", // 用户手机号
@@ -196,7 +196,7 @@ export default {
       yearDate: "", // 选中某一时的 日期
       isLowSea: localStorage.getItem("skuListCardId"), // id ：1217 淡季；id:1218:旺季
       skuIdIndex: localStorage.getItem("skuIdIndex"), // 获取sku的index
-      ccbType: this.$route.query.ccbType || "", // 建设银行一元购活动跳转至此
+      ccbType: this.$route.query.ccbType || "" // 建设银行一元购活动跳转至此
     };
   },
   filters: {
@@ -487,7 +487,7 @@ export default {
   width: 100%;
   padding: 0.2rem;
   font-size: 0.28rem;
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   box-sizing: border-box;
@@ -659,7 +659,6 @@ export default {
   border-top: 1px solid #ececec;
   font-size: 0.3rem;
   width: 100%;
-  box-sizing: border-box;
   background: rgba(255, 255, 255, 1);
   .footer-box {
     .lf-title {
