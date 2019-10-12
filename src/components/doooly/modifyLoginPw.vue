@@ -93,7 +93,7 @@
           );
         },
         app_url:function () {
-          localStorage.redirectUrl="/nav/personalCenter";
+          localStorage.redirectUrl="/v3/mine";
           dooolyAPP.forceLoginOut(this.$router);
         }
       }
