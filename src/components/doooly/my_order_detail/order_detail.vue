@@ -30,7 +30,7 @@
           </div>
         </div>
         <!-- 卡券兑换url跳转 -->
-        <div v-if="supplierOrder.productType==2||supplierOrder.productType==6">
+        <div v-if="supplierOrder.productType==2||supplierOrder.productType==6||supplierOrder.productType==20">
           <div v-if="supplierOrder.duihuanUrl!='' && supplierOrder.type === 1">
             <div class="promptly_div copy_btn" data-clipboard-action="copy" data-clipboard-target=".copyCode"
               @click="copyBtn()">
